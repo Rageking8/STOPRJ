@@ -10,7 +10,7 @@ Board::Board()
 		board_data[i] = 0;
 	}
 
-	cam_pos[0] = 43;
+	cam_pos[0] = 86;
 	cam_pos[1] = 35;
 }
 
