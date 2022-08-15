@@ -31,10 +31,13 @@ void Game::start()
 		board.print_board();
 		std::cout << "Current pos : (" << player.get_pos(1) << ", " << player.get_pos(0) << ")\n";
 
-		std::string action_inp = input("Enter action : ");
+		std::string action_inp = input("Enter action (WASD for movement and IJKL for interaction) : ");
 
 		while (action_inp != "w" && action_inp != "a" && action_inp != "s" && action_inp != "d" && action_inp != "W" && action_inp != "A" && action_inp != "S" && action_inp != "D") {
-			action_inp = input("Invalid action\nEnter action : ");
+			system("cls");
+			board.print_board();
+			std::cout << "Current pos : (" << player.get_pos(1) << ", " << player.get_pos(0) << ")\n";
+			action_inp = input("Invalid action\nEnter action (WASD for movement and IJKL for interaction) : ");
 		}
 
 		if ((action_inp == "w" || action_inp == "W") && player.get_pos(0) > 0 && board.get_board(player.get_pos(0) - 1, player.get_pos(1)) == 0) {
