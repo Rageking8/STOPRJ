@@ -5,13 +5,13 @@
 
 Game::Game()
 {
-	board.set_board(50, 50, 1);
-	player.set_pos(50, 50);
+	board.set_board(100, 50, 1);
+	player.set_pos(100, 50);
 
 	for (int i = 0; i < 500; ++i) {
 		int rand_1 = rand_int(0, 100);
 		int rand_2 = rand_int(0, 100);
-		if (rand_1 != 50 || rand_2 != 50) {
+		if (rand_1 != 100 || rand_2 != 50) {
 			board.set_board(rand_1, rand_2, 2);
 		}
 	}
