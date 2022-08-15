@@ -37,7 +37,7 @@ void Game::start()
 			action_inp = input("Invalid action\nEnter action : ");
 		}
 
-		if (action_inp == "w") {
+		if ((action_inp == "w" || action_inp == "W") && player.get_pos(0) > 0 && board.get_board(player.get_pos(0) - 1, player.get_pos(1)) == 0) {
 			board.set_board(player.get_pos(0), player.get_pos(1), 0);
 			player.move('W');
 			board.set_board(player.get_pos(0), player.get_pos(1), 1);
@@ -45,7 +45,7 @@ void Game::start()
 			if (player.get_pos(0) < 93)
 				board.move_cam('W');
 		}
-		else if (action_inp == "a") {
+		else if ((action_inp == "a" || action_inp == "A") && player.get_pos(1) > 0 && board.get_board(player.get_pos(0), player.get_pos(1) - 1) == 0) {
 			board.set_board(player.get_pos(0), player.get_pos(1), 0);
 			player.move('A');
 			board.set_board(player.get_pos(0), player.get_pos(1), 1);
@@ -53,7 +53,7 @@ void Game::start()
 			if (player.get_pos(1) < 85)
 				board.move_cam('A');
 		}
-		else if (action_inp == "s") {
+		else if ((action_inp == "s" || action_inp == "S") && player.get_pos(1) < 100 && board.get_board(player.get_pos(0) + 1, player.get_pos(1)) == 0) {
 			board.set_board(player.get_pos(0), player.get_pos(1), 0);
 			player.move('S');
 			board.set_board(player.get_pos(0), player.get_pos(1), 1);
@@ -61,7 +61,7 @@ void Game::start()
 			if (player.get_pos(0) > 7)
 				board.move_cam('S');
 		}
-		else if (action_inp == "d") {
+		else if ((action_inp == "d" || action_inp == "D") && player.get_pos(1) < 100 && board.get_board(player.get_pos(0), player.get_pos(1) + 1) == 0) {
 			board.set_board(player.get_pos(0), player.get_pos(1), 0);
 			player.move('D');
 			board.set_board(player.get_pos(0), player.get_pos(1), 1);
