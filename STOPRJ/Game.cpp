@@ -33,7 +33,7 @@ void Game::start()
 
 		std::string action_inp = input("Enter action : ");
 
-		while (action_inp != "w" && action_inp != "a" && action_inp != "s" && action_inp != "d") {
+		while (action_inp != "w" && action_inp != "a" && action_inp != "s" && action_inp != "d" && action_inp != "W" && action_inp != "A" && action_inp != "S" && action_inp != "D") {
 			action_inp = input("Invalid action\nEnter action : ");
 		}
 
