@@ -9,9 +9,11 @@ public:
 	~Board();
 	void print_board();
 	void set_board(short idx1, short idx2, short data);
+	short get_board(short idx1, short idx2);
 
 private:
 	short* board_data;
 
 	void color_print(unsigned short color_code, std::string txt);
 };
+
