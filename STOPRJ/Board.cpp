@@ -1,4 +1,4 @@
-#include "Board.h"
+﻿#include "Board.h"
 #include <iostream>
 #include <string>
 #include "Windows.h"
@@ -29,8 +29,8 @@ void Board::print_board()
 				case 1:
 					color_print(9, "PLY");
 					break;
-				case 2:
-					color_print(10, "+++");
+				case 2: // walls
+					color_print(119, "   ");
 					break;
 				default:
 					std::cout << "   ";
