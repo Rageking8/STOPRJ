@@ -1,5 +1,6 @@
 #include "Board.h"
 #include <iostream>
+#include <string>
 #include "Windows.h"
 
 Board::Board()
@@ -30,6 +31,11 @@ void Board::print_board()
 void Board::set_board(short idx1, short idx2, short data)
 {
 	board_data[(idx1 * 101) + idx2] = data;
+}
+
+short Board::get_board(short idx1, short idx2)
+{
+	return board_data[(idx1 * 101) + idx2];
 }
 
 void Board::color_print(unsigned short color_code, std::string txt)

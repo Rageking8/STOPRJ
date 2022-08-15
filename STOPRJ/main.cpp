@@ -1,8 +1,8 @@
-#include "Board.h"
+#include "Game.h"
 #include <iostream>
 
 int main()
 {
-    Board board;
-    board.print_board();
+	Game game;
+	game.start();
 }
