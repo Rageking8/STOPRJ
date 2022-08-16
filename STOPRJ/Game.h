@@ -17,5 +17,6 @@ private:
 	std::string input(std::string txt);
 
 	int rand_int(int min, int max);
+	bool valid_inp(std::string inp);
 };
 

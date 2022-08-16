@@ -3,15 +3,12 @@
 #include <string>
 #include "Windows.h"
 
-Board::Board()
+Board::Board() : cam_pos{}
 {
 	board_data = new short[101 * 101];
 	for (int i = 0; i < (101 * 101); ++i) {
 		board_data[i] = 0;
 	}
-
-	cam_pos[0] = 86;
-	cam_pos[1] = 35;
 }
 
 Board::~Board()
@@ -29,8 +26,11 @@ void Board::print_board()
 				case 1:
 					color_print(9, "PLY");
 					break;
-				case 2: // walls
+				case 2: // Walls
 					color_print(119, "   ");
+					break;
+				case 3: // Shops
+					color_print(12, "Shp");
 					break;
 				default:
 					std::cout << "   ";
@@ -49,6 +49,14 @@ void Board::set_board(int idx1, int idx2, short data)
 short Board::get_board(int idx1, int idx2)
 {
 	return board_data[(idx1 * 101) + idx2];
+}
+
+void Board::set_cam(int idx1, int idx2)
+{
+	if ((idx1 >= 0 && idx1 <= 100) && (idx2 >= 0 && idx2 <= 100)) {
+		cam_pos[0] = idx1;
+		cam_pos[1] = idx2;
+	}
 }
 
 void Board::move_cam(char dir)

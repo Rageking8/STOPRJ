@@ -10,6 +10,7 @@ public:
 	void print_board();
 	void set_board(int idx1, int idx2, short data);
 	short get_board(int idx1, int idx2);
+	void set_cam(int idx1, int idx2);
 	void move_cam(char dir);
 
 private:
