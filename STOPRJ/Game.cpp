@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Common.h"
 #include <string>
 #include <random>
 #include <iostream>
@@ -7,6 +8,7 @@
 Game::Game()
 {
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
+	std::ios_base::sync_with_stdio(false);
 
 	board.set_board(97, 0, 1);
 	player.set_pos(97, 0);
@@ -36,9 +38,7 @@ Game::Game()
 
 	board.set_cam(tmp_cam_pos_i1, tmp_cam_pos_i2);
 
-	//board.set_board(98, 1, 3);
-
-	// Map wall generation
+	// Map generation
 	// Treasure room
 	for (int i = 1; i < 10; ++i) { // Column walls
 		board.set_board((90 + i), 69, 2);
@@ -194,6 +194,28 @@ Game::Game()
 	{
 		board.set_board((75 + i), 11, 2);
 	}
+
+	// Fountain border
+	for (int i = 0; i < 3; ++i) {
+		board.set_board(80, (34 + i), 2);
+		board.set_board(84, (34 + i), 2);
+	}
+	for (int i = 0; i < 2; ++i) {
+		board.set_board(81 + (i * 2), 33, 2);
+		board.set_board(81 + (i * 2), 37, 2);
+	}
+	board.set_board(82, 32, 2);
+	board.set_board(82, 38, 2);
+
+	// Fountain water
+	for (int i = 0; i < 3; ++i) {
+		for (int i2 = 0; i2 < 3; ++i2)
+			board.set_board(81 + i, 34 + i2, 4);
+	}
+	board.set_board(82, 33, 4);
+	board.set_board(82, 37, 4);
+
+
 	//Path to Mage Town
 	for (int i = 6; i < 11; ++i) // Row walls
 	{
@@ -266,7 +288,6 @@ Game::Game()
 	{
 		board.set_board(10, i, 2);
 	}
-
 }
 
 Game::~Game()
@@ -277,14 +298,24 @@ void Game::start()
 {
 	system("cls");
 	// Inform user to check that console is full screen for the map to not be distorted
-	input("Ensure that the console window is full screen : ");
+	Common::input("Welcome\n\nEnsure that the console window is full screen\nPress enter to continue ");
 
 	while (true) {
 		system("cls");
+
+		/*
+		// Used for better performance and reduced flickering (only if got extra time)(need a lot more work)
+		COORD coord;
+		coord.X = 0;
+		coord.Y = 0;
+		static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+		SetConsoleCursorPosition(h, coord);
+		*/
+
 		board.print_board();
 		std::cout << "Current pos : (" << player.get_pos(1) << ", " << player.get_pos(0) << ")\n";
 
-		std::string action_inp = input("Enter action (WASD for movement and IJKL for interaction, M for menu) : ");
+		std::string action_inp = Common::input("Enter action (WASD for movement and IJKL for interaction, M for menu) : ");
 
 		short tmp_target_cell_val = -1;
 
@@ -293,7 +324,7 @@ void Game::start()
 			system("cls");
 			board.print_board();
 			std::cout << "Current pos : (" << player.get_pos(1) << ", " << player.get_pos(0) << ")\n";
-			action_inp = input("Invalid action\nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
+			action_inp = Common::input("Invalid action\nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
 		}
 
 		// For player movement (WASD)
@@ -353,24 +384,65 @@ void Game::start()
 		}
 		else if ((action_inp == "m" || action_inp == "M")) {
 			system("cls");
-			std::string menu_option = input("===== Menu =====\n1) Character\n2) Backpack\n3) Map\n\nEnter an option : ");
-			while (menu_option != "1" && menu_option != "2" && menu_option != "3") {
+			std::string menu_option = Common::input("===== Menu =====\n1) Character\n2) Backpack\n3) Map\n\nS) Story testing\n\nEnter an option (B for back) : ");
+			while (menu_option != "1" && menu_option != "2" && menu_option != "3" && menu_option != "B" && menu_option != "b" && menu_option != "S") {
 				system("cls");
-				menu_option = input("===== Menu =====\n1) Character\n2) Backpack\n3) Map\n\nInvalid option\nEnter an option : ");
+				menu_option = Common::input("===== Menu =====\n1) Character\n2) Backpack\n3) Map\n\nS) Story testing\n\nInvalid Input\nEnter an option (B for back) : ");
 			}
 			
 			if (menu_option == "1") {
 				system("cls");
-				input("====== Character ======\n1) Attack   " + std::to_string(player.get_stats("attack")) + "\n2) Health   " + std::to_string(player.get_stats("cur_health")) + " / " + std::to_string(player.get_stats("max_health")) + "\n3) MP       " + std::to_string(player.get_stats("mp")) + "\n\nPress enter to return ");
+				Common::input("====== Character ======\n1) Attack   " + std::to_string(player.get_stats("attack")) + "\n2) Health   " + std::to_string(player.get_stats("cur_health")) + " / " + std::to_string(player.get_stats("max_health")) + "\n3) MP       " + std::to_string(player.get_stats("mp")) + "\n\nPress enter to return ");
 			}
 			else if (menu_option == "2") {
 				system("cls");
-				input("====== Backpack ======\n1) Coin        " + std::to_string(player.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(player.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(player.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(player.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(player.get_item_qty("mp_potion")) + "\n\nPress enter to return ");
+				Common::input("====== Backpack ======\n1) Coin        " + std::to_string(player.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(player.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(player.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(player.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(player.get_item_qty("mp_potion")) + "\n\nPress enter to return ");
 			}
 			else if (menu_option == "3") {
 				system("cls");
-				board.dump_world();
-				input("\nPress enter to return ");
+				board.print_map();
+				Common::input("\nPress enter to return ");
+			}
+			else if (menu_option == "S") {
+				story.prologue();
+
+				story.foundCart();
+				story.meetElora();
+				story.winElora();
+				story.loseElora();
+				story.recruitElora();
+
+				story.outsideOrionResidence();
+				story.meetOrion();
+				story.recruitOrion_main();
+				story.meetBlaise_main();
+
+				bool blaiseFateDecided = false, blaiseKilled = false;
+				std::string blaiseInput = Common::input("What would you like to do?\n1. Kill BLAISE\n2. Recruit BLAISE\n\n");
+
+				while (blaiseInput != "1" && blaiseInput != "2")
+				{
+					blaiseInput = Common::input("Invalid Input\nWhat would you like to do?\n1. Kill BLAISE\n2. Recruit BLAISE\n\n");
+				}
+
+				if (blaiseInput == "1") {
+					story.killBlaise_main();
+					blaiseKilled = true;
+					blaiseFateDecided = true;
+				}
+				else {
+					story.recruitBlaise_main();
+					blaiseFateDecided = true;
+				}
+
+				story.beforeFightDK_main();
+				story.defeatDK_main();
+				if (blaiseKilled == false)
+				{
+					story.blaiseBetrayal_main();
+					story.defeatBlaise_main();
+				}
+				story.ending_main();
 			}
 		}
 
@@ -401,23 +473,6 @@ void Game::start()
 		}
 
 	}
-}
-
-std::string Game::input(std::string txt)
-{
-	std::string ret;
-	std::cout << txt;
-	std::getline(std::cin, ret);
-	return ret;
-}
-
-int Game::rand_int(int min, int max)
-{
-	static std::random_device rd;
-	static std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dist(min, max);
-
-	return dist(gen);
 }
 
 bool Game::valid_inp(std::string inp)

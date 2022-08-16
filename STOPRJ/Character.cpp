@@ -47,7 +47,6 @@ int Character::get_stats(std::string stats)
 
 void Character::move(char dir)
 {
-
 	if (dir == 'W' && pos[0] > 0)
 		pos[0] -= 1;
 	else if (dir == 'A' && pos[1] > 0)
@@ -56,5 +55,4 @@ void Character::move(char dir)
 		pos[0] += 1;
 	else if (dir == 'D' && pos[1] < 100)
 		pos[1] += 1;
-
 }

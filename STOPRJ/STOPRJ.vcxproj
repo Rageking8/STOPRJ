@@ -139,7 +139,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="STOPRJ.cpp" />
+    <ClCompile Include="Backpack.cpp" />
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Character.cpp" />
+    <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Shop.cpp" />
+    <ClCompile Include="Story.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Backpack.h" />
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Character.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Shop.h" />
+    <ClInclude Include="Story.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
