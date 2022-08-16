@@ -2,8 +2,12 @@
 #include <iostream>
 #include <string>
 
-Shop::Shop() : stock { 1, 1, 10, 10 }
+Shop::Shop()
 {
+	stock[0] = 1;
+	stock[1] = 1;
+	stock[2] = 10;
+	stock[3] = 10;
 }
 
 Shop::~Shop()

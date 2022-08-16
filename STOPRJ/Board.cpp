@@ -1,6 +1,6 @@
 ﻿#include "Board.h"
+#include "Common.h"
 #include <iostream>
-#include <string>
 #include "Windows.h"
 
 Board::Board() : cam_pos{}
@@ -24,13 +24,16 @@ void Board::print_board()
 		for (int i2 = cam_pos[1]; i2 < (cam_pos[1] + 31); ++i2) {
 			switch (get_board(i, i2)) {
 				case 1:
-					color_print(9, "PLY");
+					Common::color_print(9, "PLY");
 					break;
 				case 2: // Walls
-					color_print(119, "   ");
+					Common::color_print(119, "   ");
 					break;
 				case 3: // Shops
-					color_print(12, "Shp");
+					Common::color_print(12, "Shp");
+					break;
+				case 4: // Water
+					Common::color_print(144, "   ");
 					break;
 				default:
 					std::cout << "   ";
@@ -41,8 +44,7 @@ void Board::print_board()
 	}
 }
 
-// For debugging and visualization only, remove for final build
-void Board::dump_world()
+void Board::print_map()
 {
 	static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -116,11 +118,11 @@ void Board::dump_world()
 			}
 
 			if (board_data[(i * 101) + i2] == 1)
-				color_print(9, "P");
+				Common::color_print(9, "P");
 			else if (board_data[(i * 101) + i2] == 2)
 				std::cout << "#";
 			else if (board_data[(i * 101) + i2] == 3)
-				color_print(12, "S");
+				Common::color_print(12, "S");
 			else
 				std::cout << ".";
 		}
@@ -157,12 +159,4 @@ void Board::move_cam(char dir)
 		cam_pos[0] += 1;
 	else if (dir == 'D' && cam_pos[1] < 70)
 		cam_pos[1] += 1;
-}
-
-void Board::color_print(unsigned short color_code, std::string txt)
-{
-	static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(h, color_code);
-	std::cout << txt;
-	SetConsoleTextAttribute(h, 7);
 }

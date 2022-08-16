@@ -2,6 +2,7 @@
 #include "Board.h"
 #include "Character.h"
 #include "Shop.h"
+#include "Story.h"
 #include <string>
 
 class Game
@@ -17,9 +18,8 @@ private:
 
 	Shop shops[2];
 
-	std::string input(std::string txt);
+	Story story;
 
-	int rand_int(int min, int max);
 	bool valid_inp(std::string inp);
 };
 
