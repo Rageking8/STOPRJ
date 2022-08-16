@@ -1,6 +1,7 @@
 #pragma once
 #include "Board.h"
 #include "Character.h"
+#include "Shop.h"
 #include <string>
 
 class Game
@@ -13,6 +14,8 @@ public:
 private:
 	Board board;
 	Character player;
+
+	Shop shops[2];
 
 	std::string input(std::string txt);
 

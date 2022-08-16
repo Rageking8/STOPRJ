@@ -44,11 +44,83 @@ void Board::print_board()
 // For debugging and visualization only, remove for final build
 void Board::dump_world()
 {
+	static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+
 	system("cls");
+
+	bool archer_town = false;
+	const char* archer_town_txt = "Archer Town";
+	for (int i = 30; i < 41; ++i) {
+		if (board_data[(76 * 101) + i] != 0) {
+			archer_town = true;
+			break;
+		}
+	}
+
+	bool mage_town = false;
+	const char* mage_town_txt = "Mage Town";
+	for (int i = 31; i < 40; ++i) {
+		if (board_data[(41 * 101) + i] != 0) {
+			mage_town = true;
+			break;
+		}
+	}
+
+	bool bandit_camp = false;
+	const char* bandit_camp_txt = "Bandit Camp";
+	for (int i = 19; i < 30; ++i) {
+		if (board_data[(7 * 101) + i] != 0) {
+			bandit_camp = true;
+			break;
+		}
+	}
+
 	for (int i = 0; i < 101; ++i) {
 		for (int i2 = 0; i2 < 101; ++i2) {
-			if (board_data[(i * 101) + i2] == 2)
+
+			if (archer_town && i == 77 && (i2 >= 30 && i2 <= 40)) {
+				SetConsoleTextAttribute(h, 14);
+				std::cout << archer_town_txt[i2 - 30];
+				SetConsoleTextAttribute(h, 7);
+				continue;
+			}
+			else if (!archer_town && i == 76 && (i2 >= 30 && i2 <= 40)) {
+				SetConsoleTextAttribute(h, 14);
+				std::cout << archer_town_txt[i2 - 30];
+				SetConsoleTextAttribute(h, 7);
+				continue;
+			}
+			else if (mage_town && i == 42 && (i2 >= 31 && i2 <= 39)) {
+				SetConsoleTextAttribute(h, 14);
+				std::cout << mage_town_txt[i2 - 31];
+				SetConsoleTextAttribute(h, 7);
+				continue;
+			}
+			else if (!mage_town && i == 41 && (i2 >= 31 && i2 <= 39)) {
+				SetConsoleTextAttribute(h, 14);
+				std::cout << mage_town_txt[i2 - 31];
+				SetConsoleTextAttribute(h, 7);
+				continue;
+			}
+			else if (bandit_camp && i == 8 && (i2 >= 19 && i2 <= 29)) {
+				SetConsoleTextAttribute(h, 14);
+				std::cout << bandit_camp_txt[i2 - 19];
+				SetConsoleTextAttribute(h, 7);
+				continue;
+			}
+			else if (!bandit_camp && i == 7 && (i2 >= 19 && i2 <= 29)) {
+				SetConsoleTextAttribute(h, 14);
+				std::cout << bandit_camp_txt[i2 - 19];
+				SetConsoleTextAttribute(h, 7);
+				continue;
+			}
+
+			if (board_data[(i * 101) + i2] == 1)
+				color_print(9, "P");
+			else if (board_data[(i * 101) + i2] == 2)
 				std::cout << "#";
+			else if (board_data[(i * 101) + i2] == 3)
+				color_print(12, "S");
 			else
 				std::cout << ".";
 		}
