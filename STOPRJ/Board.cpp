@@ -41,6 +41,22 @@ void Board::print_board()
 	}
 }
 
+// For debugging and visualization only, remove for final build
+void Board::dump_world()
+{
+	system("cls");
+	for (int i = 0; i < 101; ++i) {
+		for (int i2 = 0; i2 < 101; ++i2) {
+			if (board_data[(i * 101) + i2] == 2)
+				std::cout << "#";
+			else
+				std::cout << ".";
+		}
+		std::cout << "\n";
+	}
+
+}
+
 void Board::set_board(int idx1, int idx2, short data)
 {
 	board_data[(idx1 * 101) + idx2] = data;

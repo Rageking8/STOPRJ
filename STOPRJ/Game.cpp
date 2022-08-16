@@ -36,7 +36,94 @@ Game::Game()
 
 	board.set_cam(tmp_cam_pos_i1, tmp_cam_pos_i2);
 
-	// FIXME: Add wall gen code here
+	board.set_board(99, 85, 1);
+	player.set_pos(99, 85);
+
+	//Treasure room
+	for (int i = 1; i < 10; ++i) { // Column walls
+		board.set_board((90 + i), 69, 2);
+		board.set_board((90 + i), 90, 2);
+	}
+	for (int i = 69; i < 91; ++i) { // Row walls
+		board.set_board(100, i, 2);
+	}
+	for (int i = 85; i < 91; i++) { // Row walls
+		board.set_board(91, i, 2);
+	}
+	for (int i = 69; i < 75; i++) { // Row walls
+		board.set_board(91, i, 2);
+	}
+	for (int i = 1; i < 5; ++i) { // Column walls
+		board.set_board((86 + i), 74, 2);
+		board.set_board((86 + i), 85, 2);
+	}
+
+	// Boss room 3 (Boss Fight/Throne room)
+	for (int i = 59; i < 74; ++i) { // Row walls
+		board.set_board(87, i, 2);
+	}
+	for (int i = 85; i < 101; ++i) { // Row walls
+		board.set_board(87, i, 2);
+	}
+	for (int i = 1; i < 25; ++i) { // Column walls
+		board.set_board((62 + i), 59, 2);
+		board.set_board((62 + i), 100, 2);
+	}
+	for (int i = 59; i < 75; ++i) { // Row walls
+		board.set_board(63, i, 2);
+	}
+	for (int i = 85; i < 101; ++i) { // Row walls
+		board.set_board(63, i, 2);
+	}
+	for (int i = 1; i < 5; ++i) { // Column walls
+		board.set_board((59 + i), 74, 2);
+		board.set_board((59 + i), 85, 2);
+	}
+	// Boss room 2 (Mini-boss)
+	for (int i = 62; i < 75; ++i) { // Row walls
+		board.set_board(59, i, 2);
+	}
+	for (int i = 85; i < 98; ++i) { // Row walls
+		board.set_board(59, i, 2);
+	}
+	for (int i = 1; i < 20; ++i) { // Column walls
+		board.set_board((39 + i), 62, 2);
+		board.set_board((39 + i), 97, 2);
+	}
+	for (int i = 62; i < 75; ++i) { // Row walls
+		board.set_board(40, i, 2);
+	}
+	for (int i = 85; i < 98; ++i) { // Row walls
+		board.set_board(40, i, 2);
+	}
+	for (int i = 1; i < 5; ++i) { // Column walls
+		board.set_board((35 + i), 74, 2);
+		board.set_board((35 + i), 85, 2);
+	}
+	//Boss room 1 (Skeleton Army)
+	for (int i = 64; i < 75; ++i) { // Row walls
+		board.set_board(35, i, 2);
+	}
+	for (int i = 85; i < 96; ++i) { // Row walls
+		board.set_board(35, i, 2);
+	}
+	for (int i = 1; i < 15; ++i) { // Column walls
+		board.set_board((20 + i), 64, 2);
+		board.set_board((20 + i), 95, 2);
+	}
+	for (int i = 64; i < 75; ++i) { // Row walls
+		board.set_board(20, i, 2);
+	}
+	for (int i = 85; i < 96; ++i) { // Row walls
+		board.set_board(20, i, 2);
+	}
+	for (int i = 1; i < 5; ++i) { // Column walls
+		board.set_board((15 + i), 74, 2);
+		board.set_board((15 + i), 85, 2);
+	}
+
+	board.dump_world();
+	while (true);
 
 }
 
