@@ -604,8 +604,8 @@ Game::Game()
 		board.set_board(i, 47, 6);
 	}
 
-	//start_battle("ambush");
-	//while (true);
+	start_battle("ambush");
+	while (true);
 }
 
 Game::~Game()
@@ -854,7 +854,7 @@ void Game::start_battle(std::string id)
 	slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
 	for (int i = 0; i < 4; ++i) {
-		std::cout << (slot_active[i] ? "|====================| " : "                       ");
+		std::cout << (slot_active[i] ? "|======================| " : "                         ");
 	}
 
 	std::cout << "\n";
@@ -862,10 +862,10 @@ void Game::start_battle(std::string id)
 	for (int i = 0; i < 4; ++i) {
 		if (slot_active[i]) {
 			std::string tmp_name = enemy[i].get_name();
-			std::cout << "| " << tmp_name << Common::mul_txt(" ", 19 - tmp_name.length()) << "| ";
+			std::cout << "| " << tmp_name << Common::mul_txt(" ", 21 - tmp_name.length()) << "| ";
 		}
 		else {
-			std::cout << "                       ";
+			std::cout << "                         ";
 		}
 	}
 
@@ -874,10 +874,10 @@ void Game::start_battle(std::string id)
 	for (int i = 0; i < 4; ++i) {
 		if (slot_active[i]) {
 			std::string tmp_attack = std::to_string(enemy[i].get_stats("attack"));
-			std::cout << "| Attack : " << tmp_attack << Common::mul_txt(" ", 10 - tmp_attack.length()) << "| ";
+			std::cout << "| Attack : " << tmp_attack << Common::mul_txt(" ", 12 - tmp_attack.length()) << "| ";
 		}
 		else {
-			std::cout << "                       ";
+			std::cout << "                         ";
 		}
 	}
 
@@ -887,10 +887,10 @@ void Game::start_battle(std::string id)
 		if (slot_active[i]) {
 			std::string tmp_cur_health = std::to_string(enemy[i].get_stats("cur_health"));
 			std::string tmp_max_health = std::to_string(enemy[i].get_stats("max_health"));
-			std::cout << "| Health : " << tmp_cur_health << " / " << tmp_max_health << Common::mul_txt(" ", 10 - (tmp_cur_health.length() + 3 + tmp_max_health.length())) << "| ";
+			std::cout << "| Health : " << tmp_cur_health << " / " << tmp_max_health << Common::mul_txt(" ", 12 - (tmp_cur_health.length() + 3 + tmp_max_health.length())) << "| ";
 		}
 		else {
-			std::cout << "                       ";
+			std::cout << "                         ";
 		}
 	}
 
@@ -900,10 +900,10 @@ void Game::start_battle(std::string id)
 		if (slot_active[i]) {
 			std::string tmp_cur_mp = std::to_string(enemy[i].get_stats("cur_mp"));
 			std::string tmp_max_mp = std::to_string(enemy[i].get_stats("max_mp"));
-			std::cout << "| MP : " << tmp_cur_mp << " / " << tmp_max_mp << Common::mul_txt(" ", 14 - (tmp_cur_mp.length() + 3 + tmp_max_mp.length())) << "| ";
+			std::cout << "| MP : " << tmp_cur_mp << " / " << tmp_max_mp << Common::mul_txt(" ", 16 - (tmp_cur_mp.length() + 3 + tmp_max_mp.length())) << "| ";
 		}
 		else {
-			std::cout << "                       ";
+			std::cout << "                         ";
 		}
 	}
 
@@ -911,10 +911,10 @@ void Game::start_battle(std::string id)
 
 	for (int i = 0; i < 4; ++i) {
 		if (slot_active[i]) {
-			std::cout << "|                    | ";
+			std::cout << "|                      | ";
 		}
 		else {
-			std::cout << "                       ";
+			std::cout << "                         ";
 		}
 	}
 
@@ -924,13 +924,13 @@ void Game::start_battle(std::string id)
 		for (int i2 = 0; i2 < 4; ++i2) {
 			if (slot_active[i2] && enemy[i2].get_skill_list(i).active) {
 				std::string tmp_skill_name = enemy[i2].get_skill_list(i).name;
-				std::cout << "| " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+				std::cout << "| > " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
 			}
 			else if (slot_active[i2]) {
-				std::cout << "|                    | ";
+				std::cout << "|                      | ";
 			}
 			else {
-				std::cout << "                       ";
+				std::cout << "                         ";
 			}
 		}
 		std::cout << "\n";
@@ -938,67 +938,67 @@ void Game::start_battle(std::string id)
 
 	for (int i = 0; i < 4; ++i) {
 		if (slot_active[i]) {
-			std::cout << "|====================| ";
+			std::cout << "|======================| ";
 		}
 		else {
-			std::cout << "                       ";
+			std::cout << "                         ";
 		}
 	}
 
 	std::cout << "\n\n\n\n\n";
 
 	if (slot_active[4])
-		std::cout << "|====================| ";
+		std::cout << "|======================| ";
 	else
-		std::cout << "                       ";
+		std::cout << "                         ";
 
 	if (slot_active[5])
-		std::cout << "|====================| ";
+		std::cout << "|======================| ";
 	else
-		std::cout << "                       ";
+		std::cout << "                         ";
 
 	if (slot_active[6])
-		std::cout << "|====================| ";
+		std::cout << "|======================| ";
 	else
-		std::cout << "                       ";
+		std::cout << "                         ";
 
 	if (slot_active[7])
-		std::cout << "|====================| ";
+		std::cout << "|======================| ";
 	else
-		std::cout << "                       ";
+		std::cout << "                         ";
 
 	std::cout << "\n";
 
 	if (slot_active[4]) {
 		std::string tmp_name = swordsman.get_name();
-		std::cout << "| " << tmp_name << Common::mul_txt(" ", 19 - tmp_name.length()) << "| ";
+		std::cout << "| " << tmp_name << Common::mul_txt(" ", 21 - tmp_name.length()) << "| ";
 	}
 	else {
-		std::cout << "                       ";
+		std::cout << "                         ";
 	}
 
 	if (slot_active[5]) {
 		std::string tmp_name = mage.get_name();
-		std::cout << "| " << tmp_name << Common::mul_txt(" ", 19 - tmp_name.length()) << "| ";
+		std::cout << "| " << tmp_name << Common::mul_txt(" ", 21 - tmp_name.length()) << "| ";
 	}
 	else {
-		std::cout << "                       ";
+		std::cout << "                         ";
 	}
 
 	if (slot_active[6]) {
 		std::string tmp_name = archer.get_name();
-		std::cout << "| " << tmp_name << Common::mul_txt(" ", 19 - tmp_name.length()) << "| ";
+		std::cout << "| " << tmp_name << Common::mul_txt(" ", 21 - tmp_name.length()) << "| ";
 	}
 	else {
-		std::cout << "                       ";
+		std::cout << "                         ";
 	}
 
 	if (slot_active[7]) {
 		std::string tmp_name = assassin.get_name();
-		std::cout << "| " << tmp_name << Common::mul_txt(" ", 19 - tmp_name.length()) << "| ";
+		std::cout << "| " << tmp_name << Common::mul_txt(" ", 21 - tmp_name.length()) << "| ";
 	}
 	else {
-		std::cout << "                       ";
+		std::cout << "                         ";
 	}
 
 	std::cout << "\n";
