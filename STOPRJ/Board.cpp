@@ -22,7 +22,7 @@ void Board::print_board()
 	for (int i = cam_pos[0]; i < (cam_pos[0] + 15); ++i) {
 		std::cout << "|";
 		for (int i2 = cam_pos[1]; i2 < (cam_pos[1] + 31); ++i2) {
-						switch (get_board(i, i2)) {
+			switch (get_board(i, i2)) {
 				case 1:
 					Common::color_print(0X0B, "PLY");
 					break;
