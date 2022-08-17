@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <random>
+#define WIN32_LEAN_AND_MEAN
 #include "Windows.h"
 
 std::string Common::input(std::string txt, bool write)

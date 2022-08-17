@@ -6,7 +6,7 @@ public:
 
 	Board();
 	~Board();
-	void print_board();
+	void print_board(bool b);
 
 	void print_map();
 
@@ -18,5 +18,7 @@ public:
 private:
 	short* board_data;
 	short cam_pos[2];
+
+	void print_with_id(short id);
 };
 

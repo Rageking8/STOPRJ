@@ -3,6 +3,7 @@
 #include <string>
 #include <random>
 #include <iostream>
+#define WIN32_LEAN_AND_MEAN
 #include "Windows.h"
 
 Game::Game()
@@ -260,7 +261,6 @@ Game::Game()
 	board.set_board(9, 59, 10);
 	board.set_board(9, 73, 10);
 
-
 	//Starting path to Elf Archer Town
 	for (int i = 0; i < 59; ++i) // Row walls
 	{
@@ -295,10 +295,10 @@ Game::Game()
 	{
 		board.set_board(63, i, 2);
 	}
-	for (int i = 0; i < 5; i++) // Column up left walls
-	{
-		board.set_board((63 + i), 11, 2);
-	}
+
+	board.set_board(63, 11, 2);
+	board.set_board(67, 11, 2);
+
 	for (int i = 0; i < 12; i++) // Column walls
 	{
 		board.set_board((75 + i), 11, 2);
@@ -574,13 +574,18 @@ Game::Game()
 		board.set_board((52 + i), 45, 8);
 	}
 
-
 	// Path to Bandit camp + Demon king Castle
 	board.set_board(16, 57, 25); // Directory sign
 	for (int i = 0; i < 7; i++) // Column Left walls to bandit
 	{
+		if (i == 3 || i == 4) continue;
 		board.set_board((19 + i), 53, 2);
 	}
+
+	for (int i = 16; i < 51; ++i) { // Column right against the left world boundary
+		board.set_board(i, 0, 2);
+	}
+
 	for (int i = 19; i < 53; ++i) // Bottom Row walls to bandit
 	{
 		board.set_board(19, i, 2);
@@ -599,13 +604,13 @@ Game::Game()
 	}
 
 
-	// do not overide
+	// Note: do not overide
 	for (int i = 95; i < 100; ++i) {
 		board.set_board(i, 47, 6);
 	}
 
-	start_battle("ambush");
-	while (true);
+	//start_battle("ambush");
+	//while (true);
 }
 
 Game::~Game()
@@ -618,30 +623,39 @@ void Game::start()
 	// Inform user to check that console is full screen for the map to not be distorted
 	Common::input("Welcome\n\nEnsure that the console window is full screen\nPress enter to continue ");
 
+	story.prologue();
+
+	bool prev_is_map = false;
+
+	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+
 	while (true) {
 
-		// Dont use system("cls") as it causes flicker when the system is updating
-		// Use another method to update board
-		static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+		// Dont use system("cls") as it causes flicker when the screen is updating
 		SetConsoleCursorPosition(h, COORD{ 0, 0 });
+		board.print_board(prev_is_map);
 
-		board.print_board();
-		std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ")\n";
+		SetConsoleCursorPosition(h, COORD{ 0, 31 });
+		std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-100 (both inclusive)    \n";
 
 		SetConsoleCursorPosition(h, COORD{ 72, 33 });
-		for (int i = 0; i < 3; ++i)
-			std::cout << " ";
+		std::cout << " ";
 
 		SetConsoleCursorPosition(h, COORD{ 0, 32 });
-		std::string action_inp = Common::input("                       \nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
+		std::string action_inp = Common::input("              \nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
 
 		short tmp_target_cell_val = -1;
 
+		prev_is_map = true;
+
 		// Loop till action input is valid (WASDIJKL)(non-case sensitive)
 		while (!valid_inp(action_inp)) {
-			system("cls");
-			board.print_board();
-			std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ")\n";
+
+			SetConsoleCursorPosition(h, COORD{ 72, 33 });
+			Common::mul_txt(" ", action_inp.length(), true);
+
+			SetConsoleCursorPosition(h, COORD{ 0, 31 });
+			std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-100 (both inclusive)    \n";
 			action_inp = Common::input("Invalid action\nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
 		}
 
@@ -710,7 +724,7 @@ void Game::start()
 			
 			if (menu_option == "1") {
 				system("cls");
-				Common::input("====== Character ======\n1) Attack   " + std::to_string(swordsman.get_stats("attack")) + "\n2) Health   " + std::to_string(swordsman.get_stats("cur_health")) + " / " + std::to_string(swordsman.get_stats("max_health")) + "\n3) MP       " + std::to_string(swordsman.get_stats("mp")) + "\n\nPress enter to return ");
+				Common::input("====== Character ======\n1) Attack   " + std::to_string(swordsman.get_stats("attack")) + "\n2) Health   " + std::to_string(swordsman.get_stats("cur_health")) + " / " + std::to_string(swordsman.get_stats("max_health")) + "\n3) MP       " + std::to_string(swordsman.get_stats("cur_mp")) + " / " + std::to_string(swordsman.get_stats("max_mp")) + "\n\nPress enter to return ");
 			}
 			else if (menu_option == "2") {
 				system("cls");
@@ -719,7 +733,7 @@ void Game::start()
 			else if (menu_option == "3") {
 				system("cls");
 				board.print_map();
-				Common::input("\nPress enter to return ");
+				Common::input("\n# -> Colored blocks\nP -> Player\nS -> Shop\n? -> Special landmarks\n. -> All other landmarks (including empty space)\n\nPress enter to return ");
 				system("cls");
 			}
 			else if (menu_option == "S") {
@@ -763,9 +777,11 @@ void Game::start()
 				}
 				story.ending_main();
 			}
+
+			prev_is_map = false;
 		}
 
-		// Ambush by the archer
+		// Ambush by the archer troops
 		if (swordsman.get_pos(1) == 47) {
 			switch (swordsman.get_pos(0)) {
 				case 95:
@@ -809,12 +825,16 @@ void Game::start()
 				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 5);
 				break;
 			}
+
+			prev_is_map = false;
 		}
 		else if (tmp_target_cell_val == 5) {
 			story.foundCart();
 			for (int i = 95; i < 100; ++i) {
 				board.set_board(i, 47, 0);
 			}
+
+			prev_is_map = false;
 		}
 
 	}

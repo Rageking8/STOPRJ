@@ -1,6 +1,7 @@
 ﻿#include "Board.h"
 #include "Common.h"
 #include <iostream>
+#define WIN32_LEAN_AND_MEAN
 #include "Windows.h"
 
 Board::Board() : cam_pos{}
@@ -16,100 +17,59 @@ Board::~Board()
 	delete[] board_data;
 }
 
-void Board::print_board()
+void Board::print_board(bool state)
 {
-	std::cout << "+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+\n";
-	for (int i = cam_pos[0]; i < (cam_pos[0] + 15); ++i) {
-		std::cout << "|";
-		for (int i2 = cam_pos[1]; i2 < (cam_pos[1] + 31); ++i2) {
-			switch (get_board(i, i2)) {
-				case 1:
-					Common::color_print(0X0B, "PLY");
-					break;
-				case 2: // Walls
-					Common::color_print(0X70, "   ");
-					break;
-				case 3: // Shops
-					Common::color_print(12, "Shp");
-					break;
-				case 4: // Water
-					Common::color_print(0X90, "   ");
-					break;
-				case 5: // Cart
-					Common::color_print(0X0E, "Crt");
-					break;
-				case 6: // Gray block
-					Common::color_print(0X80, "   ");
-					break;
-				case 7: // Blue block
-					Common::color_print(0X10, "   ");
-					break;
-				case 8: // Green block
-					Common::color_print(0X20, "   ");
-					break;
-				case 9: // Aqua block
-					Common::color_print(0X30, "   ");
-					break;
-				case 10: // Red block
-					Common::color_print(0X40, "   ");
-					break;
-				case 11: // Purple block
-					Common::color_print(0X50, "   ");
-					break;
-				case 12: // Yellow block
-					Common::color_print(0X60, "   ");
-					break;
-				case 13: // Light Green block
-					Common::color_print(0XA0, "   ");
-					break;
-				case 14: // Light Aqua block
-					Common::color_print(0XB0, "   ");
-					break;
-				case 15: // Light Red block
-					Common::color_print(0XC0, "   ");
-					break;
-				case 16: // Light Purple block
-					Common::color_print(0XD0, "   ");
-					break;
-				case 17: // Light Yellow block
-					Common::color_print(0XE0, "   ");
-					break;
-				case 18: // Bright White block
-					Common::color_print(0XF0, "   ");
-					break;
-				case 19: // Red switch
-					Common::color_print(0X04, "Swi");
-					break;
-				case 20: // Green switch
-					Common::color_print(0X02, "Swi");
-					break;
-				case 21: // Archer troop
-					Common::color_print(0X07, " A ");
-					break;
-				case 22: // Mage troop
-					Common::color_print(0X0D, " M ");
-					break;
-				case 23: // Demon King
-					Common::color_print(0X0B, "DmK");
-					break;
-				case 24: // Grand Master Mage
-					Common::color_print(0X05, "GmM");
-					break;
-				case 25: //Directory sign
-					Common::color_print(0x0C, "<->");
-					break;
-				case 26: // Bandit troop/Enemy
-					Common::color_print(0X0C, " B ");
-					break;
-				case 27: // Bandit Leader "BdL"
-					Common::color_print(0X04, "BdL");
-					break;
-				default:
-					std::cout << "   ";
-			}
+	// Use double buffering to reduce all flicker
+	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	static bool fir = false;
+	static short last_state[31 * 15]{};
+
+	int counter = 0;
+
+	if (!fir || !state) {
+		std::cout << "+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+\n";
+
+		for (int i = cam_pos[0]; i < (cam_pos[0] + 15); ++i) {
 			std::cout << "|";
+			for (int i2 = cam_pos[1]; i2 < (cam_pos[1] + 31); ++i2) {
+
+				const short id = get_board(i, i2);
+
+				last_state[counter] = id;
+				counter++;
+
+				print_with_id(id);
+				std::cout << "|";
+			}
+			std::cout << "\n+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+\n";
 		}
-		std::cout << "\n+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+\n";
+
+		fir = true;
+	}
+	else {
+		for (int i = cam_pos[0]; i < (cam_pos[0] + 15); ++i) {
+			for (int i2 = cam_pos[1]; i2 < (cam_pos[1] + 31); ++i2) {
+
+				const short id = get_board(i, i2);
+
+				if (id == last_state[counter]) {
+					last_state[counter] = id;
+					counter++;
+					continue;
+				}
+
+				short x = 1 + (4 * (counter % 31));
+				short y = 1 + (2 * (counter / 31));
+
+				SetConsoleCursorPosition(h, COORD{ x, y });
+
+				last_state[counter] = id;
+				counter++;
+
+				print_with_id(id);
+			}
+		}
 	}
 }
 
@@ -187,60 +147,86 @@ void Board::print_map()
 			}
 
 			switch (board_data[(i * 101) + i2]) {
-			case 1:
-				Common::color_print(0X0B, "P");
-				break;
-			case 3:
-				Common::color_print(12, "S");
-				break;
-			case 2:
-				Common::color_print(0X07, "#");
-				break;
-			case 4:
-				Common::color_print(0X09, "#");
-				break;
-			case 6: // Gray block
-				Common::color_print(0X08, "#");
-				break;
-			case 7: // Blue block
-				Common::color_print(0X01, "#");
-				break;
-			case 8: // Green block
-				Common::color_print(0X02, "#");
-				break;
-			case 9: // Aqua block
-				Common::color_print(0X03, "#");
-				break;
-			case 10: // Red block
-				Common::color_print(0X04, "#");
-				break;
-			case 11: // Purple block
-				Common::color_print(0X05, "#");
-				break;
-			case 12: // Yellow block
-				Common::color_print(0X06, "#");
-				break;
-			case 13: // Light Green block
-				Common::color_print(0X0A, "#");
-				break;
-			case 14: // Light Aqua block
-				Common::color_print(0X0B, "#");
-				break;
-			case 15: // Light Red block
-				Common::color_print(0X0C, "#");
-				break;
-			case 16: // Light Purple block
-				Common::color_print(0X0D, "#");
-				break;
-			case 17: // Light Yellow block
-				Common::color_print(0X0E, "#");
-				break;
-			case 18: // Bright White block
-				Common::color_print(0X0F, "#");
-				break;
-			default:
-				std::cout << ".";
-
+				case 1:
+					Common::color_print(0X0B, "P");
+					break;
+				case 2: // Walls
+					Common::color_print(0X07, "#");
+					break;
+				case 3: // Shops
+					Common::color_print(0X0C, "S");
+					break;
+				case 4: // Water
+					Common::color_print(0X09, "#");
+					break;
+				case 5: // Cart
+					Common::color_print(0X70, "?");
+					break;
+				case 6: // Gray block
+					Common::color_print(0X08, "#");
+					break;
+				case 7: // Blue block
+					Common::color_print(0X01, "#");
+					break;
+				case 8: // Green block
+					Common::color_print(0X02, "#");
+					break;
+				case 9: // Aqua block
+					Common::color_print(0X03, "#");
+					break;
+				case 10: // Red block
+					Common::color_print(0X04, "#");
+					break;
+				case 11: // Purple block
+					Common::color_print(0X05, "#");
+					break;
+				case 12: // Yellow block
+					Common::color_print(0X06, "#");
+					break;
+				case 13: // Light Green block
+					Common::color_print(0X0A, "#");
+					break;
+				case 14: // Light Aqua block
+					Common::color_print(0X0B, "#");
+					break;
+				case 15: // Light Red block
+					Common::color_print(0X0C, "#");
+					break;
+				case 16: // Light Purple block
+					Common::color_print(0X0D, "#");
+					break;
+				case 17: // Light Yellow block
+					Common::color_print(0X0E, "#");
+					break;
+				case 18: // Bright White block
+					Common::color_print(0X0F, "#");
+					break;
+				case 19: // Red switch
+					Common::color_print(0X70, "?");
+					break;
+				case 20: // Green switch
+					Common::color_print(0X70, "?");
+					break;
+				case 21: // Archer troop
+					Common::color_print(0X70, "?");
+					break;
+				case 22: // Mage troop
+					Common::color_print(0X70, "?");
+					break;
+				case 23: // Demon King
+					Common::color_print(0X70, "?");
+					break;
+				case 24: // Grand Master Mage
+					Common::color_print(0X70, "?");
+					break;
+				case 26: // Bandit troop/Enemy
+					Common::color_print(0X70, "?");
+					break;
+				case 27: // Bandit Leader
+					Common::color_print(0X70, "?");
+					break;
+				default:
+					std::cout << ".";
 			}
 		}
 		std::cout << "\n";
@@ -276,4 +262,95 @@ void Board::move_cam(char dir)
 		cam_pos[0] += 1;
 	else if (dir == 'D' && cam_pos[1] < 70)
 		cam_pos[1] += 1;
+}
+
+void Board::print_with_id(short id)
+{
+	switch (id) {
+		case 1:
+			Common::color_print(0X0B, "PLY");
+			break;
+		case 2: // Walls
+			Common::color_print(0X70, " ");
+			Common::color_print(0XF0, " ");
+			Common::color_print(0X70, " ");
+			break;
+		case 3: // Shops
+			Common::color_print(12, "Shp");
+			break;
+		case 4: // Water
+			Common::color_print(0X90, "   ");
+			break;
+		case 5: // Cart
+			Common::color_print(0X0E, "Crt");
+			break;
+		case 6: // Gray block
+			Common::color_print(0X80, "   ");
+			break;
+		case 7: // Blue block
+			Common::color_print(0X10, "   ");
+			break;
+		case 8: // Green block
+			Common::color_print(0X20, "   ");
+			break;
+		case 9: // Aqua block
+			Common::color_print(0X30, "   ");
+			break;
+		case 10: // Red block
+			Common::color_print(0X40, "   ");
+			break;
+		case 11: // Purple block
+			Common::color_print(0X50, "   ");
+			break;
+		case 12: // Yellow block
+			Common::color_print(0X60, "   ");
+			break;
+		case 13: // Light Green block
+			Common::color_print(0XA0, "   ");
+			break;
+		case 14: // Light Aqua block
+			Common::color_print(0XB0, "   ");
+			break;
+		case 15: // Light Red block
+			Common::color_print(0XC0, "   ");
+			break;
+		case 16: // Light Purple block
+			Common::color_print(0XD0, "   ");
+			break;
+		case 17: // Light Yellow block
+			Common::color_print(0XE0, "   ");
+			break;
+		case 18: // Bright White block
+			Common::color_print(0XF0, "   ");
+			break;
+		case 19: // Red switch
+			Common::color_print(0X04, "Swi");
+			break;
+		case 20: // Green switch
+			Common::color_print(0X02, "Swi");
+			break;
+		case 21: // Archer troop
+			Common::color_print(0X07, " A ");
+			break;
+		case 22: // Mage troop
+			Common::color_print(0X0D, " M ");
+			break;
+		case 23: // Demon King
+			Common::color_print(0X0B, "DmK");
+			break;
+		case 24: // Grand Master Mage
+			Common::color_print(0X05, "GmM");
+			break;
+		case 25: // Directory sign
+			Common::color_print(0x0C, "<->");
+			break;
+		case 26: // Bandit troop/Enemy
+			Common::color_print(0X0C, " B ");
+			break;
+		case 27: // Bandit Leader "BdL"
+			Common::color_print(0X04, "BdL");
+			break;
+		default:
+			std::cout << "   ";
+	}
 }

@@ -1,6 +1,7 @@
 #include "Story.h"
 #include "Common.h"
 #include <iostream>
+#define WIN32_LEAN_AND_MEAN
 #include "Windows.h"
 
 void Story::prologue()
