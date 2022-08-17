@@ -215,6 +215,7 @@ Game::Game()
 	board.set_board(82, 33, 4);
 	board.set_board(82, 37, 4);
 
+	board.set_board(94, 24, 5);
 
 	//Path to Mage Town
 	for (int i = 6; i < 11; ++i) // Row walls
