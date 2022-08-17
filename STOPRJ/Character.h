@@ -1,8 +1,9 @@
 #pragma once
 #include "Backpack.h"
+#include "Skill.h"
 #include <string>
 
-class Character : public Backpack
+class Character : public Backpack, public Skill
 {
 public:
 	Character();
@@ -13,13 +14,23 @@ public:
 	void set_stats(std::string stats, int new_amt);
 	int get_stats(std::string stats);
 
+	void set_name(std::string new_name);
+	std::string get_name();
+
 	void move(char dir);
 
-private:
+	bool get_recruited();
+
+protected:
+	std::string name;
+
 	int attack;
 	int cur_health;
 	int max_health;
-	int mp;
+	int cur_mp;
+	int max_mp;
 
 	int pos[2];
+
+	bool recruited;
 };

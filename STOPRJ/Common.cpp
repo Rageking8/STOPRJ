@@ -38,3 +38,14 @@ int Common::rand_int(int min, int max) {
 
 	return dist(gen);
 }
+
+std::string Common::mul_txt(std::string txt, unsigned no, bool print)
+{
+	std::string ret = "";
+	for (unsigned i = 0; i < no; ++i) {
+		if (print)
+			std::cout << txt;
+		ret += txt;
+	}
+	return ret;
+}

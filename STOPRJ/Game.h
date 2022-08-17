@@ -1,6 +1,9 @@
 #pragma once
 #include "Board.h"
-#include "Character.h"
+#include "Swordsman.h"
+#include "Mage.h"
+#include "Archer.h"
+#include "Assassin.h"
 #include "Shop.h"
 #include "Story.h"
 #include <string>
@@ -13,13 +16,18 @@ public:
 	void start();
 
 private:
+	Swordsman swordsman;
+	Mage mage;
+	Archer archer;
+	Assassin assassin;
+
 	Board board;
-	Character player;
 
 	Shop shops[2];
 
 	Story story;
 
 	bool valid_inp(std::string inp);
+	void start_battle(std::string id);
 };
 

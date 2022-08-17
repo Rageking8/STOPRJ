@@ -15,5 +15,8 @@ namespace Common
 
 	// Generates a random integer in range [min, max]
 	int rand_int(int min, int max);
+
+	// Print string mulitplied by a number and returns the resulting string
+	std::string mul_txt(std::string txt, unsigned no, bool print = false);
 };
 

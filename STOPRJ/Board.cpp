@@ -92,6 +92,18 @@ void Board::print_board()
 				case 23: // Demon King
 					Common::color_print(0X0B, "DmK");
 					break;
+				case 24: // Grand Master Mage
+					Common::color_print(0X05, "GmM");
+					break;
+				case 25: //Directory sign
+					Common::color_print(0x0C, "<->");
+					break;
+				case 26: // Bandit troop/Enemy
+					Common::color_print(0X0C, " B ");
+					break;
+				case 27: // Bandit Leader "BdL"
+					Common::color_print(0X04, "BdL");
+					break;
 				default:
 					std::cout << "   ";
 			}
@@ -174,14 +186,62 @@ void Board::print_map()
 				continue;
 			}
 
-			if (board_data[(i * 101) + i2] == 1)
-				Common::color_print(9, "P");
-			else if (board_data[(i * 101) + i2] == 2)
-				std::cout << "#";
-			else if (board_data[(i * 101) + i2] == 3)
+			switch (board_data[(i * 101) + i2]) {
+			case 1:
+				Common::color_print(0X0B, "P");
+				break;
+			case 3:
 				Common::color_print(12, "S");
-			else
+				break;
+			case 2:
+				Common::color_print(0X07, "#");
+				break;
+			case 4:
+				Common::color_print(0X09, "#");
+				break;
+			case 6: // Gray block
+				Common::color_print(0X08, "#");
+				break;
+			case 7: // Blue block
+				Common::color_print(0X01, "#");
+				break;
+			case 8: // Green block
+				Common::color_print(0X02, "#");
+				break;
+			case 9: // Aqua block
+				Common::color_print(0X03, "#");
+				break;
+			case 10: // Red block
+				Common::color_print(0X04, "#");
+				break;
+			case 11: // Purple block
+				Common::color_print(0X05, "#");
+				break;
+			case 12: // Yellow block
+				Common::color_print(0X06, "#");
+				break;
+			case 13: // Light Green block
+				Common::color_print(0X0A, "#");
+				break;
+			case 14: // Light Aqua block
+				Common::color_print(0X0B, "#");
+				break;
+			case 15: // Light Red block
+				Common::color_print(0X0C, "#");
+				break;
+			case 16: // Light Purple block
+				Common::color_print(0X0D, "#");
+				break;
+			case 17: // Light Yellow block
+				Common::color_print(0X0E, "#");
+				break;
+			case 18: // Bright White block
+				Common::color_print(0X0F, "#");
+				break;
+			default:
 				std::cout << ".";
+
+			}
 		}
 		std::cout << "\n";
 	}

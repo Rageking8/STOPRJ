@@ -1,8 +1,10 @@
 #include "Character.h"
 
-Character::Character() : attack{}, cur_health{ 50 }, max_health{ 50 }, mp{}, pos{}
+Character::Character() : attack{}, cur_health{}, max_health{}, cur_mp{}, max_mp{}, pos{}
 {
-	set_item_qty("coin", 50);
+	name = "";
+	set_item_qty("coin", 20);
+	recruited = false;
 }
 
 Character::~Character()
@@ -22,14 +24,18 @@ int Character::get_pos(int idx)
 
 void Character::set_stats(std::string stats, int new_amt)
 {
-	if (stats == "attack" && (new_amt >= 0 && new_amt <= 1000))
-		attack = new_amt;
-	else if (stats == "cur_health" && (new_amt >= 0 && new_amt <= 1000))
-		cur_health = new_amt;
-	else if (stats == "max_health" && (new_amt >= 0 && new_amt <= 1000))
-		max_health = new_amt;
-	else if (stats == "mp" && (new_amt >= 0 && new_amt <= 1000))
-		mp = new_amt;
+	if (new_amt <= 1000) {
+		if (stats == "attack")
+			attack = (new_amt < 0) ? 0 : new_amt;
+		else if (stats == "cur_health")
+			cur_health = (new_amt < 0) ? 0 : new_amt;
+		else if (stats == "max_health")
+			max_health = (new_amt < 0) ? 0 : new_amt;
+		else if (stats == "cur_mp")
+			cur_mp = (new_amt < 0) ? 0 : new_amt;
+		else if (stats == "max_mp")
+			max_mp = (new_amt < 0) ? 0 : new_amt;
+	}
 }
 
 int Character::get_stats(std::string stats)
@@ -40,9 +46,22 @@ int Character::get_stats(std::string stats)
 		return cur_health;
 	else if (stats == "max_health")
 		return max_health;
-	else if (stats == "mp")
-		return mp;
+	else if (stats == "cur_mp")
+		return cur_mp;
+	else if (stats == "max_mp")
+		return max_mp;
 	return -1;
+}
+
+void Character::set_name(std::string new_name)
+{
+	if (name == "")
+		name = new_name;
+}
+
+std::string Character::get_name()
+{
+	return name;
 }
 
 void Character::move(char dir)
@@ -55,4 +74,9 @@ void Character::move(char dir)
 		pos[0] += 1;
 	else if (dir == 'D' && pos[1] < 100)
 		pos[1] += 1;
+}
+
+bool Character::get_recruited()
+{
+	return recruited;
 }
