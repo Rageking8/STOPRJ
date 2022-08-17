@@ -6,7 +6,7 @@ public:
 
 	Board();
 	~Board();
-	void print_board(bool b);
+	void print_board(bool state);
 
 	void print_map();
 
