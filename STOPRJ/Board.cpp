@@ -22,18 +22,75 @@ void Board::print_board()
 	for (int i = cam_pos[0]; i < (cam_pos[0] + 15); ++i) {
 		std::cout << "|";
 		for (int i2 = cam_pos[1]; i2 < (cam_pos[1] + 31); ++i2) {
-			switch (get_board(i, i2)) {
+						switch (get_board(i, i2)) {
 				case 1:
-					Common::color_print(9, "PLY");
+					Common::color_print(0X0B, "PLY");
 					break;
 				case 2: // Walls
-					Common::color_print(119, "   ");
+					Common::color_print(0X70, "   ");
 					break;
 				case 3: // Shops
 					Common::color_print(12, "Shp");
 					break;
 				case 4: // Water
-					Common::color_print(144, "   ");
+					Common::color_print(0X90, "   ");
+					break;
+				case 5: // Cart
+					Common::color_print(0X0E, "Crt");
+					break;
+				case 6: // Gray block
+					Common::color_print(0X80, "   ");
+					break;
+				case 7: // Blue block
+					Common::color_print(0X10, "   ");
+					break;
+				case 8: // Green block
+					Common::color_print(0X20, "   ");
+					break;
+				case 9: // Aqua block
+					Common::color_print(0X30, "   ");
+					break;
+				case 10: // Red block
+					Common::color_print(0X40, "   ");
+					break;
+				case 11: // Purple block
+					Common::color_print(0X50, "   ");
+					break;
+				case 12: // Yellow block
+					Common::color_print(0X60, "   ");
+					break;
+				case 13: // Light Green block
+					Common::color_print(0XA0, "   ");
+					break;
+				case 14: // Light Aqua block
+					Common::color_print(0XB0, "   ");
+					break;
+				case 15: // Light Red block
+					Common::color_print(0XC0, "   ");
+					break;
+				case 16: // Light Purple block
+					Common::color_print(0XD0, "   ");
+					break;
+				case 17: // Light Yellow block
+					Common::color_print(0XE0, "   ");
+					break;
+				case 18: // Bright White block
+					Common::color_print(0XF0, "   ");
+					break;
+				case 19: // Red switch
+					Common::color_print(0X04, "Swi");
+					break;
+				case 20: // Green switch
+					Common::color_print(0X02, "Swi");
+					break;
+				case 21: // Archer troop
+					Common::color_print(0X07, " A ");
+					break;
+				case 22: // Mage troop
+					Common::color_print(0X0D, " M ");
+					break;
+				case 23: // Demon King
+					Common::color_print(0X0B, "DmK");
 					break;
 				default:
 					std::cout << "   ";
