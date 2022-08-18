@@ -41,16 +41,14 @@ void Story::foundCart()
 	system("cls");
 
 	Common::color_print(0x0b, "PLAYER:\n");
-	Common::write_ani("There's a suspicious-looking cart here...\n"
+	Common::write_ani("There's a very damaged cart here...\n"
 					  "Maybe I'll do a little digging and see if I can find anything.\n\n");
 
-	Common::write_ani("You investigate the suspicious cart.\n"
-					  "However, you end up finding nothing of interest.\n\n");
+	Common::write_ani("You investigate the cart, and come to the conclusion that it belongs to the elves.\n\n");
 
 	Common::color_print(0x0b, "PLAYER:\n");
-	Common::write_ani("Well, that's sad.\n"
-					  "I can't get to the Kingdom of Elves with this cart blocking the path.\n"
-					  "Might as well take a detour. I have to get there somehow.\n\n");
+	Common::write_ani("If the elves' cart is here, then that probably means the Kingdom of Elves is nearby, and\n"
+					  "I'm on the right track. I wonder why the cart is like this, though...\n\n");
 
 	Common::input("Press enter to continue ");
 }
@@ -1178,7 +1176,48 @@ void Story::KoE_complete()
 	Common::color_print(0x09, "BLACKSMITH:\n");
 	Common::write_ani("Alright, it's done! There was a lot more excess than I expected, so I made another one\n"
 					  "for you as a token of my appreciation. Here you go, pal!\n\n"
-					  "You obtained the FOREST BOW! (+10 ATK)\n\n");
+					  "You obtained the FOREST BOW!\n\n");
+
+	Common::input("Press enter to continue ");
+}
+
+void Story::excalibur_start()
+{
+	system("cls");
+
+	Common::write_ani("There's a sword stuck in a relatively large rock.\n"
+					  "You walk over to the sword, and you suddenly feel a shiver down\n"
+					  "your spine.\n\n");
+}
+
+void Story::excalibur_success()
+{
+	system("cls");
+
+	Common::write_ani("You grab onto the handle of the sword.\n\n"
+					  "Something tells you that you shouldn't let go of this sword, no matter\n"
+					  "what happens, so you hold on to the handle as tight as you possibly can.\n\n"
+					  "You can feel a burning sensation on your palm.\n\n");
+
+	Common::color_print(0x0e, "W E   H A V E   F O U N D   T H E   C H O S E N   O N E .\n\n");
+
+	Common::write_ani(". . .\n\n"
+					  "You have obtained the EXCALIBUR!\n\n");
+
+	Common::input("Press enter to continue ");
+}
+
+void Story::excalibur_failure()
+{
+	system("cls");
+
+	Common::write_ani("You grab onto the handle of the sword.\n\n"
+					  ". . .\n\n");
+
+	Common::color_print(0x0e, "Y O U   A R E   N O T   R E A D Y   Y E T ,   Y O U N G   O N E .\n\n");
+
+	Common::write_ani(". . .\n\n"
+					  "It seems you need to get stronger before you can obtain this item.\n\n");
 
 	Common::input("Press enter to continue ");
 }
@@ -1188,7 +1227,7 @@ void Story::npc1()
 	system("cls");
 
 	Common::color_print(0x0d, "NORAH:\n");
-	Common::write_ani("I'm saving up for a new house! This one's way too small.\n\n");
+	Common::write_ani("I'm saving up for a new house! This one's way too small for me.\n\n");
 
 	Common::input("Press enter to continue ");
 }
@@ -1240,7 +1279,8 @@ void Story::npc6()
 	system("cls");
 
 	Common::color_print(0x0d, "MAEVE:\n");
-	Common::write_ani("Magic is so wonderful! You can do almost anything with it!\n\n");
+	Common::write_ani("What did I wish for, you ask? Hehe, I can't tell you, or it'll never\n"
+					  "come true!\n\n");
 
 	Common::input("Press enter to continue ");
 }
@@ -1260,6 +1300,48 @@ void Story::npc8_9_10()
 	system("cls");
 
 	Common::write_ani("They seem to be busy training...\n\n");
+
+	Common::input("Press enter to continue ");
+}
+
+void Story::npc11()
+{
+	system("cls");
+
+	Common::color_print(0x0a, "GORWIN:\n");
+	Common::write_ani("Welcome to the Kingdom of Elves! We hope you enjoy your stay here.\n\n");
+
+	Common::input("Press enter to continue ");
+}
+
+void Story::npc12()
+{
+	system("cls");
+
+	Common::color_print(0x0a, "AERITH:\n");
+	Common::write_ani("This bow was given to me by my father. I've been using it for over 20\n"
+					  "years, and it hasn't ever failed me!\n\n");
+
+	Common::input("Press enter to continue ");
+}
+
+void Story::npc13()
+{
+	system("cls");
+
+	Common::color_print(0x0a, "THALIA:\n");
+	Common::write_ani("I've never actually been outside the kingdom, and I want to explore, but I've heard\n"
+					  "stories about the outside world... and I don't know if it's a good idea anymore.\n\n");
+
+	Common::input("Press enter to continue ");
+}
+
+void Story::treasureRoomHint()
+{
+	system("cls");
+
+	Common::write_ani("You pick up the note on the floor and begin to read it:\n"
+					  "not done yet sorry\n\n");
 
 	Common::input("Press enter to continue ");
 }

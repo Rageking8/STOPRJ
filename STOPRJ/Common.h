@@ -8,6 +8,7 @@ namespace Common
 
 	// Prints given text in specified text colour and background (using color_code)
 	void color_print(unsigned short color_code, std::string txt);
+	void color_print(unsigned short color_code, int num);
 
 	// Prints given text with writing animation
 	// Returns std::string to be able to use in Common::input
@@ -21,4 +22,13 @@ namespace Common
 
 	// Change visibility of console cursor
 	void cursor_vis(bool new_state);
+
+	// Sets cursor to new coordinate
+	void set_cursor(short x, short y);
+
+	// Move cursor in one direction (WASD)
+	void move_cursor(char dir);
+
+	// Get length of integer (number of digits)
+	int int_len(unsigned num);
 };

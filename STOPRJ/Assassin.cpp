@@ -2,7 +2,7 @@
 
 Assassin::Assassin()
 {
-	set_name("Mage");
+	set_name("Assassin");
 	set_stats("cur_health", 70);
 	set_stats("max_health", 70);
 	set_stats("cur_mp", 70);

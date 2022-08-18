@@ -68,14 +68,26 @@ public:
 	void KoE_inProgress();
 	void KoE_complete();
 
+	// find excalibur
+	void excalibur_start();
+	void excalibur_success(); 
+	void excalibur_failure(); 
+
 	//caershire npc interactions
 	void npc1(); // house
 	void npc2(); // house
 	void npc3(); // house
 	void npc4(); // entrance
 	void npc5(); // middle
-	void npc6(); // middle
+	void npc6(); // fountain
 	void npc7(); // grand master mage (pendolf) after completing side quest
 	void npc8_9_10(); // training (will not respond)
+
+	//kingfom of elves npc interactions
+	void npc11(); // fountain
+	void npc12(); // house
+	void npc13(); // somewhere else
+
+	void treasureRoomHint();
 };
 

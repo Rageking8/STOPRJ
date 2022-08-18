@@ -40,578 +40,13 @@ Game::Game()
 
 	board.set_cam(tmp_cam_pos_i1, tmp_cam_pos_i2);
 
-	// Map generation
-	// Treasure room
-	for (int i = 1; i < 10; ++i) { // Column walls
-		board.set_board((90 + i), 69, 2);
-		board.set_board((90 + i), 90, 2);
-	}
-	for (int i = 69; i < 91; ++i) { // Row walls
-		board.set_board(100, i, 2);
-	}
-	for (int i = 85; i < 91; i++) { // Row walls
-		board.set_board(91, i, 2);
-	}
-	for (int i = 69; i < 75; i++) { // Row walls
-		board.set_board(91, i, 2);
-	}
-	for (int i = 1; i < 5; ++i) { // Column walls
-		board.set_board((86 + i), 74, 2);
-		board.set_board((86 + i), 85, 2);
-	}
-
-	// Boss room 3 (Boss Fight/Throne room)
-	for (int i = 59; i < 74; ++i) { // Row walls
-		board.set_board(87, i, 2);
-	}
-	for (int i = 85; i < 101; ++i) { // Row walls
-		board.set_board(87, i, 2);
-	}
-	for (int i = 1; i < 25; ++i) { // Column walls
-		board.set_board((62 + i), 59, 2);
-		board.set_board((62 + i), 100, 2);
-	}
-	for (int i = 59; i < 75; ++i) { // Row walls
-		board.set_board(63, i, 2);
-	}
-	for (int i = 85; i < 101; ++i) { // Row walls
-		board.set_board(63, i, 2);
-	}
-	for (int i = 1; i < 5; ++i) { // Column walls
-		board.set_board((59 + i), 74, 2);
-		board.set_board((59 + i), 85, 2);
-	}
-	// Boss room 2 (Mini-boss)
-	for (int i = 62; i < 75; ++i) { // Row walls
-		board.set_board(59, i, 2);
-	}
-	for (int i = 85; i < 98; ++i) { // Row walls
-		board.set_board(59, i, 2);
-	}
-	for (int i = 1; i < 20; ++i) { // Column walls
-		board.set_board((39 + i), 62, 2);
-		board.set_board((39 + i), 97, 2);
-	}
-	for (int i = 62; i < 75; ++i) { // Row walls
-		board.set_board(40, i, 2);
-	}
-	for (int i = 85; i < 98; ++i) { // Row walls
-		board.set_board(40, i, 2);
-	}
-	for (int i = 1; i < 5; ++i) { // Column walls
-		board.set_board((35 + i), 74, 2);
-		board.set_board((35 + i), 85, 2);
-	}
-	//Boss room 1 (Skeleton Army)
-	for (int i = 62; i < 75; ++i) { // Row walls
-		board.set_board(35, i, 2);
-	}
-	for (int i = 85; i < 98; ++i) { // Row walls
-		board.set_board(35, i, 2);
-	}
-	for (int i = 1; i < 15; ++i) { // Column walls
-		board.set_board((20 + i), 62, 2);
-		board.set_board((20 + i), 97, 2);
-	}
-	for (int i = 62; i < 75; ++i) { // Row walls
-		board.set_board(20, i, 2);
-	}
-	for (int i = 85; i < 98; ++i) { // Row walls
-		board.set_board(20, i, 2);
-	}
-	for (int i = 1; i < 5; ++i) { // Column walls
-		board.set_board((15 + i), 74, 2);
-	}
-	for (int i = 1; i < 10; ++i) { // Column walls
-		board.set_board((11 + i), 85, 2);
-	}
-	//Bandit camp
-	for (int i = 0; i < 50; ++i) // Row walls
-	{
-		board.set_board(0, i, 2);
-	}
-	for (int i = 0; i < 15; i++) // Column walls
-	{
-		board.set_board(i, 0, 2);
-	}
-	for (int i = 0; i < 2; i++)
-	{
-		board.set_board(i, 49, 2);
-	}
-	for (int i = 0; i < 6; i++)
-	{
-		board.set_board((10 + i), 49, 2);
-	}
-	for (int i = 0; i < 20; ++i) // Bottom Row Left walls
-	{
-		board.set_board(15, i, 2);
-	}
-	for (int i = 30; i < 66; ++i) // Bottom Row Right walls
-	{
-		board.set_board(15, i, 2);
-	}
-	for (int i = 0; i < 4; i++) // Column Entrance left walls
-	{
-		board.set_board((16 + i), 19, 2);
-	}
-	// Bandit Camp inside walls
-	for (int i = 0; i < 3; i++)
-	{
-		board.set_board((1 + i), 15, 6);
-	}
-	for (int i = 0; i < 9; i++)
-	{
-		board.set_board((6 + i), 15, 6);
-	}
-	for (int i = 1; i < 6; i++)
-	{
-		board.set_board(10, i, 6);
-	}
-	for (int i = 10; i < 15; i++)
-	{
-		board.set_board(10, i, 6);
-	}
-	//Campfire
-	board.set_board(9, 36, 17);
-	board.set_board(8, 36, 10);
-	board.set_board(10, 36, 10);
-	board.set_board(9, 35, 10);
-	board.set_board(9, 37, 10);
-	//Pond
-	for (int i = 20; i < 30; i++)
-	{
-		board.set_board(1, i, 7);
-	}
-	for (int i = 21; i < 29; i++)
-	{
-		board.set_board(2, i, 7);
-	}
-	for (int i = 23; i < 27; i++)
-	{
-		board.set_board(3, i, 4);
-	}
-	//Beds in the dormitory
-	//Bed 1
-	board.set_board(2, 1, 18);
-	board.set_board(2, 2, 10);
-	board.set_board(2, 3, 10);
-	//Bed 2
-	board.set_board(7, 1, 18);
-	board.set_board(7, 2, 10);
-	board.set_board(7, 3, 10);
-	//Bed 3
-	board.set_board(9, 1, 18);
-	board.set_board(9, 2, 10);
-	board.set_board(9, 3, 10);
-	//Bed 4
-	board.set_board(2, 14, 18);
-	board.set_board(2, 13, 10);
-	board.set_board(2, 12, 10);
-	//Bed 5
-	board.set_board(7, 14, 18);
-	board.set_board(7, 13, 10);
-	board.set_board(7, 12, 10);
-	//Bed 6
-	board.set_board(9, 14, 18);
-	board.set_board(9, 13, 10);
-	board.set_board(9, 12, 10);
-	// Training Targets
-	board.set_board(12, 3, 15);
-	board.set_board(14, 3, 15);
-	// Bandits/Enemies
-	// 1st encounter
-	board.set_board(7, 31, 26);
-	board.set_board(6, 30, 26);
-	board.set_board(6, 32, 26);
-	// 2nd encounter
-	board.set_board(1, 41, 27);
-	board.set_board(2, 40, 26);
-	board.set_board(2, 42, 26);
-	//Bandit camp Leader room/ Treasure room?
-	for (int i = 0; i < 9; i++) // Column
-	{
-		board.set_board((2 + i), 95, 2);
-	}
-	for (int i = 49; i < 95; ++i) // Row
-	{
-		board.set_board(2, i, 2);
-	}
-	for (int i = 50; i < 95; ++i) // Row
-	{
-		board.set_board(10, i, 2);
-	}
-	//for (int i = 0; i < 3; i++) // Door(unlocks after player defeats the boss)
-	//{
-	//	board.set_board((5 + i), 49, 6);
-	//}
-	for (int i = 0; i < 2; i++) //  Door wall
-	{
-		board.set_board((3 + i), 49, 2);
-	}
-	for (int i = 0; i < 2; i++) // Door wall
-	{
-		board.set_board((8 + i), 49, 2);
-	}
-	for (int i = 0; i < 7; i++) // Cage Walls(unlocks after player solve the puzzle)
-	{
-		board.set_board((3 + i), 79, 6);
-	}
-	// Switches
-	board.set_board(3, 59, 10);
-	board.set_board(3, 73, 10);
-	board.set_board(9, 59, 10);
-	board.set_board(9, 73, 10);
-
-	//Starting path to Elf Archer Town
-	for (int i = 0; i < 59; ++i) // Row walls
-	{
-		board.set_board(100, i, 2);
-	}
-	for (int i = 0; i < 24; ++i) // Row walls
-	{
-		board.set_board(94, i, 2);
-	}
-	for (int i = 25; i < 48; ++i) // Row walls
-	{
-		board.set_board(94, i, 2);
-	}
-	for (int i = 23; i < 26; ++i) // Row walls
-	{
-		board.set_board(93, i, 2);
-	}
-	for (int i = 0; i < 7; i++) // Column walls
-	{
-		board.set_board((88 + i), 47, 2);
-	}
-	for (int i = 0; i < 37; i++) // Column walls + Archer Town Column right walls
-	{
-		board.set_board((63 + i), 58, 2);
-	}
-	//Archer Town
-	for (int i = 11; i < 48; ++i) // Row walls
-	{
-		board.set_board(87, i, 2);
-	}
-	for (int i = 11; i < 59; ++i) // Row walls
-	{
-		board.set_board(63, i, 2);
-	}
-
-	board.set_board(63, 11, 2);
-	board.set_board(67, 11, 2);
-
-	for (int i = 0; i < 12; i++) // Column walls
-	{
-		board.set_board((75 + i), 11, 2);
-	}
-
-	// Fountain border (Archer Town)
-	for (int i = 0; i < 3; ++i) {
-		board.set_board(80, (34 + i), 2);
-		board.set_board(84, (34 + i), 2);
-	}
-	for (int i = 0; i < 2; ++i) {
-		board.set_board(81 + (i * 2), 33, 2);
-		board.set_board(81 + (i * 2), 37, 2);
-	}
-	board.set_board(82, 32, 2);
-	board.set_board(82, 38, 2);
-
-	// Fountain water (Archer Town)
-	for (int i = 0; i < 3; ++i) {
-		for (int i2 = 0; i2 < 3; ++i2)
-			board.set_board(81 + i, 34 + i2, 4);
-	}
-	board.set_board(82, 33, 4);
-	board.set_board(82, 37, 4);
-
-	board.set_board(94, 24, 5);
-
-	//Path to Mage Town
-	for (int i = 6; i < 11; ++i) // Row walls
-	{
-		board.set_board(67, i, 2);
-	}
-	for (int i = 0; i < 11; ++i) // Row walls
-	{
-		board.set_board(75, i, 2);
-	}
-	for (int i = 0; i < 11; i++) // Column walls
-	{
-		board.set_board((57 + i), 6, 2);
-	}
-	for (int i = 0; i < 24; i++) // Column walls
-	{
-		board.set_board((51 + i), 0, 2);
-	}
-	for (int i = 0; i < 11; ++i) // Row walls
-	{
-		board.set_board(51, i, 2);
-	}
-	for (int i = 6; i < 62; ++i) // Row walls + Mage Town Bottom Row Walls
-	{
-		board.set_board(57, i, 2);
-	}
-	// Mage Town
-	for (int i = 0; i < 37; i++) // Column Right walls + Path to Demon king Castle
-	{
-		board.set_board((20 + i), 61, 2);
-	}
-	for (int i = 0; i < 26; i++) // Column Left walls
-	{
-		board.set_board((26 + i), 11, 2);
-	}
-	for (int i = 11; i < 54; ++i) // Top Row walls
-	{
-		board.set_board(26, i, 2);
-	}
-	// Stone Fences/ Barrier from player walking thru
-	board.set_board(51, 50, 6);
-	board.set_board(51, 32, 6);
-	board.set_board(55, 55, 6);
-	board.set_board(56, 55, 6);
-	board.set_board(30, 55, 6);
-
-	for (int i = 36; i < 40; i++) // Row
-	{
-		board.set_board(51, i, 6);
-	}
-	for (int i = 43; i < 47; i++)// Row
-	{
-		board.set_board(51, i, 6);
-	}
-	for (int i = 0; i < 5; i++) // Column
-	{
-		board.set_board((52 + i), 51, 6);
-		board.set_board((52 + i), 31, 6);
-	}
-	for (int i = 0; i < 4; i++) // Column
-	{
-		board.set_board((34 + i), 55, 6);
-		board.set_board((41 + i), 55, 6);
-		board.set_board((48 + i), 55, 6);
-	}
-	// Fountain border (Mage Town)
-	for (int i = 0; i < 3; ++i) {
-		board.set_board(30, (40 + i), 2);
-		board.set_board(34, (40 + i), 2);
-	}
-	for (int i = 0; i < 2; ++i) {
-		board.set_board(31 + (i * 2), 39, 2);
-		board.set_board(31 + (i * 2), 43, 2);
-	}
-	board.set_board(32, 38, 2);
-	board.set_board(32, 44, 2);
-
-	// Fountain water (Mage Town)
-	for (int i = 0; i < 3; ++i) {
-		for (int i2 = 0; i2 < 3; ++i2)
-			board.set_board(31 + i, 40 + i2, 4);
-	}
-	board.set_board(32, 39, 4);
-	board.set_board(32, 43, 4);
-	//Mage Academy/School Walls
-	for (int i = 12; i < 28; ++i) // Row 
-	{
-		board.set_board(51, i, 6);
-	}
-	for (int i = 12; i < 27; ++i) // Row 
-	{
-		board.set_board(29, i, 10);
-	}
-	for (int i = 12; i < 18; ++i) // Row 
-	{
-		board.set_board(43, i, 6);
-	}
-	for (int i = 21; i < 27; ++i) // Row 
-	{
-		board.set_board(43, i, 6);
-	}
-	for (int i = 12; i < 18; ++i) // Row 
-	{
-		board.set_board(35, i, 10);
-	}
-	for (int i = 21; i < 27; ++i) // Row 
-	{
-		board.set_board(35, i, 10);
-	}
-	for (int i = 0; i < 7; i++) // Column  walls
-	{
-		board.set_board((36 + i), 17, 10);
-		board.set_board((36 + i), 21, 10);
-	}
-	for (int i = 0; i < 16; i++) // Column  walls
-	{
-		board.set_board((35 + i), 27, 6);
-	}
-	for (int i = 0; i < 3; i++) // Column  walls
-	{
-		board.set_board((27 + i), 27, 6);
-	}
-	// Houses in Mage Town
-	// House 2
-	board.set_board(38, 55, 9);
-	board.set_board(40, 55, 9);
-	for (int i = 56; i < 61; ++i) // Row 
-	{
-		board.set_board(37, i, 9);
-		board.set_board(41, i, 9);
-	}
-	for (int i = 0; i < 3; i++) // Column  walls
-	{
-		board.set_board((38 + i), 60, 9);
-	}
-	// House 3
-	board.set_board(45, 55, 9);
-	board.set_board(47, 55, 9);
-	for (int i = 56; i < 61; ++i) // Row 
-	{
-		board.set_board(44, i, 9);
-		board.set_board(48, i, 9);
-	}
-	for (int i = 0; i < 3; i++) // Column  walls
-	{
-		board.set_board((45 + i), 60, 9);
-	}
-	// House 4
-	board.set_board(52, 55, 9);
-	board.set_board(54, 55, 9);
-	for (int i = 56; i < 61; ++i) // Row 
-	{
-		board.set_board(51, i, 9);
-		board.set_board(55, i, 9);
-	}
-	for (int i = 0; i < 3; i++) // Column  walls
-	{
-		board.set_board((52 + i), 60, 9);
-	}
-	// House 5
-	board.set_board(51, 49, 9);
-	board.set_board(51, 47, 9);
-	for (int i = 46; i < 51; ++i) // Row 
-	{
-		board.set_board(56, i, 9);
-	}
-	for (int i = 0; i < 4; i++) // Column  walls
-	{
-		board.set_board((52 + i), 46, 9);
-		board.set_board((52 + i), 50, 9);
-	}
-	// House 6
-	board.set_board(51, 42, 9);
-	board.set_board(51, 40, 9);
-	for (int i = 39; i < 44; ++i) // Row 
-	{
-		board.set_board(56, i, 9);
-	}
-	for (int i = 0; i < 4; i++) // Column  walls
-	{
-		board.set_board((52 + i), 39, 9);
-		board.set_board((52 + i), 43, 9);
-	}
-	// House 7
-	board.set_board(51, 35, 9);
-	board.set_board(51, 33, 9);
-	for (int i = 32; i < 37; ++i) // Row 
-	{
-		board.set_board(56, i, 9);
-	}
-	for (int i = 0; i < 4; i++) // Column  walls
-	{
-		board.set_board((52 + i), 32, 9);
-		board.set_board((52 + i), 36, 9);
-	}
-
-	// NPCs
-	// Open-Area
-	board.set_board(39, 59, 22); // inside house 2 #1
-	board.set_board(53, 59, 22); // inside house 4 #2
-	board.set_board(55, 34, 22); // inside house 7 #3
-	board.set_board(52, 24, 22); // First Mage NPC to greet at the start #4
-	board.set_board(43, 42, 22); // Second Mage NPC Saying random stuff #5
-	board.set_board(34, 39, 22); // Third Mage NPC Saying a wish at the fountain #6
-	//Grand Master Mage(GMM)
-	board.set_board(32, 12, 24); // Grand Master Mage Named "Pendolf" #7
-	// Training Area
-	board.set_board(45, 23, 22); // #8
-	board.set_board(47, 23, 22); // #9
-	board.set_board(49, 23, 22); // #10
-
-	//Target Block/Dummies
-	board.set_board(45, 14, 13);
-	board.set_board(47, 14, 13);
-	board.set_board(49, 14, 13);
-
-	// Mage Town Shophouse
-	board.set_board(31, 55, 17);
-	board.set_board(33, 55, 17);
-	for (int i = 56; i < 61; ++i) // Row 
-	{
-		board.set_board(30, i, 17);
-		board.set_board(34, i, 17);
-	}
-	for (int i = 0; i < 3; i++) // Column  walls
-	{
-		board.set_board((31 + i), 60, 17);
-	}
-	//Shop Icon
-	board.set_board(32, 59, 3);
-	//Grass
-	for (int i = 56; i < 61; ++i) // Row 
-	{
-		board.set_board(35, i, 8);
-		board.set_board(36, i, 8);
-		board.set_board(42, i, 8);
-		board.set_board(43, i, 8);
-		board.set_board(49, i, 8);
-		board.set_board(50, i, 8);
-		board.set_board(56, i, 8);
-	}
-	for (int i = 0; i < 5; i++)
-	{
-		board.set_board((52 + i), 37, 8);
-		board.set_board((52 + i), 38, 8);
-		board.set_board((52 + i), 44, 8);
-		board.set_board((52 + i), 45, 8);
-	}
-
-	// Path to Bandit camp + Demon king Castle
-	board.set_board(16, 57, 25); // Directory sign
-	for (int i = 0; i < 7; i++) // Column Left walls to bandit
-	{
-		if (i == 3 || i == 4) continue;
-		board.set_board((19 + i), 53, 2);
-	}
-
-	for (int i = 16; i < 51; ++i) { // Column right against the left world boundary
-		board.set_board(i, 0, 2);
-	}
-
-	for (int i = 19; i < 53; ++i) // Bottom Row walls to bandit
-	{
-		board.set_board(19, i, 2);
-	}
-	for (int i = 0; i < 4; i++) // Column Right walls to demon
-	{
-		board.set_board((12 + i), 66, 2);
-	}
-	for (int i = 66; i < 85; ++i) // Top Row walls to demon
-	{
-		board.set_board(12, i, 2);
-	}
-	for (int i = 61; i < 75; ++i) // Bottom Row walls to demon
-	{
-		board.set_board(19, i, 2);
-	}
-
+	board_gen();
 
 	// Note: do not overide
 	for (int i = 95; i < 100; ++i) {
 		board.set_board(i, 47, 6);
 	}
 
-	//start_battle("ambush");
-	//while (true);
 }
 
 Game::~Game()
@@ -636,16 +71,16 @@ void Game::start()
 	while (true) {
 
 		// Dont use system("cls") as it causes flicker when the screen is updating
-		SetConsoleCursorPosition(h, COORD{ 0, 0 });
+		Common::set_cursor(0, 0);
 		board.print_board(prev_is_map);
 
-		SetConsoleCursorPosition(h, COORD{ 0, 31 });
+		Common::set_cursor(0, 31);
 		std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-100 (both inclusive)    \n";
 
-		SetConsoleCursorPosition(h, COORD{ 72, 33 });
+		Common::set_cursor(72, 33);
 		std::cout << " ";
 
-		SetConsoleCursorPosition(h, COORD{ 0, 32 });
+		Common::set_cursor(0, 32);
 		//std::string action_inp = Common::input("              \nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
 		std::cout << "              \nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
 
@@ -670,7 +105,7 @@ void Game::start()
 			int c = _getch();
 			if (c == 224) {
 				c = _getch();
-				SetConsoleCursorPosition(h, COORD{ 0, 31 });
+				Common::set_cursor(0, 31);
 				std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-100 (both inclusive)    \nInvalid action\nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
 				continue;
 			}
@@ -732,7 +167,7 @@ void Game::start()
 			}
 
 			if (action_inp == "") {
-				SetConsoleCursorPosition(h, COORD{ 0, 31 });
+				Common::set_cursor(0, 31);
 				std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-100 (both inclusive)    \nInvalid action\nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
 			}
 			else {
@@ -797,6 +232,7 @@ void Game::start()
 		}
 		else if ((action_inp == "m" || action_inp == "M")) {
 			system("cls");
+			Common::cursor_vis(true);
 			std::string menu_option = Common::input("===== Menu =====\n1) Character\n2) Backpack\n3) Map\n\nS) Story testing\n\nEnter an option (B for back) : ");
 			while (menu_option != "1" && menu_option != "2" && menu_option != "3" && menu_option != "B" && menu_option != "b" && menu_option != "S") {
 				system("cls");
@@ -809,7 +245,72 @@ void Game::start()
 			}
 			else if (menu_option == "2") {
 				system("cls");
-				Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nPress enter to return ");
+				std::string item_inp = Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nInput the corresponding item number to consume/equip it, or press enter to return : ");
+				while (item_inp == "1" || item_inp == "2" || item_inp == "3" || item_inp == "4" || item_inp == "5") {
+					if (item_inp == "1") {
+						system("cls");
+						item_inp = Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nYou cannot use your coins here. Please use them at a SHOP : ");
+					}
+					else if (item_inp == "2") {
+						if (swordsman.get_item_qty("sword") > 0) {
+							swordsman.set_item_qty("sword", swordsman.get_item_qty("sword") - 1);
+							swordsman.set_stats("attack", swordsman.get_stats("attack") + 5);
+							system("cls");
+							item_inp = Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nYou have equipped a sword! Your attack is now " + std::to_string(swordsman.get_stats("attack")) + "!\nInput the corresponding item number to consume/equip it, or press enter to return : ");
+						}
+						else {
+							system("cls");
+							item_inp = Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nYou have no swords to equip!\nInput the corresponding item number to consume/equip it, or press enter to return : ");
+						}
+					}
+					else if (item_inp == "3") {
+						if (swordsman.get_item_qty("armour") > 0) {
+							swordsman.set_item_qty("armour", swordsman.get_item_qty("armour") - 1);
+							swordsman.set_stats("cur_health", swordsman.get_stats("cur_health") + 10);
+							swordsman.set_stats("max_health", swordsman.get_stats("max_health") + 10);
+							system("cls");
+							item_inp = Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nYou have equipped armour! Your max HP is now " + std::to_string(swordsman.get_stats("max_health")) + "!\nInput the corresponding item number to consume/equip it, or press enter to return : ");
+						}
+						else {
+							system("cls");
+							item_inp = Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nYou have no armour to equip!\nInput the corresponding item number to consume/equip it, or press enter to return : ");
+						}
+					}
+					else if (item_inp == "4") {
+						if (swordsman.get_item_qty("hp_potion") > 0) {
+							swordsman.set_item_qty("hp_potion", swordsman.get_item_qty("hp_potion") - 1);
+							if (swordsman.get_stats("max_health") - swordsman.get_stats("cur_health") <= 50) {
+								swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
+							}
+							else {
+								swordsman.set_stats("cur_health", swordsman.get_stats("cur_health") + 50);
+							}
+							system("cls");
+							item_inp = Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nYou have consumed a HP potion! Your current HP is now " + std::to_string(swordsman.get_stats("cur_health")) + "!\nInput the corresponding item number to consume / equip it, or press enter to return : ");
+						}
+						else {
+							system("cls");
+							item_inp = Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nYou have no HP potions to use!\nInput the corresponding item number to consume/equip it, or press enter to return : ");
+						}
+					}
+					else if (item_inp == "5") {
+						if (swordsman.get_item_qty("mp_potion") > 0) {
+							swordsman.set_item_qty("mp_potion", swordsman.get_item_qty("mp_potion") - 1);
+							if (swordsman.get_stats("max_mp") - swordsman.get_stats("cur_mp") <= 50) {
+								swordsman.set_stats("cur_mp", swordsman.get_stats("max_mp"));
+							}
+							else {
+								swordsman.set_stats("cur_mp", swordsman.get_stats("cur_mp") + 50);
+							}
+							system("cls");
+							item_inp = Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nYou have consumed a MP potion! Your current MP is now " + std::to_string(swordsman.get_stats("cur_mp")) + "!\nInput the corresponding item number to consume / equip it, or press enter to return : ");
+						}
+						else {
+							system("cls");
+							item_inp = Common::input("====== Backpack ======\n1) Coin        " + std::to_string(swordsman.get_item_qty("coin")) + "\n2) Sword       " + std::to_string(swordsman.get_item_qty("sword")) + "\n3) Armour      " + std::to_string(swordsman.get_item_qty("armour")) + "\n4) HP Potion   " + std::to_string(swordsman.get_item_qty("hp_potion")) + "\n5) MP Potion   " + std::to_string(swordsman.get_item_qty("mp_potion")) + "\n\nYou have no MP potions to use!\nInput the corresponding item number to consume/equip it, or press enter to return : ");
+						}
+					}
+				}
 			}
 			else if (menu_option == "3") {
 				system("cls");
@@ -860,26 +361,17 @@ void Game::start()
 			}
 
 			prev_is_map = false;
+			Common::cursor_vis(false);
 		}
 
 		// Ambush by the archer troops
-		if (swordsman.get_pos(1) == 47) {
-			switch (swordsman.get_pos(0)) {
-				case 95:
-				case 96:
-				case 97:
-				case 98:
-				case 99:
-					board.set_board(96, 46, 21);
-					board.set_board(97, 45, 21);
-					board.set_board(98, 46, 21);
+		if (swordsman.get_pos(1) == 47 && swordsman.get_pos(0) >= 95 && swordsman.get_pos(0) <= 99) {
+			Common::cursor_vis(true);
+			start_battle("ambush");
 
-					board.set_board(95, 49, 21);
-					board.set_board(94, 50, 21);
-					board.set_board(95, 51, 21);
+			prev_is_map = false;
 
-					break;
-			}
+			Common::cursor_vis(false);
 		}
 
 		if (tmp_target_cell_val == 3) {
@@ -888,12 +380,10 @@ void Game::start()
 			case 'b':
 				break;
 			case '1':
-				swordsman.set_stats("attack", swordsman.get_stats("attack") + 5);
 				swordsman.set_item_qty("sword", swordsman.get_item_qty("sword") + 1);
 				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 10);
 				break;
 			case '2':
-				swordsman.set_stats("max_health", swordsman.get_stats("max_health") + 10);
 				swordsman.set_item_qty("armour", swordsman.get_item_qty("armour") + 1);
 				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 20);
 				break;
@@ -928,11 +418,13 @@ bool Game::valid_inp(std::string inp)
 
 void Game::start_battle(std::string id)
 {
+	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+
 	system("cls");
 	Character enemy[4];
 
 	if (id == "ambush") {
-		for (int i = 0; i < 2; ++i) {
+		for (int i = 0; i < 4; ++i) {
 			enemy[i].set_name("Archer Troop");
 			enemy[i].set_stats("cur_health", 10);
 			enemy[i].set_stats("max_health", 10);
@@ -954,153 +446,522 @@ void Game::start_battle(std::string id)
 	slot_active[6] = (archer.get_recruited() && (archer.get_stats("cur_health") > 0));
 	slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
-	for (int i = 0; i < 4; ++i) {
-		std::cout << (slot_active[i] ? "|======================| " : "                         ");
-	}
-
-	std::cout << "\n";
-
-	for (int i = 0; i < 4; ++i) {
+	int current_turn = -1;
+	for (int i = 4; i < 8; ++i) {
 		if (slot_active[i]) {
-			std::string tmp_name = enemy[i].get_name();
-			std::cout << "| " << tmp_name << Common::mul_txt(" ", 21 - tmp_name.length()) << "| ";
-		}
-		else {
-			std::cout << "                         ";
+			current_turn = i;
+			break;
 		}
 	}
 
-	std::cout << "\n";
+	while (true) {
+		for (int i = 0; i < 4; ++i) {
+			if (slot_active[i]) {
+				if (current_turn == i)
+					SetConsoleTextAttribute(h, 0x09);
 
-	for (int i = 0; i < 4; ++i) {
-		if (slot_active[i]) {
-			std::string tmp_attack = std::to_string(enemy[i].get_stats("attack"));
-			std::cout << "| Attack : " << tmp_attack << Common::mul_txt(" ", 12 - tmp_attack.length()) << "| ";
-		}
-		else {
-			std::cout << "                         ";
-		}
-	}
-
-	std::cout << "\n";
-
-	for (int i = 0; i < 4; ++i) {
-		if (slot_active[i]) {
-			std::string tmp_cur_health = std::to_string(enemy[i].get_stats("cur_health"));
-			std::string tmp_max_health = std::to_string(enemy[i].get_stats("max_health"));
-			std::cout << "| Health : " << tmp_cur_health << " / " << tmp_max_health << Common::mul_txt(" ", 12 - (tmp_cur_health.length() + 3 + tmp_max_health.length())) << "| ";
-		}
-		else {
-			std::cout << "                         ";
-		}
-	}
-
-	std::cout << "\n";
-
-	for (int i = 0; i < 4; ++i) {
-		if (slot_active[i]) {
-			std::string tmp_cur_mp = std::to_string(enemy[i].get_stats("cur_mp"));
-			std::string tmp_max_mp = std::to_string(enemy[i].get_stats("max_mp"));
-			std::cout << "| MP : " << tmp_cur_mp << " / " << tmp_max_mp << Common::mul_txt(" ", 16 - (tmp_cur_mp.length() + 3 + tmp_max_mp.length())) << "| ";
-		}
-		else {
-			std::cout << "                         ";
-		}
-	}
-
-	std::cout << "\n";
-
-	for (int i = 0; i < 4; ++i) {
-		if (slot_active[i]) {
-			std::cout << "|                      | ";
-		}
-		else {
-			std::cout << "                         ";
-		}
-	}
-
-	std::cout << "\n";
-
-	for (int i = 0; i < 4; ++i) {
-		for (int i2 = 0; i2 < 4; ++i2) {
-			if (slot_active[i2] && enemy[i2].get_skill_list(i).active) {
-				std::string tmp_skill_name = enemy[i2].get_skill_list(i).name;
-				std::cout << "| > " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
-			}
-			else if (slot_active[i2]) {
+				Common::set_cursor(i * 25, 0);
+				std::cout << "|======================| ";
+				Common::set_cursor(i * 25, 1);
+				std::cout << "| " << enemy[i].get_name() << Common::mul_txt(" ", 21 - enemy[i].get_name().length()) << "| ";
+				Common::set_cursor(i * 25, 2);
+				std::cout << "| Attack : " << enemy[i].get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(enemy[i].get_stats("attack"))) << "| ";
+				Common::set_cursor(i * 25, 3);
+				std::cout << "| Health : " << enemy[i].get_stats("cur_health") << " / " << enemy[i].get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(enemy[i].get_stats("cur_health")) + 3 + Common::int_len(enemy[i].get_stats("max_health")))) << "| ";
+				Common::set_cursor(i * 25, 4);
+				std::cout << "| MP : " << enemy[i].get_stats("cur_mp") << " / " << enemy[i].get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(enemy[i].get_stats("cur_mp")) + 3 + Common::int_len(enemy[i].get_stats("max_mp")))) << "| ";
+				Common::set_cursor(i * 25, 5);
 				std::cout << "|                      | ";
+
+				for (int i2 = 0; i2 < 4; ++i2) {
+					Common::set_cursor(i * 25, 6 + i2);
+					if (enemy[i].get_skill_list(i2).active) {
+						std::string tmp_skill_name = enemy[i].get_skill_list(i2).name;
+						std::cout << "| " << i2 + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+					}
+					else {
+						std::cout << "|                      | ";
+					}
+				}
+
+				Common::set_cursor(i * 25, 10);
+				std::cout << "|======================| ";
+
+				if (current_turn == i)
+					SetConsoleTextAttribute(h, 0x07);
+			}
+		}
+
+		if (slot_active[4]) {
+			if (current_turn == 4)
+				SetConsoleTextAttribute(h, 0x09);
+
+			Common::set_cursor(0, 15);
+			std::cout << "|======================| ";
+			Common::set_cursor(0, 16);
+			std::cout << "| " << swordsman.get_name() << Common::mul_txt(" ", 21 - swordsman.get_name().length()) << "| ";
+			Common::set_cursor(0, 17);
+			std::cout << "| Attack : " << swordsman.get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(swordsman.get_stats("attack"))) << "| ";
+			Common::set_cursor(0, 18);
+			std::cout << "| Health : " << swordsman.get_stats("cur_health") << " / " << swordsman.get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(swordsman.get_stats("cur_health")) + 3 + Common::int_len(swordsman.get_stats("max_health")))) << "| ";
+			Common::set_cursor(0, 19);
+			std::cout << "| MP : " << swordsman.get_stats("cur_mp") << " / " << swordsman.get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(swordsman.get_stats("cur_mp")) + 3 + Common::int_len(swordsman.get_stats("max_mp")))) << "| ";
+			Common::set_cursor(0, 20);
+			std::cout << "|                      | ";
+
+			for (int i = 0; i < 4; ++i) {
+				Common::set_cursor(0, 21 + i);
+				if (swordsman.get_skill_list(i).active) {
+					std::string tmp_skill_name = swordsman.get_skill_list(i).name;
+					std::cout << "| " << i + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+				}
+				else {
+					std::cout << "|                      | ";
+				}
+			}
+
+			Common::set_cursor(0, 25);
+			std::cout << "|======================| ";
+
+			if (current_turn == 4)
+				SetConsoleTextAttribute(h, 0x07);
+		}
+
+		if (slot_active[5]) {
+			if (current_turn == 5)
+				SetConsoleTextAttribute(h, 0x09);
+
+			Common::set_cursor(25, 15);
+			std::cout << "|======================| ";
+			Common::set_cursor(25, 16);
+			std::cout << "| " << mage.get_name() << Common::mul_txt(" ", 21 - mage.get_name().length()) << "| ";
+			Common::set_cursor(25, 17);
+			std::cout << "| Attack : " << mage.get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(mage.get_stats("attack"))) << "| ";
+			Common::set_cursor(25, 18);
+			std::cout << "| Health : " << mage.get_stats("cur_health") << " / " << mage.get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(mage.get_stats("cur_health")) + 3 + Common::int_len(mage.get_stats("max_health")))) << "| ";
+			Common::set_cursor(25, 19);
+			std::cout << "| MP : " << mage.get_stats("cur_mp") << " / " << mage.get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(mage.get_stats("cur_mp")) + 3 + Common::int_len(mage.get_stats("max_mp")))) << "| ";
+			Common::set_cursor(25, 20);
+			std::cout << "|                      | ";
+
+			for (int i = 0; i < 4; ++i) {
+				Common::set_cursor(25, 21 + i);
+				if (mage.get_skill_list(i).active) {
+					std::string tmp_skill_name = mage.get_skill_list(i).name;
+					std::cout << "| " << i + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+				}
+				else {
+					std::cout << "|                      | ";
+				}
+			}
+
+			Common::set_cursor(25, 25);
+			std::cout << "|======================| ";
+
+			if (current_turn == 5)
+				SetConsoleTextAttribute(h, 0x07);
+		}
+
+		if (slot_active[6]) {
+			if (current_turn == 6)
+				SetConsoleTextAttribute(h, 0x09);
+
+			Common::set_cursor(50, 15);
+			std::cout << "|======================| ";
+			Common::set_cursor(50, 16);
+			std::cout << "| " << archer.get_name() << Common::mul_txt(" ", 21 - archer.get_name().length()) << "| ";
+			Common::set_cursor(50, 17);
+			std::cout << "| Attack : " << archer.get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(archer.get_stats("attack"))) << "| ";
+			Common::set_cursor(50, 18);
+			std::cout << "| Health : " << archer.get_stats("cur_health") << " / " << archer.get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(archer.get_stats("cur_health")) + 3 + Common::int_len(archer.get_stats("max_health")))) << "| ";
+			Common::set_cursor(50, 19);
+			std::cout << "| MP : " << archer.get_stats("cur_mp") << " / " << archer.get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(archer.get_stats("cur_mp")) + 3 + Common::int_len(archer.get_stats("max_mp")))) << "| ";
+			Common::set_cursor(50, 20);
+			std::cout << "|                      | ";
+
+			for (int i = 0; i < 4; ++i) {
+				Common::set_cursor(50, 21 + i);
+				if (archer.get_skill_list(i).active) {
+					std::string tmp_skill_name = archer.get_skill_list(i).name;
+					std::cout << "| " << i + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+				}
+				else {
+					std::cout << "|                      | ";
+				}
+			}
+
+			Common::set_cursor(50, 25);
+			std::cout << "|======================| ";
+
+			if (current_turn == 6)
+				SetConsoleTextAttribute(h, 0x07);
+		}
+
+		if (slot_active[7]) {
+			if (current_turn == 7)
+				SetConsoleTextAttribute(h, 0x09);
+
+			Common::set_cursor(75, 15);
+			std::cout << "|======================| ";
+			Common::set_cursor(75, 16);
+			std::cout << "| " << assassin.get_name() << Common::mul_txt(" ", 21 - assassin.get_name().length()) << "| ";
+			Common::set_cursor(75, 17);
+			std::cout << "| Attack : " << assassin.get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(assassin.get_stats("attack"))) << "| ";
+			Common::set_cursor(75, 18);
+			std::cout << "| Health : " << assassin.get_stats("cur_health") << " / " << assassin.get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(assassin.get_stats("cur_health")) + 3 + Common::int_len(assassin.get_stats("max_health")))) << "| ";
+			Common::set_cursor(75, 19);
+			std::cout << "| MP : " << assassin.get_stats("cur_mp") << " / " << assassin.get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(assassin.get_stats("cur_mp")) + 3 + Common::int_len(assassin.get_stats("max_mp")))) << "| ";
+			Common::set_cursor(75, 20);
+			std::cout << "|                      | ";
+
+			for (int i = 0; i < 4; ++i) {
+				Common::set_cursor(75, 21 + i);
+				if (assassin.get_skill_list(i).active) {
+					std::string tmp_skill_name = assassin.get_skill_list(i).name;
+					std::cout << "| " << i + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+				}
+				else {
+					std::cout << "|                      | ";
+				}
+			}
+
+			Common::set_cursor(75, 25);
+			std::cout << "|======================| ";
+
+			if (current_turn == 7)
+				SetConsoleTextAttribute(h, 0x07);
+		}
+
+		Common::set_cursor(0, 27);
+		if (current_turn > 3) {
+			// Allies turn
+
+			bool cast_skill = true;
+
+			std::string skill_input = Common::input("                             \nEnter which skill to cast (S for skill book) : ");
+			while ((skill_input != "1" && skill_input != "2" && skill_input != "3" && skill_input != "4" && skill_input != "S" && skill_input != "s") ||
+				((skill_input != "S" && skill_input != "s") &&
+
+					((current_turn == 4 && (!swordsman.get_skill_list(std::stoi(skill_input) - 1).active || swordsman.get_stats("cur_mp") < swordsman.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
+						
+						(current_turn == 5 && (!mage.get_skill_list(std::stoi(skill_input) - 1).active || mage.get_stats("cur_mp") < mage.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
+						
+						(current_turn == 6 && (!archer.get_skill_list(std::stoi(skill_input) - 1).active || archer.get_stats("cur_mp") < archer.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
+						
+						(current_turn == 7 && (!assassin.get_skill_list(std::stoi(skill_input) - 1).active || assassin.get_stats("cur_mp") < assassin.get_skill_list(std::stoi(skill_input) - 1).cost))))) {
+
+				Common::set_cursor(47, 28);
+				for (unsigned i = 0; i < skill_input.length(); ++i)
+					std::cout << " ";
+				Common::set_cursor(0, 27);
+				skill_input = Common::input("Invalid skill / Not enough MP\nEnter which skill to cast (S for skill book) : ");
+			}
+
+			if (skill_input == "S" || skill_input == "s") {
+				print_all_skill();
+				system("cls");
+				cast_skill = false;
 			}
 			else {
-				std::cout << "                         ";
+				int tmp_pow = 0;
+				char tmp_skill_type = ' ';
+
+				if (current_turn == 4) {
+					if (swordsman.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
+						tmp_pow = swordsman.get_stats("attack") + swordsman.get_skill_list(std::stoi(skill_input) - 1).power;
+						tmp_skill_type = 'D';
+					}
+					else if (swordsman.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'A') {
+						swordsman.set_stats("attack", swordsman.get_stats("attack") + swordsman.get_skill_list(std::stoi(skill_input) - 1).power);
+					}
+					else {
+						swordsman.set_stats("cur_health", swordsman.get_stats("cur_health") + swordsman.get_skill_list(std::stoi(skill_input) - 1).power);
+						if (swordsman.get_stats("cur_health") > swordsman.get_stats("max_health"))
+							swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
+					}
+
+					swordsman.set_stats("cur_mp", swordsman.get_stats("cur_mp") - swordsman.get_skill_list(std::stoi(skill_input) - 1).cost);
+				}
+				else if (current_turn == 5) {
+					if (mage.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
+						tmp_pow = mage.get_stats("attack") + mage.get_skill_list(std::stoi(skill_input) - 1).power;
+						tmp_skill_type = 'D';
+					}
+					else if (mage.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'A') {
+						mage.set_stats("attack", mage.get_stats("attack") + mage.get_skill_list(std::stoi(skill_input) - 1).power);
+					}
+					else {
+						mage.set_stats("cur_health", mage.get_stats("cur_health") + mage.get_skill_list(std::stoi(skill_input) - 1).power);
+						if (mage.get_stats("cur_health") > mage.get_stats("max_health"))
+							mage.set_stats("cur_health", mage.get_stats("max_health"));
+					}
+
+					mage.set_stats("cur_mp", mage.get_stats("cur_mp") - mage.get_skill_list(std::stoi(skill_input) - 1).cost);
+				}
+				else if (current_turn == 6) {
+					if (archer.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
+						tmp_pow = archer.get_stats("attack") + archer.get_skill_list(std::stoi(skill_input) - 1).power;
+						tmp_skill_type = 'D';
+					}
+					else if (archer.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'A') {
+						archer.set_stats("attack", archer.get_stats("attack") + archer.get_skill_list(std::stoi(skill_input) - 1).power);
+					}
+					else {
+						archer.set_stats("cur_health", archer.get_stats("cur_health") + archer.get_skill_list(std::stoi(skill_input) - 1).power);
+						if (archer.get_stats("cur_health") > archer.get_stats("max_health"))
+							archer.set_stats("cur_health", archer.get_stats("max_health"));
+					}
+					archer.set_stats("cur_mp", archer.get_stats("cur_mp") - archer.get_skill_list(std::stoi(skill_input) - 1).cost);
+				}
+				else if (current_turn == 7) {
+					if (assassin.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
+						tmp_pow = assassin.get_stats("attack") + assassin.get_skill_list(std::stoi(skill_input) - 1).power;
+						tmp_skill_type = 'D';
+					}
+					else if (assassin.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'A') {
+						assassin.set_stats("attack", assassin.get_stats("attack") + assassin.get_skill_list(std::stoi(skill_input) - 1).power);
+					}
+					else {
+						assassin.set_stats("cur_health", assassin.get_stats("cur_health") + assassin.get_skill_list(std::stoi(skill_input) - 1).power);
+						if (assassin.get_stats("cur_health") > assassin.get_stats("max_health"))
+							assassin.set_stats("cur_health", assassin.get_stats("max_health"));
+					}
+					assassin.set_stats("cur_mp", assassin.get_stats("cur_mp") - assassin.get_skill_list(std::stoi(skill_input) - 1).cost);
+				}
+
+				if (tmp_skill_type == 'D') {
+					int tmp_active_enemy[4]{};
+					int current_idx = 0;
+					for (int i = 0; i < 4; ++i) {
+						if (slot_active[i]) {
+							tmp_active_enemy[current_idx] = i;
+							current_idx++;
+						}
+					}
+					int tmp_rand_enemy = tmp_active_enemy[Common::rand_int(0, current_idx - 1)];
+
+					enemy[tmp_rand_enemy].set_stats("cur_health", enemy[tmp_rand_enemy].get_stats("cur_health") - tmp_pow);
+
+					if (enemy[tmp_rand_enemy].get_stats("cur_health") <= 0) {
+						for (int i = 0; i < 11; ++i) {
+							Common::set_cursor(tmp_rand_enemy * 25, i);
+							std::cout << "                         ";
+						}
+					}
+
+					for (int i = 0; i < 4; ++i)
+						slot_active[i] = (enemy[i].get_name() != "" && enemy[i].get_stats("cur_health") > 0);
+					slot_active[4] = (swordsman.get_stats("cur_health") > 0);
+					slot_active[5] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
+					slot_active[6] = (archer.get_recruited() && (archer.get_stats("cur_health") > 0));
+					slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
+
+					if (!slot_active[0] && !slot_active[1] && !slot_active[2] && !slot_active[3]) {
+						// Enemy all dead
+
+						system("cls");
+						std::cout << "You Won";
+						break;
+					}
+					else if (!slot_active[4] && !slot_active[5] && !slot_active[6] && !slot_active[7]) {
+						// Ally all dead
+
+						system("cls");
+						std::cout << "You lose";
+						break;
+					}
+				}
+
+				int tmp_active_ally[4]{};
+				int current_idx = 0;
+				for (int i = 4; i < 8; ++i) {
+					if (slot_active[i]) {
+						tmp_active_ally[current_idx] = i;
+						current_idx++;
+					}
+				}
+				for (int i = 0; i < current_idx; ++i) {
+					if (tmp_active_ally[i] == current_turn && i < current_idx - 1) {
+						current_turn = tmp_active_ally[i + 1];
+						break;
+					}
+					else if (tmp_active_ally[i] == current_turn && i == current_idx - 1) {
+						for (int i2 = 0; i2 < 4; ++i2) {
+							if (slot_active[i2]) {
+								current_turn = i2;
+								break;
+							}
+						}
+					}
+				}
 			}
+
 		}
-		std::cout << "\n";
-	}
+		else if (current_turn >= 0) {
+			// Enemy turn
 
-	for (int i = 0; i < 4; ++i) {
-		if (slot_active[i]) {
-			std::cout << "|======================| ";
+			int tmp_active_ally[4]{};
+			int current_idx = 0;
+			for (int i = 4; i < 8; ++i) {
+				if (slot_active[i]) {
+					tmp_active_ally[current_idx] = i;
+					current_idx++;
+				}
+			}
+			int tmp_rand_ally = tmp_active_ally[Common::rand_int(0, current_idx - 1)];
+
+			for (int i = 3; i >= 0; --i) {
+				if (enemy[current_turn].get_skill_list(i).cost <= enemy[current_turn].get_stats("cur_mp") && enemy[current_turn].get_skill_list(i).active) {
+					if (enemy[current_turn].get_skill_list(i).skill_type == 'A') {
+						enemy[current_turn].set_stats("attack", enemy[current_turn].get_stats("attack") + enemy[current_turn].get_skill_list(i).power);
+					}
+					else if (enemy[current_turn].get_skill_list(i).skill_type == 'H') {
+						enemy[current_turn].set_stats("cur_health", enemy[current_turn].get_stats("cur_health") + enemy[current_turn].get_skill_list(i).power);
+						if (enemy[current_turn].get_stats("cur_health") > enemy[current_turn].get_stats("max_health"))
+							enemy[current_turn].set_stats("cur_health", enemy[current_turn].get_stats("max_health"));
+					}
+					else {
+						switch (tmp_rand_ally) {
+							case 4:
+								swordsman.set_stats("cur_health", swordsman.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+								enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
+
+								if (swordsman.get_stats("cur_health") <= 0) {
+									for (int i2 = 15; i2 < 26; ++i2) {
+										Common::set_cursor(0, i2);
+										std::cout << "                         ";
+									}
+								}
+								break;
+							case 5:
+								mage.set_stats("cur_health", mage.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+								enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
+
+								if (mage.get_stats("cur_health") <= 0) {
+									for (int i2 = 15; i2 < 26; ++i2) {
+										Common::set_cursor(25, i2);
+										std::cout << "                         ";
+									}
+								}
+								break;
+							case 6:
+								archer.set_stats("cur_health", archer.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+								enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
+
+								if (archer.get_stats("cur_health") <= 0) {
+									for (int i2 = 15; i2 < 26; ++i2) {
+										Common::set_cursor(50, i2);
+										std::cout << "                         ";
+									}
+								}
+								break;
+							case 7:
+								assassin.set_stats("cur_health", assassin.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+								enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
+
+								if (assassin.get_stats("cur_health") <= 0) {
+									for (int i2 = 15; i2 < 26; ++i2) {
+										Common::set_cursor(75, i2);
+										std::cout << "                         ";
+									}
+								}
+								break;
+						}
+					}
+					break;
+				}
+			}
+
+			for (int i = 0; i < 4; ++i)
+				slot_active[i] = (enemy[i].get_name() != "" && enemy[i].get_stats("cur_health") > 0);
+			slot_active[4] = (swordsman.get_stats("cur_health") > 0);
+			slot_active[5] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
+			slot_active[6] = (archer.get_recruited() && (archer.get_stats("cur_health") > 0));
+			slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
+
+			if (!slot_active[0] && !slot_active[1] && !slot_active[2] && !slot_active[3]) {
+				// Enemy all dead
+
+				system("cls");
+				std::cout << "You Won";
+				break;
+			}
+			else if (!slot_active[4] && !slot_active[5] && !slot_active[6] && !slot_active[7]) {
+				// Ally all dead
+
+				system("cls");
+				std::cout << "You lose";
+				break;
+			}
+
+			int tmp_active_enemy[4]{};
+			current_idx = 0;
+			for (int i = 0; i < 4; ++i) {
+				if (slot_active[i]) {
+					tmp_active_enemy[current_idx] = i;
+					current_idx++;
+				}
+			}
+			for (int i = 0; i < current_idx; ++i) {
+				if (tmp_active_enemy[i] == current_turn && i < current_idx - 1) {
+					current_turn = tmp_active_enemy[i + 1];
+					break;
+				}
+				else if (tmp_active_enemy[i] == current_turn && i == current_idx - 1) {
+					for (int i2 = 4; i2 < 8; ++i2) {
+						if (slot_active[i2]) {
+							current_turn = i2;
+							break;
+						}
+					}
+				}
+			}
+
+			Sleep(1000);
 		}
-		else {
-			std::cout << "                         ";
+
+		Common::set_cursor(47, 28);
+		std::cout << " ";
+	}
+}
+
+void Game::print_all_skill()
+{
+	system("cls");
+
+	const char* skill_name[]{ "Slash", "Fire Slash", "Taunt", "Spiral Spin", "Arcane Bullet", "Healing", "Enchant", "Fireball", "Shoot Arrow", "Raining Arrow", "Piercing Arrow", "Bullet Arrow", "Danger Poke", "Strength Dart", "Bomb", "Backstab", "Headbutt", "Shield Bash", "Arm Slap", "Demon Slash", "Demon Eye Beam", "Demon Strength", "Fire Breath", "Demon Punch", "Long live The King", "Demon Summon", "Hellfire" };
+	const int power[]{ 5, 10, 5, 60, 3, 50, 10, 100, 5, 10, 30, 60, 5, 10, 45, 125, 10, 15, 30, 30, 90, 10, 100, 40, 50, 20, 100 };
+	const int cost[]{ 0, 5, 10, 15, 0, 20, 30, 100, 0, 5, 10, 45, 0, 20, 15, 35, 10, 15, 15, 0, 20, 40, 100, 0, 20, 40, 100 };
+	const char* types = "DDADDHADDDDDDADDDDDDDADDHAD";
+
+	std::cout << "Skill Book\n\n";
+	for (int i = 0; i < 27; ++i) {
+		switch (types[i]) {
+			case 'D':
+				Common::color_print(0x0C, skill_name[i]);
+				std::cout << " ( Cost : ";
+				Common::color_print(0x0E, cost[i]);
+				std::cout << " MP )\n - Deals ";
+				Common::color_print(0x0E, power[i]);
+				std::cout << " damage";
+				break;
+			case 'A':
+				Common::color_print(0x09, skill_name[i]);
+				std::cout << " ( Cost : ";
+				Common::color_print(0x0E, cost[i]);
+				std::cout << " MP )\n - Increase attack by ";
+				Common::color_print(0x0E, power[i]);
+				break;
+			case 'H':
+				Common::color_print(0x0A, skill_name[i]);
+				std::cout << " ( Cost : ";
+				Common::color_print(0x0E, cost[i]);
+				std::cout << " MP )\n - Increase health by ";
+				Common::color_print(0x0E, power[i]);
+				break;
 		}
+		std::cout << "\n\n";
 	}
 
-	std::cout << "\n\n\n\n\n";
-
-	if (slot_active[4])
-		std::cout << "|======================| ";
-	else
-		std::cout << "                         ";
-
-	if (slot_active[5])
-		std::cout << "|======================| ";
-	else
-		std::cout << "                         ";
-
-	if (slot_active[6])
-		std::cout << "|======================| ";
-	else
-		std::cout << "                         ";
-
-	if (slot_active[7])
-		std::cout << "|======================| ";
-	else
-		std::cout << "                         ";
-
-	std::cout << "\n";
-
-	if (slot_active[4]) {
-		std::string tmp_name = swordsman.get_name();
-		std::cout << "| " << tmp_name << Common::mul_txt(" ", 21 - tmp_name.length()) << "| ";
-	}
-	else {
-		std::cout << "                         ";
-	}
-
-	if (slot_active[5]) {
-		std::string tmp_name = mage.get_name();
-		std::cout << "| " << tmp_name << Common::mul_txt(" ", 21 - tmp_name.length()) << "| ";
-	}
-	else {
-		std::cout << "                         ";
-	}
-
-	if (slot_active[6]) {
-		std::string tmp_name = archer.get_name();
-		std::cout << "| " << tmp_name << Common::mul_txt(" ", 21 - tmp_name.length()) << "| ";
-	}
-	else {
-		std::cout << "                         ";
-	}
-
-	if (slot_active[7]) {
-		std::string tmp_name = assassin.get_name();
-		std::cout << "| " << tmp_name << Common::mul_txt(" ", 21 - tmp_name.length()) << "| ";
-	}
-	else {
-		std::cout << "                         ";
-	}
-
-	std::cout << "\n";
+	Common::input("Press enter to return ");
 }

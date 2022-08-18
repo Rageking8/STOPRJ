@@ -29,5 +29,9 @@ private:
 
 	bool valid_inp(std::string inp);
 	void start_battle(std::string id);
+
+	void print_all_skill();
+
+	void board_gen();
 };
 

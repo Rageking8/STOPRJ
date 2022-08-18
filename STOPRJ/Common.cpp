@@ -19,7 +19,15 @@ void Common::color_print(unsigned short color_code, std::string txt)
 	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(h, color_code);
 	std::cout << txt;
-	SetConsoleTextAttribute(h, 7);
+	SetConsoleTextAttribute(h, 0x07);
+}
+
+void Common::color_print(unsigned short color_code, int num)
+{
+	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(h, color_code);
+	std::cout << num;
+	SetConsoleTextAttribute(h, 0x07);
 }
 
 std::string Common::write_ani(std::string txt, const unsigned short delay_ms)
@@ -58,4 +66,50 @@ void Common::cursor_vis(bool new_state)
 	GetConsoleCursorInfo(h, &cursorInfo);
 	cursorInfo.bVisible = new_state;
 	SetConsoleCursorInfo(h, &cursorInfo);
+}
+
+void Common::set_cursor(short x, short y)
+{
+	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleCursorPosition(h, COORD{ x, y });
+}
+
+void Common::move_cursor(char dir)
+{
+	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	static CONSOLE_SCREEN_BUFFER_INFO cbsi;
+	if (GetConsoleScreenBufferInfo(h, &cbsi))
+	{
+		COORD pos = cbsi.dwCursorPosition;
+		switch (dir) {
+			case 'w':
+			case 'W':
+				set_cursor(pos.X, pos.Y - 1);
+				break;
+			case 'a':
+			case 'A':
+				set_cursor(pos.X - 1, pos.Y);
+				break;
+			case 's':
+			case 'S':
+				set_cursor(pos.X, pos.Y - 1);
+				break;
+			case 'd':
+			case 'D':
+				set_cursor(pos.X + 1, pos.Y);
+				break;
+		}
+	}
+}
+
+int Common::int_len(unsigned num)
+{
+	if (num < 10) return 1;
+	num /= 10;
+	int ret = 1;
+	while (num > 9) {
+		num /= 10;
+		ret++;
+	}
+	return ret + 1;
 }

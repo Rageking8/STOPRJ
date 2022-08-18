@@ -19,6 +19,7 @@ public:
 
 	void move(char dir);
 
+	void set_recruited(bool new_state);
 	bool get_recruited();
 
 protected:

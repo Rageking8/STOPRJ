@@ -225,6 +225,48 @@ void Board::print_map()
 				case 27: // Bandit Leader
 					Common::color_print(0X70, "?");
 					break;
+				case 28: // Archer Leader House Walls
+					Common::color_print(0X0E, "#");
+					break;
+				case 29: // Archer Leader
+					Common::color_print(0X70, "?");
+					break;
+				case 30: // Grass + Flower
+					Common::color_print(0X02, "#");
+					break;
+				case 31: // Chest
+					Common::color_print(0X70, "?");
+					break;
+				case 32: // Fire wood
+					Common::color_print(0X04, "#");
+					break;
+				case 33: // Fire or Box with '~+~' init
+					Common::color_print(0X04, "#");
+					break;
+				case 34: // Dining Table
+					Common::color_print(0X06, "#");
+					break;
+				case 35: //Chair facing right
+					Common::color_print(0X0C, "#");
+					break;
+				case 36: //Chair facing left
+					Common::color_print(0X0C, "#");
+					break;
+				case 37: // Fire wood 2
+					Common::color_print(0X04, "#");
+					break;
+				case 38: //Stairs/Step left
+					Common::color_print(0X08, "#");
+					break;
+				case 39: //Stairs/Step right
+					Common::color_print(0X08, "#");
+					break;
+				case 40: // Skeleton
+					Common::color_print(0X70, "?");
+					break;
+				case 41: // Demon
+					Common::color_print(0X70, "?");
+					break;
 				default:
 					std::cout << ".";
 			}
@@ -279,7 +321,7 @@ void Board::print_with_id(short id)
 			Common::color_print(12, "Shp");
 			break;
 		case 4: // Water
-			Common::color_print(0X90, "   ");
+			Common::color_print(0X91, " ~ ");
 			break;
 		case 5: // Cart
 			Common::color_print(0X0E, "Crt");
@@ -324,13 +366,13 @@ void Board::print_with_id(short id)
 			Common::color_print(0XF0, "   ");
 			break;
 		case 19: // Red switch
-			Common::color_print(0X04, "Swi");
+			Common::color_print(0X4F, "Swi");
 			break;
 		case 20: // Green switch
-			Common::color_print(0X02, "Swi");
+			Common::color_print(0X2F, "Swi");
 			break;
 		case 21: // Archer troop
-			Common::color_print(0X07, " A ");
+			Common::color_print(0X02, " A ");
 			break;
 		case 22: // Mage troop
 			Common::color_print(0X0D, " M ");
@@ -349,6 +391,58 @@ void Board::print_with_id(short id)
 			break;
 		case 27: // Bandit Leader "BdL"
 			Common::color_print(0X04, "BdL");
+			break;
+		case 28: // Archer Leader House Walls
+			Common::color_print(0XE0, " ");
+			Common::color_print(0XF0, " ");
+			Common::color_print(0XE0, " ");
+			break;
+		case 29: // Archer Leader
+			Common::color_print(0X0A, "AcL");
+			break;
+		case 30: // Grass + Flower
+			Common::color_print(0X20, " ");
+			Common::color_print(0X40, " ");
+			Common::color_print(0X20, " ");
+			break;
+		case 31: // Chest
+			Common::color_print(0XE0, " + ");
+			break;
+		case 32: // Fire wood
+			Common::color_print(0X04, " # ");
+			break;
+		case 33: // Fire or Box with '~+~' init
+			Common::color_print(0X4E, "~+~");
+			break;
+		case 34: // Dining Table
+			Common::color_print(0X60, "| |");
+			break;
+		case 35: //Chair facing right
+			Common::color_print(0X40, " ");
+			Common::color_print(0XC0, " ");
+			Common::color_print(0XC0, " ");
+			break;
+		case 36: //Chair facing left
+			Common::color_print(0XC0, " ");
+			Common::color_print(0XC0, " ");
+			Common::color_print(0X40, " ");
+			break;
+		case 37: // Fire wood 2
+			Common::color_print(0X04, " = ");
+			break;
+		case 38: //Stairs/Step left
+			Common::color_print(0X70, " ");
+			Common::color_print(0X80, "  ");
+			break;
+		case 39: //Stairs/Step right
+			Common::color_print(0X80, "  ");
+			Common::color_print(0X70, " ");
+			break;
+		case 40: // Skeleton
+			Common::color_print(0X04, " S ");
+			break;
+		case 41: // Demon
+			Common::color_print(0X05, " D ");
 			break;
 		default:
 			std::cout << "   ";

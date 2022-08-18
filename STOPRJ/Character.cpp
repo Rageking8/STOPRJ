@@ -76,6 +76,11 @@ void Character::move(char dir)
 		pos[1] += 1;
 }
 
+void Character::set_recruited(bool new_state)
+{
+	recruited = new_state;
+}
+
 bool Character::get_recruited()
 {
 	return recruited;
