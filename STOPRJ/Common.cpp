@@ -16,7 +16,7 @@ std::string Common::input(std::string txt, bool write)
 
 void Common::color_print(unsigned short color_code, std::string txt)
 {
-	static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 	SetConsoleTextAttribute(h, color_code);
 	std::cout << txt;
 	SetConsoleTextAttribute(h, 7);
@@ -49,4 +49,13 @@ std::string Common::mul_txt(std::string txt, unsigned no, bool print)
 		ret += txt;
 	}
 	return ret;
+}
+
+void Common::cursor_vis(bool new_state)
+{
+	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+	static CONSOLE_CURSOR_INFO cursorInfo;
+	GetConsoleCursorInfo(h, &cursorInfo);
+	cursorInfo.bVisible = new_state;
+	SetConsoleCursorInfo(h, &cursorInfo);
 }

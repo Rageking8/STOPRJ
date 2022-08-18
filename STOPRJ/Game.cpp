@@ -5,6 +5,7 @@
 #include <iostream>
 #define WIN32_LEAN_AND_MEAN
 #include "Windows.h"
+#include "conio.h"
 
 Game::Game()
 {
@@ -620,10 +621,13 @@ Game::~Game()
 void Game::start()
 {
 	system("cls");
-	// Inform user to check that console is full screen for the map to not be distorted
-	Common::input("Welcome\n\nEnsure that the console window is full screen\nPress enter to continue ");
 
-	story.prologue();
+	Common::cursor_vis(false);
+
+	// Inform user to check that console is full screen for the map to not be distorted
+	Common::input("Welcome\n\nEnsure that the console window is full screen\nPress enter to continue");
+
+	//story.prologue();
 
 	bool prev_is_map = false;
 
@@ -642,21 +646,98 @@ void Game::start()
 		std::cout << " ";
 
 		SetConsoleCursorPosition(h, COORD{ 0, 32 });
-		std::string action_inp = Common::input("              \nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
+		//std::string action_inp = Common::input("              \nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
+		std::cout << "              \nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
 
 		short tmp_target_cell_val = -1;
 
 		prev_is_map = true;
 
-		// Loop till action input is valid (WASDIJKL)(non-case sensitive)
-		while (!valid_inp(action_inp)) {
+		// //Loop till action input is valid (WASDIJKL)(non-case sensitive)
+		//while (!valid_inp(action_inp)) {
 
-			SetConsoleCursorPosition(h, COORD{ 72, 33 });
-			Common::mul_txt(" ", action_inp.length(), true);
+		//	SetConsoleCursorPosition(h, COORD{ 72, 33 });
+		//	Common::mul_txt(" ", action_inp.length(), true);
 
-			SetConsoleCursorPosition(h, COORD{ 0, 31 });
-			std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-100 (both inclusive)    \n";
-			action_inp = Common::input("Invalid action\nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
+		//	SetConsoleCursorPosition(h, COORD{ 0, 31 });
+		//	std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-100 (both inclusive)    \n";
+		//	action_inp = Common::input("Invalid action\nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
+		//}
+
+		std::string action_inp = "";
+
+		while (true) {
+			int c = _getch();
+			if (c == 224) {
+				c = _getch();
+				SetConsoleCursorPosition(h, COORD{ 0, 31 });
+				std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-100 (both inclusive)    \nInvalid action\nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
+				continue;
+			}
+			switch (c) {
+				case 119:
+					action_inp = "w";
+					break;
+				case 97:
+					action_inp = "a";
+					break;
+				case 115:
+					action_inp = "s";
+					break;
+				case 100:
+					action_inp = "d";
+					break;
+				case 87:
+					action_inp = "W";
+					break;
+				case 65:
+					action_inp = "A";
+					break;
+				case 83:
+					action_inp = "S";
+					break;
+				case 68:
+					action_inp = "D";
+					break;
+				case 105:
+					action_inp = "i";
+					break;
+				case 106:
+					action_inp = "j";
+					break;
+				case 107:
+					action_inp = "k";
+					break;
+				case 108:
+					action_inp = "l";
+					break;
+				case 73:
+					action_inp = "I";
+					break;
+				case 74:
+					action_inp = "J";
+					break;
+				case 75:
+					action_inp = "K";
+					break;
+				case 76:
+					action_inp = "L";
+					break;
+				case 109:
+					action_inp = "m";
+					break;
+				case 77:
+					action_inp = "M";
+					break;
+			}
+
+			if (action_inp == "") {
+				SetConsoleCursorPosition(h, COORD{ 0, 31 });
+				std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-100 (both inclusive)    \nInvalid action\nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
+			}
+			else {
+				break;
+			}
 		}
 
 		// For player movement (WASD)

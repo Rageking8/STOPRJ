@@ -18,4 +18,7 @@ namespace Common
 
 	// Print string mulitplied by a number and returns the resulting string
 	std::string mul_txt(std::string txt, unsigned no, bool print = false);
+
+	// Change visibility of console cursor
+	void cursor_vis(bool new_state);
 };
