@@ -151,6 +151,7 @@
     <ClCompile Include="Map Gen.cpp" />
     <ClCompile Include="Shop.cpp" />
     <ClCompile Include="Skill.cpp" />
+    <ClCompile Include="Start Menu.cpp" />
     <ClCompile Include="Story.cpp" />
     <ClCompile Include="Swordsman.cpp" />
   </ItemGroup>

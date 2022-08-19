@@ -27,6 +27,8 @@ private:
 
 	Story story;
 
+	void start_menu();
+
 	bool valid_inp(std::string inp);
 	void start_battle(std::string id);
 

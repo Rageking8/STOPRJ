@@ -98,20 +98,20 @@ void Game::board_gen()
 		board.set_board(89, (75 + i), 6); // Gate 4 (After boss battle)
 	}
 	//Rooms "Carpet"
-	for (int i = 0; i < 15; i++) // Room 1 (Skeleton Infantry Room) 
+	for (int i = 0; i < 11; i++) // Room 1 (Skeleton Infantry Room) 
 	{
-		board.set_board((21 + i), 74, 10);
-		board.set_board((21 + i), 85, 10);
+		board.set_board((23 + i), 74, 10);
+		board.set_board((23 + i), 85, 10);
 	}
-	for (int i = 0; i < 18; i++) // Room 2 (Mini-Boss/Demon Room)
+	for (int i = 0; i < 14; i++) // Room 2 (Mini-Boss/Demon Room)
 	{
-		board.set_board((41 + i), 71, 10);
-		board.set_board((41 + i), 88, 10);
+		board.set_board((43 + i), 71, 10);
+		board.set_board((43 + i), 88, 10);
 	}
-	for (int i = 0; i < 23; i++) // Room 3 (Boss/Throne Room)
+	for (int i = 0; i < 19; i++) // Room 3 (Boss/Throne Room)
 	{
-		board.set_board((64 + i), 66, 10);
-		board.set_board((64 + i), 93, 10);
+		board.set_board((66 + i), 68, 10);
+		board.set_board((66 + i), 91, 10);
 	}
 	//Gold Pile in Treasure room
 	for (int i = 71; i < 89; i++)

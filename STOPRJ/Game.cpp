@@ -59,8 +59,7 @@ void Game::start()
 
 	Common::cursor_vis(false);
 
-	// Inform user to check that console is full screen for the map to not be distorted
-	Common::input("Welcome\n\nEnsure that the console window is full screen\nPress enter to continue");
+	start_menu();
 
 	//story.prologue();
 
