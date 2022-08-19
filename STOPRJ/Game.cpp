@@ -61,7 +61,16 @@ void Game::start()
 
 	start_menu();
 
-	//story.prologue();
+	system("cls");
+	Common::cursor_vis(true);
+	std::string player_name_inp = Common::input("Enter your name : ");
+	while (player_name_inp == "" || all_space(player_name_inp)) {
+		system("cls");
+		player_name_inp = Common::input("Invalid Name\nEnter your name : ");
+	}
+	swordsman.set_name(player_name_inp);
+
+	story.prologue();
 
 	bool prev_is_map = false;
 
@@ -421,6 +430,35 @@ void Game::start()
 			start_battle("ambush");
 			trigger_counter++;
 
+			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 0);
+			swordsman.set_pos(65, 41);
+			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 1);
+
+			int tmp_cam_pos_i1 = 0;
+			int tmp_cam_pos_i2 = 0;
+
+			if (swordsman.get_pos(0) < 7) {
+				tmp_cam_pos_i1 = 0;
+			}
+			else if (swordsman.get_pos(0) > 143) {
+				tmp_cam_pos_i1 = 136;
+			}
+			else {
+				tmp_cam_pos_i1 = swordsman.get_pos(0) - 7;
+			}
+
+			if (swordsman.get_pos(1) < 15) {
+				tmp_cam_pos_i2 = 0;
+			}
+			else if (swordsman.get_pos(1) > 135) {
+				tmp_cam_pos_i2 = 136;
+			}
+			else {
+				tmp_cam_pos_i2 = swordsman.get_pos(1) - 15;
+			}
+
+			board.set_cam(tmp_cam_pos_i1, tmp_cam_pos_i2);
+
 			prev_is_map = false;
 
 			Common::cursor_vis(false);
@@ -467,6 +505,9 @@ void Game::start()
 			}
 
 			prev_is_map = false;
+		}
+		else if (tmp_target_cell_val == 21) {
+
 		}
 
 	}
@@ -525,4 +566,16 @@ void Game::print_all_skill()
 	}
 
 	Common::input("Press enter to return ");
+}
+
+bool Game::all_space(std::string inp)
+{
+	bool ret = true;
+	for (const auto i : inp) {
+		if (i != ' ') {
+			ret = false;
+			break;
+		}
+	}
+	return ret;
 }

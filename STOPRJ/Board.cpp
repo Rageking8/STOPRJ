@@ -267,6 +267,39 @@ void Board::print_map()
 				case 41: // Demon
 					Common::color_print(0X70, "?");
 					break;
+				case 42: // Grass Block
+					Common::color_print(0X0A, "#");
+					break;
+				case 43: // Redwood tree trunk
+					Common::color_print(0X0C, "#");
+					break;
+				case 44: // Redwood tree leaves
+					Common::color_print(0X0A, "#");
+					break;
+				case 45: // Archer troop 2 - house
+					Common::color_print(0X70, "?");
+					break;
+				case 46: // Archer troop 3 - exit
+					Common::color_print(0X70, "?");
+					break;
+				case 47: // Mage troop 2 - inside house 1 #1
+					Common::color_print(0X70, "?");
+					break;
+				case 48: // Mage troop 3 - inside house 3 #2
+					Common::color_print(0X70, "?");
+					break;
+				case 49: // Mage troop 4 - inside house 6 #3
+					Common::color_print(0X70, "?");
+					break;
+				case 50: // Mage troop 5 - First Mage NPC to greet at the start #4
+					Common::color_print(0X70, "?");
+					break;
+				case 51: // Mage troop 6 - Second Mage NPC Saying random stuff #5
+					Common::color_print(0X70, "?");
+					break;
+				case 52: // Mage troop 7 - Third Mage NPC Saying a wish at the fountain #6
+					Common::color_print(0X70, "?");
+					break;
 				default:
 					std::cout << ".";
 			}
@@ -314,14 +347,14 @@ void Board::print_with_id(short id)
 			break;
 		case 2: // Walls
 			Common::color_print(0X70, " ");
-			Common::color_print(0XF0, " ");
+			Common::color_print(0XF0, "-");
 			Common::color_print(0X70, " ");
 			break;
 		case 3: // Shops
 			Common::color_print(12, "Shp");
 			break;
 		case 4: // Water
-			Common::color_print(0X91, " ~ ");
+			Common::color_print(0X9F, " ~ ");
 			break;
 		case 5: // Cart
 			Common::color_print(0X0E, "Crt");
@@ -371,10 +404,10 @@ void Board::print_with_id(short id)
 		case 20: // Green switch
 			Common::color_print(0X2F, "Swi");
 			break;
-		case 21: // Elf troop
+		case 21: // Archer troop 1
 			Common::color_print(0X02, " A ");
 			break;
-		case 22: // Mage troop
+		case 22: // Mage troop 1 training
 			Common::color_print(0X0D, " M ");
 			break;
 		case 23: // Demon King
@@ -392,12 +425,12 @@ void Board::print_with_id(short id)
 		case 27: // Bandit Leader "BdL"
 			Common::color_print(0X04, "BdL");
 			break;
-		case 28: // Kingdom of Elves Leader House Walls
+		case 28: // Archer Leader House Walls
 			Common::color_print(0XE0, " ");
 			Common::color_print(0XF0, " ");
 			Common::color_print(0XE0, " ");
 			break;
-		case 29: // Kingdom of Elves Leader
+		case 29: // Archer Leader
 			Common::color_print(0X0A, "AcL");
 			break;
 		case 30: // Grass + Flower
@@ -417,12 +450,12 @@ void Board::print_with_id(short id)
 		case 34: // Dining Table
 			Common::color_print(0X60, "| |");
 			break;
-		case 35: // Chair facing right
+		case 35: //Chair facing right
 			Common::color_print(0X40, " ");
 			Common::color_print(0XC0, " ");
 			Common::color_print(0XC0, " ");
 			break;
-		case 36: // Chair facing left
+		case 36: //Chair facing left
 			Common::color_print(0XC0, " ");
 			Common::color_print(0XC0, " ");
 			Common::color_print(0X40, " ");
@@ -430,11 +463,11 @@ void Board::print_with_id(short id)
 		case 37: // Fire wood 2
 			Common::color_print(0X04, " = ");
 			break;
-		case 38: // Stairs/Step left
+		case 38: //Stairs/Step left
 			Common::color_print(0X70, " ");
 			Common::color_print(0X80, "  ");
 			break;
-		case 39: // Stairs/Step right
+		case 39: //Stairs/Step right
 			Common::color_print(0X80, "  ");
 			Common::color_print(0X70, " ");
 			break;
@@ -443,6 +476,39 @@ void Board::print_with_id(short id)
 			break;
 		case 41: // Demon
 			Common::color_print(0X05, " D ");
+			break;
+		case 42: // Grass Block
+			Common::color_print(0XA2, " + ");
+			break;
+		case 43: // Redwood tree trunk
+			Common::color_print(0XC4, " @ ");
+			break;
+		case 44: // Redwood tree leaves
+			Common::color_print(0XA0, "   ");
+			break;
+		case 45: // Archer troop 2 - house
+			Common::color_print(0X02, " A ");
+			break;
+		case 46: // Archer troop 3 - exit
+			Common::color_print(0X02, " A ");
+			break;
+		case 47: // Mage troop 2 - inside house 1 #1
+			Common::color_print(0X0D, " M ");
+			break;
+		case 48: // Mage troop 3 - inside house 3 #2
+			Common::color_print(0X0D, " M ");
+			break;
+		case 49: // Mage troop 4 - inside house 6 #3
+			Common::color_print(0X0D, " M ");
+			break;
+		case 50: // Mage troop 5 - First Mage NPC to greet at the start #4
+			Common::color_print(0X0D, " M ");
+			break;
+		case 51: // Mage troop 6 - Second Mage NPC Saying random stuff #5
+			Common::color_print(0X0D, " M ");
+			break;
+		case 52: // Mage troop 7 - Third Mage NPC Saying a wish at the fountain #6
+			Common::color_print(0X0D, " M ");
 			break;
 		default:
 			std::cout << "   ";

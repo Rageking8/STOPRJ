@@ -73,7 +73,7 @@ public:
 	void excalibur_success(); 
 	void excalibur_failure(); 
 
-	//caershire npc interactions
+	// caershire npc interactions
 	void npc1(); // house
 	void npc2(); // house
 	void npc3(); // house
@@ -83,7 +83,7 @@ public:
 	void npc7(); // grand master mage (pendolf) after completing side quest
 	void npc8_9_10(); // training (will not respond)
 
-	//kingfom of elves npc interactions
+	// kingfom of elves npc interactions
 	void npc11(); // fountain
 	void npc12(); // house
 	void npc13(); // somewhere else

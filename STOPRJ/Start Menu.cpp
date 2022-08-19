@@ -11,11 +11,16 @@ void Game::start_menu()
 		Common::set_cursor(0, i);
 		Common::color_print(0xE0, "  ");
 
-		for (int i2 = 0; i2 < 11; ++i2)
-			Common::color_print(0x00, "           ");
+		if (i == 1 || i == 29) {
+			Common::color_print(0xE0, "  ");
+			Common::set_cursor(121, i);
+			Common::color_print(0xE0, "    ");
+		}
+		else {
+			Common::set_cursor(123, i);
+			Common::color_print(0xE0, "  ");
+		}
 
-		Common::set_cursor(123, i);
-		Common::color_print(0xE0, "  ");
 	}
 	Common::set_cursor(0, 30);
 

@@ -37,5 +37,7 @@ private:
 	void print_all_skill();
 
 	void board_gen();
+
+	bool all_space(std::string inp);
 };
 

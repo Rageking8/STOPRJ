@@ -349,6 +349,7 @@ void Game::start_battle(std::string id)
 
 						if (id == "ambush") {
 							story.winElora();
+							swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
 						}
 						//system("cls");
 						//std::cout << "You Won";
@@ -478,6 +479,7 @@ void Game::start_battle(std::string id)
 
 				if (id == "ambush") {
 					story.winElora();
+					swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
 				}
 				//system("cls");
 				//std::cout << "You Won";
