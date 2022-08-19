@@ -450,7 +450,7 @@ void Board::print_with_id(short id)
 		case 34: // Dining Table
 			Common::color_print(0X60, "| |");
 			break;
-		case 35: //Chair facing right
+		case 35: // Chair facing right
 			Common::color_print(0X40, " ");
 			Common::color_print(0XC0, " ");
 			Common::color_print(0XC0, " ");
@@ -463,7 +463,7 @@ void Board::print_with_id(short id)
 		case 37: // Fire wood 2
 			Common::color_print(0X04, " = ");
 			break;
-		case 38: //Stairs/Step left
+		case 38: // Stairs/Step left
 			Common::color_print(0X70, " ");
 			Common::color_print(0X80, "  ");
 			break;
