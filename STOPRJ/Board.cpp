@@ -276,10 +276,10 @@ void Board::print_map()
 				case 44: // Redwood tree leaves
 					Common::color_print(0X0A, "#");
 					break;
-				case 45: // Archer troop 2 - house
+				case 45: // Elf troop 2 - house
 					Common::color_print(0X70, "?");
 					break;
-				case 46: // Archer troop 3 - exit
+				case 46: // Elf troop 3 - exit
 					Common::color_print(0X70, "?");
 					break;
 				case 47: // Mage troop 2 - inside house 1 #1
@@ -404,7 +404,7 @@ void Board::print_with_id(short id)
 		case 20: // Green switch
 			Common::color_print(0X2F, "Swi");
 			break;
-		case 21: // Archer troop 1
+		case 21: // Elf troop 1
 			Common::color_print(0X02, " A ");
 			break;
 		case 22: // Mage troop 1 training
@@ -425,12 +425,12 @@ void Board::print_with_id(short id)
 		case 27: // Bandit Leader "BdL"
 			Common::color_print(0X04, "BdL");
 			break;
-		case 28: // Archer Leader House Walls
+		case 28: // Elf Leader House Walls
 			Common::color_print(0XE0, " ");
 			Common::color_print(0XF0, " ");
 			Common::color_print(0XE0, " ");
 			break;
-		case 29: // Archer Leader
+		case 29: // Elf Leader
 			Common::color_print(0X0A, "AcL");
 			break;
 		case 30: // Grass + Flower
@@ -486,10 +486,10 @@ void Board::print_with_id(short id)
 		case 44: // Redwood tree leaves
 			Common::color_print(0XA0, "   ");
 			break;
-		case 45: // Archer troop 2 - house
+		case 45: // Elf troop 2 - house
 			Common::color_print(0X02, " A ");
 			break;
-		case 46: // Archer troop 3 - exit
+		case 46: // Elf troop 3 - exit
 			Common::color_print(0X02, " A ");
 			break;
 		case 47: // Mage troop 2 - inside house 1 #1

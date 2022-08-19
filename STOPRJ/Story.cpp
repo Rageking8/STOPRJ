@@ -90,7 +90,8 @@ void Story::winElora()
 	Common::color_print(0x0a, "STRONG ELF:\n");
 	Common::write_ani("You aren't one of them? Well, that's... rather embarrassing.\n"
 					  "As an apology, let us accompany you to our Kingdom so that you may recover after our fight.\n\n"
-					  "The Elves bring you back to the Kingdom of Elves and provide you with medical assistance.\n\n");
+					  "The Elves bring you back to the Kingdom of Elves and provide you with medical assistance,\n"
+					  "bringing you back to full health.\n\n");
 
 	Common::color_print(0x0a, "STRONG ELF:\n");
 	Common::write_ani("I believe I should formally introduce myself.\n\n");
@@ -104,7 +105,12 @@ void Story::winElora()
 	Common::write_ani("Bandits? I could help you guys clear them out. You know, as thanks for patching me up and all.\n\n");
 
 	Common::color_print(0x0a, "ELORA:\n");
-	Common::write_ani("That would be much appreciated. Thank you for your kind offer.\n\n");
+	Common::write_ani("That would be much appreciated. Thank you for your kind offer.\n"
+					  "I believe some of them were last seen west from here, on the path connecting\n"
+					  "our kingdom and Caershire.\n\n");
+
+	Common::color_print(0x0b, "PLAYER:\n");
+	Common::write_ani("Got it, I'll do my best.\n\n");
 
 	Common::input("Press enter to continue ");
 }
@@ -133,7 +139,7 @@ void Story::loseElora()
 	Common::write_ani("...It seems I may have made a mistake.\n"
 					  "I sincerely apologise for this misunderstanding. I was merely worried\n"
 					  "about the bandits invading our kingdom. Let me patch you up.\n\n"
-					  "The STRONG ELF provides you with medical assistance.\n\n");
+					  "The STRONG ELF provides you with medical assistance and brings you back to full health.\n\n");
 
 	Common::color_print(0x0a, "STRONG ELF:\n");
 	Common::write_ani("I believe I should formally introduce myself.\n\n");
@@ -154,9 +160,22 @@ void Story::loseElora()
 					  "rid of some of your worries.\n\n");
 
 	Common::color_print(0x0a, "ELORA:\n");
-	Common::write_ani("You are a good person. Thank you for your kind offer.\n\n");
+	Common::write_ani("You are a good person. Thank you for your kind offer.\n"
+					  "I believe some of them were last seen west from here, on the path connecting\n"
+					  "our kingdom and Caershire.\n\n");
 
+	Common::color_print(0x0b, "PLAYER:\n");
+	Common::write_ani("Got it, I'll do my best.\n\n");
 	Common::input("Press enter to continue ");
+}
+
+void Story::eloraQuest_inProgress()
+{
+	system("cls");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("The bandits were last seen west from here, on the path connecting\n"
+					  "our kingdom and Caershire. Hopefully they are manageable for you.\n\n");
 }
 
 void Story::recruitElora()

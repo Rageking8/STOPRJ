@@ -70,7 +70,7 @@ void Game::start()
 	}
 	swordsman.set_name(player_name_inp);
 
-	story.prologue();
+	//story.prologue();
 
 	bool prev_is_map = false;
 

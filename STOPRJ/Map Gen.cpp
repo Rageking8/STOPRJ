@@ -64,7 +64,7 @@ void Game::board_gen()
 		board.set_board((35 + i), 74, 2);
 		board.set_board((35 + i), 85, 2);
 	}
-	//Boss room 1 (Skeleton Army)
+	// Boss room 1 (Skeleton Army)
 	for (int i = 62; i < 75; ++i) { // Row walls
 		board.set_board(36, i, 2);
 	}
@@ -96,7 +96,7 @@ void Game::board_gen()
 		board.set_board(61, (75 + i), 6); // Gate 3 (After 2nd battle)
 		board.set_board(89, (75 + i), 6); // Gate 4 (After boss battle)
 	}
-	//Rooms "Carpet"
+	// Rooms "Carpet"
 	for (int i = 0; i < 11; i++) // Room 1 (Skeleton Infantry Room) 
 	{
 		board.set_board((23 + i), 74, 10);
@@ -112,7 +112,7 @@ void Game::board_gen()
 		board.set_board((66 + i), 68, 10);
 		board.set_board((66 + i), 91, 10);
 	}
-	//Gold Pile in Treasure room
+	// Gold Pile in Treasure room
 	for (int i = 71; i < 89; i++)
 	{
 		board.set_board(99, i, 12);
@@ -158,48 +158,48 @@ void Game::board_gen()
 		// #6
 		board.set_board((82 + i), 96, 34); board.set_board((82 + i), 97, 34);
 	}
-	//Fire
+	// Fire
 	for (int i = 0; i < 2; i++)
 	{// Left Side
 		board.set_board(70, (62 + i), 33);
 		board.set_board(71, (62 + i), 33);
 		board.set_board(79, (62 + i), 33);
 		board.set_board(80, (62 + i), 33);
-		//Right Side
+		// Right Side
 		board.set_board(70, (96 + i), 33);
 		board.set_board(71, (96 + i), 33);
 		board.set_board(79, (96 + i), 33);
 		board.set_board(80, (96 + i), 33);
 	}
-	//Chairs
+	// Chairs
 	for (int i = 0; i < 5; i += 2)
 	{// Left side
-		//Facing Right
+		// Facing Right
 		board.set_board((64 + i), 61, 35);
 		board.set_board((73 + i), 61, 35);
 		board.set_board((82 + i), 61, 35);
-		//Facing left
+		// Facing left
 		board.set_board((64 + i), 64, 36);
 		board.set_board((73 + i), 64, 36);
 		board.set_board((82 + i), 64, 36);
-		//Right side
-		//Facing right
+		// Right side
+		// Facing right
 		board.set_board((64 + i), 95, 35);
 		board.set_board((73 + i), 95, 35);
 		board.set_board((82 + i), 95, 35);
-		//facing left
+		// Facing left
 		board.set_board((64 + i), 98, 36);
 		board.set_board((73 + i), 98, 36);
 		board.set_board((82 + i), 98, 36);
 	}
 	// Mini-Boss/ Bathroom Room 2
-	//Water/Bathtub/Onsen
+	// Water/Bathtub/Onsen
 	for (int i = 0; i < 18; i++)
 	{
 		board.set_board((41 + i), 63, 4); board.set_board((41 + i), 64, 4); board.set_board((41 + i), 65, 4);//Left side
-		board.set_board((41 + i), 66, 6); //Wall
+		board.set_board((41 + i), 66, 6); // Wall
 		board.set_board((41 + i), 94, 4); board.set_board((41 + i), 95, 4); board.set_board((41 + i), 96, 4);//Right side
-		board.set_board((41 + i), 93, 6); //Wall
+		board.set_board((41 + i), 93, 6); // Wall
 	}
 	// Stairs
 	for (int i = 0; i < 2; i++)
@@ -398,7 +398,7 @@ void Game::board_gen()
 	board.set_board(9, 59, 19);
 	board.set_board(9, 73, 19);
 
-	//Starting path to Elf Archer Town
+	// Starting path to Kingdom of Elves
 	for (int i = 0; i < 59; ++i) // Row walls
 	{
 		board.set_board(100, i, 2);
@@ -419,11 +419,11 @@ void Game::board_gen()
 	{
 		board.set_board((88 + i), 47, 2);
 	}
-	for (int i = 0; i < 37; i++) // Column walls + Archer Town Column right walls
+	for (int i = 0; i < 37; i++) // Column walls + Kingdom of Elves Column right walls
 	{
 		board.set_board((63 + i), 58, 2);
 	}
-	//Archer Town
+	// Kingdom of Elves
 	for (int i = 11; i < 48; ++i) // Row walls
 	{
 		board.set_board(87, i, 2);
@@ -440,8 +440,8 @@ void Game::board_gen()
 	board.set_board(67, 11, 2);
 	board.set_board(68, 11, 2);
 
-	//Archer Leader House
-	board.set_board(64, 41, 29); // Archer Leader
+	// Elf Leader House
+	board.set_board(64, 41, 29); // Elf Leader
 	for (int i = 34; i < 58; i++)
 	{
 		board.set_board(75, i, 28);
@@ -506,7 +506,7 @@ void Game::board_gen()
 	}
 	board.set_board(69, 18, 17);
 	board.set_board(69, 16, 17);
-	board.set_board(65, 17, 3); // Shop Icon in Archer
+	board.set_board(65, 17, 3); // Shop Icon in Kingdom of Elves
 	//Pond
 	for (int i = 0; i < 3; i++)
 	{
@@ -537,7 +537,7 @@ void Game::board_gen()
 
 
 
-	// Fountain border (Archer Town)
+	// Fountain border (Kingdom of Elves)
 	for (int i = 0; i < 3; ++i) {
 		board.set_board(80, (34 + i), 2);
 		board.set_board(84, (34 + i), 2);
@@ -549,21 +549,21 @@ void Game::board_gen()
 	board.set_board(82, 32, 2);
 	board.set_board(82, 38, 2);
 
-	// Fountain water (Archer Town)
+	// Fountain water (Kingdom of Elves)
 	for (int i = 0; i < 3; ++i) {
 		for (int i2 = 0; i2 < 3; ++i2)
 			board.set_board(81 + i, 34 + i2, 4);
 	}
 	board.set_board(82, 33, 4);
 	board.set_board(82, 37, 4);
-	//NPCs in Archer Town
+	// NPCs in Kingdom of Elves
 	board.set_board(84, 38, 21);//fountain
 	board.set_board(77, 56, 45);//house
 	board.set_board(70, 11, 46);//exit/path to mage
 
 	board.set_board(94, 24, 5); // Cart Landmark
 
-	//Path to Mage Town
+	// Path to Mage Town
 	for (int i = 6; i < 12; ++i) // Row walls
 	{
 		board.set_board(69, i, 2);
@@ -587,6 +587,11 @@ void Game::board_gen()
 	for (int i = 6; i < 62; ++i) // Row walls + Mage Town Bottom Row Walls
 	{
 		board.set_board(57, i, 2);
+	}
+	// Bandits between Kingdom of Elves and Mage
+	for (int i = 0; i < 5; i++)
+	{
+		board.set_board(64, (1 + i), 26);
 	}
 	// Mage Town
 	for (int i = 0; i < 37; i++) // Column Right walls + Path to Demon king Castle
@@ -646,7 +651,7 @@ void Game::board_gen()
 	}
 	board.set_board(32, 39, 4);
 	board.set_board(32, 43, 4);
-	//Mage Academy/School Walls
+	// Mage Academy/School Walls
 	for (int i = 12; i < 28; ++i) // Row 
 	{
 		board.set_board(51, i, 6);
@@ -766,14 +771,14 @@ void Game::board_gen()
 	board.set_board(52, 24, 50); // First Mage NPC to greet at the start #4
 	board.set_board(43, 42, 51); // Second Mage NPC Saying random stuff #5
 	board.set_board(34, 39, 52); // Third Mage NPC Saying a wish at the fountain #6
-	//Grand Master Mage(GMM)
+	// Grand Master Mage(GMM)
 	board.set_board(32, 12, 24); // Grand Master Mage Named "Pendolf" #7
 	// Training Area
 	board.set_board(45, 23, 22); // #8
 	board.set_board(47, 23, 22); // #9
 	board.set_board(49, 23, 22); // #10
 
-	//Target Block/Dummies
+	// Target Block/Dummies
 	board.set_board(45, 14, 13);
 	board.set_board(47, 14, 13);
 	board.set_board(49, 14, 13);
@@ -786,13 +791,13 @@ void Game::board_gen()
 		board.set_board(30, i, 17);
 		board.set_board(34, i, 17);
 	}
-	for (int i = 0; i < 3; i++) // Column  walls
+	for (int i = 0; i < 3; i++) // Column walls
 	{
 		board.set_board((31 + i), 60, 17);
 	}
-	//Shop Icon
+	// Shop Icon
 	board.set_board(32, 59, 3);
-	//Grass
+	// Grass
 	for (int i = 56; i < 61; ++i) // Row 
 	{
 		board.set_board(35, i, 30);
@@ -890,15 +895,27 @@ void Game::board_gen()
 		}
 		
 	}
-	//Forest
-	//Redwood Tree
-	board.set_board(23, 51, 44);
+	// Forest
+	// Redwood Tree
+	board.set_board(23, 51, 44); // #1
 	for (int i = 0; i < 3; i++)
 	{
 		board.set_board(24, (50 + i), 44);
 	}
 	board.set_board(25, 51, 43);
-	board.set_board(23, 51, 44);
+	board.set_board(23, 51, 44) ; // #2
+	for (int i = 0; i < 3; i++)
+	{
+		board.set_board(24, (50 + i), 44);
+	}
+	board.set_board(25, 51, 43);
+	board.set_board(23, 51, 44); // #3
+	for (int i = 0; i < 3; i++)
+	{
+		board.set_board(24, (50 + i), 44);
+	}
+	board.set_board(25, 51, 43);
+	board.set_board(23, 51, 44); // #4
 	for (int i = 0; i < 3; i++)
 	{
 		board.set_board(24, (50 + i), 44);
