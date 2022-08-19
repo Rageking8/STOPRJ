@@ -36,7 +36,7 @@ void Story::prologue()
 	Common::input("Press enter to continue ");
 }
 
-void Story::foundCart()
+void Story::foundCart(bool coin)
 {
 	system("cls");
 
@@ -44,7 +44,12 @@ void Story::foundCart()
 	Common::write_ani("There's a very damaged cart here...\n"
 					  "Maybe I'll do a little digging and see if I can find anything.\n\n");
 
-	Common::write_ani("You investigate the cart, and come to the conclusion that it belongs to the elves.\n\n");
+	if (coin)
+		Common::write_ani("You dig through the cart and found 20 coins, upon further investigation you came to\n"
+						  "the conclusion that it belongs to the elves.\n\n");
+	else
+		Common::write_ani("You dig through the cart and found that it's empty as the cart is already looted.\n"
+						  "You comfirm that it belongs to the elves.\n\n");
 
 	Common::color_print(0x0b, "PLAYER:\n");
 	Common::write_ani("If the elves' cart is here, then that probably means the Kingdom of Elves is nearby, and\n"

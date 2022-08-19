@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Archer.cpp" />
+    <ClCompile Include="Elf.cpp" />
     <ClCompile Include="Assassin.cpp" />
     <ClCompile Include="Backpack.cpp" />
     <ClCompile Include="Battle.cpp" />
@@ -157,7 +157,7 @@
     <ClCompile Include="Swordsman.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Archer.h" />
+    <ClInclude Include="Elf.h" />
     <ClInclude Include="Assassin.h" />
     <ClInclude Include="Backpack.h" />
     <ClInclude Include="Board.h" />

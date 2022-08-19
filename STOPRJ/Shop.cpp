@@ -1,4 +1,5 @@
 #include "Shop.h"
+#include "Common.h"
 #include <iostream>
 #include <string>
 
@@ -60,8 +61,7 @@ char Shop::open_shop(int player_coins)
 			std::cout << "You do not have enough money to buy that!\n";
 		}
 
-		std::cout << "\nPress enter to return ";
-		std::getline(std::cin, shop_inp);
+		Common::input("\nPress enter to return ");
 
 		return ret;
 	}

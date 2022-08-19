@@ -79,11 +79,11 @@ void Board::print_map()
 
 	system("cls");
 
-	bool archer_town = false;
-	const char* archer_town_txt = "Archer Town";
-	for (int i = 30; i < 41; ++i) {
-		if (board_data[(76 * 151) + i] != 0) {
-			archer_town = true;
+	bool kingdom_of_elves = false;
+	const char* kingdom_of_elves_txt = "Kingdom of Elves";
+	for (int i = 28; i < 44; ++i) {
+		if (board_data[(77 * 151) + i] != 0) {
+			kingdom_of_elves = true;
 			break;
 		}
 	}
@@ -109,15 +109,15 @@ void Board::print_map()
 	for (int i = 0; i < 151; ++i) {
 		for (int i2 = 0; i2 < 151; ++i2) {
 
-			if (archer_town && i == 77 && (i2 >= 30 && i2 <= 40)) {
+			if (kingdom_of_elves && i == 78 && (i2 >= 28 && i2 <= 43)) {
 				SetConsoleTextAttribute(h, 14);
-				std::cout << archer_town_txt[i2 - 30];
+				std::cout << kingdom_of_elves_txt[i2 - 28];
 				SetConsoleTextAttribute(h, 7);
 				continue;
 			}
-			else if (!archer_town && i == 76 && (i2 >= 30 && i2 <= 40)) {
+			else if (!kingdom_of_elves && i == 77 && (i2 >= 28 && i2 <= 43)) {
 				SetConsoleTextAttribute(h, 14);
-				std::cout << archer_town_txt[i2 - 30];
+				std::cout << kingdom_of_elves_txt[i2 - 28];
 				SetConsoleTextAttribute(h, 7);
 				continue;
 			}
@@ -207,7 +207,7 @@ void Board::print_map()
 				case 20: // Green switch
 					Common::color_print(0X70, "?");
 					break;
-				case 21: // Archer troop
+				case 21: // Elf troop
 					Common::color_print(0X70, "?");
 					break;
 				case 22: // Mage troop
@@ -225,10 +225,10 @@ void Board::print_map()
 				case 27: // Bandit Leader
 					Common::color_print(0X70, "?");
 					break;
-				case 28: // Archer Leader House Walls
+				case 28: // Kingdom of Elves Leader House Walls
 					Common::color_print(0X0E, "#");
 					break;
-				case 29: // Archer Leader
+				case 29: // Kingdom of Elves Leader
 					Common::color_print(0X70, "?");
 					break;
 				case 30: // Grass + Flower
@@ -371,7 +371,7 @@ void Board::print_with_id(short id)
 		case 20: // Green switch
 			Common::color_print(0X2F, "Swi");
 			break;
-		case 21: // Archer troop
+		case 21: // Elf troop
 			Common::color_print(0X02, " A ");
 			break;
 		case 22: // Mage troop
@@ -392,12 +392,12 @@ void Board::print_with_id(short id)
 		case 27: // Bandit Leader "BdL"
 			Common::color_print(0X04, "BdL");
 			break;
-		case 28: // Archer Leader House Walls
+		case 28: // Kingdom of Elves Leader House Walls
 			Common::color_print(0XE0, " ");
 			Common::color_print(0XF0, " ");
 			Common::color_print(0XE0, " ");
 			break;
-		case 29: // Archer Leader
+		case 29: // Kingdom of Elves Leader
 			Common::color_print(0X0A, "AcL");
 			break;
 		case 30: // Grass + Flower
@@ -417,12 +417,12 @@ void Board::print_with_id(short id)
 		case 34: // Dining Table
 			Common::color_print(0X60, "| |");
 			break;
-		case 35: //Chair facing right
+		case 35: // Chair facing right
 			Common::color_print(0X40, " ");
 			Common::color_print(0XC0, " ");
 			Common::color_print(0XC0, " ");
 			break;
-		case 36: //Chair facing left
+		case 36: // Chair facing left
 			Common::color_print(0XC0, " ");
 			Common::color_print(0XC0, " ");
 			Common::color_print(0X40, " ");
@@ -430,11 +430,11 @@ void Board::print_with_id(short id)
 		case 37: // Fire wood 2
 			Common::color_print(0X04, " = ");
 			break;
-		case 38: //Stairs/Step left
+		case 38: // Stairs/Step left
 			Common::color_print(0X70, " ");
 			Common::color_print(0X80, "  ");
 			break;
-		case 39: //Stairs/Step right
+		case 39: // Stairs/Step right
 			Common::color_print(0X80, "  ");
 			Common::color_print(0X70, " ");
 			break;

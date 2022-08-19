@@ -4,7 +4,7 @@ class Story
 {
 public:
 	void prologue();
-	void foundCart();
+	void foundCart(bool coin);
 
 	void meetElora();
 	void winElora();

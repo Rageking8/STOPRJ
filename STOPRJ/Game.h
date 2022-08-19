@@ -2,7 +2,7 @@
 #include "Board.h"
 #include "Swordsman.h"
 #include "Mage.h"
-#include "Archer.h"
+#include "Elf.h"
 #include "Assassin.h"
 #include "Shop.h"
 #include "Story.h"
@@ -18,7 +18,7 @@ public:
 private:
 	Swordsman swordsman;
 	Mage mage;
-	Archer archer;
+	Elf elf;
 	Assassin assassin;
 
 	Board board;

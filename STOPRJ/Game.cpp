@@ -251,13 +251,42 @@ void Game::start()
 
 				if (/*mage.get_recruited()*/true) {
 					std::cout << "\n\nMage\n1) Attack   " << mage.get_stats("attack") << "\n2) Health   " << mage.get_stats("cur_health") << " / " << mage.get_stats("max_health") <<  "\n3) MP       "  << mage.get_stats("cur_mp") <<  " / " << mage.get_stats("max_mp") << "\n";
+
+					for (int i = 0; i < 4; ++i) {
+						if (mage.get_skill_list(i).active) {
+							std::cout << " - ";
+							mage.print_color_name(i);
+							std::cout << "\n";
+						}
+					}
 				}
 
-				if (/*archer.get_recruited()*/true) {
-					std::cout << "\n\nArcher\n1) Attack   " << archer.get_stats("attack") << "\n2) Health   " << archer.get_stats("cur_health") << " / " << archer.get_stats("max_health") << "\n3) MP       " << archer.get_stats("cur_mp") << " / " << archer.get_stats("max_mp") << "\n";
+				if (/*elf.get_recruited()*/true) {
+					std::cout << "\n\nElf\n1) Attack   " << elf.get_stats("attack") << "\n2) Health   " << elf.get_stats("cur_health") << " / " << elf.get_stats("max_health") << "\n3) MP       " << elf.get_stats("cur_mp") << " / " << elf.get_stats("max_mp") << "\n";
+
+					for (int i = 0; i < 4; ++i) {
+						if (elf.get_skill_list(i).active) {
+							std::cout << " - ";
+							elf.print_color_name(i);
+							std::cout << "\n";
+						}
+					}
+				}
+
+				if (/*assassin.get_recruited()*/true) {
+					std::cout << "\n\nElf\n1) Attack   " << assassin.get_stats("attack") << "\n2) Health   " << assassin.get_stats("cur_health") << " / " << assassin.get_stats("max_health") << "\n3) MP       " << assassin.get_stats("cur_mp") << " / " << assassin.get_stats("max_mp") << "\n";
+
+					for (int i = 0; i < 4; ++i) {
+						if (assassin.get_skill_list(i).active) {
+							std::cout << " - ";
+							assassin.print_color_name(i);
+							std::cout << "\n";
+						}
+					}
 				}
 
 				Common::input("\n\nPress enter to return ");
+				system("cls");
 			}
 			else if (menu_option == "2") {
 				system("cls");
@@ -385,8 +414,8 @@ void Game::start()
 			Common::cursor_vis(false);
 		}
 
-		// Ambush by the archer troops
-		if (trigger_counter == 0 && swordsman.get_pos(1) == 47 && swordsman.get_pos(0) >= 95 && swordsman.get_pos(0) <= 99) {
+		// Ambush by the elf troops
+		if (trigger_counter == 1 && swordsman.get_pos(1) == 47 && swordsman.get_pos(0) >= 95 && swordsman.get_pos(0) <= 99) {
 			Common::cursor_vis(true);
 			story.meetElora();
 			start_battle("ambush");
@@ -398,34 +427,43 @@ void Game::start()
 		}
 
 		if (tmp_target_cell_val == 3) {
-			switch (shops[0].open_shop(swordsman.get_item_qty("coin"))) {
-			case 'B':
-			case 'b':
-				break;
-			case '1':
-				swordsman.set_item_qty("sword", swordsman.get_item_qty("sword") + 1);
-				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 10);
-				break;
-			case '2':
-				swordsman.set_item_qty("armour", swordsman.get_item_qty("armour") + 1);
-				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 20);
-				break;
-			case '3':
-				swordsman.set_item_qty("mp_potion", swordsman.get_item_qty("mp_potion") + 1);
-				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 5);
-				break;
-			case '4':
-				swordsman.set_item_qty("hp_potion", swordsman.get_item_qty("hp_potion") + 1);
-				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 5);
-				break;
+			bool break_s = false;
+			while (!break_s) {
+				switch (shops[0].open_shop(swordsman.get_item_qty("coin"))) {
+				case 'B':
+				case 'b':
+					break_s = true;
+					break;
+				case '1':
+					swordsman.set_item_qty("sword", swordsman.get_item_qty("sword") + 1);
+					swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 10);
+					break;
+				case '2':
+					swordsman.set_item_qty("armour", swordsman.get_item_qty("armour") + 1);
+					swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 20);
+					break;
+				case '3':
+					swordsman.set_item_qty("mp_potion", swordsman.get_item_qty("mp_potion") + 1);
+					swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 5);
+					break;
+				case '4':
+					swordsman.set_item_qty("hp_potion", swordsman.get_item_qty("hp_potion") + 1);
+					swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 5);
+					break;
+				}
 			}
 
 			prev_is_map = false;
 		}
 		else if (tmp_target_cell_val == 5) {
-			story.foundCart();
-			for (int i = 95; i < 100; ++i) {
-				board.set_board(i, 47, 0);
+			story.foundCart(trigger_counter == 0);
+			if (trigger_counter == 0) {
+				trigger_counter = 1;
+				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 20);
+
+				for (int i = 95; i < 100; ++i) {
+					board.set_board(i, 47, 0);
+				}
 			}
 
 			prev_is_map = false;

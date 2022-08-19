@@ -13,7 +13,7 @@ void Game::start_battle(std::string id)
 
 	if (id == "ambush") {
 		for (int i = 0; i < 4; ++i) {
-			enemy[i].set_name("Archer Troop");
+			enemy[i].set_name("Elf Troop");
 			enemy[i].set_stats("cur_health", 5);
 			enemy[i].set_stats("max_health", 5);
 			enemy[i].set_stats("cur_mp", 20);
@@ -31,7 +31,7 @@ void Game::start_battle(std::string id)
 	}
 	slot_active[4] = (swordsman.get_stats("cur_health") > 0);
 	slot_active[5] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
-	slot_active[6] = (archer.get_recruited() && (archer.get_stats("cur_health") > 0));
+	slot_active[6] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
 	slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
 	int current_turn = -1;
@@ -157,20 +157,20 @@ void Game::start_battle(std::string id)
 			Common::set_cursor(50, 15);
 			std::cout << "|======================| ";
 			Common::set_cursor(50, 16);
-			std::cout << "| " << archer.get_name() << Common::mul_txt(" ", 21 - archer.get_name().length()) << "| ";
+			std::cout << "| " << elf.get_name() << Common::mul_txt(" ", 21 - elf.get_name().length()) << "| ";
 			Common::set_cursor(50, 17);
-			std::cout << "| Attack : " << archer.get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(archer.get_stats("attack"))) << "| ";
+			std::cout << "| Attack : " << elf.get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(elf.get_stats("attack"))) << "| ";
 			Common::set_cursor(50, 18);
-			std::cout << "| Health : " << archer.get_stats("cur_health") << " / " << archer.get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(archer.get_stats("cur_health")) + 3 + Common::int_len(archer.get_stats("max_health")))) << "| ";
+			std::cout << "| Health : " << elf.get_stats("cur_health") << " / " << elf.get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(elf.get_stats("cur_health")) + 3 + Common::int_len(elf.get_stats("max_health")))) << "| ";
 			Common::set_cursor(50, 19);
-			std::cout << "| MP : " << archer.get_stats("cur_mp") << " / " << archer.get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(archer.get_stats("cur_mp")) + 3 + Common::int_len(archer.get_stats("max_mp")))) << "| ";
+			std::cout << "| MP : " << elf.get_stats("cur_mp") << " / " << elf.get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(elf.get_stats("cur_mp")) + 3 + Common::int_len(elf.get_stats("max_mp")))) << "| ";
 			Common::set_cursor(50, 20);
 			std::cout << "|                      | ";
 
 			for (int i = 0; i < 4; ++i) {
 				Common::set_cursor(50, 21 + i);
-				if (archer.get_skill_list(i).active) {
-					std::string tmp_skill_name = archer.get_skill_list(i).name;
+				if (elf.get_skill_list(i).active) {
+					std::string tmp_skill_name = elf.get_skill_list(i).name;
 					std::cout << "| " << i + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
 				}
 				else {
@@ -234,7 +234,7 @@ void Game::start_battle(std::string id)
 
 						(current_turn == 5 && (!mage.get_skill_list(std::stoi(skill_input) - 1).active || mage.get_stats("cur_mp") < mage.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
 
-						(current_turn == 6 && (!archer.get_skill_list(std::stoi(skill_input) - 1).active || archer.get_stats("cur_mp") < archer.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
+						(current_turn == 6 && (!elf.get_skill_list(std::stoi(skill_input) - 1).active || elf.get_stats("cur_mp") < elf.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
 
 						(current_turn == 7 && (!assassin.get_skill_list(std::stoi(skill_input) - 1).active || assassin.get_stats("cur_mp") < assassin.get_skill_list(std::stoi(skill_input) - 1).cost))))) {
 
@@ -287,19 +287,19 @@ void Game::start_battle(std::string id)
 					mage.set_stats("cur_mp", mage.get_stats("cur_mp") - mage.get_skill_list(std::stoi(skill_input) - 1).cost);
 				}
 				else if (current_turn == 6) {
-					if (archer.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
-						tmp_pow = archer.get_stats("attack") + archer.get_skill_list(std::stoi(skill_input) - 1).power;
+					if (elf.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
+						tmp_pow = elf.get_stats("attack") + elf.get_skill_list(std::stoi(skill_input) - 1).power;
 						tmp_skill_type = 'D';
 					}
-					else if (archer.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'A') {
-						archer.set_stats("attack", archer.get_stats("attack") + archer.get_skill_list(std::stoi(skill_input) - 1).power);
+					else if (elf.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'A') {
+						elf.set_stats("attack", elf.get_stats("attack") + elf.get_skill_list(std::stoi(skill_input) - 1).power);
 					}
 					else {
-						archer.set_stats("cur_health", archer.get_stats("cur_health") + archer.get_skill_list(std::stoi(skill_input) - 1).power);
-						if (archer.get_stats("cur_health") > archer.get_stats("max_health"))
-							archer.set_stats("cur_health", archer.get_stats("max_health"));
+						elf.set_stats("cur_health", elf.get_stats("cur_health") + elf.get_skill_list(std::stoi(skill_input) - 1).power);
+						if (elf.get_stats("cur_health") > elf.get_stats("max_health"))
+							elf.set_stats("cur_health", elf.get_stats("max_health"));
 					}
-					archer.set_stats("cur_mp", archer.get_stats("cur_mp") - archer.get_skill_list(std::stoi(skill_input) - 1).cost);
+					elf.set_stats("cur_mp", elf.get_stats("cur_mp") - elf.get_skill_list(std::stoi(skill_input) - 1).cost);
 				}
 				else if (current_turn == 7) {
 					if (assassin.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
@@ -341,21 +341,27 @@ void Game::start_battle(std::string id)
 						slot_active[i] = (enemy[i].get_name() != "" && enemy[i].get_stats("cur_health") > 0);
 					slot_active[4] = (swordsman.get_stats("cur_health") > 0);
 					slot_active[5] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
-					slot_active[6] = (archer.get_recruited() && (archer.get_stats("cur_health") > 0));
+					slot_active[6] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
 					slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
 					if (!slot_active[0] && !slot_active[1] && !slot_active[2] && !slot_active[3]) {
 						// Enemy all dead
 
-						system("cls");
-						std::cout << "You Won";
+						if (id == "ambush") {
+							story.winElora();
+						}
+						//system("cls");
+						//std::cout << "You Won";
 						break;
 					}
 					else if (!slot_active[4] && !slot_active[5] && !slot_active[6] && !slot_active[7]) {
 						// Ally all dead
 
-						system("cls");
-						std::cout << "You lose";
+						if (id == "ambush") {
+							story.loseElora();
+						}
+						//system("cls");
+						//std::cout << "You lose";
 						break;
 					}
 				}
@@ -433,10 +439,10 @@ void Game::start_battle(std::string id)
 							}
 							break;
 						case 6:
-							archer.set_stats("cur_health", archer.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+							elf.set_stats("cur_health", elf.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
 							enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
 
-							if (archer.get_stats("cur_health") <= 0) {
+							if (elf.get_stats("cur_health") <= 0) {
 								for (int i2 = 15; i2 < 26; ++i2) {
 									Common::set_cursor(50, i2);
 									std::cout << "                         ";
@@ -464,21 +470,27 @@ void Game::start_battle(std::string id)
 				slot_active[i] = (enemy[i].get_name() != "" && enemy[i].get_stats("cur_health") > 0);
 			slot_active[4] = (swordsman.get_stats("cur_health") > 0);
 			slot_active[5] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
-			slot_active[6] = (archer.get_recruited() && (archer.get_stats("cur_health") > 0));
+			slot_active[6] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
 			slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
 			if (!slot_active[0] && !slot_active[1] && !slot_active[2] && !slot_active[3]) {
 				// Enemy all dead
 
-				system("cls");
-				std::cout << "You Won";
+				if (id == "ambush") {
+					story.winElora();
+				}
+				//system("cls");
+				//std::cout << "You Won";
 				break;
 			}
 			else if (!slot_active[4] && !slot_active[5] && !slot_active[6] && !slot_active[7]) {
 				// Ally all dead
 
-				system("cls");
-				std::cout << "You lose";
+				if (id == "ambush") {
+					story.loseElora();
+				}
+				//system("cls");
+				//std::cout << "You lose";
 				break;
 			}
 

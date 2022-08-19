@@ -398,7 +398,7 @@ void Game::board_gen()
 	board.set_board(9, 59, 19);
 	board.set_board(9, 73, 19);
 
-	//Starting path to Elf Archer Town
+	//Starting path to Elf Town
 	for (int i = 0; i < 59; ++i) // Row walls
 	{
 		board.set_board(100, i, 2);
@@ -419,11 +419,11 @@ void Game::board_gen()
 	{
 		board.set_board((88 + i), 47, 2);
 	}
-	for (int i = 0; i < 37; i++) // Column walls + Archer Town Column right walls
+	for (int i = 0; i < 37; i++) // Column walls + Kingdom of Elves Column right walls
 	{
 		board.set_board((63 + i), 58, 2);
 	}
-	//Archer Town
+	// Kingdom of Elves
 	for (int i = 11; i < 48; ++i) // Row walls
 	{
 		board.set_board(87, i, 2);
@@ -440,8 +440,8 @@ void Game::board_gen()
 	board.set_board(67, 11, 2);
 	board.set_board(68, 11, 2);
 
-	//Archer Leader House
-	board.set_board(64, 41, 29); // Archer Leader
+	// Kingdom of Elves Leader House
+	board.set_board(64, 41, 29); // Kingdom of Elves Leader
 	for (int i = 34; i < 58; i++)
 	{
 		board.set_board(75, i, 28);
@@ -506,7 +506,7 @@ void Game::board_gen()
 	}
 	board.set_board(69, 18, 17);
 	board.set_board(69, 16, 17);
-	board.set_board(65, 17, 3); // Shop Icon in Archer
+	board.set_board(65, 17, 3); // Shop Icon in Kingdom of Elves
 	//Pond
 	for (int i = 0; i < 3; i++)
 	{
@@ -537,7 +537,7 @@ void Game::board_gen()
 
 
 
-	// Fountain border (Archer Town)
+	// Fountain border (Kingdom of Elves)
 	for (int i = 0; i < 3; ++i) {
 		board.set_board(79, (34 + i), 2);
 		board.set_board(83, (34 + i), 2);
@@ -549,21 +549,21 @@ void Game::board_gen()
 	board.set_board(81, 32, 2);
 	board.set_board(81, 38, 2);
 
-	// Fountain water (Archer Town)
+	// Fountain water (Kingdom of Elves)
 	for (int i = 0; i < 3; ++i) {
 		for (int i2 = 0; i2 < 3; ++i2)
 			board.set_board(80 + i, 34 + i2, 4);
 	}
 	board.set_board(81, 33, 4);
 	board.set_board(81, 37, 4);
-	//NPCs in Archer Town
+	// NPCs in Kingdom of Elves
 	board.set_board(83, 38, 21);
 	board.set_board(77, 56, 21);
 	board.set_board(70, 11, 21);
 
 	board.set_board(94, 24, 5); // Cart Landmark
 
-	//Path to Mage Town
+	// Path to Mage Town
 	for (int i = 6; i < 12; ++i) // Row walls
 	{
 		board.set_board(69, i, 2);
@@ -612,7 +612,7 @@ void Game::board_gen()
 	{
 		board.set_board(51, i, 6);
 	}
-	for (int i = 43; i < 47; i++)// Row
+	for (int i = 43; i < 47; i++) // Row
 	{
 		board.set_board(51, i, 6);
 	}
