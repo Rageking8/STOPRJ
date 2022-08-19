@@ -2,7 +2,6 @@
 
 void Game::board_gen()
 {
-
 	// Map generation
 	// Treasure room
 	for (int i = 1; i < 10; ++i) { // Column walls

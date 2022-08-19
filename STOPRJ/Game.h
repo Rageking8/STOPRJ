@@ -27,6 +27,8 @@ private:
 
 	Story story;
 
+	int trigger_counter;
+
 	void start_menu();
 
 	bool valid_inp(std::string inp);

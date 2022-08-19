@@ -70,9 +70,9 @@ void Character::move(char dir)
 		pos[0] -= 1;
 	else if (dir == 'A' && pos[1] > 0)
 		pos[1] -= 1;
-	else if (dir == 'S' && pos[0] < 100)
+	else if (dir == 'S' && pos[0] < 150)
 		pos[0] += 1;
-	else if (dir == 'D' && pos[1] < 100)
+	else if (dir == 'D' && pos[1] < 150)
 		pos[1] += 1;
 }
 

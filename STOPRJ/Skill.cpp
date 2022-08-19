@@ -1,4 +1,6 @@
 #include "Skill.h"
+#include "Common.h"
+
 
 Skill::Skill()
 {
@@ -20,6 +22,21 @@ void Skill::init_skill(std::string s1, std::string s2, std::string s3, std::stri
 Skill::skill_data Skill::get_skill_list(int idx)
 {
 	return (idx >= 0 && idx <= 3) ? skill_list[idx] : skill_data{};
+}
+
+void Skill::print_color_name(int idx)
+{
+	switch (get_skill_list(idx).skill_type) {
+		case 'D' :
+			Common::color_print(0x0C, get_skill_list(idx).name);
+			break;
+		case 'A':
+			Common::color_print(0x09, get_skill_list(idx).name);
+			break;
+		case 'H':
+			Common::color_print(0x0A, get_skill_list(idx).name);
+			break;
+	}
 }
 
 Skill::skill_data Skill::get_skill(std::string skill_name)

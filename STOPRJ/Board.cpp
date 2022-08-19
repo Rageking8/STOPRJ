@@ -6,8 +6,8 @@
 
 Board::Board() : cam_pos{}
 {
-	board_data = new short[101 * 101];
-	for (int i = 0; i < (101 * 101); ++i) {
+	board_data = new short[151 * 151];
+	for (int i = 0; i < (151 * 151); ++i) {
 		board_data[i] = 0;
 	}
 }
@@ -82,7 +82,7 @@ void Board::print_map()
 	bool archer_town = false;
 	const char* archer_town_txt = "Archer Town";
 	for (int i = 30; i < 41; ++i) {
-		if (board_data[(76 * 101) + i] != 0) {
+		if (board_data[(76 * 151) + i] != 0) {
 			archer_town = true;
 			break;
 		}
@@ -91,7 +91,7 @@ void Board::print_map()
 	bool mage_town = false;
 	const char* mage_town_txt = "Mage Town";
 	for (int i = 31; i < 40; ++i) {
-		if (board_data[(41 * 101) + i] != 0) {
+		if (board_data[(41 * 151) + i] != 0) {
 			mage_town = true;
 			break;
 		}
@@ -100,14 +100,14 @@ void Board::print_map()
 	bool bandit_camp = false;
 	const char* bandit_camp_txt = "Bandit Camp";
 	for (int i = 19; i < 30; ++i) {
-		if (board_data[(7 * 101) + i] != 0) {
+		if (board_data[(7 * 151) + i] != 0) {
 			bandit_camp = true;
 			break;
 		}
 	}
 
-	for (int i = 0; i < 101; ++i) {
-		for (int i2 = 0; i2 < 101; ++i2) {
+	for (int i = 0; i < 151; ++i) {
+		for (int i2 = 0; i2 < 151; ++i2) {
 
 			if (archer_town && i == 77 && (i2 >= 30 && i2 <= 40)) {
 				SetConsoleTextAttribute(h, 14);
@@ -146,7 +146,7 @@ void Board::print_map()
 				continue;
 			}
 
-			switch (board_data[(i * 101) + i2]) {
+			switch (board_data[(i * 151) + i2]) {
 				case 1:
 					Common::color_print(0X0B, "P");
 					break;
@@ -278,17 +278,17 @@ void Board::print_map()
 
 void Board::set_board(int idx1, int idx2, short data)
 {
-	board_data[(idx1 * 101) + idx2] = data;
+	board_data[(idx1 * 151) + idx2] = data;
 }
 
 short Board::get_board(int idx1, int idx2)
 {
-	return board_data[(idx1 * 101) + idx2];
+	return board_data[(idx1 * 151) + idx2];
 }
 
 void Board::set_cam(int idx1, int idx2)
 {
-	if ((idx1 >= 0 && idx1 <= 100) && (idx2 >= 0 && idx2 <= 100)) {
+	if ((idx1 >= 0 && idx1 <= 150) && (idx2 >= 0 && idx2 <= 150)) {
 		cam_pos[0] = idx1;
 		cam_pos[1] = idx2;
 	}
@@ -300,9 +300,9 @@ void Board::move_cam(char dir)
 		cam_pos[0] -= 1;
 	else if (dir == 'A' && cam_pos[1] > 0)
 		cam_pos[1] -= 1;
-	else if (dir == 'S' && cam_pos[0] < 86)
+	else if (dir == 'S' && cam_pos[0] < 136)
 		cam_pos[0] += 1;
-	else if (dir == 'D' && cam_pos[1] < 70)
+	else if (dir == 'D' && cam_pos[1] < 120)
 		cam_pos[1] += 1;
 }
 

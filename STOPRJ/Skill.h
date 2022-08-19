@@ -17,6 +17,7 @@ public:
 
 	void init_skill(std::string s1, std::string s2, std::string s3, std::string s4);
 	skill_data get_skill_list(int idx);
+	void print_color_name(int idx);
 
 protected:
 	skill_data skill_list[4];
