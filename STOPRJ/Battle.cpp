@@ -6,6 +6,7 @@
 
 void Game::start_battle(std::string id)
 {
+	Common::cursor_vis(true);
 	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	system("cls");
@@ -19,6 +20,16 @@ void Game::start_battle(std::string id)
 			enemy[i].set_stats("cur_mp", 20);
 			enemy[i].set_stats("max_mp", 20);
 			enemy[i].init_skill("shoot_arrow", "raining_arrow", "piercing_arrow", "bullet_arrow");
+		}
+	}
+	else if (id == "bandit_1") {
+		for (int i = 0; i < 4; ++i) {
+			enemy[i].set_name("Bandits");
+			enemy[i].set_stats("cur_health", 10);
+			enemy[i].set_stats("max_health", 10);
+			enemy[i].set_stats("cur_mp", 25);
+			enemy[i].set_stats("max_mp", 25);
+			enemy[i].init_skill("danger_poke", "strength_dart", "bomb", "backstab");
 		}
 	}
 
@@ -344,13 +355,17 @@ void Game::start_battle(std::string id)
 					slot_active[6] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
 					slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
+					Common::cursor_vis(false);
 					if (!slot_active[0] && !slot_active[1] && !slot_active[2] && !slot_active[3]) {
 						// Enemy all dead
 
 						if (id == "ambush") {
-							Common::cursor_vis(false);
 							story.winElora();
 							swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
+						}
+						else if (id == "bandit_1") {
+							story.recruitElora();
+							elf.set_recruited(true);
 						}
 
 						break;
@@ -359,8 +374,12 @@ void Game::start_battle(std::string id)
 						// Ally all dead
 
 						if (id == "ambush") {
-							Common::cursor_vis(false);
 							story.loseElora();
+						}
+						else if (id == "bandit_1") {
+
+							// Handle bandit_1 player lose
+
 						}
 
 						break;
@@ -417,52 +436,45 @@ void Game::start_battle(std::string id)
 					}
 					else {
 						switch (tmp_rand_ally) {
-						case 4:
-							swordsman.set_stats("cur_health", swordsman.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
-							enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
-
-							if (swordsman.get_stats("cur_health") <= 0) {
-								for (int i2 = 15; i2 < 26; ++i2) {
-									Common::set_cursor(0, i2);
-									std::cout << "                         ";
+							case 4:
+								swordsman.set_stats("cur_health", swordsman.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+								if (swordsman.get_stats("cur_health") <= 0) {
+									for (int i2 = 15; i2 < 26; ++i2) {
+										Common::set_cursor(0, i2);
+										std::cout << "                         ";
+									}
 								}
-							}
-							break;
-						case 5:
-							mage.set_stats("cur_health", mage.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
-							enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
-
-							if (mage.get_stats("cur_health") <= 0) {
-								for (int i2 = 15; i2 < 26; ++i2) {
-									Common::set_cursor(25, i2);
-									std::cout << "                         ";
+								break;
+							case 5:
+								mage.set_stats("cur_health", mage.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+								if (mage.get_stats("cur_health") <= 0) {
+									for (int i2 = 15; i2 < 26; ++i2) {
+										Common::set_cursor(25, i2);
+										std::cout << "                         ";
+									}
 								}
-							}
-							break;
-						case 6:
-							elf.set_stats("cur_health", elf.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
-							enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
-
-							if (elf.get_stats("cur_health") <= 0) {
-								for (int i2 = 15; i2 < 26; ++i2) {
-									Common::set_cursor(50, i2);
-									std::cout << "                         ";
+								break;
+							case 6:
+								elf.set_stats("cur_health", elf.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+								if (elf.get_stats("cur_health") <= 0) {
+									for (int i2 = 15; i2 < 26; ++i2) {
+										Common::set_cursor(50, i2);
+										std::cout << "                         ";
+									}
 								}
-							}
-							break;
-						case 7:
-							assassin.set_stats("cur_health", assassin.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
-							enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
-
-							if (assassin.get_stats("cur_health") <= 0) {
-								for (int i2 = 15; i2 < 26; ++i2) {
-									Common::set_cursor(75, i2);
-									std::cout << "                         ";
+								break;
+							case 7:
+								assassin.set_stats("cur_health", assassin.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+								if (assassin.get_stats("cur_health") <= 0) {
+									for (int i2 = 15; i2 < 26; ++i2) {
+										Common::set_cursor(75, i2);
+										std::cout << "                         ";
+									}
 								}
-							}
-							break;
+								break;
 						}
 					}
+					enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
 					break;
 				}
 			}
@@ -474,13 +486,17 @@ void Game::start_battle(std::string id)
 			slot_active[6] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
 			slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
+			Common::cursor_vis(false);
 			if (!slot_active[0] && !slot_active[1] && !slot_active[2] && !slot_active[3]) {
 				// Enemy all dead
 
 				if (id == "ambush") {
-					Common::cursor_vis(false);
 					story.winElora();
 					swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
+				}
+				else if (id == "bandit_1") {
+					story.recruitElora();
+					elf.set_recruited(true);
 				}
 
 				break;
@@ -489,8 +505,11 @@ void Game::start_battle(std::string id)
 				// Ally all dead
 
 				if (id == "ambush") {
-					Common::cursor_vis(false);
 					story.loseElora();
+				}
+				else if (id == "bandit_1") {
+					
+					// Handle bandit_1 player lose
 				}
 
 				break;

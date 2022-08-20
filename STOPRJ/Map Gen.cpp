@@ -566,7 +566,7 @@ void Game::board_gen()
 	// Bandits between Kingdom of Elves and Mage
 	for (int i = 0; i < 5; i++)
 	{
-		//board.set_board(64, (1 + i), 26);
+		board.set_board(64, (1 + i), 26);
 	}
 	// Mage Town
 	for (int i = 0; i < 43; i++) // Column Right walls + Path to Dungeon

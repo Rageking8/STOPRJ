@@ -75,7 +75,7 @@ void Board::print_board(bool state)
 
 void Board::print_map()
 {
-	Common::Timer t;
+	//Common::Timer t;
 	static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	system("cls");
@@ -149,7 +149,7 @@ void Board::print_map()
 				continue;
 			}
 
-			// Optimize map printing (~42% faster than without this code)
+			// Optimize map printing (~200% faster than without this code)
 			if (board_data[(i * 151) + i2] == 0) {
 				cluster++;
 				while (i2 < 150) {
@@ -179,7 +179,6 @@ void Board::print_map()
 					break;
 				}
 
-				// Important. Using for loop to print will negate all performance gains
 				std::string tmp_str = Common::mul_txt("~", cluster);
 				SetConsoleTextAttribute(h, 0x09);
 				std::cout << tmp_str;
@@ -198,9 +197,60 @@ void Board::print_map()
 					break;
 				}
 
-				// Important. Using for loop to print will negate all performance gains
 				std::string tmp_str = Common::mul_txt("~", cluster);
 				SetConsoleTextAttribute(h, 0x01);
+				std::cout << tmp_str;
+				SetConsoleTextAttribute(h, 0x07);
+				cluster = 0;
+				continue;
+			}
+			else if (board_data[(i * 151) + i2] == 2) {
+				cluster++;
+				while (i2 < 150) {
+					if (board_data[(i * 151) + i2 + 1] == 2) {
+						cluster++;
+						i2++;
+						continue;
+					}
+					break;
+				}
+
+				std::string tmp_str = Common::mul_txt("#", cluster);
+				std::cout << tmp_str;
+				cluster = 0;
+				continue;
+			}
+			else if (board_data[(i * 151) + i2] == 42) {
+				cluster++;
+				while (i2 < 150) {
+					if (board_data[(i * 151) + i2 + 1] == 42) {
+						cluster++;
+						i2++;
+						continue;
+					}
+					break;
+				}
+
+				std::string tmp_str = Common::mul_txt("#", cluster);
+				SetConsoleTextAttribute(h, 0x0A);
+				std::cout << tmp_str;
+				SetConsoleTextAttribute(h, 0x07);
+				cluster = 0;
+				continue;
+			}
+			else if (board_data[(i * 151) + i2] == 60) {
+				cluster++;
+				while (i2 < 150) {
+					if (board_data[(i * 151) + i2 + 1] == 60) {
+						cluster++;
+						i2++;
+						continue;
+					}
+					break;
+				}
+
+				std::string tmp_str = Common::mul_txt("~", cluster);
+				SetConsoleTextAttribute(h, 0x04);
 				std::cout << tmp_str;
 				SetConsoleTextAttribute(h, 0x07);
 				cluster = 0;
@@ -412,7 +462,7 @@ void Board::print_map()
 		}
 		std::cout << "\n";
 	}
-	std::cout << t.end();
+	//std::cout << t.end();
 }
 
 void Board::set_board(int idx1, int idx2, short data)

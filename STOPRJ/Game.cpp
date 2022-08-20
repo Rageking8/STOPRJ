@@ -15,8 +15,8 @@ Game::Game() : trigger_counter{}
 	board.set_board(135, 2, 1);
 	swordsman.set_pos(135, 2);
 
-	//board.set_board(66, 17, 1);
-	//swordsman.set_pos(66, 17);
+	//board.set_board(67, 3, 1);
+	//swordsman.set_pos(67, 3);
 
 	int tmp_cam_pos_i1 = 0;
 	int tmp_cam_pos_i2 = 0;
@@ -113,7 +113,9 @@ void Game::start()
 			if (c == 224) {
 				c = _getch();
 				Common::set_cursor(0, 31);
-				std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-150 (both inclusive)    \nInvalid action\nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
+				std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-150 (both inclusive)    \n";
+				Common::color_print(0x0C, "Invalid action");
+				std::cout << "\nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
 				continue;
 			}
 			switch (c) {
@@ -175,7 +177,9 @@ void Game::start()
 
 			if (action_inp == "") {
 				Common::set_cursor(0, 31);
-				std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-150 (both inclusive)    \nInvalid action\nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
+				std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-150 (both inclusive)    \n";
+				Common::color_print(0x0C, "Invalid action");
+				std::cout << "\nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
 			}
 			else {
 				break;
@@ -384,7 +388,6 @@ void Game::start()
 		// Ambush by the elf troops
 		if (trigger_counter == 1 && swordsman.get_pos(1) == 47 && swordsman.get_pos(0) >= 95 && swordsman.get_pos(0) <= 99) {
 			story.meetElora();
-			Common::cursor_vis(true);
 			start_battle("ambush");
 			trigger_counter++;
 
@@ -395,7 +398,22 @@ void Game::start()
 			Common::cursor_vis(false);
 		}
 		else if (swordsman.get_pos(0) == 132 && swordsman.get_pos(1) >= 25 && swordsman.get_pos(1) <= 31) {
-			teleport_ply(97, 5);
+			teleport_ply(97, 8);
+		}
+		else if (swordsman.get_pos(1) == 5 && swordsman.get_pos(0) >= 95 && swordsman.get_pos(0) <= 99) {
+			teleport_ply(133, 28);
+		}
+		else if (trigger_counter == 2 && swordsman.get_pos(0) == 65 && swordsman.get_pos(1) >= 1 && swordsman.get_pos(1) <= 5) {
+			
+			start_battle("bandit_1");
+			trigger_counter++;
+
+			for (int i = 1; i < 6; i++)
+				board.set_board(64, i, 0);
+
+			prev_is_map = false;
+			system("cls");
+			Common::cursor_vis(false);
 		}
 
 		if (tmp_target_cell_val == 3) {
