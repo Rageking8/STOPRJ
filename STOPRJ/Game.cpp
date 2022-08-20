@@ -12,8 +12,8 @@ Game::Game() : trigger_counter{}
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
 	std::ios_base::sync_with_stdio(false);
 
-	board.set_board(97, 0, 1);
-	swordsman.set_pos(97, 0);
+	board.set_board(135, 2, 1);
+	swordsman.set_pos(135, 2);
 
 	//board.set_board(66, 17, 1);
 	//swordsman.set_pos(66, 17);
@@ -62,20 +62,14 @@ void Game::start()
 
 	Common::cursor_vis(false);
 
-	start_menu();
+	std::string tmp_player_name = start_menu();
 
-	system("cls");
-	Common::cursor_vis(true);
-	std::string player_name_inp = Common::input("Enter your name : ");
-	while (player_name_inp == "" || all_space(player_name_inp)) {
-		system("cls");
-		player_name_inp = Common::input("Invalid Name\nEnter your name : ");
-	}
-	swordsman.set_name(player_name_inp);
+	swordsman.set_name(tmp_player_name);
+	story.set_player_name(tmp_player_name);
 
 	Common::cursor_vis(false);
 
-	//story.prologue();
+	story.prologue();
 
 	bool prev_is_map = false;
 
@@ -382,47 +376,6 @@ void Game::start()
 				print_all_skill();
 				system("cls");
 			}
-			/*else if (menu_option == "S") {
-				story.prologue();
-
-				story.foundCart();
-				story.meetElora();
-				story.winElora();
-				story.loseElora();
-				story.recruitElora();
-
-				story.outsideOrionResidence();
-				story.meetOrion();
-				story.recruitOrion_main();
-				story.meetBlaise_main();
-
-				bool blaiseFateDecided = false, blaiseKilled = false;
-				std::string blaiseInput = Common::input("What would you like to do?\n1. Kill BLAISE\n2. Recruit BLAISE\n\n");
-
-				while (blaiseInput != "1" && blaiseInput != "2")
-				{
-					blaiseInput = Common::input("Invalid Input\nWhat would you like to do?\n1. Kill BLAISE\n2. Recruit BLAISE\n\n");
-				}
-
-				if (blaiseInput == "1") {
-					story.killBlaise_main();
-					blaiseKilled = true;
-					blaiseFateDecided = true;
-				}
-				else {
-					story.recruitBlaise_main();
-					blaiseFateDecided = true;
-				}
-
-				story.beforeFightDK_main();
-				story.defeatDK_main();
-				if (blaiseKilled == false)
-				{
-					story.blaiseBetrayal_main();
-					story.defeatBlaise_main();
-				}
-				story.ending_main();
-			}*/
 
 			prev_is_map = false;
 			Common::cursor_vis(false);
@@ -435,43 +388,18 @@ void Game::start()
 			start_battle("ambush");
 			trigger_counter++;
 
-			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 0);
-			swordsman.set_pos(65, 41);
-			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 1);
-
-			int tmp_cam_pos_i1 = 0;
-			int tmp_cam_pos_i2 = 0;
-
-			if (swordsman.get_pos(0) < 7) {
-				tmp_cam_pos_i1 = 0;
-			}
-			else if (swordsman.get_pos(0) > 143) {
-				tmp_cam_pos_i1 = 136;
-			}
-			else {
-				tmp_cam_pos_i1 = swordsman.get_pos(0) - 7;
-			}
-
-			if (swordsman.get_pos(1) < 15) {
-				tmp_cam_pos_i2 = 0;
-			}
-			else if (swordsman.get_pos(1) > 135) {
-				tmp_cam_pos_i2 = 136;
-			}
-			else {
-				tmp_cam_pos_i2 = swordsman.get_pos(1) - 15;
-			}
-
-			board.set_cam(tmp_cam_pos_i1, tmp_cam_pos_i2);
+			teleport_ply(65, 41);
 
 			prev_is_map = false;
 			system("cls");
 			Common::cursor_vis(false);
 		}
+		else if (swordsman.get_pos(0) == 132 && swordsman.get_pos(1) >= 25 && swordsman.get_pos(1) <= 31) {
+			teleport_ply(97, 5);
+		}
 
 		if (tmp_target_cell_val == 3) {
 			system("cls");
-			Common::cursor_vis(true);
 			bool break_s = false;
 			while (!break_s) {
 				switch (shops[0].open_shop(swordsman.get_item_qty("coin"))) {
@@ -523,6 +451,12 @@ void Game::start()
 			prev_is_map = false;
 			system("cls");
 		}
+		else if (tmp_target_cell_val == 29) {
+			Common::cursor_vis(false);
+			story.eloraQuest_inProgress();
+			prev_is_map = false;
+			system("cls");
+		}
 		else if (tmp_target_cell_val == 45) {
 			Common::cursor_vis(false);
 			story.npc12();
@@ -538,6 +472,38 @@ void Game::start()
 	}
 }
 
+void Game::teleport_ply(int idx1, int idx2)
+{
+	board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 0);
+	swordsman.set_pos(idx1, idx2);
+	board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 1);
+
+	int tmp_cam_pos_i1 = 0;
+	int tmp_cam_pos_i2 = 0;
+
+	if (swordsman.get_pos(0) < 7) {
+		tmp_cam_pos_i1 = 0;
+	}
+	else if (swordsman.get_pos(0) > 143) {
+		tmp_cam_pos_i1 = 136;
+	}
+	else {
+		tmp_cam_pos_i1 = swordsman.get_pos(0) - 7;
+	}
+
+	if (swordsman.get_pos(1) < 15) {
+		tmp_cam_pos_i2 = 0;
+	}
+	else if (swordsman.get_pos(1) > 135) {
+		tmp_cam_pos_i2 = 136;
+	}
+	else {
+		tmp_cam_pos_i2 = swordsman.get_pos(1) - 15;
+	}
+
+	board.set_cam(tmp_cam_pos_i1, tmp_cam_pos_i2);
+}
+
 bool Game::valid_inp(std::string inp)
 {
 	return (inp == "w" || inp == "a" || inp == "s" || inp == "d" || inp == "W" || inp == "A" || inp == "S" || inp == "D" || inp == "i" || inp == "j" || inp == "k" || inp == "l" || inp == "I" || inp == "J" || inp == "K" || inp == "L" || inp == "m" || inp == "M");
@@ -547,50 +513,233 @@ void Game::print_all_skill()
 {
 	system("cls");
 
-	const char* skill_name[]{ "Slash", "Fire Slash", "Taunt", "Spiral Spin", "Arcane Bullet", "Healing", "Enchant", "Fireball", "Shoot Arrow", "Raining Arrow", "Piercing Arrow", "Bullet Arrow", "Danger Poke", "Strength Dart", "Bomb", "Backstab", "Headbutt", "Shield Bash", "Arm Slap", "Demon Slash", "Demon Eye Beam", "Demon Strength", "Fire Breath", "Demon Punch", "Long live The King", "Demon Summon", "Hellfire" };
+	const char* skill_name[]{ "Slash", "Fire Slash", "Taunt", "Spiral Spin", "Arcane Bullet", "Healing", "Enchant", "Fireball", "Shoot Arrow", "Raining Arrow", "Piercing Arrow", "Bullet Arrow", "Danger Poke", "Strength Dart", "Bomb", "Backstab", "Headbutt", "Shield Bash", "Arm Slap", "Demon Slash", "Demon Eye Beam", "Demon Strength", "Fire Breath", "Demon Punch", "Long Live the King", "Demon Summon", "Hellfire" };
 	const int power[]{ 5, 10, 5, 60, 3, 50, 10, 100, 5, 10, 30, 60, 5, 10, 45, 125, 10, 15, 30, 30, 90, 10, 100, 40, 50, 20, 100 };
 	const int cost[]{ 0, 5, 10, 15, 0, 20, 30, 100, 0, 5, 10, 45, 0, 20, 15, 35, 10, 15, 15, 0, 20, 40, 100, 0, 20, 40, 100 };
 	const char* types = "DDADDHADDDDDDADDDDDDDADDHAD";
 
-	std::cout << "Skill Book\n--------------------------------------------\n";
-	for (int i = 0; i < 27; ++i) {
-		switch (types[i]) {
+	int page_num = 0;
+	bool loop = true;
+
+	std::string skillBook_inp;
+	while (loop) {
+		system("cls");
+		Common::cursor_vis(false);
+
+		for (int i = 0; i < 5; ++i) {
+			Common::color_print(0xE0, "                         ");
+		}
+		for (int i = 1; i < 30; ++i) {
+			Common::set_cursor(0, i);
+			Common::color_print(0xE0, "  ");
+
+			Common::set_cursor(123, i);
+			Common::color_print(0xE0, "  ");
+		}
+		for (int i = 11; i < 30; ++i) {
+			Common::set_cursor(62, i);
+			Common::color_print(0xE0, "  ");
+		}
+
+		Common::set_cursor(0, 11);
+
+		for (int i = 0; i < 5; ++i) {
+			Common::color_print(0xE0, "                         ");
+		}
+
+		Common::set_cursor(0, 30);
+
+		for (int i = 0; i < 5; ++i) {
+			Common::color_print(0xE0, "                         ");
+		}
+
+		Common::set_cursor(69, 5);
+		Common::color_print(0x60, "   ");
+
+		Common::set_cursor(71, 4);
+		Common::color_print(0x60, "  ");
+
+		for (int i = 0; i < 2; ++i) {
+			Common::set_cursor(28, 3 + (5 * i));
+			Common::color_print(0x60, "    ");
+
+			Common::set_cursor(28 + (2 * i), 5 + i);
+			Common::color_print(0x60, "  ");
+
+			Common::set_cursor(47 + (8 * i), 8);
+			Common::color_print(0x60, "      ");
+
+			Common::set_cursor(69, 3 + (5 * i));
+			Common::color_print(0x60, "   ");
+
+			Common::set_cursor(71, 6 + i);
+			Common::color_print(0x60, "  ");
+
+			for (int i2 = 0; i2 < 2; ++i2) {
+				Common::set_cursor(27 + (4 * i), 4 + (3 * i2));
+				Common::color_print(0x60, "  ");
+
+				Common::set_cursor(37 + (56 * i), 5 + i2);
+				Common::color_print(0x60, "  ");
+
+				Common::set_cursor(38 + (56 * i), 4 + (3 * i2));
+				Common::color_print(0x60, "  ");
+
+				Common::set_cursor(39 + (56 * i), 3 + (5 * i2));
+				Common::color_print(0x60, "  ");
+
+				Common::set_cursor(76 + (8 * i), 3 + (5 * i2));
+				Common::color_print(0x60, "    ");
+			}
+
+			for (int i2 = 0; i2 < 6; ++i2) {
+				Common::set_cursor(35 + (56 * i), 3 + i2);
+				Common::color_print(0x60, "  ");
+
+				Common::set_cursor(43 + (24 * i), 3 + i2);
+				Common::color_print(0x60, "  ");
+
+				Common::set_cursor(47 + (8 * i), 3 + i2);
+				Common::color_print(0x60, "  ");
+			}
+		}
+
+		for (int i = 0; i < 4; ++i) {
+			for (int i2 = 0; i2 < 4; ++i2) {
+				Common::set_cursor(75 + (4 * i), 4 + i2);
+				Common::color_print(0x60, "  ");
+			}
+		}
+
+		for (int i = 0 + (10 * page_num); i < 5 + (10 * page_num); ++i) {
+			switch (types[i]) {
 			case 'D':
+				Common::set_cursor(11, 10 + ((i + 1 - (10 * page_num)) * 3));
 				Common::color_print(0x0C, skill_name[i]);
-				Common::set_cursor(25, i * 3 + 2);
+				Common::set_cursor(36, 10 + ((i + 1 - (10 * page_num)) * 3));
 				std::cout << " ( Cost : ";
 				Common::color_print(0x0E, cost[i]);
 				std::cout << " MP )";
-				Common::set_cursor(0, (i + 1) * 3);
+				Common::set_cursor(11, 11 + ((i + 1 - (10 * page_num)) * 3));
 				std::cout << " - Deals ";
 				Common::color_print(0x0E, power[i]);
 				std::cout << " damage";
 				break;
 			case 'A':
+				Common::set_cursor(11, 10 + ((i + 1 - (10 * page_num)) * 3));
 				Common::color_print(0x09, skill_name[i]);
-				Common::set_cursor(25, i * 3 + 2);
+				Common::set_cursor(36, 10 + ((i + 1 - (10 * page_num)) * 3));
 				std::cout << " ( Cost : ";
 				Common::color_print(0x0E, cost[i]);
 				std::cout << " MP )";
-				Common::set_cursor(0, (i + 1) * 3);
+				Common::set_cursor(11, 11 + ((i + 1 - (10 * page_num)) * 3));
 				std::cout << " - Increase attack by ";
 				Common::color_print(0x0E, power[i]);
 				break;
 			case 'H':
+				Common::set_cursor(11, 10 + ((i + 1 - (10 * page_num)) * 3));
 				Common::color_print(0x0A, skill_name[i]);
-				Common::set_cursor(25, i * 3 + 2);
+				Common::set_cursor(36, 10 + ((i + 1 - (10 * page_num)) * 3));
 				std::cout << " ( Cost : ";
 				Common::color_print(0x0E, cost[i]);
 				std::cout << " MP )";
-				Common::set_cursor(0, (i + 1) * 3);
+				Common::set_cursor(11, 11 + ((i + 1 - (10 * page_num)) * 3));
 				std::cout << " - Increase health by ";
 				Common::color_print(0x0E, power[i]);
 				break;
+			}
+			Common::set_cursor(8, 12 + ((i + (1 - 10 * page_num)) * 3));
+			Common::color_print(0x0F, "-----------------------------------------------");
 		}
-		std::cout << "\n--------------------------------------------\n";
-	}
 
-	Common::input("Press enter to return ");
+		for (int i = 5 + (10 * page_num); i < 10 + (10 * page_num); ++i) {
+			switch (types[i]) {
+			case 'D':
+				Common::set_cursor(73, 10 + ((i - 4 - (10 * page_num)) * 3));
+				Common::color_print(0x0C, skill_name[i]);
+				Common::set_cursor(98, 10 + ((i - 4 - (10 * page_num)) * 3));
+				std::cout << " ( Cost : ";
+				Common::color_print(0x0E, cost[i]);
+				std::cout << " MP )";
+				Common::set_cursor(73, 11 + ((i - 4 - (10 * page_num)) * 3));
+				std::cout << " - Deals ";
+				Common::color_print(0x0E, power[i]);
+				std::cout << " damage";
+				break;
+			case 'A':
+				Common::set_cursor(73, 10 + ((i - 4 - (10 * page_num)) * 3));
+				Common::color_print(0x09, skill_name[i]);
+				Common::set_cursor(98, 10 + ((i - 4 - (10 * page_num)) * 3));
+				std::cout << " ( Cost : ";
+				Common::color_print(0x0E, cost[i]);
+				std::cout << " MP )";
+				Common::set_cursor(73, 11 + ((i - 4 - (10 * page_num)) * 3));
+				std::cout << " - Increase attack by ";
+				Common::color_print(0x0E, power[i]);
+				break;
+			case 'H':
+				Common::set_cursor(73, 10 + ((i - 4 - (10 * page_num)) * 3));
+				Common::color_print(0x0A, skill_name[i]);
+				Common::set_cursor(98, 10 + ((i - 4 - (10 * page_num)) * 3));
+				std::cout << " ( Cost : ";
+				Common::color_print(0x0E, cost[i]);
+				std::cout << " MP )";
+				Common::set_cursor(73, 11 + ((i - 4 - (10 * page_num)) * 3));
+				std::cout << " - Increase health by ";
+				Common::color_print(0x0E, power[i]);
+				break;
+			}
+			Common::set_cursor(70, 12 + ((i - 5) + (1 - 10 * page_num)) * 3);
+			Common::color_print(0x0F, "-----------------------------------------------");
+		}
+
+		Common::set_cursor(8, 28);
+		std::cout << "A = Prev Page || D = Next Page || B = Close Book";
+
+		Common::cursor_vis(true);
+		Common::set_cursor(70, 28);
+		std::cout << "Enter your choice: ";
+		std::getline(std::cin, skillBook_inp);
+		if (skillBook_inp != "A" && skillBook_inp != "a" && skillBook_inp != "D" && skillBook_inp != "d" && skillBook_inp != "B" && skillBook_inp != "b") {
+			Common::set_cursor(70, 29);
+			Common::color_print(0x0C, "Invalid input!");
+			std::cout << " (press enter)";
+			Common::set_cursor(70, 28);
+			std::cout << "Enter your choice: ";
+			std::getline(std::cin, skillBook_inp);
+		}
+
+		else if (skillBook_inp == "A" || skillBook_inp == "a") {
+			if (page_num == 0) {
+				Common::set_cursor(70, 29);
+				Common::color_print(0x0C, "You can't flip past that page!");
+				std::cout << " (press enter)";
+				Common::set_cursor(70, 28);
+				std::cout << "Enter your choice: ";
+				std::getline(std::cin, skillBook_inp);
+			}
+			else {
+				page_num--;
+			}
+		}
+
+		else if (skillBook_inp == "D" || skillBook_inp == "d") {
+			if (page_num == 2) {
+				Common::set_cursor(70, 29);
+				Common::color_print(0x0C, "You can't flip past that page! ");
+				std::cout << " (press enter)";
+				Common::set_cursor(70, 28);
+				std::cout << "Enter your choice: ";
+				std::getline(std::cin, skillBook_inp);
+			}
+			else {
+				page_num++;
+			}
+		}
+		else if (skillBook_inp == "B" || skillBook_inp == "b") {
+			loop = false;
+		}
+	}
 }
 
 bool Game::all_space(std::string inp)

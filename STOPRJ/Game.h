@@ -29,7 +29,9 @@ private:
 
 	int trigger_counter;
 
-	void start_menu();
+	std::string start_menu();
+
+	void teleport_ply(int idx1, int idx2);
 
 	bool valid_inp(std::string inp);
 	void start_battle(std::string id);

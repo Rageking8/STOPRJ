@@ -352,8 +352,7 @@ void Game::start_battle(std::string id)
 							story.winElora();
 							swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
 						}
-						//system("cls");
-						//std::cout << "You Won";
+
 						break;
 					}
 					else if (!slot_active[4] && !slot_active[5] && !slot_active[6] && !slot_active[7]) {
@@ -363,8 +362,7 @@ void Game::start_battle(std::string id)
 							Common::cursor_vis(false);
 							story.loseElora();
 						}
-						//system("cls");
-						//std::cout << "You lose";
+
 						break;
 					}
 				}
@@ -484,8 +482,7 @@ void Game::start_battle(std::string id)
 					story.winElora();
 					swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
 				}
-				//system("cls");
-				//std::cout << "You Won";
+
 				break;
 			}
 			else if (!slot_active[4] && !slot_active[5] && !slot_active[6] && !slot_active[7]) {
@@ -495,8 +492,7 @@ void Game::start_battle(std::string id)
 					Common::cursor_vis(false);
 					story.loseElora();
 				}
-				//system("cls");
-				//std::cout << "You lose";
+
 				break;
 			}
 

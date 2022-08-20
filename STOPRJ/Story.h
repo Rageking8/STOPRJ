@@ -1,8 +1,11 @@
 #pragma once
+#include <string>
 
 class Story
 {
 public:
+	void set_player_name(std::string inp);
+
 	void prologue(); // after starting the game
 	void foundCart(bool coin); // interact
 
@@ -41,7 +44,7 @@ public:
 	void defeatBlaise_main();
 	void defeatBlaise_orionDead();
 	void defeatBlaise_eloraDead();
-	void defeatBlaise_othersDead();
+	void defeatBlaise_othersDead(); // occurs if orion and/or elora (depending on whether they're alive after DK is defeated) die during the fight with blaise
 
 	void ending_main(); // player, orion and elora are alive
 	void ending_partyMemDead(); // player and orion or elora are alive
@@ -59,7 +62,7 @@ public:
 	void magicSchool_student1Found(); //student 1 is lost
 	void magicSchool_student2Trapped(); //student 2 is trapped in a cage
 	void magicSchool_student2Found();
-	void magicSchool_student3Found(); //student 3 forgot they had to go back
+	void magicSchool_student3Found(); //student 3 got distracted by their garden
 	void magicSchool_inProgress();
 	void magicSchool_complete();
 
@@ -71,12 +74,17 @@ public:
 	void KoE_inProgress();
 	void KoE_complete();
 
-	// Find excalibur mini-event
-	void excalibur_start(); // interact with rock
-	void excalibur_success();
-	void excalibur_failure();
+	// excalibur dungeon quest
+	// reward: excalibur (+??? attack)
+	void excalibur_floor1(); // player interacts with the bandits
+	void excalibur_defeatedBandits();
+	void excalibur_floor2(); // player tries to go through door without the key
+	void excalibur_doorUnlocked(); // player has the key to the door
+	void excalibur_floor3(); // player interacts with olaf the stone giant
+	void excalibur_giantDefeated();
+	void excalibur_completed(); // player interacts with the stone that has the excalibur
 
-	// Caershire npc interactions
+	// caershire (mage town) npc interactions
 	void npc1(); // house
 	void npc2(); // house
 	void npc3(); // house
@@ -92,4 +100,8 @@ public:
 	void npc13(); // near the path to caershire (mage town)
 
 	void treasureRoomHint();
+
+private:
+	std::string name;
 };
+

@@ -1,29 +1,47 @@
 #include "Game.h"
 #include "Common.h"
+#include "conio.h"
+#include <iostream>
 
-void Game::start_menu()
+std::string Game::start_menu()
 {
 
-	for (int i = 0; i < 5; ++i) {
+	for (int i = 0; i < 5; ++i)
 		Common::color_print(0xE0, "                         ");
-	}
 	for (int i = 1; i < 30; ++i) {
 		Common::set_cursor(0, i);
 		Common::color_print(0xE0, "  ");
+		Common::color_print(0x80, " ");
 
 		if (i == 1 || i == 29) {
-			Common::color_print(0xE0, "  ");
+			Common::move_cursor('A');
+			Common::color_print(0xC0, "  ");
 			Common::set_cursor(121, i);
-			Common::color_print(0xE0, "    ");
+			Common::color_print(0xC0, "  ");
 		}
 		else {
-			Common::set_cursor(123, i);
+			Common::set_cursor(122, i);
+			Common::color_print(0x80, " ");
 			Common::color_print(0xE0, "  ");
+			continue;
 		}
-
+		Common::set_cursor(123, i);
+		Common::color_print(0xE0, "  ");
 	}
-	Common::set_cursor(0, 30);
 
+	Common::color_print(2, 2, 0xE0, "  ");
+	Common::color_print(4, 1, 0xE0, "  ");
+
+	Common::color_print(2, 28, 0xE0, "  ");
+	Common::color_print(4, 29, 0xE0, "  ");
+
+	Common::color_print(119, 1, 0xE0, "  ");
+	Common::color_print(121, 2, 0xE0, "  ");
+
+	Common::color_print(119, 29, 0xE0, "  ");
+	Common::color_print(121, 28, 0xE0, "  ");
+
+	Common::set_cursor(0, 30);
 	for (int i = 0; i < 5; ++i) {
 		Common::color_print(0xE0, "                         ");
 	}
@@ -50,8 +68,7 @@ void Game::start_menu()
 		Common::color_print(0x60, "  ");
 	}
 
-	Common::set_cursor(84, 5);
-	Common::color_print(0x60, "      ");
+	Common::color_print(84, 5, 0x60, "      ");
 
 	for (int i = 0; i < 6; ++i) {
 		Common::set_cursor(28 + (4 * i), 6);
@@ -61,8 +78,7 @@ void Game::start_menu()
 		Common::color_print(0x60, "  ");
 	}
 
-	Common::set_cursor(46, 7);
-	Common::color_print(0x60, "  ");
+	Common::color_print(46, 7, 0x60, "  ");
 
 	for (int i = 0; i < 2; ++i) {
 		Common::set_cursor(29 + (8 * i), 10);
@@ -152,13 +168,79 @@ void Game::start_menu()
 		Common::color_print(0x60, "  ");
 	}
 
-	Common::set_cursor(56, 12);
-	Common::color_print(0x60, "     ");
+	Common::color_print(56, 12, 0x60, "     ");
 
-	Common::set_cursor(60, 13);
-	Common::color_print(0x60, "  ");
+	Common::color_print(60, 13, 0x60, "  ");
 
-	Common::set_cursor(52, 23);
-	Common::input("Press any key to start");
+	Common::color_print(52, 23, 0x0F, "Press any key to start");
 
+	int c = _getch();
+	if (c == 224) {
+		c = _getch();
+	}
+
+	Common::color_print(52, 23, 0x0F, "                      ");
+
+
+	for (int i = 22; i < 27; ++i) {
+		Common::color_print(34, i, 0x90, " ");
+		Common::color_print(90, i, 0x90, " ");
+		if (i == 22 || i == 26)
+			Common::color_print(35, i, 0xE0, "   ");
+	}
+	for (int i = 0; i < 13; ++i) {
+		Common::color_print((i * 4) + 38, 22, 0xE0, "    ");
+		Common::color_print((i * 4) + 38, 26, 0xE0, "    ");
+	}
+
+	Common::cursor_vis(true);
+
+	Common::color_print(37, 24, 0x07, "Enter name (alphanumeric, max 12) : ");
+
+	short tmp_char_c = 0;
+	std::string ret_name = "";
+
+	// Once user press enter or length of name reaches 12, proceed
+	while (tmp_char_c < 12) {
+
+		// Get input and properly handle edge cases
+		int c = _getch();
+		if (c == 224) {
+			c = _getch();
+		}
+
+		// Handle enter
+		if (c == 13 && ret_name.length() > 0) {
+			break;
+		}
+		// Handle backspace
+		else if (c == 8 && ret_name.length() > 0) {
+			ret_name.pop_back();
+			Common::move_cursor('A');
+			std::cout << " ";
+			Common::move_cursor('A');
+		}
+		// Handle digits (0-9)
+		else if (c > 47 && c < 58) {
+			std::cout << char((c - 48) + '0');
+			ret_name += char((c - 48) + '0');
+			tmp_char_c++;
+		}
+		// Handle letters (a-z)
+		else if (c > 96 && c < 123) {
+			std::cout << char((c - 97) + 'a');
+			ret_name += char((c - 97) + 'a');
+			tmp_char_c++;
+		}
+		// Handle letters (A-Z)
+		else if (c > 64 && c < 91) {
+			std::cout << char((c - 65) + 'A');
+			ret_name += char((c - 65) + 'A');
+			tmp_char_c++;
+		}
+	}
+
+	Common::cursor_vis(false);
+
+	return ret_name;
 }

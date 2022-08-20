@@ -2,6 +2,7 @@
 #include <string>
 #include <iostream>
 #include <random>
+#include <chrono>
 #define WIN32_LEAN_AND_MEAN
 #include "Windows.h"
 
@@ -28,6 +29,12 @@ void Common::color_print(unsigned short color_code, int num)
 	SetConsoleTextAttribute(h, color_code);
 	std::cout << num;
 	SetConsoleTextAttribute(h, 0x07);
+}
+
+void Common::color_print(short x, short y, unsigned short color_code, std::string txt)
+{
+	set_cursor(x, y);
+	color_print(color_code, txt);
 }
 
 std::string Common::write_ani(std::string txt, const unsigned short delay_ms)
@@ -112,4 +119,18 @@ int Common::int_len(unsigned num)
 		ret++;
 	}
 	return ret + 1;
+}
+
+Common::Timer::Timer()
+{
+	start = std::chrono::high_resolution_clock::now();
+}
+
+Common::Timer::~Timer()
+{
+}
+
+long long Common::Timer::end()
+{
+	return std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now() - start).count();
 }

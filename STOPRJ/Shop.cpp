@@ -1,5 +1,4 @@
 #include "Shop.h"
-#include "Character.h"
 #include "Common.h"
 #include "conio.h"
 #include <iostream>
@@ -30,35 +29,50 @@ char Shop::open_shop(int player_coins)
 	for (int i = 1; i < 30; ++i) {
 		Common::set_cursor(0, i);
 		Common::color_print(0xE0, "  ");
+		Common::color_print(0x80, " ");
 
 		if (i == 1 || i == 29) {
-			Common::color_print(0xE0, "  ");
+			Common::move_cursor('A');
+			Common::color_print(0xC0, "  ");
 			Common::set_cursor(121, i);
-			Common::color_print(0xE0, "    ");
+			Common::color_print(0xC0, "  ");
 		}
 		else {
-			Common::set_cursor(123, i);
+			Common::set_cursor(122, i);
+			Common::color_print(0x80, " ");
 			Common::color_print(0xE0, "  ");
+			continue;
 		}
+		Common::set_cursor(123, i);
+		Common::color_print(0xE0, "  ");
 	}
+
+	Common::color_print(2, 2, 0xE0, "  ");
+	Common::color_print(4, 1, 0xE0, "  ");
+
+	Common::color_print(2, 28, 0xE0, "  ");
+	Common::color_print(4, 29, 0xE0, "  ");
+
+	Common::color_print(119, 1, 0xE0, "  ");
+	Common::color_print(121, 2, 0xE0, "  ");
+
+	Common::color_print(119, 29, 0xE0, "  ");
+	Common::color_print(121, 28, 0xE0, "  ");
 
 	Common::set_cursor(0, 11);
 
-	for (int i = 0; i < 5; ++i) {
+	for (int i = 0; i < 5; ++i)
 		Common::color_print(0xE0, "                         ");
-	}
 
 	Common::set_cursor(0, 15);
 
-	for (int i = 0; i < 5; ++i) {
+	for (int i = 0; i < 5; ++i)
 		Common::color_print(0xE0, "                         ");
-	}
 
 	Common::set_cursor(0, 30);
 
-	for (int i = 0; i < 5; ++i) {
+	for (int i = 0; i < 5; ++i)
 		Common::color_print(0xE0, "                         ");
-	}
 
 	for (int i = 0; i < 2; ++i) {
 		Common::set_cursor(49, 3 + (5 * i));
@@ -92,14 +106,10 @@ char Shop::open_shop(int player_coins)
 		Common::color_print(0x60, "     ");
 	}
 
-	Common::set_cursor(72, 3);
-	Common::color_print(0x60, "     ");
+	Common::color_print(72, 3, 0x60, "     ");
+	Common::color_print(76, 4, 0x60, "  ");
 
-	Common::set_cursor(76, 4);
-	Common::color_print(0x60, "  ");
-
-	Common::set_cursor(55, 13);
-	Common::color_print(0x06, "CURRENT SUPPLY:\n");
+	Common::color_print(55, 13, 0x06, "CURRENT SUPPLY:\n");
 
 	for (int i = 0; i < 4; i++) {
 		Common::set_cursor(41, 17 + (2 * i));
@@ -109,9 +119,8 @@ char Shop::open_shop(int player_coins)
 	Common::set_cursor(47, 25);
 	std::cout << "You currently have " << player_coins << "G on hand.       ";
 
-	Common::set_cursor(28, 26);
 	std::string shop_inp = "";
-	std::cout << "What would you like to buy? Enter your choice here (B for back) :  ";
+	Common::color_print(36, 26, 0x07, "What would you like to buy? Enter item number to buy");
 
 	bool tmp_flag = true;
 	while (tmp_flag) {
@@ -119,8 +128,8 @@ char Shop::open_shop(int player_coins)
 		int c = _getch();
 		if (c == 224) {
 			c = _getch();
-			Common::set_cursor(28, 27);
-			Common::color_print(0x0c, "Invalid input! Please try again.");
+			Common::color_print(42, 27, 0x00, "                                         ");
+			Common::color_print(47, 27, 0x0c, "Invalid input! Please try again.");
 			continue;
 		}
 		switch (c) {
@@ -150,8 +159,8 @@ char Shop::open_shop(int player_coins)
 				break;
 		}
 		if (shop_inp == "") {
-			Common::set_cursor(28, 27);
-			Common::color_print(0x0c, "Invalid input! Please try again.");
+			Common::color_print(42, 27, 0x00, "                                         ");
+			Common::color_print(47, 27, 0x0c, "Invalid input! Please try again.");
 		}
 	}
 
@@ -161,8 +170,8 @@ char Shop::open_shop(int player_coins)
 		char ret = ' ';
 
 		if (stock[temp_idx] <= 0) {
-			Common::set_cursor(28, 27);
-			Common::color_print(0x0c, "Sorry, we are out of that item's stock! ");
+			Common::color_print(42, 27, 0x00, "                                         ");
+			Common::color_print(43, 27, 0x0c, "Sorry, we are out of that item's stock!");
 		}
 		else if (player_coins >= price[temp_idx]) {
 			player_coins -= price[temp_idx];
@@ -176,7 +185,11 @@ char Shop::open_shop(int player_coins)
 			Common::set_cursor(47, 25);
 			std::cout << "You currently have " << player_coins << "G on hand.       ";
 
-			Common::set_cursor(37, 27);
+			Common::color_print(42, 27, 0x00, "                                         ");
+			if (temp_idx > 1)
+				Common::set_cursor(49, 27);
+			else
+				Common::set_cursor(51, 27);
 			Common::color_print(0x0a, "You have bought ");
 			Common::color_print(0x0a, items[temp_idx]);
 			Common::color_print(0x0a, "! ");
@@ -184,8 +197,7 @@ char Shop::open_shop(int player_coins)
 			ret = temp_idx + '1';
 		}
 		else if (player_coins < price[temp_idx]) {
-			Common::set_cursor(28, 27);
-			Common::color_print(0x0c, "You do not have enough money to buy that! ");
+			Common::color_print(42, 27, 0x0c, "You do not have enough money to buy that!");
 		}
 		return ret;
 	}

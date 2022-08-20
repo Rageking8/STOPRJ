@@ -75,6 +75,7 @@ void Board::print_board(bool state)
 
 void Board::print_map()
 {
+	Common::Timer t;
 	static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	system("cls");
@@ -105,6 +106,8 @@ void Board::print_map()
 			break;
 		}
 	}
+
+	int cluster = 0;
 
 	for (int i = 0; i < 151; ++i) {
 		for (int i2 = 0; i2 < 151; ++i2) {
@@ -146,6 +149,64 @@ void Board::print_map()
 				continue;
 			}
 
+			// Optimize map printing (~42% faster than without this code)
+			if (board_data[(i * 151) + i2] == 0) {
+				cluster++;
+				while (i2 < 150) {
+					if (board_data[(i * 151) + i2 + 1] == 0) {
+						cluster++;
+						i2++;
+						continue;
+					}
+					break;
+				}
+
+				// Important. Using for loop to print will negate all performance gains
+				std::string tmp_str = Common::mul_txt(".", cluster);
+				std::cout << tmp_str;
+
+				cluster = 0;
+				continue;
+			}
+			else if (board_data[(i * 151) + i2] == 4) {
+				cluster++;
+				while (i2 < 150) {
+					if (board_data[(i * 151) + i2 + 1] == 4) {
+						cluster++;
+						i2++;
+						continue;
+					}
+					break;
+				}
+
+				// Important. Using for loop to print will negate all performance gains
+				std::string tmp_str = Common::mul_txt("~", cluster);
+				SetConsoleTextAttribute(h, 0x09);
+				std::cout << tmp_str;
+				SetConsoleTextAttribute(h, 0x07);
+				cluster = 0;
+				continue;
+			}
+			else if (board_data[(i * 151) + i2] == 7) {
+				cluster++;
+				while (i2 < 150) {
+					if (board_data[(i * 151) + i2 + 1] == 7) {
+						cluster++;
+						i2++;
+						continue;
+					}
+					break;
+				}
+
+				// Important. Using for loop to print will negate all performance gains
+				std::string tmp_str = Common::mul_txt("~", cluster);
+				SetConsoleTextAttribute(h, 0x01);
+				std::cout << tmp_str;
+				SetConsoleTextAttribute(h, 0x07);
+				cluster = 0;
+				continue;
+			}
+
 			switch (board_data[(i * 151) + i2]) {
 				case 1:
 					Common::color_print(0X0B, "P");
@@ -157,7 +218,7 @@ void Board::print_map()
 					Common::color_print(0X0C, "S");
 					break;
 				case 4: // Water
-					Common::color_print(0X09, "#");
+					Common::color_print(0X09, "~");
 					break;
 				case 5: // Cart
 					Common::color_print(0X70, "?");
@@ -166,7 +227,7 @@ void Board::print_map()
 					Common::color_print(0X08, "#");
 					break;
 				case 7: // Blue block
-					Common::color_print(0X01, "#");
+					Common::color_print(0X01, "~");
 					break;
 				case 8: // Green block
 					Common::color_print(0X02, "#");
@@ -313,7 +374,7 @@ void Board::print_map()
 					Common::color_print(0X08, "#");
 					break;
 				case 60: // Lava
-					Common::color_print(0X04, "#");
+					Common::color_print(0X04, "~");
 					break;
 				case 61: // Gold Coins
 					Common::color_print(0X06, "$");
@@ -342,13 +403,16 @@ void Board::print_map()
 				case 69: // Guardian
 					Common::color_print(0X70, "?");
 					break;
+				case 73: // Emperor
+					Common::color_print(0X70, "?");
+					break;
 				default:
 					std::cout << ".";
 			}
 		}
 		std::cout << "\n";
 	}
-
+	std::cout << t.end();
 }
 
 void Board::set_board(int idx1, int idx2, short data)
@@ -472,12 +536,12 @@ void Board::print_with_id(short id)
 			Common::color_print(0XF0, " ");
 			Common::color_print(0XE0, " ");
 			break;
-		case 29: // Elf Leader
-			Common::color_print(0X0A, "AcL");
+		case 29: // Kingdom of Elves Leader
+			Common::color_print(0X0A, "Elr");
 			break;
 		case 30: // Grass + Flower
 			Common::color_print(0X20, " ");
-			Common::color_print(0X40, " ");
+			Common::color_print(0X4E, "*");
 			Common::color_print(0X20, " ");
 			break;
 		case 31: // Chest
@@ -492,12 +556,12 @@ void Board::print_with_id(short id)
 		case 34: // Dining Table
 			Common::color_print(0X60, "| |");
 			break;
-		case 35: //Chair facing right
+		case 35: // Chair facing right
 			Common::color_print(0X40, " ");
 			Common::color_print(0XC0, " ");
 			Common::color_print(0XC0, " ");
 			break;
-		case 36: //Chair facing left
+		case 36: // Chair facing left
 			Common::color_print(0XC0, " ");
 			Common::color_print(0XC0, " ");
 			Common::color_print(0X40, " ");
@@ -505,11 +569,11 @@ void Board::print_with_id(short id)
 		case 37: // Fire wood 2
 			Common::color_print(0X04, " = ");
 			break;
-		case 38: //Stairs/Step left
+		case 38: // Stairs/Step left
 			Common::color_print(0X70, " ");
 			Common::color_print(0X80, "  ");
 			break;
-		case 39: //Stairs/Step right
+		case 39: // Stairs/Step right
 			Common::color_print(0X80, "  ");
 			Common::color_print(0X70, " ");
 			break;
@@ -594,7 +658,7 @@ void Board::print_with_id(short id)
 			break;
 		case 63: // Red Carpet vert
 			Common::color_print(0X40, " | ");
-			break; 
+			break;
 		case 64: // Red Carpet hori
 			Common::color_print(0X40, "___");
 			break;
@@ -626,6 +690,12 @@ void Board::print_with_id(short id)
 			Common::color_print(0X80, "#");
 			Common::color_print(0X70, "#");
 			Common::color_print(0X80, "#");
+			break;
+		case 72: // NPCs in Swordsman town
+			Common::color_print(0X05, "NPC");
+			break;
+		case 73: // Emperor
+			Common::color_print(0X06, "EMP");
 			break;
 		default:
 			std::cout << "   ";

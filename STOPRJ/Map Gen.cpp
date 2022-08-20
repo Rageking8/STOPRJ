@@ -353,10 +353,10 @@ void Game::board_gen()
 	{
 		board.set_board((8 + i), 49, 2);
 	}
-	//for (int i = 0; i < 7; i++) // Cage Walls(unlocks after player solve the puzzle)
-	//{
+	for (int i = 0; i < 7; i++) // Cage Walls(unlocks after player solve the puzzle)
+	{
 	//	board.set_board((3 + i), 79, 6);
-	//}
+	}
 	// Chest
 	for (int i = 0; i < 3; i++)
 	{
@@ -1032,9 +1032,9 @@ void Game::board_gen()
 	}
 	for (int i = 0; i < 7; i++) // Door/Gates in Dungeon
 	{
-		board.set_board(42, (88 + i), 6);
-		board.set_board(63, (88 + i), 6);
-		board.set_board(82, (88 + i), 6);
+		//board.set_board(42, (88 + i), 6);
+		//board.set_board(63, (88 + i), 6);
+		//board.set_board(82, (88 + i), 6);
 	}
 	//Path to demon king castle
 	for (int i = 0; i < 6; i++)// inner path
@@ -1169,4 +1169,314 @@ void Game::board_gen()
 			board.set_board(i, (50 + j), 42);
 		}
 	}
+	for (int i = 0; i < 20; i++)// Grass in empty spaces
+	{
+		for (int j = 0; j < 15; j++)
+		{
+			board.set_board(i, (96 + j), 42);
+		}
+	}
+	for (int i = 0; i < 3; i++)// Grass in empty spaces
+	{
+		for (int j = 0; j < 49; j++)
+		{
+			if (j >= 25  && j <= 33) continue;
+			board.set_board((20 + i), (62 + j), 42);
+			board.set_board((41 + i), (62 + j), 42);
+			board.set_board((62 + i), (62 + j), 42);
+			board.set_board((83 + i), (62 + j), 42);
+		}
+	}
+	for (int i = 0; i < 37; i++)// Grass in empty spaces
+	{
+		for (int j = 0; j < 3; j++)
+		{
+			board.set_board((64 + i), (59 + j), 42);
+		}
+	}
+	for (int i = 0; i < 7; i++)// Grass in empty spaces
+	{
+		for (int j = 0; j < 89; j++)
+		{
+			if (j >= 25 && j <= 33) continue;
+			if (j >= 63 && j <= 74) continue;
+			board.set_board((86 + i), (62 + j), 42);
+		}
+	}
+	for (int i = 0; i < 8; i++)// Grass in empty spaces
+	{
+		for (int j = 0; j < 89; j++)
+		{
+			if (j >= 25 && j <= 74) continue;
+			board.set_board((93 + i), (62 + j), 42);
+		}
+	}
+	for (int i = 0; i < 12; i++) // Lava
+	{
+		for (int j = 0; j < 9; j++)
+		{
+			board.set_board(i, (142 + j), 60);
+			if (j == 8) continue;
+			board.set_board(i, (111 + j), 60);
+		}
+	}
+	for (int i = 0; i < 3; i++)// Lava
+	{
+		for (int j = 0; j < 40; j++)
+		{
+			if (j >= 14 && j <= 25) continue;
+			board.set_board((12 + i), (111 + j), 60);
+			board.set_board((40 + i), (111 + j), 60);
+			board.set_board((63 + i), (111 + j), 60);
+			board.set_board((83 + i), (111 + j), 60);
+		}
+	}
+	for (int i = 0; i < 40; i++)// Lava
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			board.set_board((43 + i), (111 + j), 60);
+			board.set_board((43 + i), (149 + j), 60);
+		}
+	}
+	//Ocean
+	for (int i = 0; i < 30; i+=2)
+	{
+		for (int j = 0; j < 151; j++)
+		{
+			board.set_board((101 + i), j, 7);
+			board.set_board((102 + i), j, 4);
+		}
+	}
+	// Swordsman Town and Emperor Castle
+	for (int i = 0; i < 19; i++) 
+	{
+		board.set_board((132 + i), 0, 2);
+		board.set_board((134 + i), 150, 2);
+		if (i >= 5 && i <= 12) continue;
+		board.set_board((132 + i), 75, 2);
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		board.set_board((136 + i), 126, 2);
+	}
+	for (int j = 0; j < 148; j++)
+	{
+		board.set_board(150, j, 2);
+		if (j >= 25 && j <= 31) continue;
+		board.set_board(131, j, 2);
+	}
+	board.set_board(133, 149, 2);
+	board.set_board(132, 148, 2);
+	board.set_board(149, 148, 2);
+	board.set_board(148, 149, 2);
+	//Grass
+	for (int i = 0; i < 3; i++)
+	{
+		board.set_board(131, (148 + i), 42);
+		board.set_board(150, (148 + i), 42);
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		board.set_board(132, (149 + i), 42);
+		board.set_board(149, (149 + i), 42);
+	}
+	board.set_board(133, 150, 42);
+	board.set_board(148, 150, 42);
+
+	// Useless NPCs
+	board.set_board(141, 2, 72);
+	board.set_board(146, 21, 72);
+	board.set_board(132, 23, 72);
+	board.set_board(138, 41, 72);
+	board.set_board(148, 51, 72);
+	board.set_board(137, 72, 72);
+	board.set_board(144, 73, 72);
+	board.set_board(141, 46, 72);
+	board.set_board(133, 67, 72);
+	board.set_board(144, 86, 72);
+	// Houses
+	for (int i = 0; i < 5; i++)
+	{
+		board.set_board((133 + i), 1, 18); // 1
+		board.set_board((139 + i), 1, 18); // 2
+		board.set_board((145 + i), 1, 18); // 3
+		board.set_board(149, (10 + i), 18); // 4
+		board.set_board(149, (18 + i), 18); // 5
+		board.set_board(149, (26 + i), 18); // 6
+		board.set_board(149, (34 + i), 18); // 7
+		board.set_board(149, (42 + i), 18); // 8
+		board.set_board(149, (50 + i), 18); // 9
+		board.set_board(149, (58 + i), 18); // 10
+		board.set_board(149, (66 + i), 18); // 11
+		board.set_board(133, (1 + i), 18); // 1
+		board.set_board(137, (1 + i), 18); // 1
+		board.set_board(139, (1 + i), 18); // 2
+		board.set_board(143, (1 + i), 18); // 2 
+		board.set_board(145, (1 + i), 18); // 3
+		board.set_board(149, (1 + i), 18); // 3
+		board.set_board((145 + i), 10, 18); // 4
+		board.set_board((145 + i), 14, 18); // 4
+		board.set_board((145 + i), 18, 18); // 5
+		board.set_board((145 + i), 22, 18); // 5
+		board.set_board((145 + i), 26, 18); // 6
+		board.set_board((145 + i), 30, 18); // 6
+		board.set_board((145 + i), 34, 18); // 7
+		board.set_board((145 + i), 38, 18); // 7
+		board.set_board((145 + i), 42, 18); // 8
+		board.set_board((145 + i), 46, 18); // 8
+		board.set_board((145 + i), 50, 18); // 9
+		board.set_board((145 + i), 54, 18); // 9
+		board.set_board((145 + i), 58, 18); // 10
+		board.set_board((145 + i), 62, 18); // 10
+		board.set_board((145 + i), 66, 18); // 11
+		board.set_board((145 + i), 70, 18); // 11
+		// Water
+		board.set_board((145 + i), 74, 4);
+		//Flowerbeds
+		board.set_board(132, (1 + i), 30);
+		board.set_board(138, (1 + i), 30);
+		board.set_board(144, (1 + i), 30);
+		board.set_board(132, (65 + i), 30);
+		board.set_board(132, (70 + i), 30);
+		board.set_board(134, (65 + i), 30);
+		board.set_board(134, (70 + i), 30);
+		board.set_board(136, (65 + i), 30);
+		board.set_board(136, (70 + i), 30);
+		for (int j = 0; j < 3; j++)
+		{
+			board.set_board((145 + i), (15 + j), 30);
+			board.set_board((145 + i), (23 + j), 30);
+			board.set_board((145 + i), (31 + j), 30);
+			board.set_board((145 + i), (39 + j), 30);
+			board.set_board((145 + i), (47 + j), 30);
+			board.set_board((145 + i), (55 + j), 30);
+			board.set_board((145 + i), (63 + j), 30);
+			board.set_board((145 + i), (71 + j), 30);
+		}
+	}
+	board.set_board(134, 6, 18); // 1
+	board.set_board(136, 6, 18); // 1
+	board.set_board(140, 6, 18); // 2
+	board.set_board(142, 6, 18); // 2
+	board.set_board(146, 6, 18); // 3
+	board.set_board(148, 6, 18); // 3
+	board.set_board(144, 11, 18); // 4
+	board.set_board(144, 13, 18); // 4
+	board.set_board(144, 19, 18); // 5
+	board.set_board(144, 21, 18); // 5
+	board.set_board(144, 27, 18); // 6
+	board.set_board(144, 29, 18); // 6
+	board.set_board(144, 35, 18); // 7
+	board.set_board(144, 37, 18); // 7
+	board.set_board(144, 43, 18); // 8
+	board.set_board(144, 45, 18); // 8
+	board.set_board(144, 51, 18); // 9
+	board.set_board(144, 53, 18); // 9
+	board.set_board(144, 59, 18); // 10
+	board.set_board(144, 61, 18); // 10
+	board.set_board(144, 67, 18); // 11
+	board.set_board(144, 69, 18); // 11
+	// Fountain border (Swordsman Town)
+	for (int i = 0; i < 3; ++i) {
+		board.set_board(137, (43 + i), 2);
+		board.set_board(141, (43 + i), 2);
+	}
+	for (int i = 0; i < 2; ++i) {
+		board.set_board(138 + (i * 2), 42, 2);
+		board.set_board(138 + (i * 2), 46, 2);
+	}
+	board.set_board(139, 41, 2);
+	board.set_board(139, 47, 2);
+
+	// Fountain water (Swordsman Town)
+	for (int i = 0; i < 3; ++i) {
+		for (int i2 = 0; i2 < 3; ++i2)
+			board.set_board(138 + i, 43 + i2, 4);
+	}
+	board.set_board(139, 42, 4);
+	board.set_board(139, 46, 4);
+	// Emperor Castle carpet
+	for (int i = 0; i < 50; i++)
+	{
+		if (i >= 25 && i <= 33) continue;
+		board.set_board(136, (76 + i), 64);
+		board.set_board(145, (76 + i), 64);
+	}
+	// Emperor Throne 
+	for (int i = 0; i < 6; i++)
+	{
+		board.set_board((138 + i), 125, 17);
+	}
+	board.set_board(138, 124, 17);
+	board.set_board(140, 124, 17);
+	board.set_board(141, 124, 17);
+	board.set_board(143, 124, 17);
+	// Emperor (Da man, Da legend, Da myth)
+	board.set_board(139, 124, 73);
+	//Dining area
+	for (int i = 0; i < 40; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			board.set_board((133 + j), (78 + i), 34);
+			board.set_board((147 + j), (78 + i), 34);
+		}
+	}
+	for (int i = 0; i < 40; i+=3) // Chairs
+	{
+		board.set_board(132, (78 + i), 35);
+		board.set_board(149, (78 + i), 35);
+	}
+	// Bed
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			board.set_board((139 + i), (145 + j), 10);
+			board.set_board((139 + i), 149, 18);
+		}
+	}
+	// Ship
+	for (int i = 0; i < 3; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			board.set_board((126 + i), (25 + j), 12);
+		}
+	}
+	board.set_board(127, 33, 12);
+	for (int i = 0; i < 9; i++)
+	{
+		board.set_board(125, (24 + i), 18);
+		board.set_board(129, (24 + i), 18);
+	}
+	board.set_board(126, 33, 18);
+	board.set_board(127, 34, 18);
+	board.set_board(128, 33, 18);
+	for (int i = 0; i < 3; i++)
+	{
+		board.set_board((126 + i), 24, 18);
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		board.set_board(130, (27 + i), 17);
+	}
+	
+	for (int i = 0; i < 7; i++)
+	{
+		board.set_board(131, (25 + i), 17);
+	}
+	//Second Spawnpoint
+	for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			board.set_board((95 + i), j, 42);
+		}
+	}
+	board.set_board(96, 0, 53);
+	board.set_board(98, 1, 54);
+	board.set_board(97, 4, 55);
+	board.set_board(95, 3, 53);
 }

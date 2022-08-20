@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <chrono>
 
 namespace Common
 {
@@ -9,6 +10,9 @@ namespace Common
 	// Prints given text in specified text colour and background (using color_code)
 	void color_print(unsigned short color_code, std::string txt);
 	void color_print(unsigned short color_code, int num);
+	
+	// Move cursor then color print
+	void color_print(short x, short y, unsigned short color_code, std::string txt);
 
 	// Prints given text with writing animation
 	// Returns std::string to be able to use in Common::input
@@ -31,4 +35,15 @@ namespace Common
 
 	// Get length of integer (number of digits)
 	int int_len(unsigned num);
+
+	// Timer starts when object is instantiated and ends when the end() member function is called
+	// Return time elapsed unit is in nanoseconds (1 second = 1,000,000,000 nanoseconds)
+	class Timer {
+	public:
+		Timer();
+		~Timer();
+		long long end();
+	private:
+		std::chrono::high_resolution_clock::time_point start;
+	};
 };
