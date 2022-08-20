@@ -300,6 +300,48 @@ void Board::print_map()
 				case 52: // Mage troop 7 - Third Mage NPC Saying a wish at the fountain #6
 					Common::color_print(0X70, "?");
 					break;
+				case 53: // Sunflower
+					Common::color_print(0X06, "#");
+					break;
+				case 54: // Rose
+					Common::color_print(0X04, "#");
+					break;
+				case 55: // Lavender
+					Common::color_print(0X05, "#");
+					break;
+				case 56: // Cage
+					Common::color_print(0X08, "#");
+					break;
+				case 60: // Lava
+					Common::color_print(0X04, "#");
+					break;
+				case 61: // Gold Coins
+					Common::color_print(0X06, "$");
+					break;
+				case 62: // Demon kinng castle walls
+					Common::color_print(0X04, "#");
+					break;
+				case 63: // Red Carpet vert
+					Common::color_print(0X04, "#");
+					break;
+				case 64: // Red Carpet hori
+					Common::color_print(0X04, "#");
+					break;
+				case 65: // Dungeon Walls
+					Common::color_print(0X08, "#");
+					break;
+				case 66: // Gren Carpet vert
+					Common::color_print(0X02, "#");
+					break;
+				case 67: // Green Carpet hori
+					Common::color_print(0X02, "#");
+					break;
+				case 68: // Excalibur Sword
+					Common::color_print(0X70, "?");
+					break;
+				case 69: // Guardian
+					Common::color_print(0X70, "?");
+					break;
 				default:
 					std::cout << ".";
 			}
@@ -450,7 +492,7 @@ void Board::print_with_id(short id)
 		case 34: // Dining Table
 			Common::color_print(0X60, "| |");
 			break;
-		case 35: // Chair facing right
+		case 35: //Chair facing right
 			Common::color_print(0X40, " ");
 			Common::color_print(0XC0, " ");
 			Common::color_print(0XC0, " ");
@@ -463,7 +505,7 @@ void Board::print_with_id(short id)
 		case 37: // Fire wood 2
 			Common::color_print(0X04, " = ");
 			break;
-		case 38: // Stairs/Step left
+		case 38: //Stairs/Step left
 			Common::color_print(0X70, " ");
 			Common::color_print(0X80, "  ");
 			break;
@@ -509,6 +551,81 @@ void Board::print_with_id(short id)
 			break;
 		case 52: // Mage troop 7 - Third Mage NPC Saying a wish at the fountain #6
 			Common::color_print(0X0D, " M ");
+			break;
+		case 53: // Sunflower
+			Common::color_print(0X00, " ");
+			Common::color_print(0X60, "*");
+			Common::color_print(0X00, " ");
+			break;
+		case 54: // Rose
+			Common::color_print(0X00, " ");
+			Common::color_print(0X4C, "@");
+			Common::color_print(0X00, " ");
+			break;
+		case 55: // Lavender
+			Common::color_print(0X00, " ");
+			Common::color_print(0X5D, "#");
+			Common::color_print(0X00, " ");
+			break;
+		case 56: // Cage
+			Common::color_print(0X80, " ");
+			Common::color_print(0X78, "=");
+			Common::color_print(0X80, " ");
+			break;
+		case 57: // Missing Mage in forest-Entrance #1 
+			Common::color_print(0X0D, " M ");
+			break;
+		case 58: // Missing Mage in forest-Cage #2
+			Common::color_print(0X0D, " M ");
+			break;
+		case 59: // Missing Mage in forest-Garden #3
+			Common::color_print(0X0D, " M ");
+			break;
+		case 60: // Lava
+			Common::color_print(0X46, " ~ ");
+			break;
+		case 61: // Gold Coins
+			Common::color_print(0X6F, " $ ");
+			break;
+		case 62: // Demon King Castle Walls
+			Common::color_print(0X40, "=");
+			Common::color_print(0XC0, "=");
+			Common::color_print(0X40, "=");
+			break;
+		case 63: // Red Carpet vert
+			Common::color_print(0X40, " | ");
+			break; 
+		case 64: // Red Carpet hori
+			Common::color_print(0X40, "___");
+			break;
+		case 65: // Dungeon Walls
+			Common::color_print(0X80, "#");
+			Common::color_print(0X70, "#");
+			Common::color_print(0X80, "#");
+			break;
+		case 66: // Gren Carpet vert
+			Common::color_print(0X20, " | ");
+			break;
+		case 67: // Green Carpet hori
+			Common::color_print(0X20, "___");
+			break;
+		case 68: // Excalibur Sword
+			Common::color_print(0X80, "_");
+			Common::color_print(0X0F, "|");
+			Common::color_print(0X80, "_");
+			break;
+		case 69: // Guardian
+			Common::color_print(0X03, " G ");
+			break;
+		case 70: // Key
+			Common::color_print(0X00, " ");
+			Common::color_print(0XE0, "?");
+			Common::color_print(0X00, " ");
+			break;
+		case 71: // Dungeon maze Walls
+			Common::color_print(0X80, "#");
+			Common::color_print(0X70, "#");
+			Common::color_print(0X80, "#");
 			break;
 		default:
 			std::cout << "   ";

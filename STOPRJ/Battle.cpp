@@ -348,6 +348,7 @@ void Game::start_battle(std::string id)
 						// Enemy all dead
 
 						if (id == "ambush") {
+							Common::cursor_vis(false);
 							story.winElora();
 							swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
 						}
@@ -359,6 +360,7 @@ void Game::start_battle(std::string id)
 						// Ally all dead
 
 						if (id == "ambush") {
+							Common::cursor_vis(false);
 							story.loseElora();
 						}
 						//system("cls");
@@ -478,6 +480,7 @@ void Game::start_battle(std::string id)
 				// Enemy all dead
 
 				if (id == "ambush") {
+					Common::cursor_vis(false);
 					story.winElora();
 					swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
 				}
@@ -489,6 +492,7 @@ void Game::start_battle(std::string id)
 				// Ally all dead
 
 				if (id == "ambush") {
+					Common::cursor_vis(false);
 					story.loseElora();
 				}
 				//system("cls");

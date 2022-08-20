@@ -15,6 +15,9 @@ Game::Game() : trigger_counter{}
 	board.set_board(97, 0, 1);
 	swordsman.set_pos(97, 0);
 
+	//board.set_board(66, 17, 1);
+	//swordsman.set_pos(66, 17);
+
 	int tmp_cam_pos_i1 = 0;
 	int tmp_cam_pos_i2 = 0;
 
@@ -69,6 +72,8 @@ void Game::start()
 		player_name_inp = Common::input("Invalid Name\nEnter your name : ");
 	}
 	swordsman.set_name(player_name_inp);
+
+	Common::cursor_vis(false);
 
 	//story.prologue();
 
@@ -249,7 +254,7 @@ void Game::start()
 			
 			if (menu_option == "1") {
 				system("cls");
-				std::cout << "====== Party ======\n\nSwordsman\n1) Attack   " << swordsman.get_stats("attack") << "\n2) Health   " << swordsman.get_stats("cur_health") << " / " << swordsman.get_stats("max_health") <<  "\n3) MP       "  << swordsman.get_stats("cur_mp") <<  " / " << swordsman.get_stats("max_mp") << "\n\n";
+				std::cout << "====== Party ======\n\nSwordsman\n1) Attack   " << swordsman.get_stats("attack") << "\n2) Health   " << swordsman.get_stats("cur_health") << " / " << swordsman.get_stats("max_health") <<  "\n3) MP       "  << swordsman.get_stats("cur_mp") <<  " / " << swordsman.get_stats("max_mp") << "\n";
 				for (int i = 0; i < 4; ++i) {
 					if (swordsman.get_skill_list(i).active) {
 						std::cout << " - ";
@@ -283,7 +288,7 @@ void Game::start()
 				}
 
 				if (/*assassin.get_recruited()*/true) {
-					std::cout << "\n\nElf\n1) Attack   " << assassin.get_stats("attack") << "\n2) Health   " << assassin.get_stats("cur_health") << " / " << assassin.get_stats("max_health") << "\n3) MP       " << assassin.get_stats("cur_mp") << " / " << assassin.get_stats("max_mp") << "\n";
+					std::cout << "\n\nAssassin\n1) Attack   " << assassin.get_stats("attack") << "\n2) Health   " << assassin.get_stats("cur_health") << " / " << assassin.get_stats("max_health") << "\n3) MP       " << assassin.get_stats("cur_mp") << " / " << assassin.get_stats("max_mp") << "\n";
 
 					for (int i = 0; i < 4; ++i) {
 						if (assassin.get_skill_list(i).active) {
@@ -425,8 +430,8 @@ void Game::start()
 
 		// Ambush by the elf troops
 		if (trigger_counter == 1 && swordsman.get_pos(1) == 47 && swordsman.get_pos(0) >= 95 && swordsman.get_pos(0) <= 99) {
-			Common::cursor_vis(true);
 			story.meetElora();
+			Common::cursor_vis(true);
 			start_battle("ambush");
 			trigger_counter++;
 
@@ -460,11 +465,13 @@ void Game::start()
 			board.set_cam(tmp_cam_pos_i1, tmp_cam_pos_i2);
 
 			prev_is_map = false;
-
+			system("cls");
 			Common::cursor_vis(false);
 		}
 
 		if (tmp_target_cell_val == 3) {
+			system("cls");
+			Common::cursor_vis(true);
 			bool break_s = false;
 			while (!break_s) {
 				switch (shops[0].open_shop(swordsman.get_item_qty("coin"))) {
@@ -492,8 +499,11 @@ void Game::start()
 			}
 
 			prev_is_map = false;
+			Common::cursor_vis(false);
+			system("cls");
 		}
 		else if (tmp_target_cell_val == 5) {
+			Common::cursor_vis(false);
 			story.foundCart(trigger_counter == 0);
 			if (trigger_counter == 0) {
 				trigger_counter = 1;
@@ -505,11 +515,26 @@ void Game::start()
 			}
 
 			prev_is_map = false;
+			system("cls");
 		}
 		else if (tmp_target_cell_val == 21) {
-
+			Common::cursor_vis(false);
+			story.npc11();
+			prev_is_map = false;
+			system("cls");
 		}
-
+		else if (tmp_target_cell_val == 45) {
+			Common::cursor_vis(false);
+			story.npc12();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 46) {
+			Common::cursor_vis(false);
+			story.npc13();
+			prev_is_map = false;
+			system("cls");
+		}
 	}
 }
 
