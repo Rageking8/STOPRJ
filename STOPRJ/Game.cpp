@@ -50,6 +50,7 @@ Game::Game() : trigger_counter{}
 		board.set_board(i, 47, 6);
 	}
 
+	board.set_board(135, 8, -1);
 }
 
 Game::~Game()
@@ -75,6 +76,8 @@ void Game::start()
 
 	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
+	short prev_block[8]{ -1, -1, 0, 0, -1, -1, 0, 0 };
+
 	while (true) {
 
 		// Dont use system("cls") as it causes flicker when the screen is updating
@@ -88,23 +91,11 @@ void Game::start()
 		std::cout << " ";
 
 		Common::set_cursor(0, 32);
-		//std::string action_inp = Common::input("              \nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
 		std::cout << "              \nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
 
 		short tmp_target_cell_val = -1;
 
 		prev_is_map = true;
-
-		// //Loop till action input is valid (WASDIJKL)(non-case sensitive)
-		//while (!valid_inp(action_inp)) {
-
-		//	SetConsoleCursorPosition(h, COORD{ 72, 33 });
-		//	Common::mul_txt(" ", action_inp.length(), true);
-
-		//	SetConsoleCursorPosition(h, COORD{ 0, 31 });
-		//	std::cout << "Current pos : (" << swordsman.get_pos(1) << ", " << swordsman.get_pos(0) << ") | Range of x and y coord : 0-100 (both inclusive)    \n";
-		//	action_inp = Common::input("Invalid action\nEnter action (WASD for movement and IJKL for interaction, M for menu) : ");
-		//}
 
 		std::string action_inp = "";
 
@@ -119,60 +110,60 @@ void Game::start()
 				continue;
 			}
 			switch (c) {
-			case 119:
-				action_inp = "w";
-				break;
-			case 97:
-				action_inp = "a";
-				break;
-			case 115:
-				action_inp = "s";
-				break;
-			case 100:
-				action_inp = "d";
-				break;
-			case 87:
-				action_inp = "W";
-				break;
-			case 65:
-				action_inp = "A";
-				break;
-			case 83:
-				action_inp = "S";
-				break;
-			case 68:
-				action_inp = "D";
-				break;
-			case 105:
-				action_inp = "i";
-				break;
-			case 106:
-				action_inp = "j";
-				break;
-			case 107:
-				action_inp = "k";
-				break;
-			case 108:
-				action_inp = "l";
-				break;
-			case 73:
-				action_inp = "I";
-				break;
-			case 74:
-				action_inp = "J";
-				break;
-			case 75:
-				action_inp = "K";
-				break;
-			case 76:
-				action_inp = "L";
-				break;
-			case 109:
-				action_inp = "m";
-				break;
-			case 77:
-				action_inp = "M";
-				break;
+				case 119:
+					action_inp = "w";
+					break;
+				case 97:
+					action_inp = "a";
+					break;
+				case 115:
+					action_inp = "s";
+					break;
+				case 100:
+					action_inp = "d";
+					break;
+				case 87:
+					action_inp = "W";
+					break;
+				case 65:
+					action_inp = "A";
+					break;
+				case 83:
+					action_inp = "S";
+					break;
+				case 68:
+					action_inp = "D";
+					break;
+				case 105:
+					action_inp = "i";
+					break;
+				case 106:
+					action_inp = "j";
+					break;
+				case 107:
+					action_inp = "k";
+					break;
+				case 108:
+					action_inp = "l";
+					break;
+				case 73:
+					action_inp = "I";
+					break;
+				case 74:
+					action_inp = "J";
+					break;
+				case 75:
+					action_inp = "K";
+					break;
+				case 76:
+					action_inp = "L";
+					break;
+				case 109:
+					action_inp = "m";
+					break;
+				case 77:
+					action_inp = "M";
+					break;
 			}
 
 			if (action_inp == "") {
@@ -187,37 +178,172 @@ void Game::start()
 		}
 
 		// For player movement (WASD)
-		if ((action_inp == "w" || action_inp == "W") && swordsman.get_pos(0) > 0 && board.get_board(swordsman.get_pos(0) - 1, swordsman.get_pos(1)) == 0) {
+		if ((action_inp == "w" || action_inp == "W") && swordsman.get_pos(0) > 0 && board.get_board(swordsman.get_pos(0) - 1, swordsman.get_pos(1)) <= 0) {
+
+			if (prev_block[0] != -1)
+				prev_block[3] = 1;
+			if (prev_block[4] != -1)
+				prev_block[7] += 1;
+
+			if (board.get_board(swordsman.get_pos(0) - 1, swordsman.get_pos(1)) < 0) {
+				if (prev_block[0] == -1) {
+					prev_block[0] = swordsman.get_pos(0) - 1;
+					prev_block[1] = swordsman.get_pos(1);
+					prev_block[2] = board.get_board(swordsman.get_pos(0) - 1, swordsman.get_pos(1));
+				}
+				else {
+					prev_block[4] = swordsman.get_pos(0) - 1;
+					prev_block[5] = swordsman.get_pos(1);
+					prev_block[6] = board.get_board(swordsman.get_pos(0) - 1, swordsman.get_pos(1));
+				}
+			}
+
 			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 0);
 			swordsman.move('W');
 			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 1);
 
 			if (swordsman.get_pos(0) < 143)
 				board.move_cam('W');
+
+			if (prev_block[0] != -1 && prev_block[3] == 1) {
+				board.set_board(prev_block[0], prev_block[1], prev_block[2]);
+				prev_block[0] = -1;
+				prev_block[1] = -1;
+				prev_block[2] = 0;
+				prev_block[3] = 0;
+			}
+			else if (prev_block[4] != -1 && prev_block[7] == 1) {
+				board.set_board(prev_block[4], prev_block[5], prev_block[6]);
+				prev_block[4] = -1;
+				prev_block[5] = -1;
+				prev_block[6] = 0;
+				prev_block[7] = 0;
+			}
 		}
-		else if ((action_inp == "a" || action_inp == "A") && swordsman.get_pos(1) > 0 && board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) - 1) == 0) {
+		else if ((action_inp == "a" || action_inp == "A") && swordsman.get_pos(1) > 0 && board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) - 1) <= 0) {
+
+			if (prev_block[0] != -1)
+				prev_block[3] = 1;
+			if (prev_block[4] != -1)
+				prev_block[7] += 1;
+
+			if (board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) - 1) < 0) {
+				if (prev_block[0] == -1) {
+					prev_block[0] = swordsman.get_pos(0);
+					prev_block[1] = swordsman.get_pos(1) - 1;
+					prev_block[2] = board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) - 1);
+				}
+				else {
+					prev_block[4] = swordsman.get_pos(0);
+					prev_block[5] = swordsman.get_pos(1) - 1;
+					prev_block[6] = board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) - 1);
+				}
+			}
+
 			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 0);
 			swordsman.move('A');
 			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 1);
 
 			if (swordsman.get_pos(1) < 135)
 				board.move_cam('A');
+
+			if (prev_block[0] != -1 && prev_block[3] == 1) {
+				board.set_board(prev_block[0], prev_block[1], prev_block[2]);
+				prev_block[0] = -1;
+				prev_block[1] = -1;
+				prev_block[2] = 0;
+				prev_block[3] = 0;
+			}
+			else if (prev_block[4] != -1 && prev_block[7] == 1) {
+				board.set_board(prev_block[4], prev_block[5], prev_block[6]);
+				prev_block[4] = -1;
+				prev_block[5] = -1;
+				prev_block[6] = 0;
+				prev_block[7] = 0;
+			}
 		}
-		else if ((action_inp == "s" || action_inp == "S") && swordsman.get_pos(0) < 150 && board.get_board(swordsman.get_pos(0) + 1, swordsman.get_pos(1)) == 0) {
+		else if ((action_inp == "s" || action_inp == "S") && swordsman.get_pos(0) < 150 && board.get_board(swordsman.get_pos(0) + 1, swordsman.get_pos(1)) <= 0) {
+
+			if (prev_block[0] != -1)
+				prev_block[3] = 1;
+			if (prev_block[4] != -1)
+				prev_block[7] += 1;
+
+			if (board.get_board(swordsman.get_pos(0) + 1, swordsman.get_pos(1)) < 0) {
+				if (prev_block[0] == -1) {
+					prev_block[0] = swordsman.get_pos(0) + 1;
+					prev_block[1] = swordsman.get_pos(1);
+					prev_block[2] = board.get_board(swordsman.get_pos(0) + 1, swordsman.get_pos(1));
+				}
+				else {
+					prev_block[4] = swordsman.get_pos(0) + 1;
+					prev_block[5] = swordsman.get_pos(1);
+					prev_block[6] = board.get_board(swordsman.get_pos(0) + 1, swordsman.get_pos(1));
+				}
+			}
+
 			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 0);
 			swordsman.move('S');
 			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 1);
 
 			if (swordsman.get_pos(0) > 7)
 				board.move_cam('S');
+
+			if (prev_block[0] != -1 && prev_block[3] == 1) {
+				board.set_board(prev_block[0], prev_block[1], prev_block[2]);
+				prev_block[0] = -1;
+				prev_block[1] = -1;
+				prev_block[2] = 0;
+				prev_block[3] = 0;
+			}
+			else if (prev_block[4] != -1 && prev_block[7] == 1) {
+				board.set_board(prev_block[4], prev_block[5], prev_block[6]);
+				prev_block[4] = -1;
+				prev_block[5] = -1;
+				prev_block[6] = 0;
+				prev_block[7] = 0;
+			}
 		}
-		else if ((action_inp == "d" || action_inp == "D") && swordsman.get_pos(1) < 150 && board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) + 1) == 0) {
+		else if ((action_inp == "d" || action_inp == "D") && swordsman.get_pos(1) < 150 && board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) + 1) <= 0) {
+
+			if (prev_block[0] != -1)
+				prev_block[3] = 1;
+			if (prev_block[4] != -1)
+				prev_block[7] += 1;
+
+			if (board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) + 1) < 0) {
+				if (prev_block[0] == -1) {
+					prev_block[0] = swordsman.get_pos(0);
+					prev_block[1] = swordsman.get_pos(1) + 1;
+					prev_block[2] = board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) + 1);
+				}
+				else {
+					prev_block[4] = swordsman.get_pos(0);
+					prev_block[5] = swordsman.get_pos(1) + 1;
+					prev_block[6] = board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) + 1);
+				}
+			}
+
 			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 0);
 			swordsman.move('D');
 			board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 1);
 
 			if (swordsman.get_pos(1) > 15)
 				board.move_cam('D');
+
+			if (prev_block[0] != -1 && prev_block[3] == 1) {
+				board.set_board(prev_block[0], prev_block[1], prev_block[2]);
+				prev_block[0] = -1;
+				prev_block[1] = -1;
+				prev_block[2] = 0;
+				prev_block[3] = 0;
+			} else if (prev_block[4] != -1 && prev_block[7] == 1) {
+				board.set_board(prev_block[4], prev_block[5], prev_block[6]);
+				prev_block[4] = -1;
+				prev_block[5] = -1;
+				prev_block[6] = 0;
+				prev_block[7] = 0;
+			}
 		}
 
 		// For player interaction with landmarks (IJKL)

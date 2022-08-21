@@ -258,6 +258,9 @@ void Board::print_map()
 			}
 
 			switch (board_data[(i * 151) + i2]) {
+				case -1:
+					Common::color_print(0x70, "#");
+					break;
 				case 1:
 					Common::color_print(0X0B, "P");
 					break;
@@ -498,6 +501,9 @@ void Board::move_cam(char dir)
 void Board::print_with_id(short id)
 {
 	switch (id) {
+		case -1:
+			Common::color_print(0x70, "TTT");
+			break;
 		case 1:
 			Common::color_print(0X0B, "PLY");
 			break;

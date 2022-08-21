@@ -120,7 +120,7 @@ char Shop::open_shop(int player_coins)
 	std::cout << "You currently have " << player_coins << "G on hand.       ";
 
 	std::string shop_inp = "";
-	Common::color_print(36, 26, 0x07, "What would you like to buy? Enter item number to buy");
+	Common::color_print(30, 26, 0x07, "What would you like to buy? Enter item number to buy (B for back)");
 
 	bool tmp_flag = true;
 	while (tmp_flag) {
