@@ -2,6 +2,8 @@
 #include "Common.h"
 #include "conio.h"
 #include <iostream>
+#define WIN32_LEAN_AND_MEAN
+#include "Windows.h"
 
 std::string Game::start_menu()
 {
@@ -172,14 +174,16 @@ std::string Game::start_menu()
 
 	Common::color_print(60, 13, 0x60, "  ");
 
-	Common::color_print(52, 23, 0x0F, "Press any key to start");
+	Common::color_print(49, 23, 0x0A, ">> ");
+	Common::color_print(0x0F, "Press any key to start");
+	Common::color_print(0x0A, " <<");
 
 	int c = _getch();
 	if (c == 224) {
 		c = _getch();
 	}
 
-	Common::color_print(52, 23, 0x0F, "                      ");
+	Common::color_print(49, 23, 0x0F, "                            ");
 
 
 	for (int i = 22; i < 27; ++i) {

@@ -942,6 +942,12 @@ void Game::board_gen()
 		board.set_board(29, (2 + i), 44);
 	}
 	board.set_board(30, 3, 43);
+	board.set_board(23, 14, 44); // #11
+	for (int i = 0; i < 3; i++)
+	{
+		board.set_board(24, (13 + i), 44);
+	}
+	board.set_board(25, 14, 43);
 	//Flowers
 	//Sunflower
 	board.set_board(38, 4, 53);

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <random>
 #include <chrono>
+#include "conio.h"
 #define WIN32_LEAN_AND_MEAN
 #include "Windows.h"
 
@@ -119,6 +120,20 @@ int Common::int_len(unsigned num)
 		ret++;
 	}
 	return ret + 1;
+}
+
+void Common::any_key_press()
+{
+	int c = _getch();
+	if (c == 224) {
+		c = _getch();
+	}
+}
+
+void Common::any_key_press(std::string txt)
+{
+	std::cout << txt;
+	any_key_press();
 }
 
 Common::Timer::Timer()

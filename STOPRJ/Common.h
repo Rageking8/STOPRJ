@@ -36,6 +36,12 @@ namespace Common
 	// Get length of integer (number of digits)
 	int int_len(unsigned num);
 
+	// Wait for any key to be pressed before proceeding
+	void any_key_press();
+
+	// Print text before waiting
+	void any_key_press(std::string txt);
+
 	// Timer starts when object is instantiated and ends when the end() member function is called
 	// Return time elapsed unit is in nanoseconds (1 second = 1,000,000,000 nanoseconds)
 	class Timer {

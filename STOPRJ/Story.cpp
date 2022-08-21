@@ -42,7 +42,7 @@ void Story::prologue()
 
 	Common::write_ani("Good luck, " + name + ". I leave this paramount task in your capable hands.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::foundCart(bool coin)
@@ -64,7 +64,7 @@ void Story::foundCart(bool coin)
 	Common::write_ani("If the elves' cart is here, then that probably means the Kingdom of Elves is nearby, and\n"
 					  "I'm on the right track. I wonder why the cart is like this, though...\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::meetElora()
@@ -83,7 +83,7 @@ void Story::meetElora()
 	Common::write_ani("Wait! I'm not here to fight!\n\n"
 					  "The Elves seem to have disregarded your claim, and are challenging you to a BATTLE!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::winElora()
@@ -121,7 +121,7 @@ void Story::winElora()
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Got it, I'll do my best.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::loseElora()
@@ -176,7 +176,7 @@ void Story::loseElora()
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Got it, I'll do my best.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::eloraQuest_inProgress()
@@ -187,7 +187,7 @@ void Story::eloraQuest_inProgress()
 	Common::write_ani("The bandits were last seen west from here, on the path connecting\n"
 					  "our kingdom and Caershire. Hopefully they are manageable for you.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::recruitElora()
@@ -220,7 +220,7 @@ void Story::recruitElora()
 	Common::color_print(0x0a, "ELORA ");
 	Common::write_ani("has been recruited to your party!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::outsideOrionResidence()
@@ -249,7 +249,7 @@ void Story::outsideOrionResidence()
 	Common::write_ani("Maybe he's really busy right now. Let's find our last party member first, and then\n"
 					  "come back here later.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::meetOrion()
@@ -274,7 +274,7 @@ void Story::meetOrion()
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("Darned kids, I swear... Fine, I'll let you two help out.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::recruitOrion_main()
@@ -305,7 +305,7 @@ void Story::recruitOrion_main()
 	Common::color_print(0x0d, "ORION ");
 	Common::write_ani("has been recruited to your party!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::recruitOrion_eloraDead()
@@ -333,7 +333,7 @@ void Story::recruitOrion_eloraDead()
 	Common::color_print(0x0d, "ORION ");
 	Common::write_ani("has been recruited to your party!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::meetBlaise_main()
@@ -393,7 +393,7 @@ void Story::killBlaise_main()
 	Common::write_ani("I think so, too. Maybe this was for the best.\n"
 					  "Now that we are done here, perhaps we should continue on our journey.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::recruitBlaise_main()
@@ -418,7 +418,7 @@ void Story::recruitBlaise_main()
 	Common::write_ani("Well, regardless of the... tension between you two, I suppose we are still a team.\n"
 					  "Perhaps we should continue on our journey.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::meetBlaise_eloraDead()
@@ -460,7 +460,7 @@ void Story::meetBlaise_eloraDead()
 	Common::write_ani("Just gave the kid what he deserves. Not that it matters now, though. Don't\n"
 					  "you have a task to complete? We should get going.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::meetBlaise_orionDead()
@@ -495,7 +495,7 @@ void Story::meetBlaise_orionDead()
 	Common::write_ani("I am a little worried, since he's an ally of the bandits, but... I trust your judgement, PLAYER.\n"
 					  "Well then, perhaps we should continue our journey.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::meetBlaise_partyDead()
@@ -527,7 +527,7 @@ void Story::meetBlaise_partyDead()
 	Common::write_ani("Now that our alliance has been established, to... wherever it is you need to go\n"
 					  "we go!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::beforeFightDK_main()
@@ -541,7 +541,7 @@ void Story::beforeFightDK_main()
 					  "And now, you lead your party into the throne room, where the Demon\n"
 					  "King is waiting...\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::defeatDK_main()
@@ -563,7 +563,7 @@ void Story::defeatDK_main()
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("Heh, we did what we could.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::defeatDK_blaiseOnly()
@@ -654,7 +654,7 @@ void Story::defeatDK_eloraDead()
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("Heh, I did what I could.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::defeatDK_orionDead()
@@ -676,7 +676,7 @@ void Story::defeatDK_orionDead()
 	Common::color_print(0x0a, "ELORA:\n");
 	Common::write_ani("It was my pleasure to help.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::defeatDK_playerOnly()
@@ -687,7 +687,7 @@ void Story::defeatDK_playerOnly()
 	Common::write_ani("I... I did it. I beat the Demon King. I can bring the treasures back now.\n\n"
 					  "You enter the Demon King's treasure room.\nSure enough, the stolen treasures were in there.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 
 }
 
@@ -726,7 +726,7 @@ void Story::blaiseBetrayal_main()
 	Common::write_ani("It's a fight to the death, so we're going all out! I'm sure I can take\n"
 					  "on all three of you at once!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::blaiseBetrayal_orionDead()
@@ -762,7 +762,7 @@ void Story::blaiseBetrayal_orionDead()
 	Common::write_ani("It's a fight to the death, so we're going all out! I'm sure I can take\n"
 					  "on both of you at once!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::defeatBlaise_main()
@@ -794,7 +794,7 @@ void Story::defeatBlaise_main()
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("...Hmph. Good riddance.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::defeatBlaise_orionDead()
@@ -822,7 +822,7 @@ void Story::defeatBlaise_orionDead()
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Yeah. He really did.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::defeatBlaise_eloraDead()
@@ -853,7 +853,7 @@ void Story::defeatBlaise_eloraDead()
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("...Hmph. Good riddance.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::defeatBlaise_othersDead()
@@ -875,7 +875,7 @@ void Story::defeatBlaise_othersDead()
 
 	Common::color_print(0x0c, "BLAISE.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::ending_main()
@@ -915,7 +915,7 @@ void Story::ending_main()
 					  "party have earned great recognition.\n\n"
 					  "Who knows? Maybe you will have more great adventures like this one.\n\nfin.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::ending_partyMemDead()
@@ -943,7 +943,7 @@ void Story::ending_partyMemDead()
 					  "party have earned great recognition.\n\n"
 					  "Who knows? Maybe you will have more great adventures like this one.\n\nfin.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::ending_playerOnly()
@@ -976,7 +976,7 @@ void Story::ending_playerOnly()
 					  "earned great recognition.\n\n"
 					  "This may not be the ideal outcome, but maybe your next adventure will be better.\n\nfin.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::ending_blaiseAlive()
@@ -1012,7 +1012,7 @@ void Story::ending_blaiseAlive()
 					  "in his words, 'he'll take it.'\n\n"
 					  "Who knows? Maybe you will have more great adventures like this one.\n\nfin.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::gameOver_playerDead()
@@ -1034,7 +1034,7 @@ void Story::gameOver_everyoneDead()
 					  "With no one to stop him, the Demon King ended up gaining more power, and killing\n"
 					  "all who oppose him.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::magicSchool_start()
@@ -1062,7 +1062,7 @@ void Story::magicSchool_accept()
 					  "They were sent to clear out the bandit camp north of Caershire, so\n"
 					  "you could start there.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::magicSchool_decline()
@@ -1072,7 +1072,7 @@ void Story::magicSchool_decline()
 	Common::color_print(0x0d, "PROFESSOR PENDOLF:\n");
 	Common::write_ani("Oh dear, I do hope they're safe...\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::magicSchool_student1Found()
@@ -1084,7 +1084,7 @@ void Story::magicSchool_student1Found()
 					  "AHH! Please don't hurt me! ...Huh? The PROFESSOR sent you out to find me?\n"
 					  "Oh, thank goodness! I don't have to live on berries anymore!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::magicSchool_student2Trapped()
@@ -1104,7 +1104,7 @@ void Story::magicSchool_student2Trapped()
 	Common::write_ani("Hey! What're you trying to do?\n\n"
 					  "The BANDIT guarding the cage has you at knife point, and is challenging you to a BATTLE!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::magicSchool_student2Found()
@@ -1121,7 +1121,7 @@ void Story::magicSchool_student2Found()
 	Common::color_print(0x0d, "WESLEY:\n");
 	Common::write_ani("Ah, finally! It was terribly cramped in there. Thanks for helping me out!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::magicSchool_student3Found()
@@ -1135,7 +1135,7 @@ void Story::magicSchool_student3Found()
 	Common::color_print(0x0d, "CHARLIE:\n");
 	Common::write_ani("Sorry, I got... a little distracted. I'll head back immediately.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::magicSchool_inProgress()
@@ -1145,7 +1145,7 @@ void Story::magicSchool_inProgress()
 	Common::color_print(0x0d, "PROFESSOR PENDOLF:\n");
 	Common::write_ani("Oh dear, oh dear, where could they be?\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::magicSchool_complete()
@@ -1156,7 +1156,7 @@ void Story::magicSchool_complete()
 	Common::write_ani("Oh, thank you, thank you! I knew I could count on you to find them!\n"
 					  "Please, take these as a token of my appreciation!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::KoE_start()
@@ -1177,17 +1177,17 @@ void Story::KoE_accept()
 					  "of jade. They're pretty hard to find, from what I hear, so good luck with\n"
 					  "that!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::KoE_decline()
 {
-		system("cls");
+	system("cls");
 
-		Common::color_print(0x09, "BLACKSMITH:\n");
-		Common::write_ani("Thanks, pal. I'll keep asking around until I get something.\n\n");
+	Common::color_print(0x09, "BLACKSMITH:\n");
+	Common::write_ani("Thanks, pal. I'll keep asking around until I get something.\n\n");
 
-		Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::KoE_inProgress()
@@ -1197,7 +1197,7 @@ void Story::KoE_inProgress()
 	Common::color_print(0x09, "BLACKSMITH:\n");
 	Common::write_ani("I need you to help me find three chunks of jade, pal!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::KoE_complete()
@@ -1214,7 +1214,7 @@ void Story::KoE_complete()
 					  "for you as a token of my appreciation. Here you go, pal!\n\n"
 					  "You obtained the FOREST BOW!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::excalibur_floor1()
@@ -1233,7 +1233,7 @@ void Story::excalibur_floor1()
 					  "have to fight for it!\n\n"
 					  "The BANDITS are challenging you to a BATTLE!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::excalibur_defeatedBandits()
@@ -1251,7 +1251,7 @@ void Story::excalibur_defeatedBandits()
 	Common::write_ani("Fine, we'll let you guys go through. If you end up dying in there, it's\n"
 					  "not our fault.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::excalibur_floor2()
@@ -1260,7 +1260,7 @@ void Story::excalibur_floor2()
 
 	Common::write_ani("This door seems to be locked... It looks like you need a key to unlock it.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::excalibur_doorUnlocked()
@@ -1271,7 +1271,7 @@ void Story::excalibur_doorUnlocked()
 					  ". . .\n\n"
 					  "You can now advance to the next floor!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::excalibur_floor3()
@@ -1287,7 +1287,7 @@ void Story::excalibur_floor3()
 	Common::write_ani("O young one, the STONE GIANT challenges you to a fight.\n"
 					  "Should you be victorious, you shall obtain the EXCALIBUR's might.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::excalibur_giantDefeated()
@@ -1302,7 +1302,7 @@ void Story::excalibur_giantDefeated()
 	Common::write_ani("Go on now, young hero, and pull the EXCALIBUR from its stone.\n"
 					  "From this day forth, its strength shall be your own.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::excalibur_completed()
@@ -1317,7 +1317,7 @@ void Story::excalibur_completed()
 					  "It feels like you've gotten stronger.\n"
 					  "You have obtained the EXCALIBUR!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc1()
@@ -1327,7 +1327,7 @@ void Story::npc1()
 	Common::color_print(0x0d, "NORAH:\n");
 	Common::write_ani("I'm saving up for a new house! This one's way too small for me.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc2()
@@ -1337,7 +1337,7 @@ void Story::npc2()
 	Common::color_print(0x0d, "KINGSLEY:\n");
 	Common::write_ani("How am I going to get this spell right, it's my 100th try...?\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc3()
@@ -1349,7 +1349,7 @@ void Story::npc3()
 					  "hope I can be just like her someday.\n"
 					  "But, I can only cast tiny spells...\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc4()
@@ -1359,7 +1359,7 @@ void Story::npc4()
 	Common::color_print(0x0d, "PETER:\n");
 	Common::write_ani("Welcome to Caershire! I hope you enjoy your visit!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc5()
@@ -1370,7 +1370,7 @@ void Story::npc5()
 	Common::write_ani("Casting healing spells is really tough. The spell sequence are\n"
 					  "so long and complicated!\nIt's really giving me a headache...\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc6()
@@ -1384,7 +1384,7 @@ void Story::npc6()
 	Common::write_ani("What did I wish for, you ask? Hehe, I can't tell you, or it'll never\n"
 					  "come true!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc7()
@@ -1394,7 +1394,7 @@ void Story::npc7()
 	Common::color_print(0x0d, "PROFESSOR PENDOLF:\n");
 	Common::write_ani("Welcome to the School of Magic! Enjoy your stay!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc8_9_10()
@@ -1403,7 +1403,7 @@ void Story::npc8_9_10()
 
 	Common::write_ani("They seem to be busy training...\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc11()
@@ -1416,7 +1416,7 @@ void Story::npc11()
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Thanks. This sure is a wonderful Kingdom.\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc12()
@@ -1430,7 +1430,7 @@ void Story::npc12()
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Amazing!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::npc13()
@@ -1450,7 +1450,7 @@ void Story::npc13()
 	Common::color_print(0x0a, "THALIA:\n");
 	Common::write_ani("Really?\nThanks a lot!\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }
 
 void Story::treasureRoomHint()
@@ -1460,5 +1460,5 @@ void Story::treasureRoomHint()
 	Common::write_ani("You pick up the note on the floor and begin to read it:\n"
 					  "not done yet sorry\n\n");
 
-	Common::input("Press enter to continue ");
+	Common::any_key_press("Press any key to continue");
 }

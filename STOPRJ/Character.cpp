@@ -3,7 +3,7 @@
 Character::Character() : attack{1}, cur_health{}, max_health{}, cur_mp{}, max_mp{}, pos{}
 {
 	name = "";
-	set_item_qty("coin", 20);
+	set_item_qty("coin", 200);
 	recruited = false;
 }
 
