@@ -1056,7 +1056,10 @@ void Game::start()
 				board.set_board(46, 59, 0);
 				board.set_board(8, 31, 78);
 				teleport_ply(71, 54);
+				swordsman.set_stats("cur_hp", 50);
 			}
+
+			board.set_board(64, 41, 0);
 
 			prev_is_map = false;
 			system("cls");
@@ -1143,7 +1146,7 @@ void Game::start()
 		}
 		else if (tmp_target_cell_val == 50) {
 			Common::cursor_vis(false);
-			story.npc4(bandit1_b);
+			story.npc4();
 			prev_is_map = false;
 			system("cls");
 		}

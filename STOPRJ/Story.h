@@ -16,8 +16,7 @@ public:
 	void recruitElora(); // after defeating the bandits on the path
 	void recruitElora_loseBandits(); // losing to the bandits on the path
 
-	void meetOrion_winBandits(); // interacting with orion's door (defeated bandits)
-	void beforeMeetOrion_loseBandits(); // interacting with orion's door (lose to bandits)
+	void meetOrion_winBandits(); // interacting with orion's house (defeated bandits)
 	void meetOrion_loseBandits(); // encountering orion on the path from caershire to the bandit camp (lose to bandits)
 	void recruitOrion_main(); // bandits defeated
 	void recruitOrion_eloraDead(); // bandits defeated but elora dies
@@ -90,7 +89,7 @@ public:
 	void npc1(); // house
 	void npc2(); // house
 	void npc3(); // house
-	void npc4(bool bandits); // entrance to caershire
+	void npc4(); // entrance to caershire
 	void npc5(); // middle
 	void npc6(); // fountain
 	void npc7(); // grand master mage (pendolf) after completing side quest

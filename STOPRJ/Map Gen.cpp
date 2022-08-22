@@ -443,6 +443,7 @@ void Game::board_gen()
 		board.set_board((79 + i), 17, 6); // Fence between house 1 & 2
 	}
 	board.set_board(69, 18, 17);
+	board.set_board(69, 17, -85);
 	board.set_board(69, 16, 17);
 	board.set_board(65, 17, 3); // Shop Icon in Kingdom of Elves
 	// Pond
@@ -465,11 +466,11 @@ void Game::board_gen()
 	for (int i = 0; i < 4; i++)
 	{
 		board.set_board(82, (13 + i), 15); board.set_board(86, (13 + i), 15); //house 1
-		board.set_board(83, 17, 15); board.set_board(85, 17, 15);
+		board.set_board(83, 17, 15); board.set_board(85, 17, 15); board.set_board(84, 17, -84); // Door
 		board.set_board(75, (13 + i), 15); board.set_board(79, (13 + i), 15); //house 2
-		board.set_board(76, 17, 15); board.set_board(78, 17, 15);
+		board.set_board(76, 17, 15); board.set_board(78, 17, 15); board.set_board(77, 17, -84); // Door
 		board.set_board(76, (53 + i), 15); board.set_board(80, (53 + i), 15); //house 3
-		board.set_board(77, 52, 15); board.set_board(79, 52, 15);
+		board.set_board(77, 52, 15); board.set_board(79, 52, 15); board.set_board(78, 52, -84); // Door
 	}
 
 	// Fountain border (Kingdom of Elves)
@@ -611,6 +612,7 @@ void Game::board_gen()
 	// House 2
 	board.set_board(38, 55, 9);
 	board.set_board(40, 55, 9);
+	board.set_board(39, 55, -84); // Door
 	for (int i = 56; i < 61; ++i) // Row 
 	{
 		board.set_board(37, i, 9);
@@ -635,6 +637,7 @@ void Game::board_gen()
 	// House 4
 	board.set_board(52, 55, 9);
 	board.set_board(54, 55, 9);
+	board.set_board(53, 55, -84); // Door
 	for (int i = 56; i < 61; ++i) // Row 
 	{
 		board.set_board(51, i, 9);
@@ -646,6 +649,7 @@ void Game::board_gen()
 	// House 5
 	board.set_board(51, 49, 9);
 	board.set_board(51, 47, 9);
+	board.set_board(51, 48, -85); // Door
 	for (int i = 46; i < 51; ++i) // Row 
 		board.set_board(56, i, 9);
 
@@ -657,6 +661,7 @@ void Game::board_gen()
 	// House 6
 	board.set_board(51, 42, 9);
 	board.set_board(51, 40, 9);
+	board.set_board(51, 41, -85); // Door
 	for (int i = 39; i < 44; ++i) // Row 
 		board.set_board(56, i, 9);
 
@@ -668,6 +673,7 @@ void Game::board_gen()
 	// House 7
 	board.set_board(51, 35, 9);
 	board.set_board(51, 33, 9);
+	board.set_board(51, 34, -85); // Door
 	for (int i = 32; i < 37; ++i) // Row 
 		board.set_board(56, i, 9);
 
@@ -699,6 +705,7 @@ void Game::board_gen()
 
 	// Mage Town Shophouse
 	board.set_board(31, 55, 17);
+	board.set_board(32, 55, -84);
 	board.set_board(33, 55, 17);
 	for (int i = 56; i < 61; ++i) // Row 
 	{
@@ -1286,27 +1293,39 @@ void Game::board_gen()
 	}
 
 	board.set_board(134, 6, 18); // 1
+	board.set_board(135, 6, -84); // Door
 	board.set_board(136, 6, 18); // 1
 	board.set_board(140, 6, 18); // 2
+	board.set_board(141, 6, -84); // Door
 	board.set_board(142, 6, 18); // 2
 	board.set_board(146, 6, 18); // 3
+	board.set_board(147, 6, -84); // Door
 	board.set_board(148, 6, 18); // 3
 	board.set_board(144, 11, 18); // 4
+	board.set_board(144, 12, -85); // Door
 	board.set_board(144, 13, 18); // 4
 	board.set_board(144, 19, 18); // 5
+	board.set_board(144, 20, -85); // Door
 	board.set_board(144, 21, 18); // 5
 	board.set_board(144, 27, 18); // 6
+	board.set_board(144, 28, -85); // Door
 	board.set_board(144, 29, 18); // 6
 	board.set_board(144, 35, 18); // 7
+	board.set_board(144, 36, -85); // Door
 	board.set_board(144, 37, 18); // 7
 	board.set_board(144, 43, 18); // 8
+	board.set_board(144, 44, -85); // Door
 	board.set_board(144, 45, 18); // 8
 	board.set_board(144, 51, 18); // 9
+	board.set_board(144, 52, -85); // Door
 	board.set_board(144, 53, 18); // 9
 	board.set_board(144, 59, 18); // 10
+	board.set_board(144, 60, -85); // Door
 	board.set_board(144, 61, 18); // 10
 	board.set_board(144, 67, 18); // 11
+	board.set_board(144, 68, -85); // Door
 	board.set_board(144, 69, 18); // 11
+
 	// Fountain border (Swordsman Town)
 	for (int i = 0; i < 3; ++i) {
 		board.set_board(137, (43 + i), 2);

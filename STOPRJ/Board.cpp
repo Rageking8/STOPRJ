@@ -221,7 +221,12 @@ void Board::print_map()
 			}
 
 			switch (board_data[(i * 151) + i2]) {
-				
+				case -85: // Door Vertical
+					Common::color_print(0X0E, "=");
+					break;
+				case -84: // Door Horizontal
+					Common::color_print(0X0E, "=");
+					break;
 				case -67: // Green Carpet hori
 					Common::color_print(0X02, "=");
 					break;
@@ -510,8 +515,11 @@ void Board::move_cam(char dir)
 void Board::print_with_id(short id)
 {
 	switch (id) {
-		case -84: // Orions Door
-			Common::color_print(0X0E, " *|");
+		case -85: // Door Vertical
+			Common::color_print(0X0E, "[-]");
+			break;
+		case -84: // Door Horizontal
+			Common::color_print(0X0E, "[|]");
 			break;
 		case -67: // Green Carpet hori
 			Common::color_print(0X20, "___");
@@ -766,7 +774,7 @@ void Board::print_with_id(short id)
 			Common::color_print(0X80, "#");
 			break;
 		case 72: // NPCs in Swordsman town
-			Common::color_print(0X05, "SwD"); // Guards
+			Common::color_print(0X0E, "GuR"); // Guards
 			break;
 		case 73: // Emperor
 			Common::color_print(0X06, "EMP");
