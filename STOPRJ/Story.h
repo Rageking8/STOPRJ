@@ -7,7 +7,7 @@ public:
 	void set_player_name(std::string inp);
 
 	void prologue(); // after starting the game
-	void foundCart(bool coin); // interact
+	void foundCart(bool coin); // interact with the cart
 
 	void meetElora(); // elf ambush
 	void winElora();
@@ -17,8 +17,8 @@ public:
 
 	void outsideOrionResidence(); // interacting with orion's door
 	void meetOrion(); // encountering orion on the path from caershire to the bandit camp
-	void recruitOrion_main(); // defeat bandits
-	void recruitOrion_eloraDead(); // defeat bandits but elora dies
+	void recruitOrion_main(); // bandits defeated
+	void recruitOrion_eloraDead(); // bandits defeated but elora dies
 
 	void meetBlaise_main(); // entering treasure room if all party members are alive (choice input after this)
 	void killBlaise_main();
@@ -39,7 +39,7 @@ public:
 	void defeatDK_orionDead(); // only player, elora and blaise are alive
 	void defeatDK_playerOnly(); // only player is alive
 
-	void blaiseBetrayal_main(); // every party member is alive
+	void blaiseBetrayal_main(); // check if every party member (including blaise) is alive
 	void blaiseBetrayal_orionDead(); // only player, elora and blaise are alive
 	void defeatBlaise_main();
 	void defeatBlaise_orionDead();
@@ -56,26 +56,26 @@ public:
 
 	// caershire magic school side quest: find the missing students
 	// reward: armour + 2 MP potions + 20 gold
-	void magicSchool_start();
-	void magicSchool_accept(); // "i can help you look for them"
-	void magicSchool_decline(); // "that's concerning"
+	void magicSchool_start(); // interact with grand master mage pendolf
+	void magicSchool_accept(); // "i can help you look for them."
+	void magicSchool_decline(); // "that's concerning."
 	void magicSchool_student1Found(); //student 1 is lost
-	void magicSchool_student2Trapped(); //student 2 is trapped in a cage
-	void magicSchool_student2Found();
+	void magicSchool_student2Trapped(); // student 2 is trapped in a cage
+	void magicSchool_student2Found(); // after defeating the bandit
 	void magicSchool_student3Found(); //student 3 got distracted by their garden
-	void magicSchool_inProgress();
-	void magicSchool_complete();
+	void magicSchool_inProgress(); // interacting with pendolf before all 3 students are found
+	void magicSchool_complete(); // interacting with pendolf once all 3 students are found
 
-	// kingdom of elves side quest: elora's bow
-	// reward: forest bow (+10 attack)
+	// kingdom of elves side quest: find jade
+	// reward: sword
 	void KoE_start();
-	void KoE_accept(); // "i could help you find them"
+	void KoE_accept(); // "i could help you find them."
 	void KoE_decline(); // "good luck!"
 	void KoE_inProgress();
 	void KoE_complete();
 
 	// excalibur dungeon quest
-	// reward: excalibur (+??? attack)
+	// reward: excalibur (+??? attack) (maybe auto-equip?)
 	void excalibur_floor1(); // player interacts with the bandits
 	void excalibur_defeatedBandits();
 	void excalibur_floor2(); // player tries to go through door without the key
@@ -104,4 +104,3 @@ public:
 private:
 	std::string name;
 };
-

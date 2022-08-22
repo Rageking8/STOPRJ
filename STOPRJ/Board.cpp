@@ -258,6 +258,49 @@ void Board::print_map()
 			}
 
 			switch (board_data[(i * 151) + i2]) {
+				
+				case -67: // Green Carpet hori
+					Common::color_print(0X02, "=");
+					break;
+				case -66: // Gren Carpet vert
+					Common::color_print(0X02, "=");
+					break;
+				case -64: // Red Carpet hori
+					Common::color_print(0X04, "=");
+					break;
+				case -63: // Red Carpet vert
+					Common::color_print(0X04, "=");
+					break;
+				case -61: // Gold Coins
+					Common::color_print(0X06, "$");
+					break;
+				case -55: // Lavender
+					Common::color_print(0X05, "=");
+					break;
+				case -54: // Rose
+					Common::color_print(0X04, "=");
+					break;
+				case -53: // Sunflower
+					Common::color_print(0X06, "=");
+					break;
+				case -42: // Grass Block
+					Common::color_print(0X0A, "=");
+					break;
+				case -39: //Stairs/Step right
+					Common::color_print(0X08, "=");
+					break;
+				case -38: //Stairs/Step left
+					Common::color_print(0X08, "=");
+					break;
+				case -36: //Chair facing left
+					Common::color_print(0X0C, "=");
+					break;
+				case -35: //Chair facing right
+					Common::color_print(0X0C, "=");
+					break;
+				case -30: // Grass + Flower
+					Common::color_print(0X02, "=");
+					break;
 				case -1:
 					Common::color_print(0x70, "#");
 					break;
@@ -345,9 +388,6 @@ void Board::print_map()
 				case 29: // Kingdom of Elves Leader
 					Common::color_print(0X70, "?");
 					break;
-				case 30: // Grass + Flower
-					Common::color_print(0X02, "#");
-					break;
 				case 31: // Chest
 					Common::color_print(0X70, "?");
 					break;
@@ -360,29 +400,14 @@ void Board::print_map()
 				case 34: // Dining Table
 					Common::color_print(0X06, "#");
 					break;
-				case 35: //Chair facing right
-					Common::color_print(0X0C, "#");
-					break;
-				case 36: //Chair facing left
-					Common::color_print(0X0C, "#");
-					break;
 				case 37: // Fire wood 2
 					Common::color_print(0X04, "#");
-					break;
-				case 38: //Stairs/Step left
-					Common::color_print(0X08, "#");
-					break;
-				case 39: //Stairs/Step right
-					Common::color_print(0X08, "#");
 					break;
 				case 40: // Skeleton
 					Common::color_print(0X70, "?");
 					break;
 				case 41: // Demon
 					Common::color_print(0X70, "?");
-					break;
-				case 42: // Grass Block
-					Common::color_print(0X0A, "#");
 					break;
 				case 43: // Redwood tree trunk
 					Common::color_print(0X0C, "#");
@@ -414,15 +439,6 @@ void Board::print_map()
 				case 52: // Mage troop 7 - Third Mage NPC Saying a wish at the fountain #6
 					Common::color_print(0X70, "?");
 					break;
-				case 53: // Sunflower
-					Common::color_print(0X06, "#");
-					break;
-				case 54: // Rose
-					Common::color_print(0X04, "#");
-					break;
-				case 55: // Lavender
-					Common::color_print(0X05, "#");
-					break;
 				case 56: // Cage
 					Common::color_print(0X08, "#");
 					break;
@@ -435,20 +451,8 @@ void Board::print_map()
 				case 62: // Demon kinng castle walls
 					Common::color_print(0X04, "#");
 					break;
-				case 63: // Red Carpet vert
-					Common::color_print(0X04, "#");
-					break;
-				case 64: // Red Carpet hori
-					Common::color_print(0X04, "#");
-					break;
 				case 65: // Dungeon Walls
 					Common::color_print(0X08, "#");
-					break;
-				case 66: // Gren Carpet vert
-					Common::color_print(0X02, "#");
-					break;
-				case 67: // Green Carpet hori
-					Common::color_print(0X02, "#");
 					break;
 				case 68: // Excalibur Sword
 					Common::color_print(0X70, "?");
@@ -501,6 +505,62 @@ void Board::move_cam(char dir)
 void Board::print_with_id(short id)
 {
 	switch (id) {
+		case -67: // Green Carpet hori
+			Common::color_print(0X20, "___");
+			break;
+		case -66: // Gren Carpet vert
+			Common::color_print(0X20, " | ");
+			break;
+		case -64: // Red Carpet hori
+			Common::color_print(0X40, "___");
+			break;
+		case -63: // Red Carpet vert
+			Common::color_print(0X40, " | ");
+			break;
+		case -61: // Gold Coins
+			Common::color_print(0X6F, " $ ");
+			break;
+		case -55: // Lavender
+			Common::color_print(0X00, " ");
+			Common::color_print(0X5D, "#");
+			Common::color_print(0X00, " ");
+			break;
+		case -54: // Rose
+			Common::color_print(0X00, " ");
+			Common::color_print(0X4C, "@");
+			Common::color_print(0X00, " ");
+			break;
+		case -53: // Sunflower
+			Common::color_print(0X00, " ");
+			Common::color_print(0X60, "*");
+			Common::color_print(0X00, " ");
+			break;
+		case -42: // Grass Block
+			Common::color_print(0XA2, " + ");
+			break;
+		case -39: // Stairs/Step right
+			Common::color_print(0X80, "  ");
+			Common::color_print(0X70, " ");
+			break;
+		case -38: // Stairs/Step left
+			Common::color_print(0X70, " ");
+			Common::color_print(0X80, "  ");
+			break;
+		case -36: // Chair facing left
+			Common::color_print(0XC0, " ");
+			Common::color_print(0XC0, " ");
+			Common::color_print(0X40, " ");
+			break;
+		case -35: // Chair facing right
+			Common::color_print(0X40, " ");
+			Common::color_print(0XC0, " ");
+			Common::color_print(0XC0, " ");
+			break;
+		case -30: // Grass + Flower
+			Common::color_print(0X20, " ");
+			Common::color_print(0X4E, "*");
+			Common::color_print(0X20, " ");
+			break;
 		case -1:
 			Common::color_print(0x70, "TTT");
 			break;
@@ -595,11 +655,6 @@ void Board::print_with_id(short id)
 		case 29: // Kingdom of Elves Leader
 			Common::color_print(0X0A, "Elr");
 			break;
-		case 30: // Grass + Flower
-			Common::color_print(0X20, " ");
-			Common::color_print(0X4E, "*");
-			Common::color_print(0X20, " ");
-			break;
 		case 31: // Chest
 			Common::color_print(0XE0, " + ");
 			break;
@@ -612,35 +667,14 @@ void Board::print_with_id(short id)
 		case 34: // Dining Table
 			Common::color_print(0X60, "| |");
 			break;
-		case 35: // Chair facing right
-			Common::color_print(0X40, " ");
-			Common::color_print(0XC0, " ");
-			Common::color_print(0XC0, " ");
-			break;
-		case 36: // Chair facing left
-			Common::color_print(0XC0, " ");
-			Common::color_print(0XC0, " ");
-			Common::color_print(0X40, " ");
-			break;
 		case 37: // Fire wood 2
 			Common::color_print(0X04, " = ");
-			break;
-		case 38: // Stairs/Step left
-			Common::color_print(0X70, " ");
-			Common::color_print(0X80, "  ");
-			break;
-		case 39: // Stairs/Step right
-			Common::color_print(0X80, "  ");
-			Common::color_print(0X70, " ");
 			break;
 		case 40: // Skeleton
 			Common::color_print(0X04, " S ");
 			break;
 		case 41: // Demon
 			Common::color_print(0X05, " D ");
-			break;
-		case 42: // Grass Block
-			Common::color_print(0XA2, " + ");
 			break;
 		case 43: // Redwood tree trunk
 			Common::color_print(0XC4, " @ ");
@@ -672,21 +706,6 @@ void Board::print_with_id(short id)
 		case 52: // Mage troop 7 - Third Mage NPC Saying a wish at the fountain #6
 			Common::color_print(0X0D, " M ");
 			break;
-		case 53: // Sunflower
-			Common::color_print(0X00, " ");
-			Common::color_print(0X60, "*");
-			Common::color_print(0X00, " ");
-			break;
-		case 54: // Rose
-			Common::color_print(0X00, " ");
-			Common::color_print(0X4C, "@");
-			Common::color_print(0X00, " ");
-			break;
-		case 55: // Lavender
-			Common::color_print(0X00, " ");
-			Common::color_print(0X5D, "#");
-			Common::color_print(0X00, " ");
-			break;
 		case 56: // Cage
 			Common::color_print(0X80, " ");
 			Common::color_print(0X78, "=");
@@ -712,22 +731,10 @@ void Board::print_with_id(short id)
 			Common::color_print(0XC0, "=");
 			Common::color_print(0X40, "=");
 			break;
-		case 63: // Red Carpet vert
-			Common::color_print(0X40, " | ");
-			break;
-		case 64: // Red Carpet hori
-			Common::color_print(0X40, "___");
-			break;
 		case 65: // Dungeon Walls
 			Common::color_print(0X80, "#");
 			Common::color_print(0X70, "#");
 			Common::color_print(0X80, "#");
-			break;
-		case 66: // Gren Carpet vert
-			Common::color_print(0X20, " | ");
-			break;
-		case 67: // Green Carpet hori
-			Common::color_print(0X20, "___");
 			break;
 		case 68: // Excalibur Sword
 			Common::color_print(0X80, "_");

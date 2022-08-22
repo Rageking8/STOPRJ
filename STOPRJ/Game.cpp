@@ -49,8 +49,6 @@ Game::Game() : trigger_counter{}
 	for (int i = 95; i < 100; ++i) {
 		board.set_board(i, 47, 6);
 	}
-
-	board.set_board(135, 8, -1);
 }
 
 Game::~Game()
