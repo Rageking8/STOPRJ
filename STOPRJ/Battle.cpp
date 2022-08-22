@@ -4,8 +4,9 @@
 #define WIN32_LEAN_AND_MEAN
 #include "Windows.h"
 
-void Game::start_battle(std::string id)
+bool Game::start_battle(std::string id)
 {
+	bool ret = false;
 	Common::cursor_vis(true);
 	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
@@ -25,8 +26,8 @@ void Game::start_battle(std::string id)
 	else if (id == "bandit_1") {
 		for (int i = 0; i < 4; ++i) {
 			enemy[i].set_name("Bandits");
-			enemy[i].set_stats("cur_health", 5);
-			enemy[i].set_stats("max_health", 5);
+			enemy[i].set_stats("cur_health", 10);
+			enemy[i].set_stats("max_health", 10);
 			enemy[i].set_stats("cur_mp", 25);
 			enemy[i].set_stats("max_mp", 25);
 			enemy[i].init_skill("danger_poke", "strength_dart", "bomb", "backstab");
@@ -367,20 +368,19 @@ void Game::start_battle(std::string id)
 							story.recruitElora();
 							elf.set_recruited(true);
 						}
+						ret = true;
 
 						break;
 					}
 					else if (!slot_active[4] && !slot_active[5] && !slot_active[6] && !slot_active[7]) {
 						// Ally all dead
 
-						if (id == "ambush") {
-							story.loseElora();
-						}
-						else if (id == "bandit_1") {
+						if (id == "bandit_1") {
 
-							// Handle bandit_1 player lose
+							story.recruitElora_loseBandits();
 
 						}
+						ret = false;
 
 						break;
 					}
@@ -498,19 +498,19 @@ void Game::start_battle(std::string id)
 					story.recruitElora();
 					elf.set_recruited(true);
 				}
+				ret = true;
 
 				break;
 			}
 			else if (!slot_active[4] && !slot_active[5] && !slot_active[6] && !slot_active[7]) {
 				// Ally all dead
 
-				if (id == "ambush") {
-					story.loseElora();
+				if (id == "bandit_1") {
+
+					story.recruitElora_loseBandits();
+
 				}
-				else if (id == "bandit_1") {
-					
-					// Handle bandit_1 player lose
-				}
+				ret = false;
 
 				break;
 			}
@@ -538,10 +538,11 @@ void Game::start_battle(std::string id)
 				}
 			}
 
-			Sleep(1000);
+			Sleep(700);
 		}
 
 		Common::set_cursor(47, 28);
 		std::cout << " ";
 	}
+	return ret;
 }

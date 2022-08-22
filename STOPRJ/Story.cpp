@@ -10,6 +10,17 @@ void Story::set_player_name(std::string inp)
 	name = inp;
 }
 
+void Story::after_start_menu()
+{
+	system("cls");
+
+	Common::write_ani("To: Knight " + name + "\n\n"
+					  "The Emperor has requested your attendance. Please head to the castle immediately\n"
+					  "after receiving and opening this letter.\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
 void Story::prologue()
 {
 	system("cls");
@@ -118,60 +129,12 @@ void Story::winElora()
 					  "I believe some of them were last seen west from here, on the path connecting\n"
 					  "our kingdom and Caershire.\n\n");
 
-	Common::color_print(0x0b, name + ":\n");
-	Common::write_ani("Got it, I'll do my best.\n\n");
-
-	Common::any_key_press("Press any key to continue");
-}
-
-void Story::loseElora()
-{
-	system("cls");
-
-	Common::color_print(0x0a, "STRONG ELF:\n");
-	Common::write_ani("Hmph, we will be taking you with us, and you will be answering our questions.\n\n"
-					  "You have been captured by the elves...\nThey tossed you into a cell, and all you could do was wait.\n\n");
-
-	Common::write_ani(". . .\n\n"
-					  "The next day, you were taken to an interrogation room, where the STRONG ELF was waiting.\n\n");
-
-	Common::color_print(0x0b, name + ":\n");
-	Common::write_ani("Before you say anything, there's been a misunderstanding, I'm not with the bandits.\n"
-					  "If you don't believe me, you could always ask the guards to search me.\n\n");
-
-	Common::color_print(0x0a, "STRONG ELF:\n");
-	Common::write_ani("...Very well. You two over there, search this individual's belongings!\n\n"
-					  "The guards inspected you and your belongings, but they couldn't find any\n"
-					  "indication of you being a bandit.\n\n");
-
-	Common::color_print(0x0a, "STRONG ELF:\n");
-	Common::write_ani("...It seems I may have made a mistake.\n"
-					  "I sincerely apologise for this misunderstanding. I was merely worried\n"
-					  "about the bandits invading our kingdom. Let me patch you up.\n\n"
-					  "The STRONG ELF provides you with medical assistance and brings you back to full health.\n\n");
-
-	Common::color_print(0x0a, "STRONG ELF:\n");
-	Common::write_ani("I believe I should formally introduce myself.\n\n");
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("I would advise you to first pay a visit to our SHOP, and purchase some\n"
+					  "equipment. It's the yellow building also to the west from here.\n\n");
 
 	Common::color_print(0x0a, "ELORA:\n");
-	Common::write_ani("My name is ELORA. I am the leader of the Kingdom of Elves.\n"
-					  "I would like to extend my sincerest apologies once again. You see, our kingdom is currently\n"
-					  "under threat from the bandits nearby, and I mistakenly assumed you were one of their allies.\n\n");
-
-	Common::color_print(0x0b, name + ":\n");
-	Common::write_ani("Bandits? I could help you guys clear them out.\n\n");
-
-	Common::color_print(0x0a, "ELORA:\n");
-	Common::write_ani("You are still offering to help, even after we defeated and captured you?\n\n");
-
-	Common::color_print(0x0b, name + ":\n");
-	Common::write_ani("Well, yeah. I did cause some panic for you, so the least I can do is to get\n"
-					  "rid of some of your worries.\n\n");
-
-	Common::color_print(0x0a, "ELORA:\n");
-	Common::write_ani("You are a good person. Thank you for your kind offer.\n"
-					  "I believe some of them were last seen west from here, on the path connecting\n"
-					  "our kingdom and Caershire.\n\n");
+	Common::write_ani("The equipment they provide could help with defeating the bandits.\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Got it, I'll do my best.\n\n");
@@ -186,6 +149,13 @@ void Story::eloraQuest_inProgress()
 	Common::color_print(0x0a, "ELORA:\n");
 	Common::write_ani("The bandits were last seen west from here, on the path connecting\n"
 					  "our kingdom and Caershire. Hopefully they are manageable for you.\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("I would advise you to first pay a visit to our SHOP, and purchase some\n"
+					  "equipment. It's the yellow building also to the west from here.\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("The equipment they provide could help with defeating the bandits.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -220,57 +190,165 @@ void Story::recruitElora()
 	Common::color_print(0x0a, "ELORA ");
 	Common::write_ani("has been recruited to your party!\n\n");
 
-	Common::any_key_press("Press any key to continue");
-}
-
-void Story::outsideOrionResidence()
-{
-	system("cls");
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Alright! Well, our next stop is Caershire, so we should probably make our way there.\n\n");
 
 	Common::color_print(0x0a, "ELORA:\n");
 	Common::write_ani("Is one of the other people you were tasked to seek the Elder Mage ORION?\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
-	Common::write_ani("Yep! I've heard he's a bit of a shut-in, though. So it might be a little difficult to convince\n"
-					  "him to join us.\n\n");
+	Common::write_ani("Yeah! I'm not sure where I can find him, though.\n\n");
 
 	Common::color_print(0x0a, "ELORA:\n");
-	Common::write_ani("I do not think you could convince him; he has a... distaste for being in a party.\n"
+	Common::write_ani("I happen to have gotten a bit of information from the last time I visited. Elder Mage\n"
+					  "ORION can usually be found in his home, at the right of Caershire.\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("That could help, thanks!\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::recruitElora_loseBandits()
+{
+	system("cls");
+
+	Common::write_ani("You have been defeated by the bandits...\n\n"
+					  ". . .\n\n"
+					  "You wake up and find yourself in an unfamiliar location. You sit up and begin looking\n"
+					  "around the room, wondering where you are.\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("Ah, you are finally awake. One of the elves found you knocked unconscious and brought\n"
+					  "you here. Worry not, I have helped to clear out the remaining bandits.\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Oh, thank you. I'm sorry for the trouble.\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("It is all right. I should show my gratitude to you for trying, at least. Is there,\n"
+					  "perhaps, anything I could do?\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Well, I'm on a quest to defeat the Demon King and retrieve my empire's treasure, and\n"
+					  "you're one of the heroes I have to seek assistance from.\n"
+					  "Would it be alright for you to join me in doing so?\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("...I am rather worried of what would happen if I were to leave.\n"
+					  "This seems to be rather important for you, though, so I could appoint someone to look\n"
+					  "after the kingdom in my stead.\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("Very well, I shall accompany you on your journey. I do hope I can be of assistance.\n\n");
+
+	Common::color_print(0x0a, "ELORA ");
+	Common::write_ani("has been recruited to your party!\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Alright! Well, our next stop is Caershire, so we should probably make our way there.\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("Is one of the other people you were tasked to seek the Elder Mage ORION?\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Yeah! I'm not sure where I can find him, though.\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("I happen to have gotten a bit of information from the last time I visited. Elder Mage\n"
+					  "ORION can usually be found in his home, at the right of Caershire.\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("That could help, thanks!\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::meetOrion_winBandits()
+{
+	system("cls");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("Wait, you wish to ask Elder Mage ORION to join us, right?\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Yep! As I've said, he's one of the people I have to seek assistance from.\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("I do not know if you could convince him; he has a... distaste for being in a party.\n"
 					  "All I know is that he had a harsh falling out with his party members at the time.\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Oh. Well, there's no harm in trying, right?\n\n"
-					  "You knock on the door, but you are met with no response.\n"
+					  "You knock on the door, but you are met with no response.\n\n"
+					  ". . .\n\n"
+					  "Suddenly, the door opens and you see a grumpy-looking old man with a blue starry robe.\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Hi! You're... uh, Elder Mage ORION, right?\n\n");
+
+	Common::color_print(0x0b, "ORION:\n");
+	Common::write_ani("You've got the right person. What is it? This better be important, I'm busy with preparations\n"
+					  "right now.\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Um... Could we possibly help out with that?\n\n");
+
+	Common::color_print(0x0b, "ORION:\n");
+	Common::write_ani("...Fine. I have to defeat some bandits at the camp up north, but I was told not to do it alone.\n"
+					  "You guys can join me, or whatever.\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::beforeMeetOrion_loseBandits()
+{
+	system("cls");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("Wait, you wish to ask Elder Mage ORION to join us, right?\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Yep! As I've said, he's one of the people I have to seek assistance from.\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("I do not know if you could convince him; he has a... distaste for being in a party.\n"
+					  "All I know is that he had a harsh falling out with his party members at the time.\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Oh. Well, there's no harm in trying, right?\n\n"
+					  "You knock on the door, but you are met with no response.\n\n"
 					  "You try knocking again, but once again there is no response from the other side.\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("That's weird. Where could he be?\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
-	Common::write_ani("Maybe he's really busy right now. Let's find our last party member first, and then\n"
-					  "come back here later.\n\n");
+	Common::write_ani("You know what? Maybe we should ask around for any clues on where ORION is.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::meetOrion()
+void Story::meetOrion_loseBandits()
 {
 	system("cls");
 
-	Common::write_ani("Your party arrives at a bandit camp, and you notice ORION fighting against a group of bandits.\n\n");
+	Common::write_ani("Your party arrives at a bandit camp, and you notice an old man with a blue starry\n"
+					  "robe fighting against a group of bandits. Based on PETER's description, you come\n"
+					  "to the conclusion that the old man is ORION.\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Isn't that him? What's he doing fighting the bandits on his own?\n\n");
 
 	Common::color_print(0x0a, "ELORA:\n");
-	Common::write_ani("He is seriously injured! We must provide assistance as soon as possible!\n\n");
+	Common::write_ani("He is seriously injured, and bleeding! We must provide assistance as soon as possible!\n\n");
 
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("Stay back! I don't need any help, this is *my* job to do!\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("But you're using up so much mana! Won't this have adverse effects on your body?\n"
-					  "At least give yourself some time to recharge, we can handle this batch!\n\n");
+					  "At least let us handle some of these guys!\n\n");
 
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("Darned kids, I swear... Fine, I'll let you two help out.\n\n");
@@ -304,7 +382,7 @@ void Story::recruitOrion_main()
 					  "Even though I'd rather not join you guys, I'm a man of my word.\n\n");
 
 	Common::color_print(0x0d, "ORION ");
-	Common::write_ani("has been recruited to your party!\n\n");
+	Common::write_ani("has been (officially) recruited to your party!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -332,7 +410,7 @@ void Story::recruitOrion_eloraDead()
 					  "Even though I'd rather not join you, I'm a man of my word.\n\n");
 
 	Common::color_print(0x0d, "ORION ");
-	Common::write_ani("has been recruited to your party!\n\n");
+	Common::write_ani("has been (officially) recruited to your party!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -341,27 +419,31 @@ void Story::meetBlaise_main()
 {
 	system("cls");
 
-	Common::write_ani("Immediately after entering the bandits' treasure room, ORION notices something lying on the ground.\n\n");
+	Common::write_ani("Immediately after opening the door to the bandits' treasure room, ORION recognises the figure\n"
+					  "in front of your party.\n\n");
 
 	Common::color_print(0x0d, "ORION:\n");
-	Common::write_ani("...That's my brother's sword.\n\n"
-					  "ORION walks over to the sword and picks it up, closely inspecting it.\n\n");
-
-	Common::color_print(0x0d, "ORION:\n");
-	Common::write_ani("I see... These are the same bandits that killed my brother, and caused\n"
-					  "everything to fall apart!\n\n");
-
-	Common::color_print(0x0c, "ASSASSIN:\n");
-	Common::write_ani("Hey, hey, hey, what's all this ruckus in here? What are you people trying to do, hmm?\n\n"
-					  "ORION seems to immediately recognise the assassin.\n\n");
-
-	Common::color_print(0x0d, "ORION:\n");
-	Common::write_ani("You! You're the one who took everything from me! Isn't it only right that I take\n"
-					  "something from you in exchange, BLAISE?\n\n");
+	Common::write_ani("...Wait a minute. I know who you are!\n"
+					  "BLAISE! You were the last person I wanted to see here!\n\n");
 
 	Common::color_print(0x0c, "BLAISE:\n");
-	Common::write_ani("Oh? Last I checked, what you're doing is called 'stealing'. Besides, whatever happened\n"
-					  "to that guy was bound to happen anyway. He was just too weak.\n\n");
+	Common::write_ani("Oh my, we meet again, ORION. Thanks for unlocking the room for me.\n\n"
+					  "ORION looks behind BLAISE and notices that most of the treasure seems to be missing.\n\n");
+
+	Common::color_print(0x0d, "ORION:\n");
+	Common::write_ani("No... you're doing the exact same thing you've done before! Taking everything and causing\n"
+					  "discord and chaos within a group!\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("Is... Is *he* why you are so against the idea of joining a party?\n\n");
+
+	Common::color_print(0x0d, "ORION:\n");
+	Common::write_ani("Yes! He caused my brother's death AND my entire party at the time to fall out! I'll bet\n"
+					  "he's trying to make those bandits -- his 'allies' -- suffer the same fate!\n\n");
+
+	Common::color_print(0x0c, "BLAISE:\n");
+	Common::write_ani("Oh? I have no idea what you're talking about; I'm just taking what belongs to me.\n"
+					  "I provided these guys with my strength, so it's only fair I take what I deserve, no?\n\n");
 
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani(name + "! I refuse to stand for this any longer! I want you to get rid of this heartless bandit!\n\n");
@@ -371,7 +453,6 @@ void Story::meetBlaise_main()
 					  "Think about it, " + name + ". You could receive help from the strongest bandit around.\n\n"
 					  "You feel conflicted. On one hand, ORION deserves closure for his brother's death.\n"
 					  "On the other, you were tasked to recruit BLAISE, and he would be a useful addition to the party.\n\n");
-
 }
 
 void Story::killBlaise_main()
@@ -381,7 +462,7 @@ void Story::killBlaise_main()
 	Common::write_ani("You unsheathe your sword and point it at BLAISE.\nHe does not seem scared at all, in fact, he's smiling.\n\n");
 
 	Common::color_print(0x0c, "BLAISE:\n");
-	Common::write_ani("Oh well, I knew this would happen. Mark my words, though. You'll regret doing this.\n\n"
+	Common::write_ani("...Oh well, I knew this would happen. Mark my words, though. You'll regret doing this.\n\n"
 					  ". . .\n\n"
 					  "You have killed ");
 
@@ -426,49 +507,47 @@ void Story::meetBlaise_eloraDead()
 {
 	system("cls");
 
-	Common::write_ani("Immediately after entering the bandits' treasure room, ORION notices something lying on the ground.\n\n");
+	Common::write_ani("Immediately after opening the door to the bandits' treasure room, ORION recognises the figure\n"
+		"in front of your party.\n\n");
 
 	Common::color_print(0x0d, "ORION:\n");
-	Common::write_ani("...That's my brother's sword.\n\n"
-					  "ORION walks over to the sword and picks it up, closely inspecting it.\n\n");
-
-	Common::color_print(0x0d, "ORION:\n");
-	Common::write_ani("I see... These are the same bandits that killed my brother, and caused\n"
-					  "everything to fall apart!\n\n");
-
-	Common::color_print(0x0c, "ASSASSIN:\n");
-	Common::write_ani("Hey, hey, hey, what's all this ruckus in here? What are you people trying to do, hmm?\n\n"
-					  "ORION seems to immediately recognise the assassin.\n\n");
-
-	Common::color_print(0x0d, "ORION:\n");
-	Common::write_ani("You! You're the one who took everything from me! Isn't it only right that I take\n"
-					  "something from you in exchange, BLAISE?\n\n");
+	Common::write_ani("...Wait a minute. I know who you are!\n"
+		"BLAISE! You were the last person I wanted to see here!\n\n");
 
 	Common::color_print(0x0c, "BLAISE:\n");
-	Common::write_ani("Oh? Last I checked, what you're doing is called 'stealing'. Besides, whatever happened\n"
-					  "to that guy was bound to happen anyway. He was just too weak.\n\n");
-
-	Common::write_ani("Before you could say anything, ORION summoned his staff and used a FIREBALL on BLAISE.\n\n"
-					  ". . .\n\n");
-
-	Common::color_print(0x0c, "BLAISE ");
-	Common::write_ani("has been killed.\n\n");
-
-	Common::color_print(0x0b, name + ":\n");
-	Common::write_ani("What did you just do?!\n\n");
+	Common::write_ani("Oh my, we meet again, ORION. Thanks for unlocking the room for me.\n\n"
+		"ORION looks behind BLAISE and notices that most of the treasure seems to be missing.\n\n");
 
 	Common::color_print(0x0d, "ORION:\n");
-	Common::write_ani("Just gave the kid what he deserves. Not that it matters now, though. Don't\n"
-					  "you have a task to complete? We should get going.\n\n");
+	Common::write_ani("No... you're doing the exact same thing you've done before! Taking everything and causing\n"
+		"discord and chaos within a group!\n\n");
 
-	Common::any_key_press("Press any key to continue");
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Wait... Is *he* why you're so against the idea of being in a party?\n\n");
+
+	Common::color_print(0x0d, "ORION:\n");
+	Common::write_ani("Yes! He caused my brother's death AND my entire party at the time to fall out! I'll bet\n"
+		"he's trying to make those bandits -- his 'allies' -- suffer the same fate!\n\n");
+
+	Common::color_print(0x0c, "BLAISE:\n");
+	Common::write_ani("Oh? I have no idea what you're talking about; I'm just taking what belongs to me.\n"
+		"I provided these guys with my strength, so it's only fair I take what I deserve, no?\n\n");
+
+	Common::color_print(0x0d, "ORION:\n");
+	Common::write_ani(name + "! I refuse to stand for this any longer! I want you to get rid of this heartless bandit!\n\n");
+
+	Common::color_print(0x0c, "BLAISE:\n");
+	Common::write_ani("Are you sure? According to my sources, I'm pretty sure you *need* me, don't you?\n"
+		"Think about it, " + name + ". You could receive help from the strongest bandit around.\n\n"
+		"You feel conflicted. On one hand, ORION deserves closure for his brother's death.\n"
+		"On the other, you were tasked to recruit BLAISE, and he would be a useful addition to the party.\n\n");
 }
 
 void Story::meetBlaise_orionDead()
 {
 	system("cls");
 
-	Common::write_ani("Immediately after entering the bandits' treasure room, an ASSASSIN is already there waiting.\n\n");
+	Common::write_ani("Immediately after entering the bandits' treasure room, an ASSASSIN seems to already be there waiting.\n\n");
 
 	Common::color_print(0x0c, "ASSASSIN:\n");
 	Common::write_ani("I've been expecting you, " + name + ". My sources tell me you're looking for my help?\n\n");
@@ -503,7 +582,7 @@ void Story::meetBlaise_partyDead()
 {
 	system("cls");
 
-	Common::write_ani("Immediately after entering the bandits' treasure room, an ASSASSIN is already there waiting.\n\n");
+	Common::write_ani("Immediately after entering the bandits' treasure room, an ASSASSIN seems to already be there waiting.\n\n");
 
 	Common::color_print(0x0c, "ASSASSIN:\n");
 	Common::write_ani("I've been expecting you, " + name + ". My sources tell me you're looking for my help?\n\n");
@@ -1088,9 +1167,15 @@ void Story::magicSchool_student1Found()
 	system("cls");
 
 	Common::color_print(0x0d, "MIRIAM:\n");
-	Common::write_ani("How much longer will I have to survive on berries...?\n"
-					  "AHH! Please don't hurt me! ...Huh? The GRAND MASTER sent you out to find me?\n"
-					  "Oh, thank goodness! I don't have to live on berries anymore!\n\n");
+	Common::write_ani("...Huh? The GRAND MASTER sent you out to find me? But I'm looking for my\n"
+					  "friends! They've gotten lost in there, too!\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Don't worry, I can help you find them.\n\n");
+
+	Common::color_print(0x0d, "MIRIAM:\n");
+	Common::write_ani("Really? ...Well, I guess if you've been tasked by the GRAND MASTER, I can trust\n"
+					  "you! I'll head back first, then. I hope you can find my friends!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1233,34 +1318,20 @@ void Story::excalibur_floor1()
 {
 	system("cls");
 
-	Common::color_print(0x04, "BANDIT 1:\n");
-	Common::write_ani("Hey! Who do you think you are, huh? Waltzing in here just like that...\n\n");
-
-	Common::color_print(0x04, "BANDIT 2:\n");
-	Common::write_ani("If you're here for the EXCALIBUR, then get outta here! The sword's ours!\n\n");
-
-	Common::color_print(0x04, "BANDIT 3:\n");
-	Common::write_ani("...You're not gonna leave? Fine! Looks like we have no choice but to fight\n"
-					  "you for it!\n\n"
-					  "The BANDITS are challenging you to a BATTLE!\n\n");
+	Common::write_ani("As soon as you enter the dungeon, you hear a rattling sound coming from the pile of bones\n"
+					  "in front of you.\n\n"
+					  ". . .\n\n"
+					  "The bones have become SKELETONS, and are challenging you to a BATTLE!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::excalibur_defeatedBandits()
+void Story::excalibur_defeatedSkels()
 {
 	system("cls");
 
-	Common::color_print(0x04, "BANDIT 1:\n");
-	Common::write_ani("Drat! I can't believe we've been defeated...\n\n");
-
-	Common::color_print(0x04, "BANDIT 2:\n");
-	Common::write_ani("Why not just let them past? Even if they've defeated us, there's no\n"
-					  "way they're defeating that giant.\n\n");
-
-	Common::color_print(0x04, "BANDIT 3:\n");
-	Common::write_ani("Fine, we'll let you guys go through. If you end up dying in there, it's\n"
-					  "not our fault.\n\n");
+	Common::write_ani("The skeletons crumble into the pile of bones they once were.\n\n"
+					  "You can now advance to the next floor!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1288,6 +1359,9 @@ void Story::excalibur_doorUnlocked()
 void Story::excalibur_floor3()
 {
 	system("cls");
+
+	Common::write_ani("As soon as you walk into the room, the door shuts right behind you!\n\n"
+					  "You look around the room, and you make eye contact with a STONE GIANT!\n\n");
 
 	Common::color_print(0x08, "OLAF THE STONE GIANT:\n");
 	Common::write_ani("Another challenger who wishes to pull the EXCALIBUR out of its stone...\n"
@@ -1326,7 +1400,8 @@ void Story::excalibur_completed()
 					  "Suddenly, a bright light engulfs the entire room.\n\n"
 					  ". . .\n\n"
 					  "It feels like you've gotten stronger.\n"
-					  "You have obtained and equipped the EXCALIBUR!\n\n");
+					  "You have obtained and equipped the EXCALIBUR!\n\n"
+					  "The door has been opened, and you have reunited with your party!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1359,7 +1434,7 @@ void Story::npc3()
 
 	Common::color_print(0x0d, "LUNA:\n");
 	Common::write_ani("My sister's one of the top students of the School of Magic! I\n"
-					  "hope I can be just like her someday.\n");
+					  "hope I can be just like her someday.\n\n");
 
 	Common::color_print(0x0d, "LUNA:\n");
 	Common::write_ani("I can only cast tiny spells, though... so I'm going to need a lot\n"
@@ -1368,12 +1443,24 @@ void Story::npc3()
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::npc4()
+void Story::npc4(bool bandits)
 {
 	system("cls");
 
 	Common::color_print(0x0d, "PETER:\n");
 	Common::write_ani("Welcome to Caershire! I hope you enjoy your visit!\n\n");
+
+	// if player loses against bandits
+	if (bandits == false) {
+		Common::color_print(0x0d, "PETER:\n");
+		Common::write_ani("Oh, you guys are trying to find Elder Mage ORION?\n"
+						  "Last I heard, the GRAND MASTER tasked him to fight some bandits at the camp north from here.\n"
+						  "Just turn left at the cross-junction and you may be able to find him.\n\n");
+
+		Common::color_print(0x0d, "PETER:\n");
+		Common::write_ani("If you need a description of how he looks, he has a blue starry robe that he always wears.\n"
+						  "I hope that helps!\n\n");
+	}
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1449,22 +1536,70 @@ void Story::npc12()
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::npc13()
+void Story::npc13(bool bandits)
 {
 	system("cls");
 
-	Common::color_print(0x0a, "THALIA:\n");
-	Common::write_ani("I've never actually been outside the kingdom, and I want to explore, but I've heard\n"
-					  "stories about the outside world, horror stories...\n\n");
+	if (bandits == false) {
+		Common::color_print(0x0a, "THALIA:\n");
+		Common::write_ani("I've never actually been outside the kingdom, and I want to explore, but I've heard\n"
+						  "stories about the outside world, horror stories...\n\n");
 
-	Common::color_print(0x0a, "THALIA:\n");
-	Common::write_ani("I don't know if it's a good idea anymore.\n\n");
+		Common::color_print(0x0a, "THALIA:\n");
+		Common::write_ani("I don't know if it's a good idea anymore.\n\n");
 
-	Common::color_print(0x0b, name + ":\n");
-	Common::write_ani("If it's about the bandits, don't worry. I'll get rid of them!\n\n");
+		Common::color_print(0x0b, name + ":\n");
+		Common::write_ani("If it's about the bandits, don't worry. I'll get rid of them!\n\n");
 
-	Common::color_print(0x0a, "THALIA:\n");
-	Common::write_ani("Really? Thanks a lot!\n\n");
+		Common::color_print(0x0a, "THALIA:\n");
+		Common::write_ani("Really? Thanks a lot!\n\n");
+	}
+	else {
+		Common::color_print(0x0a, "THALIA:\n");
+		Common::write_ani("You've managed to clear the bandits? Thank you so much! Maybe I'll be able to\n"
+						  "explore without the fear of being threatened by any bandits now!\n\n");
+	}
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::npc14()
+{
+	system("cls");
+
+	Common::color_print(0x09, "MASON:\n");
+	Common::write_ani("Best of luck for your next journey!\n"
+					  "Bring some souvenirs back if you can! ...Haha, I'm just kidding, you don't have to!\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::npc15_16()
+{
+	system("cls");
+
+	Common::write_ani("They seem to be really focused on whatever they're wishing for...\n"
+					  "Maybe it's best not to disturb them.\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::npc17_18()
+{
+	system("cls");
+
+	Common::write_ani("They seem to be really absorbed in their garden...\n"
+					  "You can see the effort they've put into taking care of their plants.\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::npc19_20()
+{
+	system("cls");
+
+	Common::color_print(0x09, "GUARD:\n");
+	Common::write_ani("Are you here to see the EMPEROR?\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }

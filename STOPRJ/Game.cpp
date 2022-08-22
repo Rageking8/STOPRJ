@@ -18,6 +18,9 @@ Game::Game() : trigger_counter{}
 	//board.set_board(67, 3, 1);
 	//swordsman.set_pos(67, 3);
 
+	//board.set_board(17, 27, 1);
+	//swordsman.set_pos(17, 27);
+
 	int tmp_cam_pos_i1 = 0;
 	int tmp_cam_pos_i2 = 0;
 
@@ -68,13 +71,14 @@ void Game::start()
 
 	Common::cursor_vis(false);
 
-	//story.prologue();
-
 	bool prev_is_map = false;
 
 	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
 	short prev_block[8]{ -1, -1, 0, 0, -1, -1, 0, 0 };
+
+	bool bandit1_b = false;
+	bool bandit_camp_t = false;
 
 	while (true) {
 
@@ -92,6 +96,7 @@ void Game::start()
 		std::cout << "              \nPress or hold (WASD for movement and IJKL for interaction, M for menu)";
 
 		short tmp_target_cell_val = -1;
+		short tmp_target_cell[2]{ -1 , -1 };
 
 		prev_is_map = true;
 
@@ -348,22 +353,26 @@ void Game::start()
 		else if ((action_inp == "i" || action_inp == "I") && swordsman.get_pos(0) > 0) {
 
 			tmp_target_cell_val = board.get_board(swordsman.get_pos(0) - 1, swordsman.get_pos(1));
-
+			tmp_target_cell[0] = swordsman.get_pos(0) - 1;
+			tmp_target_cell[1] = swordsman.get_pos(1);
 		}
 		else if ((action_inp == "j" || action_inp == "J") && swordsman.get_pos(1) > 0) {
 
 			tmp_target_cell_val = board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) - 1);
-
+			tmp_target_cell[0] = swordsman.get_pos(0);
+			tmp_target_cell[1] = swordsman.get_pos(1) - 1;
 		}
 		else if ((action_inp == "k" || action_inp == "K") && swordsman.get_pos(0) < 150) {
 
 			tmp_target_cell_val = board.get_board(swordsman.get_pos(0) + 1, swordsman.get_pos(1));
-
+			tmp_target_cell[0] = swordsman.get_pos(0) + 1;
+			tmp_target_cell[1] = swordsman.get_pos(1);
 		}
 		else if ((action_inp == "l" || action_inp == "L") && swordsman.get_pos(1) < 150) {
 
 			tmp_target_cell_val = board.get_board(swordsman.get_pos(0), swordsman.get_pos(1) + 1);
-
+			tmp_target_cell[0] = swordsman.get_pos(0);
+			tmp_target_cell[1] = swordsman.get_pos(1) + 1;
 		}
 		else if ((action_inp == "m" || action_inp == "M")) {
 			while (true) {
@@ -623,14 +632,11 @@ void Game::start()
 						Common::set_cursor(70, 3 + i);
 						Common::color_print(0x60, "  ");
 					}
-					Common::set_cursor(68, 3);
-					Common::color_print(0x60, "      ");
+					Common::color_print(68, 3, 0x60, "      ");
 
-					Common::set_cursor(77, 5);
-					Common::color_print(0x60, "    ");
+					Common::color_print(77, 5, 0x60, "    ");
 
-					Common::set_cursor(5, 13);
-					Common::color_print(0x0B, swordsman.get_name() + " [Swordsman]: ");
+					Common::color_print(5, 13, 0x0B, swordsman.get_name() + " [Swordsman]: ");
 					Common::set_cursor(7, 14);
 					std::cout << "ATTACK : " << swordsman.get_stats("attack");
 					Common::set_cursor(7, 15);
@@ -649,8 +655,7 @@ void Game::start()
 					}
 
 					if (mage.get_recruited()) {
-						Common::set_cursor(66, 13);
-						Common::color_print(0x0D, "ORION [Mage]: ");
+						Common::color_print(66, 13, 0x0D, "ORION [Mage]: ");
 						Common::set_cursor(68, 14);
 						std::cout << "ATTACK : " << mage.get_stats("attack");
 						Common::set_cursor(68, 15);
@@ -669,13 +674,11 @@ void Game::start()
 						}
 					}
 					else {
-						Common::set_cursor(77, 18);
-						Common::color_print(0x0C, "---");
+						Common::color_print(77, 18, 0x07, "---");
 					}
 
 					if (elf.get_recruited()) {
-						Common::set_cursor(35, 13);
-						Common::color_print(0x0A, "ELORA [Elf]: ");
+						Common::color_print(35, 13, 0x0A, "ELORA [Elf]: ");
 						Common::set_cursor(37, 14);
 						std::cout << "ATTACK : " << elf.get_stats("attack");
 						Common::set_cursor(37, 15);
@@ -695,8 +698,7 @@ void Game::start()
 						}
 					}
 					else {
-						Common::set_cursor(46, 18);
-						Common::color_print(0x0C, "---");
+						Common::color_print(46, 18, 0x07, "---");
 					}
 
 					if (assassin.get_recruited()) {
@@ -721,7 +723,7 @@ void Game::start()
 						}
 					}
 					else {
-						Common::color_print(108, 18, 0x0C, "---");
+						Common::color_print(108, 18, 0x07, "---");
 					}
 
 					Common::color_print(52, 27, 0x07, "Press any key to return ");
@@ -1036,7 +1038,7 @@ void Game::start()
 			system("cls");
 			Common::cursor_vis(false);
 		}
-		else if (swordsman.get_pos(0) == 132 && swordsman.get_pos(1) >= 25 && swordsman.get_pos(1) <= 31) {
+		else if (swordsman.get_pos(0) == 131 && swordsman.get_pos(1) >= 27 && swordsman.get_pos(1) <= 29) {
 			teleport_ply(97, 8);
 		}
 		else if (swordsman.get_pos(1) == 5 && swordsman.get_pos(0) >= 95 && swordsman.get_pos(0) <= 99) {
@@ -1044,21 +1046,35 @@ void Game::start()
 		}
 		else if (trigger_counter == 2 && swordsman.get_pos(0) == 65 && swordsman.get_pos(1) >= 1 && swordsman.get_pos(1) <= 5) {
 
-			start_battle("bandit_1");
+			bandit1_b = start_battle("bandit_1");
 			trigger_counter++;
 
 			for (int i = 1; i < 6; i++)
 				board.set_board(64, i, 0);
 
+			if (!bandit1_b) {
+				board.set_board(46, 59, 0);
+				board.set_board(8, 31, 78);
+				teleport_ply(71, 54);
+			}
+
 			prev_is_map = false;
 			system("cls");
+		}
+		else if (!bandit_camp_t && swordsman.get_pos(0) == 15 && swordsman.get_pos(1) >= 20 && swordsman.get_pos(1) <= 29) {
+			story.meetOrion_loseBandits();
+
+			bandit_camp_t = true;
+			prev_is_map = false;
+			system("cls");
+			Common::cursor_vis(false);
 		}
 
 		if (tmp_target_cell_val == 3) {
 			system("cls");
 			bool break_s = false;
 			while (!break_s) {
-				switch (shops[0].open_shop(swordsman.get_item_qty("coin"))) {
+				switch (shop.open_shop(swordsman.get_item_qty("coin"))) {
 				case 'B':
 				case 'b':
 					break_s = true;
@@ -1121,13 +1137,13 @@ void Game::start()
 		}
 		else if (tmp_target_cell_val == 46) {
 			Common::cursor_vis(false);
-			story.npc13();
+			story.npc13(trigger_counter >= 3);
 			prev_is_map = false;
 			system("cls");
 		}
 		else if (tmp_target_cell_val == 50) {
 			Common::cursor_vis(false);
-			story.npc4();
+			story.npc4(bandit1_b);
 			prev_is_map = false;
 			system("cls");
 		}
@@ -1166,6 +1182,80 @@ void Game::start()
 			story.npc5();
 			prev_is_map = false;
 			system("cls");
+		}
+		else if (tmp_target_cell_val == 24) {
+			Common::cursor_vis(false);
+			story.magicSchool_start();
+			Common::input("Do you want to accept this quest ? (Y/N) : ");
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 19) {
+			// Switch red
+
+			board.set_board(tmp_target_cell[0], tmp_target_cell[1], 20);
+		}
+		else if (tmp_target_cell_val == 20) {
+			// Switch blue
+
+			board.set_board(tmp_target_cell[0], tmp_target_cell[1], 19);
+		}
+		else if (tmp_target_cell_val == 31)
+		{
+			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 30);
+			board.set_board(6, 91, 0);
+		}
+		else if (tmp_target_cell_val == 74)
+		{
+			Common::cursor_vis(false);
+			story.after_start_menu();
+			board.set_board(135, 7, 0);
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 72)
+		{
+			Common::cursor_vis(false);
+			story.npc19_20();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 75)
+		{
+			Common::cursor_vis(false);
+			story.npc14();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 76)
+		{
+			Common::cursor_vis(false);
+			story.npc15_16();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 77)
+		{
+			Common::cursor_vis(false);
+			story.npc17_18();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 73)
+		{
+			Common::cursor_vis(false);
+			story.prologue();
+			prev_is_map = false;
+			system("cls");
+		}
+
+		if (board.get_board(3, 59) == 20 && board.get_board(9, 59) == 19 && board.get_board(3, 73) == 19 && board.get_board(9, 73) == 20) {
+			for (int i = 0; i < 7; i++)
+				board.set_board((3 + i), 79, 0);
+		}
+		else {
+			for (int i = 0; i < 7; i++)
+				board.set_board((3 + i), 79, 6);
 		}
 	}
 }

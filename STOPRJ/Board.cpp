@@ -324,7 +324,7 @@ void Board::print_map()
 				case 19: // Red switch
 					Common::color_print(0X70, "?");
 					break;
-				case 20: // Green switch
+				case 20: // Blue switch
 					Common::color_print(0X70, "?");
 					break;
 				case 21: // Elf troop
@@ -423,7 +423,25 @@ void Board::print_map()
 				case 69: // Guardian
 					Common::color_print(0X70, "?");
 					break;
+				case 72: // NPCs in Swordsman town
+					Common::color_print(0X70, "?"); // Guards
+					break;
 				case 73: // Emperor
+					Common::color_print(0X70, "?");
+					break;
+				case 74: // NPCs in Swordsman town
+					Common::color_print(0X70, "?"); // Messenger
+					break;
+				case 75: // NPCs in Swordsman town
+					Common::color_print(0X70, "?"); // Docks
+					break;
+				case 76: // NPCs in Swordsman town
+					Common::color_print(0X70, "?"); // Fountain
+					break;
+				case 77: // NPCs in Swordsman town
+					Common::color_print(0X70, "?"); // Garden
+					break;
+				case 78: // Orions Heros
 					Common::color_print(0X70, "?");
 					break;
 				default:
@@ -492,6 +510,9 @@ void Board::move_cam(char dir)
 void Board::print_with_id(short id)
 {
 	switch (id) {
+		case -84: // Orions Door
+			Common::color_print(0X0E, " *|");
+			break;
 		case -67: // Green Carpet hori
 			Common::color_print(0X20, "___");
 			break;
@@ -547,6 +568,12 @@ void Board::print_with_id(short id)
 			Common::color_print(0X20, " ");
 			Common::color_print(0X4E, "*");
 			Common::color_print(0X20, " ");
+			break;
+		case -25: // Directory sign
+			Common::color_print(0x0C, "<->");
+			break;
+		case -2: // Grass walkable
+			Common::color_print(0X0A, "+++");
 			break;
 		case -1:
 			Common::color_print(0x70, "TTT");
@@ -607,14 +634,14 @@ void Board::print_with_id(short id)
 		case 18: // Bright White block
 			Common::color_print(0XF0, "   ");
 			break;
-		case 19: // Red switch
+		case 19: // Red switch 
 			Common::color_print(0X4F, "Swi");
 			break;
-		case 20: // Green switch
-			Common::color_print(0X2F, "Swi");
+		case 20: // Blue switch 
+			Common::color_print(0X1F, "Swi");
 			break;
 		case 21: // Elf troop 1
-			Common::color_print(0X02, " A ");
+			Common::color_print(0X02, " E ");
 			break;
 		case 22: // Mage troop 1 training
 			Common::color_print(0X0D, " M ");
@@ -624,9 +651,6 @@ void Board::print_with_id(short id)
 			break;
 		case 24: // Grand Master Mage
 			Common::color_print(0X05, "GmM");
-			break;
-		case 25: // Directory sign
-			Common::color_print(0x0C, "<->");
 			break;
 		case 26: // Bandit troop/Enemy
 			Common::color_print(0X0C, " B ");
@@ -643,7 +667,7 @@ void Board::print_with_id(short id)
 			Common::color_print(0X0A, "Elr");
 			break;
 		case 31: // Chest
-			Common::color_print(0XE0, " + ");
+			Common::color_print(0XE0, " $ ");
 			break;
 		case 32: // Fire wood
 			Common::color_print(0X04, " # ");
@@ -670,10 +694,10 @@ void Board::print_with_id(short id)
 			Common::color_print(0XA0, "   ");
 			break;
 		case 45: // Elf troop 2 - house
-			Common::color_print(0X02, " A ");
+			Common::color_print(0X02, " E ");
 			break;
 		case 46: // Elf troop 3 - exit
-			Common::color_print(0X02, " A ");
+			Common::color_print(0X02, " E ");
 			break;
 		case 47: // Mage troop 2 - inside house 1 #1
 			Common::color_print(0X0D, " M ");
@@ -711,7 +735,7 @@ void Board::print_with_id(short id)
 			Common::color_print(0X46, " ~ ");
 			break;
 		case 61: // Gold Coins
-			Common::color_print(0X6F, " $ ");
+			Common::color_print(0X6F, " + ");
 			break;
 		case 62: // Demon King Castle Walls
 			Common::color_print(0X40, "=");
@@ -742,10 +766,25 @@ void Board::print_with_id(short id)
 			Common::color_print(0X80, "#");
 			break;
 		case 72: // NPCs in Swordsman town
-			Common::color_print(0X05, "NPC");
+			Common::color_print(0X05, "SwD"); // Guards
 			break;
 		case 73: // Emperor
 			Common::color_print(0X06, "EMP");
+			break;
+		case 74: // NPCs in Swordsman town
+			Common::color_print(0X05, "SwD"); // Messenger
+			break;
+		case 75: // NPCs in Swordsman town
+			Common::color_print(0X05, "SwD"); // Docks
+			break;
+		case 76: // NPCs in Swordsman town
+			Common::color_print(0X05, "SwD"); // Fountain
+			break;
+		case 77: // NPCs in Swordsman town
+			Common::color_print(0X05, "SwD"); // Garden
+			break;
+		case 78: // Orions Hero
+			Common::color_print(0X0D, "Ori");
 			break;
 		default:
 			std::cout << "   ";

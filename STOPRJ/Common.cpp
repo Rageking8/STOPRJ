@@ -42,7 +42,7 @@ std::string Common::write_ani(std::string txt, const unsigned short delay_ms)
 {
 	for (const auto i : txt) {
 		std::cout << i;
-		Sleep(delay_ms);
+		//Sleep(delay_ms);
 	}
 
 	return txt;

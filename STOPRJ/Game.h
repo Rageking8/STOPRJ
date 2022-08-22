@@ -23,7 +23,7 @@ private:
 
 	Board board;
 
-	Shop shops[2];
+	Shop shop;
 
 	Story story;
 
@@ -34,7 +34,7 @@ private:
 	void teleport_ply(int idx1, int idx2);
 
 	bool valid_inp(std::string inp);
-	void start_battle(std::string id);
+	bool start_battle(std::string id);
 
 	void print_all_skill();
 

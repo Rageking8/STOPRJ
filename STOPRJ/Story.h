@@ -6,17 +6,19 @@ class Story
 public:
 	void set_player_name(std::string inp);
 
-	void prologue(); // after starting the game
+	void after_start_menu(); // after player inputs their name
+	void prologue(); // after interacting with the emperor
 	void foundCart(bool coin); // interact with the cart
 
 	void meetElora(); // elf ambush
 	void winElora();
-	void loseElora();
 	void eloraQuest_inProgress(); // talking to elora before bandits are defeated
 	void recruitElora(); // after defeating the bandits on the path
+	void recruitElora_loseBandits(); // losing to the bandits on the path
 
-	void outsideOrionResidence(); // interacting with orion's door
-	void meetOrion(); // encountering orion on the path from caershire to the bandit camp
+	void meetOrion_winBandits(); // interacting with orion's door (defeated bandits)
+	void beforeMeetOrion_loseBandits(); // interacting with orion's door (lose to bandits)
+	void meetOrion_loseBandits(); // encountering orion on the path from caershire to the bandit camp (lose to bandits)
 	void recruitOrion_main(); // bandits defeated
 	void recruitOrion_eloraDead(); // bandits defeated but elora dies
 
@@ -75,9 +77,9 @@ public:
 	void KoE_complete();
 
 	// excalibur dungeon quest
-	// reward: excalibur (+??? attack) (maybe auto-equip?)
+	// reward: excalibur (+20 attack) (maybe "auto-equip"? like just add 20 attack points or something)
 	void excalibur_floor1(); // player interacts with the bandits
-	void excalibur_defeatedBandits();
+	void excalibur_defeatedSkels();
 	void excalibur_floor2(); // player tries to go through door without the key
 	void excalibur_doorUnlocked(); // player has the key to the door
 	void excalibur_floor3(); // player interacts with olaf the stone giant
@@ -88,7 +90,7 @@ public:
 	void npc1(); // house
 	void npc2(); // house
 	void npc3(); // house
-	void npc4(); // entrance
+	void npc4(bool bandits); // entrance to caershire
 	void npc5(); // middle
 	void npc6(); // fountain
 	void npc7(); // grand master mage (pendolf) after completing side quest
@@ -97,7 +99,13 @@ public:
 	// kingdom of elves npc interactions
 	void npc11(); // fountain
 	void npc12(); // house
-	void npc13(); // near the path to caershire (mage town)
+	void npc13(bool bandits); // near the path to caershire (mage town)
+
+	// moris empire npc interactions
+	void npc14(); // boat
+	void npc15_16(); // 2 npcs at the fountain (same dialogue)
+	void npc17_18(); // 2 npcs gardening (same dialogue)
+	void npc19_20(); // 2 npc guards (same dialogue)
 
 	void treasureRoomHint();
 

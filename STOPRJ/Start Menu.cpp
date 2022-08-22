@@ -199,13 +199,13 @@ std::string Game::start_menu()
 
 	Common::cursor_vis(true);
 
-	Common::color_print(37, 24, 0x07, "Enter name (alphanumeric, max 12) : ");
+	Common::color_print(37, 24, 0x07, "Enter name (alphanumeric, max 10) : ");
 
 	short tmp_char_c = 0;
 	std::string ret_name = "";
 
-	// Once user press enter or length of name reaches 12, proceed
-	while (tmp_char_c < 12) {
+	// Once user press enter proceed
+	while (true) {
 
 		// Get input and properly handle edge cases
 		int c = _getch();
@@ -225,19 +225,19 @@ std::string Game::start_menu()
 			Common::move_cursor('A');
 		}
 		// Handle digits (0-9)
-		else if (c > 47 && c < 58) {
+		else if (c > 47 && c < 58 && ret_name.length() < 10) {
 			std::cout << char((c - 48) + '0');
 			ret_name += char((c - 48) + '0');
 			tmp_char_c++;
 		}
 		// Handle letters (a-z)
-		else if (c > 96 && c < 123) {
+		else if (c > 96 && c < 123 && ret_name.length() < 10) {
 			std::cout << char((c - 97) + 'a');
 			ret_name += char((c - 97) + 'a');
 			tmp_char_c++;
 		}
 		// Handle letters (A-Z)
-		else if (c > 64 && c < 91) {
+		else if (c > 64 && c < 91 && ret_name.length() < 10) {
 			std::cout << char((c - 65) + 'A');
 			ret_name += char((c - 65) + 'A');
 			tmp_char_c++;

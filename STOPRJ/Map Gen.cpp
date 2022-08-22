@@ -301,13 +301,11 @@ void Game::board_gen()
 	board.set_board(14, 3, 15);
 	// Bandits/Enemies
 	// 1st encounter
-	board.set_board(7, 31, 26);
-	board.set_board(6, 30, 26);
-	board.set_board(6, 32, 26);
+	board.set_board(9, 31, 26);
+	board.set_board(8, 30, 26);
+	board.set_board(8, 32, 26);
 	// 2nd encounter
-	board.set_board(1, 41, 27);
-	board.set_board(2, 40, 26);
-	board.set_board(2, 42, 26);
+	board.set_board(7, 31, 27);
 	//Bandit camp Leader room/ Treasure room
 	for (int i = 0; i < 9; i++) // Column
 		board.set_board((2 + i), 95, 2);
@@ -328,10 +326,8 @@ void Game::board_gen()
 	for (int i = 0; i < 2; i++) // Door wall
 		board.set_board((8 + i), 49, 2);
 
-	for (int i = 0; i < 7; i++) // Cage Walls(unlocks after player solve the puzzle)
-	{
+	for (int i = 0; i < 7; i++) // Cage Walls (unlocks when combination is correct)
 		board.set_board((3 + i), 79, 6);
-	}
 
 	// Chest
 	for (int i = 0; i < 3; i++)
@@ -342,11 +338,14 @@ void Game::board_gen()
 	board.set_board(6, 91, 31);
 	board.set_board(6, 92, 61);
 	// Switches
-	board.set_board(3, 59, 19);
-	board.set_board(3, 73, 19);
-	board.set_board(9, 59, 19);
-	board.set_board(9, 73, 19);
-
+	// Up-Left
+	board.set_board(3, 59, 19);// Red
+	// Up-Right
+	board.set_board(3, 73, 20);// Blue
+	// Down-Left
+	board.set_board(9, 59, 20);// Blue
+	//Down-Right
+	board.set_board(9, 73, 19);// Red
 	// Starting path to Kingdom of Elves
 	for (int i = 0; i < 59; ++i) // Row walls
 		board.set_board(100, i, 2);
@@ -433,7 +432,7 @@ void Game::board_gen()
 		board.set_board(73, i, 10);
 		board.set_board(72, i, 10);
 	}
-	//Shophouse
+	// Shophouse
 	for (int i = 15; i < 20; i++)
 		board.set_board(64, i, 17);
 
@@ -446,7 +445,7 @@ void Game::board_gen()
 	board.set_board(69, 18, 17);
 	board.set_board(69, 16, 17);
 	board.set_board(65, 17, 3); // Shop Icon in Kingdom of Elves
-	//Pond
+	// Pond
 	for (int i = 0; i < 3; i++)
 		board.set_board((64 + i), 22, 6);
 
@@ -472,8 +471,6 @@ void Game::board_gen()
 		board.set_board(76, (53 + i), 15); board.set_board(80, (53 + i), 15); //house 3
 		board.set_board(77, 52, 15); board.set_board(79, 52, 15);
 	}
-
-
 
 	// Fountain border (Kingdom of Elves)
 	for (int i = 0; i < 3; ++i) {
@@ -523,7 +520,7 @@ void Game::board_gen()
 	// Bandits between Kingdom of Elves and Mage
 	for (int i = 0; i < 5; i++)
 	{
-		//board.set_board(64, (1 + i), 26);
+		board.set_board(64, (1 + i), 26);
 	}
 
 	// Mage Town
@@ -622,9 +619,11 @@ void Game::board_gen()
 	for (int i = 0; i < 3; i++) // Column  walls
 		board.set_board((38 + i), 60, 9);
 
-	// House 3
+	// House 3 (Orion)
+	board.set_board(46, 59, 78); // Orion Mage
 	board.set_board(45, 55, 9);
 	board.set_board(47, 55, 9);
+	board.set_board(46, 55, -84); // Door
 	for (int i = 56; i < 61; ++i) // Row 
 	{
 		board.set_board(44, i, 9);
@@ -731,7 +730,7 @@ void Game::board_gen()
 	}
 
 	// Path to Bandit camp + Dungeon
-	board.set_board(16, 57, 25); // Directory sign
+	board.set_board(16, 57, -25); // Directory sign
 	for (int i = 0; i < 7; i++) // Column Left walls to bandit
 	{
 		if (i == 3 || i == 4) continue;
@@ -1020,7 +1019,7 @@ void Game::board_gen()
 		for (int j = 0; j < 14; j++)
 			board.set_board((37 + j), (6 + i), 4);
 	}
-	for (int i = 0; i < 9; i++)// river 90 curve at forest
+	for (int i = 0; i < 9; i++) // river 90 curve at forest
 	{
 		if (i == 2) continue;
 		board.set_board(36, (1 + i), 4);
@@ -1172,6 +1171,15 @@ void Game::board_gen()
 			board.set_board((102 + i), j, 4);
 		}
 	}
+	for (int i = 0; i < 69; i+=7)
+	{
+		for (int j = 0; j < 11; j+=4)
+		{
+			if (i == 21 && j == 0) continue;
+			board.set_board((132 + j), (7 + i), -2);
+			board.set_board((135 + j), (11 + i), -2);
+		}
+	}
 	// Swordsman Town and Emperor Castle
 	for (int i = 0; i < 19; i++) 
 	{
@@ -1207,17 +1215,15 @@ void Game::board_gen()
 	board.set_board(133, 150, -42);
 	board.set_board(148, 150, -42);
 
-	// Useless NPCs
-	board.set_board(141, 2, 72);
-	board.set_board(146, 21, 72);
-	board.set_board(132, 23, 72);
-	board.set_board(138, 41, 72);
-	board.set_board(148, 51, 72);
-	board.set_board(137, 72, 72);
-	board.set_board(144, 73, 72);
-	board.set_board(141, 46, 72);
-	board.set_board(133, 67, 72);
-	board.set_board(144, 86, 72);
+	// Swordsman NPC
+	board.set_board(135, 7, 74); // Messenger
+	board.set_board(132, 26, 75); // Docks 
+	board.set_board(138, 41, 76); // Fountain 1
+	board.set_board(137, 72, 77); // Garden 2
+	board.set_board(144, 91, 72); // Guard 1
+	board.set_board(141, 46, 76); // Fountain 2
+	board.set_board(133, 67, 77); // Garden 1
+	board.set_board(137, 91, 72); // Guard 2
 	// Houses
 	for (int i = 0; i < 5; i++)
 	{
@@ -1382,8 +1388,10 @@ void Game::board_gen()
 		board.set_board(130, (27 + i), 17);
 	
 	for (int i = 0; i < 7; i++)
+	{
+		if (i >= 2 && i <= 4) continue;
 		board.set_board(131, (25 + i), 17);
-
+	}
 	//Second Spawnpoint (Grass and flowers)
 	for (int i = 0; i < 5; i++)
 	{
