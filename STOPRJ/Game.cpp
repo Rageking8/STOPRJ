@@ -648,7 +648,7 @@ void Game::start()
 						}
 					}
 
-					if (/*mage.get_recruited() == */true) {
+					if (mage.get_recruited()) {
 						Common::set_cursor(66, 13);
 						Common::color_print(0x0D, "ORION [Mage]: ");
 						Common::set_cursor(68, 14);
@@ -673,9 +673,9 @@ void Game::start()
 						Common::color_print(0x0C, "---");
 					}
 
-					if (/*elf.get_recruited() == */true) {
+					if (elf.get_recruited()) {
 						Common::set_cursor(35, 13);
-						Common::color_print(0x0A, "ELORA [Archer]: ");
+						Common::color_print(0x0A, "ELORA [Elf]: ");
 						Common::set_cursor(37, 14);
 						std::cout << "ATTACK : " << elf.get_stats("attack");
 						Common::set_cursor(37, 15);
@@ -699,7 +699,7 @@ void Game::start()
 						Common::color_print(0x0C, "---");
 					}
 
-					if (/*assassin.get_recruited() == */true) {
+					if (assassin.get_recruited()) {
 						Common::set_cursor(97, 13);
 						Common::color_print(0x0C, "BLAISE [Assassin]: ");
 						Common::set_cursor(99, 14);
@@ -1122,6 +1122,48 @@ void Game::start()
 		else if (tmp_target_cell_val == 46) {
 			Common::cursor_vis(false);
 			story.npc13();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 50) {
+			Common::cursor_vis(false);
+			story.npc4();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 22) {
+			Common::cursor_vis(false);
+			story.npc8_9_10();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 52) {
+			Common::cursor_vis(false);
+			story.npc6();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 47) {
+			Common::cursor_vis(false);
+			story.npc1();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 48) {
+			Common::cursor_vis(false);
+			story.npc2();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 49) {
+			Common::cursor_vis(false);
+			story.npc3();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 51) {
+			Common::cursor_vis(false);
+			story.npc5();
 			prev_is_map = false;
 			system("cls");
 		}

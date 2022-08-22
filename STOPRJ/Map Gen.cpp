@@ -78,17 +78,14 @@ void Game::board_gen()
 	}
 	// Gold Pile in Treasure room
 	for (int i = 0; i < 17; i++)
-	{
 		board.set_board(1, (122 + i), 61);
-	}
+
 	for (int i = 0; i < 15; i++)
-	{
 		board.set_board(2, (123 + i), 61);
-	}
+
 	for (int i = 0; i < 10; i++)
-	{
 		board.set_board(3, (126 + i), 61);
-	}
+
 	for (int i = 0; i < 6; i++)
 	{
 		board.set_board((4 + i), 129, 61);
@@ -211,57 +208,43 @@ void Game::board_gen()
 	board.set_board(45, 129, 40); // room 2
 	board.set_board(45, 131, 40); // room 2
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(67, (129 + i), 40); // room 1
-	}
-
 
 	//Bandit camp
 	for (int i = 0; i < 50; ++i) // Row walls
-	{
 		board.set_board(0, i, 2);
-	}
+
 	for (int i = 0; i < 15; i++) // Column walls
-	{
 		board.set_board(i, 0, 2);
-	}
+
 	for (int i = 0; i < 2; i++)
-	{
 		board.set_board(i, 49, 2);
-	}
+
 	for (int i = 0; i < 6; i++)
-	{
 		board.set_board((10 + i), 49, 2);
-	}
+
 	for (int i = 0; i < 20; ++i) // Bottom Row Left walls
-	{
 		board.set_board(15, i, 2);
-	}
+
 	for (int i = 30; i < 96; ++i) // Bottom Row Right walls
-	{
 		board.set_board(15, i, 2);
-	}
+
 	for (int i = 0; i < 4; i++) // Column Entrance left walls
-	{
 		board.set_board((16 + i), 19, 2);
-	}
+
 	// Bandit Camp inside walls
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board((1 + i), 15, 6);
-	}
+
 	for (int i = 0; i < 9; i++)
-	{
 		board.set_board((6 + i), 15, 6);
-	}
+
 	for (int i = 1; i < 6; i++)
-	{
 		board.set_board(10, i, 6);
-	}
+
 	for (int i = 10; i < 15; i++)
-	{
 		board.set_board(10, i, 6);
-	}
+
 	//Campfire
 	board.set_board(9, 36, 33);
 	board.set_board(8, 36, 37);
@@ -274,17 +257,14 @@ void Game::board_gen()
 	board.set_board(10, 35, 32);
 	//Pond
 	for (int i = 20; i < 30; i++)
-	{
 		board.set_board(1, i, 4);
-	}
+
 	for (int i = 21; i < 29; i++)
-	{
 		board.set_board(2, i, 4);
-	}
+
 	for (int i = 23; i < 27; i++)
-	{
 		board.set_board(3, i, 4);
-	}
+
 	// Table in dormitory
 	for (int i = 0; i < 2; i++)
 	{
@@ -330,33 +310,29 @@ void Game::board_gen()
 	board.set_board(2, 42, 26);
 	//Bandit camp Leader room/ Treasure room
 	for (int i = 0; i < 9; i++) // Column
-	{
 		board.set_board((2 + i), 95, 2);
-	}
+
 	for (int i = 49; i < 95; ++i) // Row
-	{
 		board.set_board(2, i, 2);
-	}
+
 	for (int i = 50; i < 95; ++i) // Row
-	{
 		board.set_board(10, i, 2);
-	}
+
 	//for (int i = 0; i < 3; i++) // Door(unlocks after player defeats the boss)
 	//{ 
 	//	board.set_board((5 + i), 49, 6);
 	//}
 	for (int i = 0; i < 2; i++) //  Door wall
-	{
 		board.set_board((3 + i), 49, 2);
-	}
+
 	for (int i = 0; i < 2; i++) // Door wall
-	{
 		board.set_board((8 + i), 49, 2);
-	}
+
 	for (int i = 0; i < 7; i++) // Cage Walls(unlocks after player solve the puzzle)
 	{
-	//	board.set_board((3 + i), 79, 6);
+		board.set_board((3 + i), 79, 6);
 	}
+
 	// Chest
 	for (int i = 0; i < 3; i++)
 	{
@@ -373,42 +349,33 @@ void Game::board_gen()
 
 	// Starting path to Kingdom of Elves
 	for (int i = 0; i < 59; ++i) // Row walls
-	{
 		board.set_board(100, i, 2);
-	}
+
 	for (int i = 0; i < 24; ++i) // Row walls
-	{
 		board.set_board(94, i, 2);
-	}
+
 	for (int i = 25; i < 48; ++i) // Row walls
-	{
 		board.set_board(94, i, 2);
-	}
+
 	for (int i = 23; i < 26; ++i) // Row walls
-	{
 		board.set_board(93, i, 2);
-	}
+
 	for (int i = 0; i < 7; i++) // Column walls
-	{
 		board.set_board((88 + i), 47, 2);
-	}
+
 	for (int i = 0; i < 37; i++) // Column walls + Kingdom of Elves Column right walls
-	{
 		board.set_board((63 + i), 58, 2);
-	}
+
 	// Kingdom of Elves
 	for (int i = 11; i < 48; ++i) // Row walls
-	{
 		board.set_board(87, i, 2);
-	}
+
 	for (int i = 11; i < 62; ++i) // Row walls
-	{
 		board.set_board(63, i, 2);
-	}
+
 	for (int i = 0; i < 12; i++) // Column walls
-	{
 		board.set_board((75 + i), 11, 2);
-	}
+
 	board.set_board(63, 11, 2);
 	board.set_board(67, 11, 2);
 	board.set_board(68, 11, 2);
@@ -416,9 +383,8 @@ void Game::board_gen()
 	// Elf Leader House
 	board.set_board(64, 41, 29); // Elf Leader
 	for (int i = 34; i < 58; i++)
-	{
 		board.set_board(75, i, 28);
-	}
+
 	for (int i = 0; i < 8; i++)
 	{
 		board.set_board((64 + i), 34, 28); // Column House wall
@@ -428,9 +394,8 @@ void Game::board_gen()
 		board.set_board((64 + i), 31, 6); // Fence
 	}
 	for (int i = 35; i < 39; i++) // Green Carpet
-	{
 		board.set_board(71, i, -67);
-	}
+
 	board.set_board(71, 33, 6); // Fence
 	board.set_board(71, 32, 6); // Fence
 	// Flower Beds
@@ -470,9 +435,8 @@ void Game::board_gen()
 	}
 	//Shophouse
 	for (int i = 15; i < 20; i++)
-	{
 		board.set_board(64, i, 17);
-	}
+
 	for (int i = 0; i < 4; i++)
 	{
 		board.set_board((65 + i), 15, 17);
@@ -484,9 +448,8 @@ void Game::board_gen()
 	board.set_board(65, 17, 3); // Shop Icon in Kingdom of Elves
 	//Pond
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board((64 + i), 22, 6);
-	}
+
 	for (int i = 23; i < 31; i++)
 	{
 		board.set_board(64, i, 4);
@@ -540,47 +503,39 @@ void Game::board_gen()
 
 	// Path to Mage Town
 	for (int i = 6; i < 12; ++i) // Row walls
-	{
 		board.set_board(69, i, 2);
-	}
+
 	for (int i = 0; i < 11; ++i) // Row walls
-	{
 		board.set_board(75, i, 2);
-	}
+
 	for (int i = 0; i < 13; i++) // Column walls
-	{
 		board.set_board((57 + i), 6, 2);
-	}
+
 	for (int i = 0; i < 24; i++) // Column walls
-	{
 		board.set_board((51 + i), 0, 2);
-	}
+
 	for (int i = 0; i < 11; ++i) // Row walls
-	{
 		board.set_board(51, i, 2);
-	}
+
 	for (int i = 6; i < 62; ++i) // Row walls + Mage Town Bottom Row Walls
-	{
 		board.set_board(57, i, 2);
-	}
+
 	// Bandits between Kingdom of Elves and Mage
 	for (int i = 0; i < 5; i++)
 	{
-		board.set_board(64, (1 + i), 26);
+		//board.set_board(64, (1 + i), 26);
 	}
+
 	// Mage Town
 	for (int i = 0; i < 43; i++) // Column Right walls + Path to Dungeon
-	{
 		board.set_board((20 + i), 61, 2);
-	}
+
 	for (int i = 0; i < 26; i++) // Column Left walls
-	{
 		board.set_board((26 + i), 11, 2);
-	}
+
 	for (int i = 11; i < 54; ++i) // Top Row walls
-	{
 		board.set_board(26, i, 2);
-	}
+
 	// Stone Fences/ Barrier from player walking thru
 	board.set_board(51, 50, 6);
 	board.set_board(51, 32, 6);
@@ -589,13 +544,11 @@ void Game::board_gen()
 	board.set_board(30, 55, 6);
 
 	for (int i = 36; i < 40; i++) // Row
-	{
 		board.set_board(51, i, 6);
-	}
-	for (int i = 43; i < 47; i++)// Row
-	{
+
+	for (int i = 43; i < 47; i++) // Row
 		board.set_board(51, i, 6);
-	}
+
 	for (int i = 0; i < 5; i++) // Column
 	{
 		board.set_board((52 + i), 51, 6);
@@ -628,42 +581,35 @@ void Game::board_gen()
 	board.set_board(32, 43, 4);
 	// Mage Academy/School Walls
 	for (int i = 12; i < 28; ++i) // Row 
-	{
 		board.set_board(51, i, 6);
-	}
+
 	for (int i = 12; i < 27; ++i) // Row carpet
-	{
 		board.set_board(29, i, -64);
-	}
+
 	for (int i = 12; i < 18; ++i) // Row 
-	{
 		board.set_board(43, i, 6);
-	}
+
 	for (int i = 21; i < 27; ++i) // Row 
-	{
 		board.set_board(43, i, 6);
-	}
+
 	for (int i = 12; i < 18; ++i) // Row carpet
-	{
 		board.set_board(35, i, -64);
-	}
+
 	for (int i = 21; i < 27; ++i) // Row carpet
-	{
 		board.set_board(35, i, -64);
-	}
+
 	for (int i = 0; i < 7; i++) // Column  carpet
 	{
 		board.set_board((36 + i), 17, -63);
 		board.set_board((36 + i), 21, -63);
 	}
+
 	for (int i = 0; i < 16; i++) // Column  walls
-	{
 		board.set_board((35 + i), 27, 6);
-	}
+
 	for (int i = 0; i < 3; i++) // Column  walls
-	{
 		board.set_board((27 + i), 27, 6);
-	}
+
 	// Houses in Mage Town
 	// House 2
 	board.set_board(38, 55, 9);
@@ -674,9 +620,8 @@ void Game::board_gen()
 		board.set_board(41, i, 9);
 	}
 	for (int i = 0; i < 3; i++) // Column  walls
-	{
 		board.set_board((38 + i), 60, 9);
-	}
+
 	// House 3
 	board.set_board(45, 55, 9);
 	board.set_board(47, 55, 9);
@@ -686,9 +631,8 @@ void Game::board_gen()
 		board.set_board(48, i, 9);
 	}
 	for (int i = 0; i < 3; i++) // Column  walls
-	{
 		board.set_board((45 + i), 60, 9);
-	}
+
 	// House 4
 	board.set_board(52, 55, 9);
 	board.set_board(54, 55, 9);
@@ -698,16 +642,14 @@ void Game::board_gen()
 		board.set_board(55, i, 9);
 	}
 	for (int i = 0; i < 3; i++) // Column  walls
-	{
 		board.set_board((52 + i), 60, 9);
-	}
+
 	// House 5
 	board.set_board(51, 49, 9);
 	board.set_board(51, 47, 9);
 	for (int i = 46; i < 51; ++i) // Row 
-	{
 		board.set_board(56, i, 9);
-	}
+
 	for (int i = 0; i < 4; i++) // Column  walls
 	{
 		board.set_board((52 + i), 46, 9);
@@ -717,9 +659,8 @@ void Game::board_gen()
 	board.set_board(51, 42, 9);
 	board.set_board(51, 40, 9);
 	for (int i = 39; i < 44; ++i) // Row 
-	{
 		board.set_board(56, i, 9);
-	}
+
 	for (int i = 0; i < 4; i++) // Column  walls
 	{
 		board.set_board((52 + i), 39, 9);
@@ -729,9 +670,8 @@ void Game::board_gen()
 	board.set_board(51, 35, 9);
 	board.set_board(51, 33, 9);
 	for (int i = 32; i < 37; ++i) // Row 
-	{
 		board.set_board(56, i, 9);
-	}
+
 	for (int i = 0; i < 4; i++) // Column  walls
 	{
 		board.set_board((52 + i), 32, 9);
@@ -767,9 +707,8 @@ void Game::board_gen()
 		board.set_board(34, i, 17);
 	}
 	for (int i = 0; i < 3; i++) // Column walls
-	{
 		board.set_board((31 + i), 60, 17);
-	}
+
 	// Shop Icon
 	board.set_board(32, 59, 3);
 	// Grass + flower
@@ -799,9 +738,9 @@ void Game::board_gen()
 		board.set_board((19 + i), 53, 2);
 	}
 
-	for (int i = 16; i < 51; ++i) { // Column right against the left world boundary
+	for (int i = 16; i < 51; ++i) // Column right against the left world boundary
 		board.set_board(i, 0, 2);
-	}
+
 	for (int i = 19; i < 53; ++i) // Bottom Row walls to bandit
 		board.set_board(19, i, 2);
 	for (int i = 61; i < 88; ++i) // Bottom Row walls to dungeon
@@ -830,9 +769,8 @@ void Game::board_gen()
 	}
 	//Bandits
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(34, (82 + i), 26);
-	}
+
 	// Excalibur stone
 	for (int i = 0; i < 5; i++)
 	{
@@ -884,69 +822,58 @@ void Game::board_gen()
 	// Redwood Tree
 	board.set_board(23, 51, 44); // #1
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(24, (50 + i), 44);
-	}
+
 	board.set_board(25, 51, 43);
 	board.set_board(21, 45, 44) ; // #2
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(22, (44 + i), 44);
-	}
+
 	board.set_board(23, 45, 43);
 	board.set_board(20, 37, 44); // #3
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(21, (36 + i), 44);
-	}
+
 	board.set_board(22, 37, 43);
 	board.set_board(22, 30, 44); // #4
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(23, (29 + i), 44);
-	}
+
 	board.set_board(24, 30, 43);
 	board.set_board(23, 22, 44); // #5
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(24, (21 + i), 44);
-	}
+
 	board.set_board(25, 22, 43);
 	board.set_board(16, 17, 44); // #6
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(17, (16 + i), 44);
-	}
+
 	board.set_board(18, 17, 43);
 	board.set_board(18, 10, 44); // #7
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(19, (9 + i), 44);
-	}
+
 	board.set_board(20, 10, 43);
 	board.set_board(20, 2, 44); // #8
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(21, (1 + i), 44);
-	}
+
 	board.set_board(22, 2, 43);
 	board.set_board(26, 9, 44); // #9
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(27, (8 + i), 44);
-	}
+
 	board.set_board(28, 9, 43);
 	board.set_board(28, 3, 44); // #10
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(29, (2 + i), 44);
-	}
+
 	board.set_board(30, 3, 43);
 	board.set_board(23, 14, 44); // #11
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(24, (13 + i), 44);
-	}
+
 	board.set_board(25, 14, 43);
 	//Flowers
 	//Sunflower
@@ -992,11 +919,13 @@ void Game::board_gen()
 		board.set_board((69 + i), 67, -54); // room 3
 		board.set_board((67 + i), 70, -53); // room 3
 	}
+
 	//Cage in forest
 	for (int i = 0; i < 3; i++)
 		board.set_board((16 + i), 4, 56);
 	for (int i = 0; i < 2; i++)
 		board.set_board(18, (1 + i), 56);
+
 	//NPCs in forest
 	board.set_board(21, 51, 57); //Missing Mage in forest-Entrance #1 
 	board.set_board(16, 1, 58);// Missing Mage in forest-Cage #2
@@ -1063,41 +992,33 @@ void Game::board_gen()
 	for (int i = 0; i < 47; i++)
 	{
 		for (int j = 0; j < 3; j++)
-		{
 			board.set_board((89 + j), i, 4);
-		}
 	}
 	for (int i = 0; i < 8; i++)
 	{
 		for (int j = 0; j < 13; j++)
-		{
 			board.set_board((76 + j), i, 4);
-		}
 	}
 	for (int i = 0; i < 54; i++)
 	{
 		board.set_board(58, (7 + i), 4);
 		if (i >= 4)
-			board.set_board(62, (7 + i), 4); continue;
+			board.set_board(62, (7 + i), 4);
 	}
 	board.set_board(59, 11, 4);
 	board.set_board(61, 11, 4);
 
 	for (int i = 0; i < 10; i++)
-	{
 		board.set_board((59 + i), 7, 4);
-	}
+
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board((59 + i), 60, 4);
-	}
+
 	// River In Forest
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 14; j++)
-		{
 			board.set_board((37 + j), (6 + i), 4);
-		}
 	}
 	for (int i = 0; i < 9; i++)// river 90 curve at forest
 	{
@@ -1136,11 +1057,11 @@ void Game::board_gen()
 		board.set_board((49 + i), 104, 6);
 		board.set_board((70 + i), 104, 6);
 	}
-	for (int i = 0; i < 47; i++)// Grass Block
+	for (int i = 0; i < 47; i++) // Grass Block
 	{
 		board.set_board(92, i, -42);
 		if (i > 10)
-			board.set_board(88, i, -42); continue;
+			board.set_board(88, i, -42);
 	}
 	for (int i = 0; i < 47; i++)
 	{
@@ -1179,9 +1100,7 @@ void Game::board_gen()
 	for (int i = 0; i < 20; i++)// Grass in empty spaces
 	{
 		for (int j = 0; j < 15; j++)
-		{
 			board.set_board(i, (96 + j), -42);
-		}
 	}
 	for (int i = 0; i < 3; i++)// Grass in empty spaces
 	{
@@ -1197,9 +1116,7 @@ void Game::board_gen()
 	for (int i = 0; i < 37; i++)// Grass in empty spaces
 	{
 		for (int j = 0; j < 3; j++)
-		{
 			board.set_board((64 + i), (59 + j), -42);
-		}
 	}
 	for (int i = 0; i < 7; i++)// Grass in empty spaces
 	{
@@ -1264,9 +1181,8 @@ void Game::board_gen()
 		board.set_board((132 + i), 75, 2);
 	}
 	for (int i = 0; i < 10; i++)
-	{
 		board.set_board((136 + i), 126, 2);
-	}
+
 	for (int j = 0; j < 148; j++)
 	{
 		board.set_board(150, j, 2);
@@ -1362,6 +1278,7 @@ void Game::board_gen()
 			board.set_board((145 + i), (71 + j), -30);
 		}
 	}
+
 	board.set_board(134, 6, 18); // 1
 	board.set_board(136, 6, 18); // 1
 	board.set_board(140, 6, 18); // 2
@@ -1412,9 +1329,8 @@ void Game::board_gen()
 	}
 	// Emperor Throne 
 	for (int i = 0; i < 6; i++)
-	{
 		board.set_board((138 + i), 125, 17);
-	}
+
 	board.set_board(138, 124, 17);
 	board.set_board(140, 124, 17);
 	board.set_board(141, 124, 17);
@@ -1448,9 +1364,7 @@ void Game::board_gen()
 	for (int i = 0; i < 3; i++)
 	{
 		for (int j = 0; j < 8; j++)
-		{
 			board.set_board((126 + i), (25 + j), 12);
-		}
 	}
 	board.set_board(127, 33, 12);
 	for (int i = 0; i < 9; i++)
@@ -1462,25 +1376,19 @@ void Game::board_gen()
 	board.set_board(127, 34, 18);
 	board.set_board(128, 33, 18);
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board((126 + i), 24, 18);
-	}
+
 	for (int i = 0; i < 3; i++)
-	{
 		board.set_board(130, (27 + i), 17);
-	}
 	
 	for (int i = 0; i < 7; i++)
-	{
 		board.set_board(131, (25 + i), 17);
-	}
+
 	//Second Spawnpoint (Grass and flowers)
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
-		{
 			board.set_board((95 + i), j, -42);
-		}
 	}
 	board.set_board(96, 0, -53);
 	board.set_board(98, 1, -54);

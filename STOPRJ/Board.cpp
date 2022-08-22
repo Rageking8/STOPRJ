@@ -112,43 +112,6 @@ void Board::print_map()
 	for (int i = 0; i < 151; ++i) {
 		for (int i2 = 0; i2 < 151; ++i2) {
 
-			if (kingdom_of_elves && i == 78 && (i2 >= 28 && i2 <= 43)) {
-				SetConsoleTextAttribute(h, 14);
-				std::cout << kingdom_of_elves_txt[i2 - 28];
-				SetConsoleTextAttribute(h, 7);
-				continue;
-			}
-			else if (!kingdom_of_elves && i == 77 && (i2 >= 28 && i2 <= 43)) {
-				SetConsoleTextAttribute(h, 14);
-				std::cout << kingdom_of_elves_txt[i2 - 28];
-				SetConsoleTextAttribute(h, 7);
-				continue;
-			}
-			else if (mage_town && i == 42 && (i2 >= 31 && i2 <= 39)) {
-				SetConsoleTextAttribute(h, 14);
-				std::cout << mage_town_txt[i2 - 31];
-				SetConsoleTextAttribute(h, 7);
-				continue;
-			}
-			else if (!mage_town && i == 41 && (i2 >= 31 && i2 <= 39)) {
-				SetConsoleTextAttribute(h, 14);
-				std::cout << mage_town_txt[i2 - 31];
-				SetConsoleTextAttribute(h, 7);
-				continue;
-			}
-			else if (bandit_camp && i == 8 && (i2 >= 19 && i2 <= 29)) {
-				SetConsoleTextAttribute(h, 14);
-				std::cout << bandit_camp_txt[i2 - 19];
-				SetConsoleTextAttribute(h, 7);
-				continue;
-			}
-			else if (!bandit_camp && i == 7 && (i2 >= 19 && i2 <= 29)) {
-				SetConsoleTextAttribute(h, 14);
-				std::cout << bandit_camp_txt[i2 - 19];
-				SetConsoleTextAttribute(h, 7);
-				continue;
-			}
-
 			// Optimize map printing (~200% faster than without this code)
 			if (board_data[(i * 151) + i2] == 0) {
 				cluster++;
@@ -469,6 +432,30 @@ void Board::print_map()
 		}
 		std::cout << "\n";
 	}
+
+	if (kingdom_of_elves) {
+		Common::color_print(28, 78, 0x0E, kingdom_of_elves_txt);
+	}
+	else {
+		Common::color_print(28, 77, 0x0E, kingdom_of_elves_txt);
+	}
+	
+	if (mage_town) {
+		Common::color_print(31, 42, 0x0E, mage_town_txt);
+	}
+	else {
+		Common::color_print(31, 41, 0x0E, mage_town_txt);
+	}
+
+	if (bandit_camp) {
+		Common::color_print(19, 8, 0x0E, bandit_camp_txt);
+	}
+	else {
+		Common::color_print(19, 7, 0x0E, bandit_camp_txt);
+	}
+
+	Common::set_cursor(0, 151);
+
 	//std::cout << t.end();
 }
 

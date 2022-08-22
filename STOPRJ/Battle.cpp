@@ -25,8 +25,8 @@ void Game::start_battle(std::string id)
 	else if (id == "bandit_1") {
 		for (int i = 0; i < 4; ++i) {
 			enemy[i].set_name("Bandits");
-			enemy[i].set_stats("cur_health", 10);
-			enemy[i].set_stats("max_health", 10);
+			enemy[i].set_stats("cur_health", 5);
+			enemy[i].set_stats("max_health", 5);
 			enemy[i].set_stats("cur_mp", 25);
 			enemy[i].set_stats("max_mp", 25);
 			enemy[i].init_skill("danger_poke", "strength_dart", "bomb", "backstab");
