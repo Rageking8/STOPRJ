@@ -19,6 +19,8 @@ public:
 	skill_data get_skill_list(int idx);
 	void print_color_name(int idx);
 
+	void set_active(int idx, bool new_b);
+
 protected:
 	skill_data skill_list[4];
 

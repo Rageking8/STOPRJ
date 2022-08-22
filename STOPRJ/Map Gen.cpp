@@ -1224,7 +1224,7 @@ void Game::board_gen()
 
 	// Swordsman NPC
 	board.set_board(135, 7, 74); // Messenger
-	board.set_board(132, 26, 75); // Docks 
+	board.set_board(132, 26, 75); // Docks
 	board.set_board(138, 41, 76); // Fountain 1
 	board.set_board(137, 72, 77); // Garden 2
 	board.set_board(144, 91, 72); // Guard 1
@@ -1408,7 +1408,6 @@ void Game::board_gen()
 	
 	for (int i = 0; i < 7; i++)
 	{
-		if (i >= 2 && i <= 4) continue;
 		board.set_board(131, (25 + i), 17);
 	}
 	//Second Spawnpoint (Grass and flowers)

@@ -39,6 +39,13 @@ void Skill::print_color_name(int idx)
 	}
 }
 
+void Skill::set_active(int idx, bool new_b)
+{
+	if (idx >= 0 && idx <= 3) {
+		skill_list[idx].active = new_b;
+	}
+}
+
 Skill::skill_data Skill::get_skill(std::string skill_name)
 {
 	if (skill_name == "slash")

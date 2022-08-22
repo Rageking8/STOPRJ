@@ -2,6 +2,8 @@
 
 int main()
 {
-	Game game;
-	game.start();
+	while (true) {
+		Game game;
+		game.start();
+	}
 }

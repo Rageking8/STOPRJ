@@ -1056,16 +1056,38 @@ void Game::start()
 				board.set_board(46, 59, 0);
 				board.set_board(8, 31, 78);
 				teleport_ply(71, 54);
-				swordsman.set_stats("cur_hp", 50);
+				swordsman.set_stats("cur_health", 50);
+			}
+			else {
+				for (int i = 54; i < 61; ++i)
+					board.set_board(19, i, 6);
 			}
 
 			board.set_board(64, 41, 0);
 
+			elf.set_recruited(true);
+
 			prev_is_map = false;
 			system("cls");
 		}
-		else if (!bandit_camp_t && swordsman.get_pos(0) == 15 && swordsman.get_pos(1) >= 20 && swordsman.get_pos(1) <= 29) {
+		else if (!bandit1_b && !bandit_camp_t && swordsman.get_pos(0) == 15 && swordsman.get_pos(1) >= 20 && swordsman.get_pos(1) <= 29) {
 			story.meetOrion_loseBandits();
+
+			mage.set_recruited(true);
+			mage.set_stats("cur_health", 20);
+			mage.set_stats("cur_mp", 40);
+
+			start_battle("bandit_2");
+
+			board.set_board(9, 31, 0);
+			board.set_board(8, 30, 0);
+			board.set_board(8, 32, 0);
+			board.set_board(7, 31, 0);
+
+			teleport_ply(8, 31);
+
+			if (swordsman.get_stats("cur_health") <= 0)
+				break;
 
 			bandit_camp_t = true;
 			prev_is_map = false;
@@ -1112,9 +1134,8 @@ void Game::start()
 				trigger_counter = 1;
 				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 20);
 
-				for (int i = 95; i < 100; ++i) {
+				for (int i = 95; i < 100; ++i)
 					board.set_board(i, 47, 0);
-				}
 			}
 
 			prev_is_map = false;
@@ -1226,7 +1247,7 @@ void Game::start()
 		else if (tmp_target_cell_val == 75)
 		{
 			Common::cursor_vis(false);
-			story.npc14();
+			story.npc14(board.get_board(131, 27) == 0);
 			prev_is_map = false;
 			system("cls");
 		}
@@ -1248,6 +1269,36 @@ void Game::start()
 		{
 			Common::cursor_vis(false);
 			story.prologue();
+
+			for (int i = 2; i < 5; i++)
+				board.set_board(131, (25 + i), 0);
+
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 78)
+		{
+			Common::cursor_vis(false);
+			story.meetOrion_winBandits();
+
+			mage.set_recruited(true);
+			start_battle("bandit_2");
+
+			for (int i = 54; i < 61; ++i)
+				board.set_board(19, i, 0);
+
+			board.set_board(9, 31, 0);
+			board.set_board(8, 30, 0);
+			board.set_board(8, 32, 0);
+			board.set_board(7, 31, 0);
+
+			board.set_board(46, 59, 0);
+
+			teleport_ply(8, 31);
+
+			if (swordsman.get_stats("cur_health") <= 0)
+				break;
+
 			prev_is_map = false;
 			system("cls");
 		}

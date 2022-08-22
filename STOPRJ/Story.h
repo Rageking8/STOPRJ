@@ -101,7 +101,7 @@ public:
 	void npc13(bool bandits); // near the path to caershire (mage town)
 
 	// moris empire npc interactions
-	void npc14(); // boat
+	void npc14(bool state); // boat
 	void npc15_16(); // 2 npcs at the fountain (same dialogue)
 	void npc17_18(); // 2 npcs gardening (same dialogue)
 	void npc19_20(); // 2 npc guards (same dialogue)

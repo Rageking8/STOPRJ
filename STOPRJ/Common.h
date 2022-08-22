@@ -16,7 +16,7 @@ namespace Common
 
 	// Prints given text with writing animation
 	// Returns std::string to be able to use in Common::input
-	std::string write_ani(std::string txt, const unsigned short delay_ms = 14);
+	std::string write_ani(std::string txt, const unsigned short delay_ms = 12);
 
 	// Generates a random integer in range [min, max]
 	int rand_int(int min, int max);

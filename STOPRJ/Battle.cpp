@@ -33,6 +33,23 @@ bool Game::start_battle(std::string id)
 			enemy[i].init_skill("danger_poke", "strength_dart", "bomb", "backstab");
 		}
 	}
+	else if (id == "bandit_2") {
+		for (int i = 0; i < 2; ++i) {
+			enemy[i].set_name("Bandits");
+			enemy[i].set_stats("cur_health", 15);
+			enemy[i].set_stats("max_health", 15);
+			enemy[i].set_stats("cur_mp", 25);
+			enemy[i].set_stats("max_mp", 25);
+			enemy[i].init_skill("danger_poke", "strength_dart", "bomb", "backstab");
+		}
+		enemy[2].set_name("Bandit Leader");
+		enemy[2].set_stats("cur_health", 25);
+		enemy[2].set_stats("max_health", 25);
+		enemy[2].set_stats("cur_mp", 50);
+		enemy[2].set_stats("max_mp", 50);
+		enemy[2].init_skill("danger_poke", "strength_dart", "bomb", "backstab");
+		enemy[2].set_active(2, true);
+	}
 
 	bool slot_active[8]{};
 
@@ -57,8 +74,11 @@ bool Game::start_battle(std::string id)
 	while (true) {
 		for (int i = 0; i < 4; ++i) {
 			if (slot_active[i]) {
-				if (current_turn == i)
-					SetConsoleTextAttribute(h, 0x09);
+				int tmp_color = 0x07;
+				if (current_turn == i) {
+					SetConsoleTextAttribute(h, 0x0E);
+					tmp_color = 0x0E;
+				}
 
 				Common::set_cursor(i * 25, 0);
 				std::cout << "|======================| ";
@@ -77,15 +97,18 @@ bool Game::start_battle(std::string id)
 					Common::set_cursor(i * 25, 6 + i2);
 					if (enemy[i].get_skill_list(i2).active) {
 						std::string tmp_skill_name = enemy[i].get_skill_list(i2).name;
-						std::cout << "| " << i2 + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+						Common::color_print(tmp_color, "| " + std::to_string(i2 + 1) + " ");
+						enemy[i].print_color_name(i2);
+						std::cout << Common::mul_txt(" ", 19 - tmp_skill_name.length());
+						Common::color_print(tmp_color, "| ");
 					}
 					else {
-						std::cout << "|                      | ";
+						Common::color_print(tmp_color, "|                      | ");
 					}
 				}
 
 				Common::set_cursor(i * 25, 10);
-				std::cout << "|======================| ";
+				Common::color_print(tmp_color, "|======================| ");
 
 				if (current_turn == i)
 					SetConsoleTextAttribute(h, 0x07);
@@ -93,8 +116,11 @@ bool Game::start_battle(std::string id)
 		}
 
 		if (slot_active[4]) {
-			if (current_turn == 4)
-				SetConsoleTextAttribute(h, 0x09);
+			int tmp_color = 0x07;
+			if (current_turn == 4) {
+				SetConsoleTextAttribute(h, 0x0E);
+				tmp_color = 0x0E;
+			}
 
 			Common::set_cursor(0, 15);
 			std::cout << "|======================| ";
@@ -113,23 +139,29 @@ bool Game::start_battle(std::string id)
 				Common::set_cursor(0, 21 + i);
 				if (swordsman.get_skill_list(i).active) {
 					std::string tmp_skill_name = swordsman.get_skill_list(i).name;
-					std::cout << "| " << i + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+					Common::color_print(tmp_color, "| " + std::to_string(i + 1) + " ");
+					swordsman.print_color_name(i);
+					std::cout << Common::mul_txt(" ", 19 - tmp_skill_name.length());
+					Common::color_print(tmp_color, "| ");
 				}
 				else {
-					std::cout << "|                      | ";
+					Common::color_print(tmp_color, "|                      | ");
 				}
 			}
 
 			Common::set_cursor(0, 25);
-			std::cout << "|======================| ";
+			Common::color_print(tmp_color, "|======================| ");
 
 			if (current_turn == 4)
 				SetConsoleTextAttribute(h, 0x07);
 		}
 
 		if (slot_active[5]) {
-			if (current_turn == 5)
-				SetConsoleTextAttribute(h, 0x09);
+			int tmp_color = 0x07;
+			if (current_turn == 5) {
+				SetConsoleTextAttribute(h, 0x0E);
+				tmp_color = 0x0E;
+			}
 
 			Common::set_cursor(25, 15);
 			std::cout << "|======================| ";
@@ -148,23 +180,29 @@ bool Game::start_battle(std::string id)
 				Common::set_cursor(25, 21 + i);
 				if (mage.get_skill_list(i).active) {
 					std::string tmp_skill_name = mage.get_skill_list(i).name;
-					std::cout << "| " << i + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+					Common::color_print(tmp_color, "| " + std::to_string(i + 1) + " ");
+					mage.print_color_name(i);
+					std::cout << Common::mul_txt(" ", 19 - tmp_skill_name.length());
+					Common::color_print(tmp_color, "| ");
 				}
 				else {
-					std::cout << "|                      | ";
+					Common::color_print(tmp_color, "|                      | ");
 				}
 			}
 
 			Common::set_cursor(25, 25);
-			std::cout << "|======================| ";
+			Common::color_print(tmp_color, "|======================| ");
 
 			if (current_turn == 5)
 				SetConsoleTextAttribute(h, 0x07);
 		}
 
 		if (slot_active[6]) {
-			if (current_turn == 6)
-				SetConsoleTextAttribute(h, 0x09);
+			int tmp_color = 0x07;
+			if (current_turn == 6) {
+				SetConsoleTextAttribute(h, 0x0E);
+				tmp_color = 0x0E;
+			}
 
 			Common::set_cursor(50, 15);
 			std::cout << "|======================| ";
@@ -183,23 +221,29 @@ bool Game::start_battle(std::string id)
 				Common::set_cursor(50, 21 + i);
 				if (elf.get_skill_list(i).active) {
 					std::string tmp_skill_name = elf.get_skill_list(i).name;
-					std::cout << "| " << i + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+					Common::color_print(tmp_color, "| " + std::to_string(i + 1) + " ");
+					elf.print_color_name(i);
+					std::cout << Common::mul_txt(" ", 19 - tmp_skill_name.length());
+					Common::color_print(tmp_color, "| ");
 				}
 				else {
-					std::cout << "|                      | ";
+					Common::color_print(tmp_color, "|                      | ");
 				}
 			}
 
 			Common::set_cursor(50, 25);
-			std::cout << "|======================| ";
+			Common::color_print(tmp_color, "|======================| ");
 
 			if (current_turn == 6)
 				SetConsoleTextAttribute(h, 0x07);
 		}
 
 		if (slot_active[7]) {
-			if (current_turn == 7)
-				SetConsoleTextAttribute(h, 0x09);
+			int tmp_color = 0x07;
+			if (current_turn == 7) {
+				SetConsoleTextAttribute(h, 0x0E);
+				tmp_color = 0x0E;
+			}
 
 			Common::set_cursor(75, 15);
 			std::cout << "|======================| ";
@@ -218,15 +262,18 @@ bool Game::start_battle(std::string id)
 				Common::set_cursor(75, 21 + i);
 				if (assassin.get_skill_list(i).active) {
 					std::string tmp_skill_name = assassin.get_skill_list(i).name;
-					std::cout << "| " << i + 1 << " " << tmp_skill_name << Common::mul_txt(" ", 19 - tmp_skill_name.length()) << "| ";
+					Common::color_print(tmp_color, "| " + std::to_string(i + 1) + " ");
+					assassin.print_color_name(i);
+					std::cout << Common::mul_txt(" ", 19 - tmp_skill_name.length());
+					Common::color_print(tmp_color, "| ");
 				}
 				else {
-					std::cout << "|                      | ";
+					Common::color_print(tmp_color, "|                      | ");
 				}
 			}
 
 			Common::set_cursor(75, 25);
-			std::cout << "|======================| ";
+			Common::color_print(tmp_color, "|======================| ");
 
 			if (current_turn == 7)
 				SetConsoleTextAttribute(h, 0x07);
@@ -366,18 +413,32 @@ bool Game::start_battle(std::string id)
 						}
 						else if (id == "bandit_1") {
 							story.recruitElora();
-							elf.set_recruited(true);
+						}
+						else if (id == "bandit_2") {
+							if (elf.get_stats("cur_health") <= 0) {
+								story.recruitOrion_main();
+							}
+							else {
+								story.recruitOrion_eloraDead();
+							}
 						}
 						ret = true;
 
 						break;
 					}
-					else if (!slot_active[4] && !slot_active[5] && !slot_active[6] && !slot_active[7]) {
-						// Ally all dead
+					else if (!slot_active[4]) {
 
 						if (id == "bandit_1") {
 
 							story.recruitElora_loseBandits();
+
+						}
+						else if (id == "bandit_2") {
+
+							if (slot_active[5] || slot_active[6] || slot_active[7])
+								story.gameOver_playerDead();
+							else
+								story.gameOver_everyoneDead();
 
 						}
 						ret = false;
@@ -496,18 +557,32 @@ bool Game::start_battle(std::string id)
 				}
 				else if (id == "bandit_1") {
 					story.recruitElora();
-					elf.set_recruited(true);
+				}
+				else if (id == "bandit_2") {
+					if (elf.get_stats("cur_health") <= 0) {
+						story.recruitOrion_main();
+					}
+					else {
+						story.recruitOrion_eloraDead();
+					}
 				}
 				ret = true;
 
 				break;
 			}
-			else if (!slot_active[4] && !slot_active[5] && !slot_active[6] && !slot_active[7]) {
-				// Ally all dead
+			else if (!slot_active[4]) {
 
 				if (id == "bandit_1") {
 
 					story.recruitElora_loseBandits();
+
+				}
+				else if (id == "bandit_2") {
+
+					if (slot_active[5] || slot_active[6] || slot_active[7])
+						story.gameOver_playerDead();
+					else
+						story.gameOver_everyoneDead();
 
 				}
 				ret = false;

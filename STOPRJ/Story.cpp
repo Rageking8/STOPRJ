@@ -43,13 +43,15 @@ void Story::prologue()
 
 		"The last person you need to recruit is a very strong assassin named BLAISE.\n"
 		"Nobody has been able to find him these days, but I trust you can do it.\n\n",
+
+		"You may begin your mission by going to the dock and travelling to the other side of the world\n"
+		"across the ocean, Kingdom of Elves.\n\n"
 	};
 
 	for (const auto i : story_arr) {
 		Common::color_print(0x0e, "EMPEROR:\n");
 		Common::write_ani(i);
 	}
-
 
 	Common::write_ani("Good luck, " + name + ". I leave this paramount task in your capable hands.\n\n");
 
@@ -366,7 +368,7 @@ void Story::recruitOrion_main()
 					  "Even though I'd rather not join you guys, I'm a man of my word.\n\n");
 
 	Common::color_print(0x0d, "ORION ");
-	Common::write_ani("has been (officially) recruited to your party!\n\n");
+	Common::write_ani("has been recruited to your party!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -394,7 +396,7 @@ void Story::recruitOrion_eloraDead()
 					  "Even though I'd rather not join you, I'm a man of my word.\n\n");
 
 	Common::color_print(0x0d, "ORION ");
-	Common::write_ani("has been (officially) recruited to your party!\n\n");
+	Common::write_ani("has been recruited to your party!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1535,13 +1537,16 @@ void Story::npc13(bool bandits)
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::npc14()
+void Story::npc14(bool state)
 {
 	system("cls");
 
 	Common::color_print(0x09, "MASON:\n");
-	Common::write_ani("Best of luck for your next journey!\n"
-					  "Bring some souvenirs back if you can! ...Haha, I'm just kidding, you don't have to!\n\n");
+	if (state)
+		Common::write_ani("Best of luck for your next journey!\n"
+						  "Bring some souvenirs back if you can! ...Haha, I'm just kidding, you don't have to!\n\n");
+	else
+		Common::write_ani("The Emperor is looking for you, its best if you go immediately.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
