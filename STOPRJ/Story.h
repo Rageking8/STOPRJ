@@ -20,6 +20,8 @@ public:
 	void meetOrion_loseBandits(); // encountering orion on the path from caershire to the bandit camp (lose to bandits)
 	void recruitOrion_main(); // bandits defeated
 	void recruitOrion_eloraDead(); // bandits defeated but elora dies
+	void defeatBandits_orionDead(); // bandits defeated but orion dies
+	void defeatBandits_oriAndElrDead(); // bandits defeated but orion AND elora die
 
 	void meetBlaise_main(); // entering treasure room if all party members are alive (choice input after this)
 	void killBlaise_main();

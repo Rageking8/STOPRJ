@@ -15,12 +15,6 @@ Game::Game() : trigger_counter{}
 	board.set_board(135, 2, 1);
 	swordsman.set_pos(135, 2);
 
-	//board.set_board(67, 3, 1);
-	//swordsman.set_pos(67, 3);
-
-	//board.set_board(17, 27, 1);
-	//swordsman.set_pos(17, 27);
-
 	int tmp_cam_pos_i1 = 0;
 	int tmp_cam_pos_i2 = 0;
 
@@ -79,6 +73,7 @@ void Game::start()
 
 	bool bandit1_b = false;
 	bool bandit_camp_t = false;
+	bool bandit_trea_r = false;
 
 	while (true) {
 
@@ -1011,7 +1006,7 @@ void Game::start()
 				else if (menu_option == "3") {
 					system("cls");
 					board.print_map();
-					std::cout << "\n# -> Colored blocks\nP -> Player\nS -> Shop\n? -> Special landmarks\n~ -> Water / Lava\n. -> All other landmarks (including empty space)\n\nPress any key to return ";
+					std::cout << "\n# -> Colored blocks\nP -> Player\nS -> Shop\n? -> Special landmarks\n~ -> Water / Lava\n= -> Non-solid block (allow player to walk through)\n. -> All other landmarks (including empty space)\n\nPress any key to return ";
 					Common::any_key_press();
 					system("cls");
 				}
@@ -1029,6 +1024,25 @@ void Game::start()
 		// Ambush by the elf troops
 		if (trigger_counter == 1 && swordsman.get_pos(1) == 47 && swordsman.get_pos(0) >= 95 && swordsman.get_pos(0) <= 99) {
 			story.meetElora();
+
+			system("cls");
+
+			Common::write_ani("Welcome to your first BATTLE! For this BATTLE, some guidance will be provided.\n"
+							  "The box highlighted in LIGHT YELLOW signifies whose turn it is. Currently, it is YOUR turn.\n\n"
+							  "The numbers on the left correspond to your SKILLS. Some skills may cost MP.\n"
+							  "To see how much MP it could cost, enter S to check the SKILL BOOK.\n\n"
+							  "Just enter the corresponding skill number to make a move!\n\n");
+
+
+			Common::write_ani("Great job! You've made your first move!\n"
+							  "Just be careful, though. If your HP reaches ZERO, you die.\n\n"
+							  "However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
+							  "win or lose. Afterwards, it's an instant GAME OVER.\n\n"
+							  "Now that you've gotten the basics of BATTLE, you'll be on your own from here on out!\n"
+							  "Good luck!\n\n");
+
+			Common::any_key_press("Press any key to continue");
+
 			start_battle("ambush");
 			trigger_counter++;
 
@@ -1070,12 +1084,13 @@ void Game::start()
 			prev_is_map = false;
 			system("cls");
 		}
-		else if (!bandit1_b && !bandit_camp_t && swordsman.get_pos(0) == 15 && swordsman.get_pos(1) >= 20 && swordsman.get_pos(1) <= 29) {
-			story.meetOrion_loseBandits();
-
+		else if (!bandit_camp_t && swordsman.get_pos(0) == 15 && swordsman.get_pos(1) >= 20 && swordsman.get_pos(1) <= 29) {
 			mage.set_recruited(true);
-			mage.set_stats("cur_health", 20);
-			mage.set_stats("cur_mp", 40);
+			if (!bandit1_b) {
+				story.meetOrion_loseBandits();
+				mage.set_stats("cur_health", 20);
+				mage.set_stats("cur_mp", 40);
+			}
 
 			start_battle("bandit_2");
 
@@ -1085,6 +1100,9 @@ void Game::start()
 			board.set_board(7, 31, 0);
 
 			teleport_ply(8, 31);
+
+			for (int i = 20; i < 30; ++i)
+				board.set_board(15, i, 6);
 
 			if (swordsman.get_stats("cur_health") <= 0)
 				break;
@@ -1218,11 +1236,64 @@ void Game::start()
 			// Switch red
 
 			board.set_board(tmp_target_cell[0], tmp_target_cell[1], 20);
+
+			if (board.get_board(3, 59) == 20 && board.get_board(9, 59) == 19 && board.get_board(3, 73) == 19 && board.get_board(9, 73) == 20) {
+				for (int i = 0; i < 7; i++)
+					board.set_board((3 + i), 79, 0);
+			}
+			else {
+				for (int i = 0; i < 7; i++)
+					board.set_board((3 + i), 79, 6);
+			}
+
+			if (!bandit_trea_r && board.get_board(3, 79) == 0) {
+				if (elf.get_stats("cur_health") > 0 && mage.get_stats("cur_health") > 0) {
+					story.meetBlaise_main();
+				}
+				else if (elf.get_stats("cur_health") <= 0 && mage.get_stats("cur_health") > 0) {
+					story.meetBlaise_eloraDead();
+				}
+				else if (elf.get_stats("cur_health") > 0 && mage.get_stats("cur_health") <= 0) {
+					story.meetBlaise_orionDead();
+				}
+				else {
+					story.meetBlaise_partyDead();
+				}
+
+				bandit_trea_r = true;
+			}
+
 		}
 		else if (tmp_target_cell_val == 20) {
 			// Switch blue
 
 			board.set_board(tmp_target_cell[0], tmp_target_cell[1], 19);
+
+			if (board.get_board(3, 59) == 20 && board.get_board(9, 59) == 19 && board.get_board(3, 73) == 19 && board.get_board(9, 73) == 20) {
+				for (int i = 0; i < 7; i++)
+					board.set_board((3 + i), 79, 0);
+			}
+			else {
+				for (int i = 0; i < 7; i++)
+					board.set_board((3 + i), 79, 6);
+			}
+
+			if (!bandit_trea_r && board.get_board(3, 79) == 0) {
+				if (elf.get_stats("cur_health") > 0 && mage.get_stats("cur_health") > 0) {
+					story.meetBlaise_main();
+				}
+				else if (elf.get_stats("cur_health") <= 0 && mage.get_stats("cur_health") > 0) {
+					story.meetBlaise_eloraDead();
+				}
+				else if (elf.get_stats("cur_health") > 0 && mage.get_stats("cur_health") <= 0) {
+					story.meetBlaise_orionDead();
+				}
+				else {
+					story.meetBlaise_partyDead();
+				}
+
+				bandit_trea_r = true;
+			}
 		}
 		else if (tmp_target_cell_val == 31)
 		{
@@ -1281,35 +1352,13 @@ void Game::start()
 			Common::cursor_vis(false);
 			story.meetOrion_winBandits();
 
-			mage.set_recruited(true);
-			start_battle("bandit_2");
-
 			for (int i = 54; i < 61; ++i)
 				board.set_board(19, i, 0);
 
-			board.set_board(9, 31, 0);
-			board.set_board(8, 30, 0);
-			board.set_board(8, 32, 0);
-			board.set_board(7, 31, 0);
-
 			board.set_board(46, 59, 0);
-
-			teleport_ply(8, 31);
-
-			if (swordsman.get_stats("cur_health") <= 0)
-				break;
 
 			prev_is_map = false;
 			system("cls");
-		}
-
-		if (board.get_board(3, 59) == 20 && board.get_board(9, 59) == 19 && board.get_board(3, 73) == 19 && board.get_board(9, 73) == 20) {
-			for (int i = 0; i < 7; i++)
-				board.set_board((3 + i), 79, 0);
-		}
-		else {
-			for (int i = 0; i < 7; i++)
-				board.set_board((3 + i), 79, 6);
 		}
 	}
 }

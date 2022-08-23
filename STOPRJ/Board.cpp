@@ -221,6 +221,9 @@ void Board::print_map()
 			}
 
 			switch (board_data[(i * 151) + i2]) {
+				case -86: //Bridge
+					Common::color_print(0X06, "=");
+					break;
 				case -85: // Door Vertical
 					Common::color_print(0X0E, "=");
 					break;
@@ -449,6 +452,15 @@ void Board::print_map()
 				case 78: // Orions Heros
 					Common::color_print(0X70, "?");
 					break;
+				case 79: // Blaise
+					Common::color_print(0X70, "?");
+					break;
+				case 80: // fish right
+					Common::color_print(0X0C, "#");
+					break;
+				case 81: // fish right
+					Common::color_print(0X0C, "#");
+					break;
 				default:
 					std::cout << ".";
 			}
@@ -515,6 +527,11 @@ void Board::move_cam(char dir)
 void Board::print_with_id(short id)
 {
 	switch (id) {
+		case -86: //Bridge
+			Common::color_print(0XE0, "|");
+			Common::color_print(0X60, "-");
+			Common::color_print(0XE0, "|");
+			break;
 		case -85: // Door Vertical
 			Common::color_print(0X0E, "[-]");
 			break;
@@ -526,6 +543,11 @@ void Board::print_with_id(short id)
 			break;
 		case -66: // Gren Carpet vert
 			Common::color_print(0X20, " | ");
+			break;
+		case -65: // Dungeon Walls
+			Common::color_print(0X80, "#");
+			Common::color_print(0X70, "#");
+			Common::color_print(0X80, "#");
 			break;
 		case -64: // Red Carpet hori
 			Common::color_print(0X40, "___");
@@ -793,6 +815,19 @@ void Board::print_with_id(short id)
 			break;
 		case 78: // Orions Hero
 			Common::color_print(0X0D, "Ori");
+			break;
+		case 79: // Blaise
+			Common::color_print(0X0C, "Bls");
+			break;
+		case 80: // fish right
+			Common::color_print(0X40, ">");
+			Common::color_print(0X60, "|");
+			Common::color_print(0X40, "*");
+			break;
+		case 81: // fish right
+			Common::color_print(0X40, "*");
+			Common::color_print(0X60, "|");
+			Common::color_print(0X40, "<");
 			break;
 		default:
 			std::cout << "   ";

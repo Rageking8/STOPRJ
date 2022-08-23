@@ -415,11 +415,17 @@ bool Game::start_battle(std::string id)
 							story.recruitElora();
 						}
 						else if (id == "bandit_2") {
-							if (elf.get_stats("cur_health") <= 0) {
-								story.recruitOrion_main();
+							if (elf.get_stats("cur_health") <= 0 && mage.get_stats("cur_health") <= 0) {
+								story.defeatBandits_oriAndElrDead();
+							}
+							else if (elf.get_stats("cur_health") <= 0) {
+								story.recruitOrion_eloraDead();
+							}
+							else if (mage.get_stats("cur_health") <= 0) {
+								story.defeatBandits_orionDead();
 							}
 							else {
-								story.recruitOrion_eloraDead();
+								story.recruitOrion_main();
 							}
 						}
 						ret = true;
@@ -559,11 +565,17 @@ bool Game::start_battle(std::string id)
 					story.recruitElora();
 				}
 				else if (id == "bandit_2") {
-					if (elf.get_stats("cur_health") <= 0) {
-						story.recruitOrion_main();
+					if (elf.get_stats("cur_health") <= 0 && mage.get_stats("cur_health") <= 0) {
+						story.defeatBandits_oriAndElrDead();
+					}
+					else if (elf.get_stats("cur_health") <= 0) {
+						story.recruitOrion_eloraDead();
+					}
+					else if (mage.get_stats("cur_health") <= 0) {
+						story.defeatBandits_orionDead();
 					}
 					else {
-						story.recruitOrion_eloraDead();
+						story.recruitOrion_main();
 					}
 				}
 				ret = true;

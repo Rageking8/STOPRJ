@@ -329,6 +329,8 @@ void Game::board_gen()
 	for (int i = 0; i < 7; i++) // Cage Walls (unlocks when combination is correct)
 		board.set_board((3 + i), 79, 6);
 
+	board.set_board(6, 81, 79);
+
 	// Chest
 	for (int i = 0; i < 3; i++)
 	{
@@ -823,6 +825,13 @@ void Game::board_gen()
 		board.set_board((51 + i), 77, 71);
 		board.set_board((53 + i), 71, 71);
 	}
+	// Walk-thru Walls
+	board.set_board(55, 64, -65);
+	board.set_board(45, 87, -65);
+	board.set_board(47, 87, -65);
+	board.set_board(58, 87, -65);
+	board.set_board(60, 87, -65);
+
 	board.set_board(56, 66, 70); //Key 
 	// Forest
 	// Redwood Tree
@@ -881,7 +890,34 @@ void Game::board_gen()
 		board.set_board(24, (13 + i), 44);
 
 	board.set_board(25, 14, 43);
-	//Flowers
+
+	//Bridge in Forest
+	for (int i = 0; i < 4; i++)
+	{
+		board.set_board((33 + i), 3, -86);
+	}
+	
+	//Grass block as garden in forest
+	for (int i = 0; i < 14; i++)
+	{
+		for (int j = 0; j < 5; j++)
+		{
+			if (i == 0 && j == 4) continue;
+			board.set_board((37 + i), (1 + j), -42);
+		}
+	}
+	//Grass as garden in forest
+	for (int i = 0; i < 12; i+=4)
+	{
+		for (int j = 0; j < 5; j+=3)
+		{
+			//if (i == 0 && j == 4) continue;
+			//board.set_board((37 + i), (1 + j), -2);
+			//board.set_board((39 + i), (2 + j), -2);
+		}
+	}
+
+	//Flowers in Mage Forest Garden
 	//Sunflower
 	board.set_board(38, 4, -53);
 	board.set_board(46, 3, -53);
@@ -1187,7 +1223,7 @@ void Game::board_gen()
 			board.set_board((135 + j), (11 + i), -2);
 		}
 	}
-	// Swordsman Town and Emperor Castle
+	// Moris Empire and Emperor Castle
 	for (int i = 0; i < 19; i++) 
 	{
 		board.set_board((132 + i), 0, 2);
@@ -1326,7 +1362,7 @@ void Game::board_gen()
 	board.set_board(144, 68, -85); // Door
 	board.set_board(144, 69, 18); // 11
 
-	// Fountain border (Swordsman Town)
+	// Fountain border (Moris Empire)
 	for (int i = 0; i < 3; ++i) {
 		board.set_board(137, (43 + i), 2);
 		board.set_board(141, (43 + i), 2);
@@ -1338,7 +1374,7 @@ void Game::board_gen()
 	board.set_board(139, 41, 2);
 	board.set_board(139, 47, 2);
 
-	// Fountain water (Swordsman Town)
+	// Fountain water (Moris Empire)
 	for (int i = 0; i < 3; ++i) {
 		for (int i2 = 0; i2 < 3; ++i2)
 			board.set_board(138 + i, 43 + i2, 4);
@@ -1385,6 +1421,33 @@ void Game::board_gen()
 			board.set_board((139 + i), 149, 18);
 		}
 	}
+	// Fountain border (Emperor Room)
+	for (int i = 0; i < 3; ++i) {
+		board.set_board(138, (132 + i), 2);
+		board.set_board(143, (132 + i), 2);
+	}
+	for (int i = 0; i < 2; ++i) {
+		board.set_board(139 + (i * 3), 131, 2);
+		board.set_board(139 + (i * 3), 135, 2);
+	}
+	board.set_board(140, 130, 2);
+	board.set_board(140, 136, 2);
+	board.set_board(141, 130, 2);
+	board.set_board(141, 136, 2);
+
+	// Fountain water (Emperor Room)
+	for (int i = 0; i < 4; ++i) {
+		for (int i2 = 0; i2 < 3; ++i2)
+			board.set_board(139 + i, 132 + i2, 4);
+	}
+	board.set_board(140, 131, 4);
+	board.set_board(140, 135, 4);
+	board.set_board(141, 131, 4);
+	board.set_board(141, 135, 4);
+	//Fishes
+	board.set_board(139, 134, 81);
+	board.set_board(141, 132, 80);
+
 	// Ship
 	for (int i = 0; i < 3; i++)
 	{

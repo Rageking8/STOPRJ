@@ -17,6 +17,11 @@ void Story::after_start_menu()
 					  "The Emperor has requested your attendance. Please head to the castle immediately\n"
 					  "after receiving and opening this letter.\n\n");
 
+	Common::color_print(0x09, "MESSENGER:\n");
+	Common::write_ani("The castle's on the right side of the Empire, in case you're unaware.\n"
+					  "If you ever get lost on the way, you can always have a look at your map by accessing the menu.\n"
+					  "I'll be taking my leave now. Have a nice day.\n\n");
+
 	Common::any_key_press("Press any key to continue");
 }
 
@@ -44,8 +49,8 @@ void Story::prologue()
 		"The last person you need to recruit is a very strong assassin named BLAISE.\n"
 		"Nobody has been able to find him these days, but I trust you can do it.\n\n",
 
-		"You may begin your mission by going to the dock and travelling to the other side of the world\n"
-		"across the ocean, Kingdom of Elves.\n\n"
+		"You may begin your mission by going to the dock and boarding the boat to travel across the ocean\n"
+		"to the Kingdom of Elves.\n\n"
 	};
 
 	for (const auto i : story_arr) {
@@ -53,6 +58,7 @@ void Story::prologue()
 		Common::write_ani(i);
 	}
 
+	Common::color_print(0x0e, "EMPEROR:\n");
 	Common::write_ani("Good luck, " + name + ". I leave this paramount task in your capable hands.\n\n");
 
 	Common::any_key_press("Press any key to continue");
@@ -190,7 +196,8 @@ void Story::recruitElora()
 	Common::write_ani("Very well, I shall accompany you on your journey. I do hope I can be of assistance.\n\n");
 
 	Common::color_print(0x0a, "ELORA ");
-	Common::write_ani("has been recruited to your party!\n\n");
+	Common::write_ani("has been recruited to your party!\n\n"
+					  "You have unlocked a new skill!\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Alright! Well, our next stop is Caershire, so we should probably make our way there.\n\n");
@@ -250,7 +257,8 @@ void Story::recruitElora_loseBandits()
 	Common::write_ani("Very well, I shall accompany you on your journey. I do hope I can be of assistance.\n\n");
 
 	Common::color_print(0x0a, "ELORA ");
-	Common::write_ani("has been recruited to your party!\n\n");
+	Common::write_ani("has been recruited to your party!\n\n"
+					  "You have unlocked a new skill!\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Alright! Well, our next stop is Caershire, so we should probably make our way there.\n\n");
@@ -298,14 +306,14 @@ void Story::meetOrion_winBandits()
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Hi! You're... uh, Elder Mage ORION, right?\n\n");
 
-	Common::color_print(0x0b, "ORION:\n");
+	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("Just ORION will do. Now what is it? This better be important, I'm busy with preparations\n"
 					  "right now.\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Um... Could we possibly help out with that?\n\n");
 
-	Common::color_print(0x0b, "ORION:\n");
+	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("...Fine. I have to defeat some bandits at the camp north from here, but I was told not to do it alone.\n"
 					  "You guys can join me, or whatever.\n\n");
 
@@ -368,7 +376,15 @@ void Story::recruitOrion_main()
 					  "Even though I'd rather not join you guys, I'm a man of my word.\n\n");
 
 	Common::color_print(0x0d, "ORION ");
-	Common::write_ani("has been recruited to your party!\n\n");
+	Common::write_ani("has been recruited to your party!\n\n"
+					  "You have unlocked a new skill!\n\n"
+					  "Suddenly, you hear the gate to the bandit camp close behind you!\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Drat! How are we gonna get out of here?\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("We should look around the camp and see if there is a way for us to leave this place.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -396,7 +412,57 @@ void Story::recruitOrion_eloraDead()
 					  "Even though I'd rather not join you, I'm a man of my word.\n\n");
 
 	Common::color_print(0x0d, "ORION ");
-	Common::write_ani("has been recruited to your party!\n\n");
+	Common::write_ani("has been recruited to your party!\n\n"
+					  "You have unlocked a new skill!\n\n"
+					  "Suddenly, you hear the gate to the bandit camp close behind you!\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Drat! How are we gonna get out of here?\n\n");
+
+	Common::color_print(0x0a, "ORION:\n");
+	Common::write_ani("There's gotta be *something* that can help us leave this place. Let's have a look around the camp.\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::defeatBandits_orionDead()
+{
+	system("cls");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Orion, he...\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("How unfortunate... May he rest in peace, wherever he may be.\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Yeah, I hope so, too.\n"
+					  "We should probably leave and try to find out where our last party member might be.\n\n"
+					  "Right as you turn around, the gate to the bandit camp closes in front of your eyes!\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Drat! How are we gonna get out of here?\n\n");
+
+	Common::color_print(0x0a, "ELORA:\n");
+	Common::write_ani("We should look around the camp and see if there is a way for us to leave this place.\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::defeatBandits_oriAndElrDead()
+{
+	system("cls");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Oh... I wasn't expecting this.\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("I should probably leave and try to find out where BLAISE might be.\n\n"
+					  "Right as you turn around, the gate to the bandit camp closes in front of your eyes!\n\n");
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Drat! How am I gonna get out of here?\n"
+					  "Guess I'll look around the camp and see if there's a way to leave this place.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1546,7 +1612,9 @@ void Story::npc14(bool state)
 		Common::write_ani("Best of luck for your next journey!\n"
 						  "Bring some souvenirs back if you can! ...Haha, I'm just kidding, you don't have to!\n\n");
 	else
-		Common::write_ani("The Emperor is looking for you, its best if you go immediately.\n\n");
+		Common::write_ani("Hey, kid! Heard the Emperor's looking for you, it's best if you go immediately!\n"
+						  "If you can't recall where the castle is, it's east from here. Just keep going in\n"
+						  "that direction and you'll be able to find it.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
