@@ -23,30 +23,30 @@ public:
 	void defeatBandits_orionDead(); // bandits defeated but orion dies
 	void defeatBandits_oriAndElrDead(); // bandits defeated but orion AND elora die
 
-	void meetBlaise_main(); // entering treasure room if all party members are alive (choice input after this)
-	void killBlaise_main();
-	void recruitBlaise_main();
+	void meetBlaise_main(); // entering treasure room if all party members are alive
+	void killBlaise();
+	void recruitBlaise();
 
-	void meetBlaise_eloraDead(); // entering treasure room if elora is dead: blaise dies to orion after he enters
+	void meetBlaise_eloraDead(); // entering treasure room if elora is dead
 	void meetBlaise_orionDead(); // entering treasure room if orion is dead: forced to recruit blaise
 	void meetBlaise_partyDead(); // entering treasure room if orion AND elora are dead: forced to recruit blaise
 
 	void beforeFightDK_main(); // before entering demon king's throne room
-	void defeatDK_main();
+	void defeatDK_main(); // player, orion and elora are alive
 
 	void defeatDK_blaiseOnly(); // only player and blaise are alive (choice input after this)
 	void killBlaise_blaiseOnly();
 	void forgiveBlaise_blaiseOnly();
 
-	void defeatDK_eloraDead(); // only player and orion are alive
-	void defeatDK_orionDead(); // only player, elora and blaise are alive
+	void defeatDK_eloraDead(); // player and orion are alive
+	void defeatDK_orionDead(); // player and elora are alive
 	void defeatDK_playerOnly(); // only player is alive
 
-	void blaiseBetrayal_main(); // check if every party member (including blaise) is alive
-	void blaiseBetrayal_orionDead(); // only player, elora and blaise are alive
-	void defeatBlaise_main();
-	void defeatBlaise_orionDead();
-	void defeatBlaise_eloraDead();
+	void blaiseBetrayal_orionAlive(); // check if player, orion and blaise are alive
+	void blaiseBetrayal_orionDead(); // check if player, elora AND blaise are alive
+	void defeatBlaise_main(); // player, orion and elora are alive after blaise is defeated
+	void defeatBlaise_orionDead(); // player and elora are alive after blaise is defeated
+	void defeatBlaise_eloraDead(); // player and orion are alive after blaise is defeated
 	void defeatBlaise_othersDead(); // occurs if orion and/or elora (depending on whether they're alive after DK is defeated) die during the fight with blaise
 
 	void ending_main(); // player, orion and elora are alive

@@ -504,10 +504,33 @@ void Story::meetBlaise_main()
 	Common::write_ani("Are you sure? According to my sources, I'm pretty sure you *need* me, don't you?\n"
 					  "Think about it, " + name + ". You could receive help from the strongest bandit around.\n\n"
 					  "You feel conflicted. On one hand, ORION deserves closure for his brother's death.\n"
-					  "On the other, you were tasked to recruit BLAISE, and he would be a useful addition to the party.\n\n");
+					  "On the other, you were tasked to recruit BLAISE, and he would be a useful addition to the party.\n\n"
+					  "What would you like to do?\n1) Kill BLAISE\n2) Recruit BLAISE\n\n");
+
+	while (true) {
+		Common::cursor_vis(true);
+		std::string blaise_inp = Common::input("Enter your choice: ");
+		if (blaise_inp == "1") {
+			Common::cursor_vis(false);
+			killBlaise();
+			break;
+		}
+		else if (blaise_inp == "2") {
+			Common::cursor_vis(false);
+			recruitBlaise();
+			break;
+		}
+		else {
+			Common::cursor_vis(false);
+			Common::color_print(0x0c, "Invalid input! Please try again.");
+			Common::set_cursor(19, 41);
+			Common::mul_txt(" ", blaise_inp.length(), true);
+			Common::set_cursor(0, 41);
+		}
+	}
 }
 
-void Story::killBlaise_main()
+void Story::killBlaise()
 {
 	system("cls");
 
@@ -523,14 +546,14 @@ void Story::killBlaise_main()
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("Hah, you made the right choice, kid.\n\n");
 
-	Common::color_print(0x0a, "ELORA:\n");
-	Common::write_ani("I think so, too. Maybe this was for the best.\n"
-					  "Now that we are done here, perhaps we should continue on our journey.\n\n");
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("...Maybe this was for the best.\n"
+					  "Now that we're done here, let's make our way to the Demon King's castle.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::recruitBlaise_main()
+void Story::recruitBlaise()
 {
 	system("cls");
 
@@ -548,9 +571,9 @@ void Story::recruitBlaise_main()
 	Common::write_ani("Fine, don't listen to me, " + name + ". I'll see how you react when you realise\n"
 					  "this was a horrible decision for you to make.\n\n");
 
-	Common::color_print(0x0a, "ELORA:\n");
-	Common::write_ani("Well, regardless of the... tension between you two, we are still a team, and we have\n"
-					  "to work together. Perhaps we should continue on our journey.\n\n");
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("I mean, we're still a team, so let's just work together for now.\n"
+					  "Now that we're done here, let's make our way to the Demon King's castle.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -592,7 +615,30 @@ void Story::meetBlaise_eloraDead()
 	Common::write_ani("Are you sure? According to my sources, I'm pretty sure you *need* me, don't you?\n"
 					  "Think about it, " + name + ". You could receive help from the strongest bandit around.\n\n"
 					  "You feel conflicted. On one hand, ORION deserves closure for his brother's death.\n"
-					  "On the other, you were tasked to recruit BLAISE, and he would be a useful addition to the party.\n\n");
+					  "On the other, you were tasked to recruit BLAISE, and he would be a useful addition to the party.\n\n"
+					  "What would you like to do?\n1) Kill BLAISE\n2) Recruit BLAISE\n\n");
+
+	while (true) {
+		Common::cursor_vis(true);
+		std::string blaise_inp = Common::input("Enter your choice: ");
+		if (blaise_inp == "1") {
+			Common::cursor_vis(false);
+			killBlaise();
+			break;
+		}
+		else if (blaise_inp == "2") {
+			Common::cursor_vis(false);
+			recruitBlaise();
+			break;
+		}
+		else {
+			Common::cursor_vis(false);
+			Common::color_print(0x0c, "Invalid input! Please try again.");
+			Common::set_cursor(19, 41);
+			Common::mul_txt(" ", blaise_inp.length(), true);
+			Common::set_cursor(0, 41);
+		}
+	}
 }
 
 void Story::meetBlaise_orionDead()
@@ -731,7 +777,30 @@ void Story::defeatDK_blaiseOnly()
 
 	Common::color_print(0x0c, "BLAISE:\n");
 	Common::write_ani("How about this: why not just kill me?\n"
-					  "That way, you can honour the ones you've lost.\n\n");
+					  "That way, you can honour the ones you've lost.\n\n"
+					  "What would you like to do?\n1) Kill BLAISE\n2) Forgive BLAISE\n\n");
+
+	while (true) {
+		Common::cursor_vis(true);
+		std::string blaise_inp = Common::input("Enter your choice: ");
+		if (blaise_inp == "1") {
+			Common::cursor_vis(false);
+			killBlaise_blaiseOnly();
+			break;
+		}
+		else if (blaise_inp == "2") {
+			Common::cursor_vis(false);
+			forgiveBlaise_blaiseOnly();
+			break;
+		}
+		else {
+			Common::cursor_vis(false);
+			Common::color_print(0x0c, "Invalid input! Please try again.");
+			Common::set_cursor(19, 35);
+			std::cout << "     ";
+			Common::set_cursor(0, 35);
+		}
+	}
 }
 
 void Story::killBlaise_blaiseOnly()
@@ -788,7 +857,7 @@ void Story::defeatDK_eloraDead()
 					  "You and your party enter the Demon King's treasure room.\nSure enough, the stolen treasures were in there.\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
-	Common::write_ani("I... Thank you, ORION. I couldn't have done this without you. \n\n");
+	Common::write_ani("I... Thank you. I couldn't have done this without you. \n\n");
 
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("Heh, I did what I could.\n\n");
@@ -810,10 +879,10 @@ void Story::defeatDK_orionDead()
 					  "You and your party enter the Demon King's treasure room.\nSure enough, the stolen treasures were in there.\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
-	Common::write_ani("I... Thank you guys. I couldn't have done this without you. \n\n");
+	Common::write_ani("I... Thank you. I couldn't have done this without you. \n\n");
 
 	Common::color_print(0x0a, "ELORA:\n");
-	Common::write_ani("It was our pleasure to help.\n\n");
+	Common::write_ani("It was my pleasure to help.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -830,7 +899,7 @@ void Story::defeatDK_playerOnly()
 
 }
 
-void Story::blaiseBetrayal_main()
+void Story::blaiseBetrayal_orionAlive()
 {
 	system("cls");
 

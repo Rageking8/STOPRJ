@@ -649,7 +649,7 @@ void Game::start()
 						}
 					}
 
-					if (mage.get_recruited()) {
+					if (mage.get_recruited() && mage.get_stats("cur_health") > 0) {
 						Common::color_print(66, 13, 0x0D, "ORION [Mage]: ");
 						Common::set_cursor(68, 14);
 						std::cout << "ATTACK : " << mage.get_stats("attack");
@@ -668,11 +668,15 @@ void Game::start()
 							}
 						}
 					}
+					else if (mage.get_recruited()) {
+						Common::color_print(66, 13, 0x0D, "ORION [Mage]: ");
+						Common::color_print(0x0C, "DEAD");
+					}
 					else {
 						Common::color_print(77, 18, 0x07, "---");
 					}
 
-					if (elf.get_recruited()) {
+					if (elf.get_recruited() && elf.get_stats("cur_health") > 0) {
 						Common::color_print(35, 13, 0x0A, "ELORA [Elf]: ");
 						Common::set_cursor(37, 14);
 						std::cout << "ATTACK : " << elf.get_stats("attack");
@@ -692,13 +696,16 @@ void Game::start()
 							}
 						}
 					}
+					else if (elf.get_recruited()) {
+						Common::color_print(35, 13, 0x0A, "ELORA [Elf]: ");
+						Common::color_print(0x0C, "DEAD");
+					}
 					else {
 						Common::color_print(46, 18, 0x07, "---");
 					}
 
-					if (assassin.get_recruited()) {
-						Common::set_cursor(97, 13);
-						Common::color_print(0x0C, "BLAISE [Assassin]: ");
+					if (assassin.get_recruited() && assassin.get_stats("cur_health") > 0) {
+						Common::color_print(97, 13, 0x0C, "BLAISE [Assassin]: ");
 						Common::set_cursor(99, 14);
 						std::cout << "ATTACK : " << assassin.get_stats("attack");
 						Common::set_cursor(99, 15);
@@ -716,6 +723,10 @@ void Game::start()
 								std::cout << "\n";
 							}
 						}
+					}
+					else if (assassin.get_recruited()) {
+						Common::color_print(97, 13, 0x0C, "BLAISE [Assassin]: ");
+						Common::color_print(0x0C, "DEAD");
 					}
 					else {
 						Common::color_print(108, 18, 0x07, "---");
@@ -1263,6 +1274,8 @@ void Game::start()
 				bandit_trea_r = true;
 			}
 
+			prev_is_map = false;
+			system("cls");
 		}
 		else if (tmp_target_cell_val == 20) {
 			// Switch blue
@@ -1294,6 +1307,9 @@ void Game::start()
 
 				bandit_trea_r = true;
 			}
+
+			prev_is_map = false;
+			system("cls");
 		}
 		else if (tmp_target_cell_val == 31)
 		{
