@@ -73,6 +73,17 @@ void Game::start()
 
 	short prev_block[8]{ -1, -1, 0, 0, -1, -1, 0, 0 };
 
+	const int swi_id[2]{ 19, 20 };
+	const bool bandit_puz_i[4]{ false, true, true, false };
+	bool bandit_puz_a[4]{};
+
+	int tmp_idx = Common::rand_int(0, 3);
+	bandit_puz_a[tmp_idx] = !bandit_puz_i[tmp_idx];
+	for (int i = 0; i < 4; ++i) {
+		if (i == tmp_idx) continue;
+		bandit_puz_a[i] = (Common::rand_int(1, 2) == 1);
+	}
+
 	bool npc4_r = false;
 
 	bool bandit1_b = false;
@@ -1245,7 +1256,8 @@ void Game::start()
 		else if (tmp_target_cell_val == 50) {
 			Common::cursor_vis(false);
 			story.npc4(npc4_r == false);
-			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 10);
+			if (!npc4_r)
+				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 10);
 			npc4_r = true;
 			prev_is_map = false;
 			system("cls");
@@ -1301,7 +1313,7 @@ void Game::start()
 
 			board.set_board(tmp_target_cell[0], tmp_target_cell[1], 20);
 
-			if (board.get_board(3, 59) == 20 && board.get_board(9, 59) == 19 && board.get_board(3, 73) == 19 && board.get_board(9, 73) == 20) {
+			if (board.get_board(3, 59) == swi_id[bandit_puz_a[0]] && board.get_board(9, 59) == swi_id[bandit_puz_a[1]] && board.get_board(3, 73) == swi_id[bandit_puz_a[2]] && board.get_board(9, 73) == swi_id[bandit_puz_a[3]]) {
 				for (int i = 0; i < 7; i++)
 					board.set_board((3 + i), 79, 0);
 			}
@@ -1353,7 +1365,7 @@ void Game::start()
 
 			board.set_board(tmp_target_cell[0], tmp_target_cell[1], 19);
 
-			if (board.get_board(3, 59) == 20 && board.get_board(9, 59) == 19 && board.get_board(3, 73) == 19 && board.get_board(9, 73) == 20) {
+			if (board.get_board(3, 59) == swi_id[bandit_puz_a[0]] && board.get_board(9, 59) == swi_id[bandit_puz_a[1]] && board.get_board(3, 73) == swi_id[bandit_puz_a[2]] && board.get_board(9, 73) == swi_id[bandit_puz_a[3]]) {
 				for (int i = 0; i < 7; i++)
 					board.set_board((3 + i), 79, 0);
 			}
@@ -1526,8 +1538,21 @@ void Game::start()
 			system("cls");
 		}
 		else if (tmp_target_cell_val == 82) {
+			
+			int tmp_count = 0;
+			for (int i = 0; i < 4; ++i) {
+				tmp_count += bandit_puz_a[i];
+			}
 
-			story.banditTreasureRoomHint();
+			if (tmp_count < 2) {
+				story.banditTreasureRoomHint(1);
+			}
+			else if (tmp_count == 2) {
+				story.banditTreasureRoomHint(2);
+			}
+			else {
+				story.banditTreasureRoomHint(3);
+			}
 
 			board.set_board(3, 50, 0);
 

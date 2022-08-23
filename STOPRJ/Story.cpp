@@ -1772,12 +1772,21 @@ void Story::npc19_20()
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::banditTreasureRoomHint()
+void Story::banditTreasureRoomHint(int state)
 {
 	system("cls");
 
 	Common::write_ani("You pick up the note on the floor and begin to read it:\n");
-	Common::write_ani(0x0b, "The Opposite is True.\n\n");
+
+	if (state == 1) {
+		Common::write_ani(0x0b, "Red win\n\n");
+	}
+	else if (state == 2) {
+		Common::write_ani(0x0b, "Equality\n\n");
+	}
+	else {
+		Common::write_ani(0x0b, "Blue win\n\n");
+	}
 
 	Common::any_key_press("Press any key to continue");
 }

@@ -112,7 +112,7 @@ public:
 	void npc17_18(); // 2 npcs gardening (same dialogue)
 	void npc19_20(); // 2 npc guards (same dialogue)
 
-	void banditTreasureRoomHint();
+	void banditTreasureRoomHint(int state);
 
 private:
 	std::string name;
