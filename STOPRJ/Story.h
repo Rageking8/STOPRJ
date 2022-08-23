@@ -95,7 +95,7 @@ public:
 	void npc1(); // house
 	void npc2(); // house
 	void npc3(); // house
-	void npc4(); // entrance to caershire
+	void npc4(bool state); // entrance to caershire
 	void npc5(); // middle
 	void npc6(); // fountain
 	void npc7(); // grand master mage (pendolf) after completing side quest

@@ -1460,7 +1460,7 @@ void Story::excalibur_floor1Start()
 	Common::write_ani("As soon as you enter the dungeon, you hear a rattling sound coming from the pile of bones\n"
 					  "in front of you.\n\n"
 					  ". . .\n\n"
-					  "The bones have become SKELETONS!\n\n");
+					  "The bones have become SKELETONS!\n\n", 15);
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1470,7 +1470,7 @@ void Story::excalibur_floor1InteractWBones()
 	system("cls");
 
 	Common::write_ani("You cautiously go closer to check out the skeletons, but they begin to rattle aggressively!\n\n"
-					  "The skeletons... seem to be challenging you to a BATTLE!\n\n");
+					  "The skeletons... seem to be challenging you to a BATTLE!\n\n", 15);
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1490,7 +1490,7 @@ void Story::excalibur_floor2()
 {
 	system("cls");
 
-	Common::write_ani("This door seems to be locked... It looks like you need a key to unlock it.\n\n");
+	Common::write_ani("This door seems to be locked... It looks like you need a key to unlock it.\n\n", 15);
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1499,7 +1499,7 @@ void Story::excalibur_foundKey()
 {
 	system("cls");
 
-	Common::write_ani("You found a key! Maybe it could be used to unlock that door...\n\n");
+	Common::write_ani("You found a key! Maybe it could be used to unlock that door...\n\n", 15);
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1510,7 +1510,7 @@ void Story::excalibur_doorUnlocked()
 
 	Common::write_ani("You used the key you found to unlock the door.\n\n"
 					  ". . .\n\n"
-					  "You can now advance to the next floor!\n\n");
+					  "You can now advance to the next floor!\n\n", 15);
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1520,12 +1520,12 @@ void Story::excalibur_floor3()
 	system("cls");
 
 	Common::write_ani("As soon as you walk into the room, the door shuts right behind you!\n\n"
-					  "You look around the room, and you make eye contact with a STONE GIANT!\n\n");
+					  "You look around the room, and you make eye contact with a STONE GIANT!\n\n", 15);
 
 	Common::color_print(0x08, "OLAF THE STONE GIANT:\n");
 	Common::write_ani("Yet another challenger who wishes to pull the EXCALIBUR out of its stone...\n"
 					  "Countless others have tried, but all have failed, and to be deemed worthy,\n"
-					  "great strength must be shown.\n\n");
+					  "great strength must be shown.\n\n", 15);
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1535,9 +1535,9 @@ void Story::excalibur_interactWOlaf()
 	system("cls");
 
 	Common::color_print(0x08, "OLAF THE STONE GIANT:\n");
-	Common::write_ani("O young one, should you be victorious, you shall obtain the EXCALIBUR's might.\n\n");
+	Common::write_ani("O young one, should you be victorious, you shall obtain the EXCALIBUR's might.\n\n", 15);
 
-	Common::write_ani("OLAF THE STONE GIANT is challenging you to a one-on-one BATTLE!\n\n");
+	Common::write_ani("OLAF THE STONE GIANT is challenging you to a one-on-one BATTLE!\n\n", 15);
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1610,12 +1610,20 @@ void Story::npc3()
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::npc4()
+void Story::npc4(bool state)
 {
 	system("cls");
 
 	Common::color_print(0x0d, "PETER:\n");
 	Common::write_ani("Welcome to Caershire! I hope you enjoy your visit!\n\n");
+
+	if (state) {
+		Common::color_print(0x0d, "PETER:\n");
+		Common::write_ani("Here is a small gift of 10 coins for visiting.\n\n");
+	}
+
+	Common::color_print(0x0b, name + ":\n");
+	Common::write_ani("Wow, Thanks!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }

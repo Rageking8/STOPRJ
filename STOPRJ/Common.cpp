@@ -9,6 +9,7 @@
 
 std::string Common::input(std::string txt, bool write)
 {
+	FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
 	if (write)
 		std::cout << txt;
 	std::string ret;
@@ -134,6 +135,10 @@ int Common::int_len(unsigned num)
 
 void Common::any_key_press()
 {
+	auto start = std::chrono::high_resolution_clock::now();
+	while (std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::high_resolution_clock::now() - start).count() < 100) {
+		FlushConsoleInputBuffer(GetStdHandle(STD_INPUT_HANDLE));
+	}
 	int c = _getch();
 	if (c == 224) {
 		c = _getch();

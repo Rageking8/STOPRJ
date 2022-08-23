@@ -73,6 +73,8 @@ void Game::start()
 
 	short prev_block[8]{ -1, -1, 0, 0, -1, -1, 0, 0 };
 
+	bool npc4_r = false;
+
 	bool bandit1_b = false;
 	bool bandit_camp_t = false;
 	bool bandit_trea_r = false;
@@ -1141,6 +1143,9 @@ void Game::start()
 		}
 		else if (!dun_f2_k && swordsman.get_pos(0) == 62 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
 			story.excalibur_floor2();
+
+			teleport_ply(swordsman.get_pos(0) - 1, swordsman.get_pos(1));
+
 			prev_is_map = false;
 			system("cls");
 			Common::cursor_vis(false);
@@ -1239,7 +1244,9 @@ void Game::start()
 		}
 		else if (tmp_target_cell_val == 50) {
 			Common::cursor_vis(false);
-			story.npc4();
+			story.npc4(npc4_r == false);
+			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 10);
+			npc4_r = true;
 			prev_is_map = false;
 			system("cls");
 		}
@@ -1395,7 +1402,8 @@ void Game::start()
 		}
 		else if (tmp_target_cell_val == 31)
 		{
-			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 30);
+			// FIXME: add dialogue
+			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 50);
 			board.set_board(6, 91, 0);
 		}
 		else if (tmp_target_cell_val == 74)
@@ -1489,6 +1497,10 @@ void Game::start()
 		else if (tmp_target_cell_val == 69) {
 
 			story.excalibur_interactWOlaf();
+
+			mage.set_recruited(false);
+			elf.set_recruited(false);
+			assassin.set_recruited(false);
 
 			start_battle("dun_f3");
 

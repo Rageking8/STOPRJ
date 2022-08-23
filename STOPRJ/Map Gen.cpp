@@ -55,10 +55,10 @@ void Game::board_gen()
 	// Gates/Door
 	for (int i = 0; i < 10; i++) 
 	{
-		//board.set_board(86, (126 + i), 6); // Gate 1 (Ask player if they are ready to enter the castle)
-		//board.set_board(64, (126 + i), 6); // Gate 2 (After 1st battle)
-		//board.set_board(42, (126 + i), 6); // Gate 3 (After 2nd battle)
-		//board.set_board(13, (126 + i), 6); // Gate 4 (After boss battle)
+		board.set_board(86, (126 + i), 6); // Gate 1 (Ask player if they are ready to enter the castle)
+		board.set_board(64, (126 + i), 6); // Gate 2 (After 1st battle)
+		board.set_board(41, (126 + i), 6); // Gate 3 (After 2nd battle)
+		board.set_board(13, (126 + i), 6); // Gate 4 (After boss battle)
 	}
 	// Rooms "Carpet"
 	for (int i = 0; i < 11; i++) // Room 1 (Skeleton Infantry Room) 
@@ -1143,10 +1143,27 @@ void Game::board_gen()
 			board.set_board(i, (50 + j), -42);
 		}
 	}
+	for (int i = 0; i < 15; i+=3)// flowers in empty spaces
+	{
+		for (int j = 0; j < 46; j+=5)
+		{
+			if (i >= 2 && i <= 10) continue;
+			board.set_board(i, (50 + j), -53);
+			board.set_board((1 + i), (50 + j), -54);
+		}
+	}
 	for (int i = 0; i < 20; i++)// Grass in empty spaces
 	{
 		for (int j = 0; j < 15; j++)
 			board.set_board(i, (96 + j), -42);
+	}
+	for (int i = 0; i < 20; i+=4)// Flowers in empty spaces
+	{
+		for (int j = 0; j < 15; j += 2)
+		{
+			board.set_board(i, (96 + j), -55);
+			board.set_board((2 + i), (96 + j), -53);
+		}
 	}
 	for (int i = 0; i < 3; i++)// Grass in empty spaces
 	{
@@ -1159,10 +1176,30 @@ void Game::board_gen()
 			board.set_board((83 + i), (62 + j), -42);
 		}
 	}
+	for (int j = 0; j < 49; j+=4)// Flowers in empty spaces
+	{
+		if (j >= 24 && j <= 33) continue;
+		board.set_board(21, (62 + j), -53);
+		board.set_board(21, (64 + j), -55);
+		board.set_board(42, (62 + j), -53);
+		board.set_board(42, (64 + j), -55);
+		board.set_board(63, (62 + j), -53);
+		board.set_board(63, (64 + j), -55);
+		board.set_board(84, (62 + j), -53);
+		board.set_board(84, (64 + j), -55);
+	}
 	for (int i = 0; i < 37; i++)// Grass in empty spaces
 	{
 		for (int j = 0; j < 3; j++)
 			board.set_board((64 + i), (59 + j), -42);
+	}
+	for (int i = 0; i < 37; i += 6)// Flower in empty spaces
+	{
+		for (int j = 0; j < 3; j += 2){
+			board.set_board((64 + i), (59 + j), -53);
+			board.set_board((67 + i), (59 + j), -54);
+			board.set_board((68 + i), (59 + j), -55);
+		}
 	}
 	for (int i = 0; i < 7; i++)// Grass in empty spaces
 	{
@@ -1173,12 +1210,33 @@ void Game::board_gen()
 			board.set_board((86 + i), (62 + j), -42);
 		}
 	}
+	for (int i = 0; i < 6; i+=3)// Flower in empty spaces
+	{
+		for (int j = 0; j < 89; j+=5)
+		{
+			if (j >= 25 && j <= 33) continue;
+			if (j >= 60 && j <= 74) continue;
+			board.set_board((86 + i), (62 + j), -53);
+			board.set_board((88 + i), (63 + j), -54);
+			board.set_board((89 + i), (65 + j), -55);
+		}
+	}
 	for (int i = 0; i < 8; i++)// Grass in empty spaces
 	{
 		for (int j = 0; j < 89; j++)
 		{
 			if (j >= 25 && j <= 74) continue;
 			board.set_board((93 + i), (62 + j), -42);
+		}
+	}
+	for (int i = 0; i < 8; i+=3)// flower in empty spaces
+	{
+		for (int j = 0; j < 86; j+=4)
+		{
+			if (j >= 24 && j <= 74) continue;
+			board.set_board((93 + i), (62 + j), -55);
+			board.set_board((95 + i), (62 + j), -54);
+			board.set_board((93 + i), (65 + j), -53);
 		}
 	}
 	for (int i = 0; i < 12; i++) // Lava
