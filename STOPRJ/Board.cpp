@@ -465,6 +465,9 @@ void Board::print_map()
 				case 81: // fish right
 					Common::color_print(0X0C, "#");
 					break;
+				case 82: // Bandit camp treasure room note
+					Common::color_print(0X70, "?");
+					break;
 				default:
 					std::cout << ".";
 			}
@@ -832,6 +835,9 @@ void Board::print_with_id(short id)
 			Common::color_print(0X40, "*");
 			Common::color_print(0X60, "|");
 			Common::color_print(0X40, "<");
+			break;
+		case 82: // Bandit camp treasure room note
+			Common::color_print(0XE0, "|N|");
 			break;
 		default:
 			std::cout << "   ";

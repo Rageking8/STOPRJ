@@ -46,6 +46,8 @@ Game::Game() : trigger_counter{}
 	for (int i = 95; i < 100; ++i) {
 		board.set_board(i, 47, 6);
 	}
+
+	board.set_board(3, 50, 82);
 }
 
 Game::~Game()
@@ -74,7 +76,6 @@ void Game::start()
 	bool bandit1_b = false;
 	bool bandit_camp_t = false;
 	bool bandit_trea_r = false;
-	bool bandit_trea_n = false;
 	bool dun_f1 = false;
 	bool dun_f2_k = false;
 	bool dun_f2_b = false;
@@ -498,7 +499,7 @@ void Game::start()
 				std::cout << "An index of every skill you can encounter.";
 
 				std::string menu_option;
-				Common::color_print(21, 27, 0x07, "What would you like to look at? Enter the corresponding number (B for back)");
+				Common::color_print(23, 27, 0x07, "What would you like to look at? Enter the corresponding number (B for back)");
 
 				bool tmp_flag = true;
 				while (tmp_flag) {
@@ -1138,16 +1139,16 @@ void Game::start()
 			system("cls");
 			Common::cursor_vis(false);
 		}
-		else if (!dun_f2_k && swordsman.get_pos(0) == 41 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
+		else if (!dun_f2_k && swordsman.get_pos(0) == 62 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
 			story.excalibur_floor2();
 			prev_is_map = false;
 			system("cls");
 			Common::cursor_vis(false);
 		}
-		else if (!dun_f2_b && dun_f2_k && swordsman.get_pos(0) == 41 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
+		else if (!dun_f2_b && dun_f2_k && swordsman.get_pos(0) == 62 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
 			story.excalibur_doorUnlocked();
 			for (int i = 0; i < 7; i++)
-				board.set_board(42, (88 + i), 0);
+				board.set_board(63, (88 + i), 0);
 
 			dun_f2_b = true;
 
@@ -1155,19 +1156,12 @@ void Game::start()
 			system("cls");
 			Common::cursor_vis(false);
 		}
-		else if (!dun_f3_b && swordsman.get_pos(0) == 43 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
+		else if (!dun_f3_b && swordsman.get_pos(0) == 64 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
 			story.excalibur_floor3();
 			for (int i = 0; i < 7; i++)
-				board.set_board(42, (88 + i), 6);
+				board.set_board(63, (88 + i), 6);
 
 			dun_f3_b = true;
-			prev_is_map = false;
-			system("cls");
-			Common::cursor_vis(false);
-		}
-		else if (!bandit_trea_n && swordsman.get_pos(1) == 49 && swordsman.get_pos(0) >= 5 && swordsman.get_pos(0) <= 7) {
-			story.banditTreasureRoomHint();
-			bandit_trea_n = true;
 			prev_is_map = false;
 			system("cls");
 			Common::cursor_vis(false);
@@ -1515,6 +1509,18 @@ void Game::start()
 
 			for (int i = 0; i < 7; i++)
 				board.set_board(82, (88 + i), 0);
+
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 82) {
+
+			story.banditTreasureRoomHint();
+
+			board.set_board(3, 50, 0);
+
+			prev_is_map = false;
+			system("cls");
 		}
 	}
 }

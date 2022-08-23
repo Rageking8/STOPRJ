@@ -466,7 +466,7 @@ bool Game::start_battle(std::string id)
 
 							Common::write_ani("You've gotten through your first battle! Just be careful, though. If your HP reaches ZERO, you die.\n\n"
 											  "However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
-											  "win or lose. Afterwards, it's an instant GAME OVER.\n"
+											  "win or lose. Afterwards, it's an instant GAME OVER.\n\n"
 											  "Also, since your allies' MP cannot be recovered, any buffs received during BATTLEs will be retained even\n"
 											  "after a BATTLE ends.\n\n"
 											  "Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
@@ -634,7 +634,7 @@ bool Game::start_battle(std::string id)
 
 					Common::write_ani("You've gotten through your first battle! Just be careful, though. If your HP reaches ZERO, you die.\n\n"
 									  "However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
-									  "win or lose. Afterwards, it's an instant GAME OVER.\n"
+									  "win or lose. Afterwards, it's an instant GAME OVER.\n\n"
 									  "Also, since your allies' MP cannot be recovered, any buffs received during BATTLEs will be retained even\n"
 									  "after a BATTLE ends.\n\n"
 									  "Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
