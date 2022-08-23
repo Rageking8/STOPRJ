@@ -75,6 +75,7 @@ public:
 	void KoE_accept(); // "i could help you find them."
 	void KoE_decline(); // "good luck!"
 	void KoE_inProgress();
+	void KoE_jadeFound(int count); // when player steps on specific blocks
 	void KoE_complete();
 
 	// excalibur dungeon quest
@@ -83,9 +84,11 @@ public:
 	void excalibur_floor1InteractWBones(); // player interacts with pile of bones
 	void excalibur_defeatedSkels();
 	void excalibur_floor2(); // player tries to go through door without the key
+	void excalibur_foundKey();
 	void excalibur_doorUnlocked(); // player has the key to the door
-	void excalibur_floor3(); // player interacts with olaf the stone giant
-	void excalibur_giantDefeated();
+	void excalibur_floor3(); // player enters floor 3
+	void excalibur_interactWOlaf(); // player interacts with the stone giant, triggers battle
+	void excalibur_giantDefeated(); // player wins against stone giant
 	void excalibur_completed(); // player interacts with the stone that has the excalibur
 
 	// caershire (mage town) npc interactions
@@ -109,7 +112,7 @@ public:
 	void npc17_18(); // 2 npcs gardening (same dialogue)
 	void npc19_20(); // 2 npc guards (same dialogue)
 
-	void treasureRoomHint();
+	void banditTreasureRoomHint();
 
 private:
 	std::string name;

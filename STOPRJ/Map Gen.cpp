@@ -794,6 +794,7 @@ void Game::board_gen()
 	}
 	board.set_board(73, 79, 68); // Sword
 	board.set_board(70, 79, 69); // Guardian
+
 	// Maze in room 2
 	for (int i = 0; i < 24; i++)
 	{
@@ -833,7 +834,8 @@ void Game::board_gen()
 	board.set_board(58, 87, -65);
 	board.set_board(60, 87, -65);
 
-	board.set_board(56, 66, 70); //Key 
+	board.set_board(56, 66, 70); //Key
+
 	// Forest
 	// Redwood Tree
 	board.set_board(23, 51, 44); // #1
@@ -946,10 +948,10 @@ void Game::board_gen()
 	// Inside dungeon
 	for (int i = 0; i < 14; i+=4) 
 	{
-		board.set_board((24 + i), 96, -53);// room 1
+		board.set_board((24 + i), 96, -53); // room 1
 		board.set_board((27 + i), 99, -54); // room 1
 		board.set_board((25 + i), 102, -55); // room 1
-		board.set_board((24 + i), 64, -53);// room 1
+		board.set_board((24 + i), 64, -53); // room 1
 		board.set_board((27 + i), 67, -54); // room 1
 		board.set_board((25 + i), 70, -55); // room 1
 		board.set_board((45 + i), 96, -54); // room 2
@@ -963,17 +965,17 @@ void Game::board_gen()
 		board.set_board((67 + i), 70, -53); // room 3
 	}
 
-	//Cage in forest
+	// Cage in forest
 	for (int i = 0; i < 3; i++)
 		board.set_board((16 + i), 4, 56);
 	for (int i = 0; i < 2; i++)
 		board.set_board(18, (1 + i), 56);
 
-	//NPCs in forest
-	board.set_board(21, 51, 57); //Missing Mage in forest-Entrance #1 
-	board.set_board(16, 1, 58);// Missing Mage in forest-Cage #2
-	board.set_board(49, 2, 59);// Missing Mage in forest-Garden #3
-	//Dungeon Level 
+	// NPCs in forest
+	board.set_board(21, 51, 57); // Missing Mage in forest-Entrance #1 
+	board.set_board(16, 1, 58); // Missing Mage in forest-Cage #2
+	board.set_board(49, 2, 59); // Missing Mage in forest-Garden #3
+	// Dungeon Level 
 	for (int i = 0; i < 49; i++) // Rows wall
 	{
 		if (i >= 26 && i <= 32) continue;
@@ -1015,13 +1017,13 @@ void Game::board_gen()
 		board.set_board(63, (88 + i), 6);
 		board.set_board(82, (88 + i), 6);
 	}
-	//Path to demon king castle
-	for (int i = 0; i < 6; i++)// inner path
+	// Path to demon king castle
+	for (int i = 0; i < 6; i++) // inner path
 	{
 		board.set_board((87 + i), 95, 2);
 		board.set_board((87 + i), 125, 2);
 	}
-	for (int i = 0; i < 14; i++)// outer path
+	for (int i = 0; i < 14; i++) // outer path
 	{
 		board.set_board((87 + i), 87, 2);
 		board.set_board((87 + i), 136, 2);

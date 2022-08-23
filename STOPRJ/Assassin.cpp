@@ -8,7 +8,7 @@ Assassin::Assassin()
 	set_stats("cur_mp", 70);
 	set_stats("max_mp", 70);
 
-	init_skill("danger_poke", "strength_dart", "bomb", "backstab");
+	init_skill("dagger_poke", "strength_dart", "bomb", "backstab");
 }
 
 Assassin::~Assassin()

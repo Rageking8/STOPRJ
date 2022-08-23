@@ -531,7 +531,7 @@ void Board::move_cam(char dir)
 void Board::print_with_id(short id)
 {
 	switch (id) {
-		case -86: //Bridge
+		case -86: // Bridge
 			Common::color_print(0XE0, "|");
 			Common::color_print(0X60, "-");
 			Common::color_print(0XE0, "|");
@@ -786,8 +786,8 @@ void Board::print_with_id(short id)
 			Common::color_print(0X0F, "|");
 			Common::color_print(0X80, "_");
 			break;
-		case 69: // Guardian
-			Common::color_print(0X03, " G ");
+		case 69: // Olaf the stone giant
+			Common::color_print(0X03, "Olf");
 			break;
 		case 70: // Key
 			Common::color_print(0X00, " ");

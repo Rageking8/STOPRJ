@@ -74,7 +74,11 @@ void Game::start()
 	bool bandit1_b = false;
 	bool bandit_camp_t = false;
 	bool bandit_trea_r = false;
+	bool bandit_trea_n = false;
 	bool dun_f1 = false;
+	bool dun_f2_k = false;
+	bool dun_f2_b = false;
+	bool dun_f3_b = false;
 
 	while (true) {
 
@@ -1097,7 +1101,7 @@ void Game::start()
 			if (!bandit1_b) {
 				story.meetOrion_loseBandits();
 				mage.set_stats("cur_health", 20);
-				mage.set_stats("cur_mp", 40);
+				mage.set_stats("cur_mp", 50);
 			}
 
 			start_battle("bandit_2");
@@ -1130,6 +1134,40 @@ void Game::start()
 			story.excalibur_floor1Start();
 
 			dun_f1 = true;
+			prev_is_map = false;
+			system("cls");
+			Common::cursor_vis(false);
+		}
+		else if (!dun_f2_k && swordsman.get_pos(0) == 41 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
+			story.excalibur_floor2();
+			prev_is_map = false;
+			system("cls");
+			Common::cursor_vis(false);
+		}
+		else if (!dun_f2_b && dun_f2_k && swordsman.get_pos(0) == 41 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
+			story.excalibur_doorUnlocked();
+			for (int i = 0; i < 7; i++)
+				board.set_board(42, (88 + i), 0);
+
+			dun_f2_b = true;
+
+			prev_is_map = false;
+			system("cls");
+			Common::cursor_vis(false);
+		}
+		else if (!dun_f3_b && swordsman.get_pos(0) == 43 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
+			story.excalibur_floor3();
+			for (int i = 0; i < 7; i++)
+				board.set_board(42, (88 + i), 6);
+
+			dun_f3_b = true;
+			prev_is_map = false;
+			system("cls");
+			Common::cursor_vis(false);
+		}
+		else if (!bandit_trea_n && swordsman.get_pos(1) == 49 && swordsman.get_pos(0) >= 5 && swordsman.get_pos(0) <= 7) {
+			story.banditTreasureRoomHint();
+			bandit_trea_n = true;
 			prev_is_map = false;
 			system("cls");
 			Common::cursor_vis(false);
@@ -1444,6 +1482,40 @@ void Game::start()
 			prev_is_map = false;
 			system("cls");
 		}
+		else if (tmp_target_cell_val == 70) {
+
+			story.excalibur_foundKey();
+			board.set_board(56, 66, 0);
+			
+			dun_f2_k = true;
+
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 69) {
+
+			story.excalibur_interactWOlaf();
+
+			start_battle("dun_f3");
+
+			board.set_board(70, 79, 0);
+
+			if (swordsman.get_stats("cur_health") <= 0)
+				break;
+
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 68) {
+
+			story.excalibur_completed();
+			swordsman.set_stats("attack", swordsman.get_stats("attack") + 20);
+
+			board.set_board(73, 79, 0);
+
+			for (int i = 0; i < 7; i++)
+				board.set_board(82, (88 + i), 0);
+		}
 	}
 }
 
@@ -1488,7 +1560,7 @@ void Game::print_all_skill()
 {
 	system("cls");
 
-	const char* skill_name[]{ "Slash", "Fire Slash", "Taunt", "Spiral Spin", "Arcane Bullet", "Healing", "Enchant", "Fireball", "Shoot Arrow", "Raining Arrow", "Piercing Arrow", "Bullet Arrow", "Danger Poke", "Strength Dart", "Bomb", "Backstab", "Headbutt", "Shield Bash", "Arm Slap", "Demon Slash", "Demon Eye Beam", "Demon Strength", "Fire Breath", "Demon Punch", "Long Live the King", "Demon Summon", "Hellfire" };
+	const char* skill_name[]{ "Slash", "Fire Slash", "Taunt", "Spiral Spin", "Arcane Bullet", "Healing", "Enchant", "Fireball", "Shoot Arrow", "Raining Arrow", "Piercing Arrow", "Bullet Arrow", "Dagger Poke", "Strength Dart", "Bomb", "Backstab", "Headbutt", "Shield Bash", "Arm Slap", "Demon Slash", "Demon Eye Beam", "Demon Strength", "Fire Breath", "Demon Punch", "Long Live the King", "Demon Summon", "Hellfire" };
 	const int power[]{ 5, 10, 5, 60, 3, 50, 10, 100, 5, 10, 30, 60, 5, 10, 45, 125, 10, 15, 30, 30, 90, 10, 100, 40, 50, 20, 100 };
 	const int cost[]{ 0, 5, 10, 15, 0, 20, 30, 100, 0, 5, 10, 45, 0, 20, 15, 35, 10, 15, 15, 0, 20, 40, 100, 0, 20, 40, 100 };
 	const char* types = "DDADDHADDDDDDADDDDDDDADDHAD";

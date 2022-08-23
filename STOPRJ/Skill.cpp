@@ -72,8 +72,8 @@ Skill::skill_data Skill::get_skill(std::string skill_name)
 		return skill_data{ "Piercing Arrow", 30, 10, false, 'D' };
 	else if (skill_name == "bullet_arrow")
 		return skill_data{ "Bullet Arrow", 60, 45, false, 'D' };
-	else if (skill_name == "danger_poke")
-		return skill_data{ "Danger Poke", 5, 0, true, 'D' };
+	else if (skill_name == "dagger_poke")
+		return skill_data{ "Dagger Poke", 5, 0, true, 'D' };
 	else if (skill_name == "strength_dart")
 		return skill_data{ "Strength Dart", 10, 20, true, 'A' };
 	else if (skill_name == "bomb")

@@ -998,7 +998,7 @@ void Story::defeatBlaise_main()
 					  "You can hear BLAISE screaming in agony.\n\n"
 					  ". . .\n\n");
 
-	Common::color_print(0x0c, "BLAISE:\n");
+	Common::color_print(0x0c, "BLAISE ");
 	Common::write_ani("has been killed.\n\n");
 
 	Common::color_print(0x0d, "ORION:\n");
@@ -1057,7 +1057,7 @@ void Story::defeatBlaise_eloraDead()
 		"You can hear BLAISE screaming in agony.\n\n"
 		". . .\n\n");
 
-	Common::color_print(0x0c, "BLAISE:\n");
+	Common::color_print(0x0c, "BLAISE ");
 	Common::write_ani("has been killed.\n\n");
 
 	Common::color_print(0x0d, "ORION:\n");
@@ -1383,7 +1383,7 @@ void Story::KoE_start()
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("You look a little lost. Do you perhaps need help with something?\n\n");
 
-	Common::color_print(0x09, "BLACKSMITH:\n");
+	Common::color_print(0x0a, "SHOPKEEPER:\n");
 	Common::write_ani("Yeah, actually. I do need some help. I want to make a weapon inspired by Miss ELORA,\n"
 					  "but I don't know where I can find one of the materials.\n\n");
 }
@@ -1392,7 +1392,7 @@ void Story::KoE_accept()
 {
 	system("cls");
 
-	Common::color_print(0x09, "BLACKSMITH:\n");
+	Common::color_print(0x0a, "SHOPKEEPER:\n");
 	Common::write_ani("Thanks for offering to help, pal! I need you to help me find three chunks\n"
 					  "of jade. They're pretty hard to find, from what I hear, so good luck with\n"
 					  "that!\n\n");
@@ -1404,7 +1404,7 @@ void Story::KoE_decline()
 {
 	system("cls");
 
-	Common::color_print(0x09, "BLACKSMITH:\n");
+	Common::color_print(0x0a, "SHOPKEEPER:\n");
 	Common::write_ani("Thanks, pal. I'll keep asking around until I get something.\n\n");
 
 	Common::any_key_press("Press any key to continue");
@@ -1414,8 +1414,24 @@ void Story::KoE_inProgress()
 {
 	system("cls");
 
-	Common::color_print(0x09, "BLACKSMITH:\n");
+	Common::color_print(0x0a, "SHOPKEEPER:\n");
 	Common::write_ani("I need you to help me find three chunks of jade, pal!\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::KoE_jadeFound(int count)
+{
+	system("cls");
+
+	Common::write_ani("It feels like you've stepped on something weird...\n"
+					  "You look down to see what it is you stepped on, and find a chunk of JADE!\n\n");
+
+	// if player finds their third chunk of jade
+	if (count == 2) {
+		Common::write_ani("You have found all the required materials!\n"
+						  "Head back to the SHOPKEEPER in the Kingdom of Elves to complete the quest.\n\n");
+	}
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1424,12 +1440,12 @@ void Story::KoE_complete()
 {
 	system("cls");
 
-	Common::color_print(0x09, "BLACKSMITH:\n");
+	Common::color_print(0x0a, "SHOPKEEPER:\n");
 	Common::write_ani("Hey, you actually found the jade! Hand them over, I'll start work immediately.\n\n"
-					  "The BLACKSMITH starts forging the weapon.\n\n"
+					  "The SHOPKEEPER starts forging the weapon.\n\n"
 					  ". . .\n\n");
 
-	Common::color_print(0x09, "BLACKSMITH:\n");
+	Common::color_print(0x0a, "SHOPKEEPER:\n");
 	Common::write_ani("Alright, it's done! There was a lot more excess than I expected, so I made another one\n"
 					  "for you as a token of my appreciation. Here you go, pal!\n\n"
 					  "You obtained a SWORD!\n\n");
@@ -1479,6 +1495,15 @@ void Story::excalibur_floor2()
 	Common::any_key_press("Press any key to continue");
 }
 
+void Story::excalibur_foundKey()
+{
+	system("cls");
+
+	Common::write_ani("You found a key! Maybe it could be used to unlock that door...\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
 void Story::excalibur_doorUnlocked()
 {
 	system("cls");
@@ -1498,13 +1523,21 @@ void Story::excalibur_floor3()
 					  "You look around the room, and you make eye contact with a STONE GIANT!\n\n");
 
 	Common::color_print(0x08, "OLAF THE STONE GIANT:\n");
-	Common::write_ani("Another challenger who wishes to pull the EXCALIBUR out of its stone...\n"
-					  "Countless others have tried, but all have failed. To be deemed worthy,\n"
+	Common::write_ani("Yet another challenger who wishes to pull the EXCALIBUR out of its stone...\n"
+					  "Countless others have tried, but all have failed, and to be deemed worthy,\n"
 					  "great strength must be shown.\n\n");
 
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::excalibur_interactWOlaf()
+{
+	system("cls");
+
 	Common::color_print(0x08, "OLAF THE STONE GIANT:\n");
-	Common::write_ani("O young one, the STONE GIANT challenges you to a fight.\n"
-					  "Should you be victorious, you shall obtain the EXCALIBUR's might.\n\n");
+	Common::write_ani("O young one, should you be victorious, you shall obtain the EXCALIBUR's might.\n\n");
+
+	Common::write_ani("OLAF THE STONE GIANT is challenging you to a one-on-one BATTLE!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1731,12 +1764,12 @@ void Story::npc19_20()
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::treasureRoomHint()
+void Story::banditTreasureRoomHint()
 {
 	system("cls");
 
-	Common::write_ani("You pick up the note on the floor and begin to read it:\n"
-					  "BLUE, RED, RED, BLUE.\n\n");
+	Common::write_ani("You pick up the note on the floor and begin to read it:\n");
+	Common::write_ani(0x0b, "The Opposite is True.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }

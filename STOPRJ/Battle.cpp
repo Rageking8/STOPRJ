@@ -30,7 +30,7 @@ bool Game::start_battle(std::string id)
 			enemy[i].set_stats("max_health", 10);
 			enemy[i].set_stats("cur_mp", 25);
 			enemy[i].set_stats("max_mp", 25);
-			enemy[i].init_skill("danger_poke", "strength_dart", "bomb", "backstab");
+			enemy[i].init_skill("dagger_poke", "strength_dart", "bomb", "backstab");
 		}
 	}
 	else if (id == "bandit_2") {
@@ -40,14 +40,14 @@ bool Game::start_battle(std::string id)
 			enemy[i].set_stats("max_health", 15);
 			enemy[i].set_stats("cur_mp", 25);
 			enemy[i].set_stats("max_mp", 25);
-			enemy[i].init_skill("danger_poke", "strength_dart", "bomb", "backstab");
+			enemy[i].init_skill("dagger_poke", "strength_dart", "bomb", "backstab");
 		}
 		enemy[2].set_name("Bandit Leader");
 		enemy[2].set_stats("cur_health", 25);
 		enemy[2].set_stats("max_health", 25);
 		enemy[2].set_stats("cur_mp", 50);
 		enemy[2].set_stats("max_mp", 50);
-		enemy[2].init_skill("danger_poke", "strength_dart", "bomb", "backstab");
+		enemy[2].init_skill("dagger_poke", "strength_dart", "bomb", "backstab");
 		enemy[2].set_active(2, true);
 	}
 	else if (id == "dun_f1") {
@@ -60,6 +60,17 @@ bool Game::start_battle(std::string id)
 			enemy[i].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
 			enemy[i].set_active(2, true);
 		}
+	}
+	else if (id == "dun_f3") {
+		enemy[0].set_name("Olaf");
+		enemy[0].set_stats("attack", 15);
+		enemy[0].set_stats("cur_health", 60);
+		enemy[0].set_stats("max_health", 60);
+		enemy[0].set_stats("cur_mp", 60);
+		enemy[0].set_stats("max_mp", 60);
+		enemy[0].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
+		enemy[0].set_active(2, true);
+		enemy[0].set_active(3, true);
 	}
 
 	bool slot_active[8]{};
@@ -452,10 +463,13 @@ bool Game::start_battle(std::string id)
 
 							system("cls");
 
+
 							Common::write_ani("You've gotten through your first battle! Just be careful, though. If your HP reaches ZERO, you die.\n\n"
-								"However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
-								"win or lose. Afterwards, it's an instant GAME OVER.\n\n"
-								"Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
+											  "However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
+											  "win or lose. Afterwards, it's an instant GAME OVER.\n"
+											  "Also, since your allies' MP cannot be recovered, any buffs received during BATTLEs will be retained even\n"
+											  "after a BATTLE ends.\n\n"
+											  "Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
 
 							Common::any_key_press("Press any key to continue");
 
@@ -482,6 +496,9 @@ bool Game::start_battle(std::string id)
 						else if (id == "dun_f1") {
 							story.excalibur_defeatedSkels();
 						}
+						else if (id == "dun_f3") {
+							story.excalibur_giantDefeated();
+						}
 						ret = true;
 
 						break;
@@ -493,7 +510,7 @@ bool Game::start_battle(std::string id)
 							story.recruitElora_loseBandits();
 
 						}
-						else if (id == "bandit_2" || id == "dun_f1") {
+						else if (id == "bandit_2" || id == "dun_f1" || id == "dun_f3") {
 
 							if (slot_active[5] || slot_active[6] || slot_active[7])
 								story.gameOver_playerDead();
@@ -616,9 +633,11 @@ bool Game::start_battle(std::string id)
 					system("cls");
 
 					Common::write_ani("You've gotten through your first battle! Just be careful, though. If your HP reaches ZERO, you die.\n\n"
-						"However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
-						"win or lose. Afterwards, it's an instant GAME OVER.\n\n"
-						"Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
+									  "However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
+									  "win or lose. Afterwards, it's an instant GAME OVER.\n"
+									  "Also, since your allies' MP cannot be recovered, any buffs received during BATTLEs will be retained even\n"
+									  "after a BATTLE ends.\n\n"
+									  "Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
 
 					Common::any_key_press("Press any key to continue");
 
@@ -645,6 +664,9 @@ bool Game::start_battle(std::string id)
 				else if (id == "dun_f1") {
 					story.excalibur_defeatedSkels();
 				}
+				else if (id == "dun_f3") {
+					story.excalibur_giantDefeated();
+				}
 				ret = true;
 
 				break;
@@ -656,7 +678,7 @@ bool Game::start_battle(std::string id)
 					story.recruitElora_loseBandits();
 
 				}
-				else if (id == "bandit_2" || id == "dun_f1") {
+				else if (id == "bandit_2" || id == "dun_f1" || id == "dun_f3") {
 
 					if (slot_active[5] || slot_active[6] || slot_active[7])
 						story.gameOver_playerDead();
