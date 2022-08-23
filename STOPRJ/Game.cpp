@@ -74,6 +74,7 @@ void Game::start()
 	bool bandit1_b = false;
 	bool bandit_camp_t = false;
 	bool bandit_trea_r = false;
+	bool dun_f1 = false;
 
 	while (true) {
 
@@ -670,7 +671,7 @@ void Game::start()
 					}
 					else if (mage.get_recruited()) {
 						Common::color_print(66, 13, 0x0D, "ORION [Mage]: ");
-						Common::color_print(0x0C, "DEAD");
+						Common::color_print(0x0F, "DEAD");
 					}
 					else {
 						Common::color_print(77, 18, 0x07, "---");
@@ -698,7 +699,7 @@ void Game::start()
 					}
 					else if (elf.get_recruited()) {
 						Common::color_print(35, 13, 0x0A, "ELORA [Elf]: ");
-						Common::color_print(0x0C, "DEAD");
+						Common::color_print(0x0F, "DEAD");
 					}
 					else {
 						Common::color_print(46, 18, 0x07, "---");
@@ -726,7 +727,7 @@ void Game::start()
 					}
 					else if (assassin.get_recruited()) {
 						Common::color_print(97, 13, 0x0C, "BLAISE [Assassin]: ");
-						Common::color_print(0x0C, "DEAD");
+						Common::color_print(0x0F, "DEAD");
 					}
 					else {
 						Common::color_print(108, 18, 0x07, "---");
@@ -1038,23 +1039,15 @@ void Game::start()
 
 			system("cls");
 
-			Common::write_ani("Welcome to your first BATTLE! For this BATTLE, some guidance will be provided.\n"
+			Common::write_ani("Welcome to your first BATTLE! For this BATTLE, some guidance will be provided.\n\n"
 							  "The box highlighted in LIGHT YELLOW signifies whose turn it is. Currently, it is YOUR turn.\n\n"
-							  "The numbers on the left correspond to your SKILLS. Some skills may cost MP.\n"
-							  "To see how much MP it could cost, enter S to check the SKILL BOOK.\n\n"
-							  "Just enter the corresponding skill number to make a move!\n\n");
-
-
-			Common::write_ani("Great job! You've made your first move!\n"
-							  "Just be careful, though. If your HP reaches ZERO, you die.\n\n"
-							  "However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
-							  "win or lose. Afterwards, it's an instant GAME OVER.\n\n"
-							  "Now that you've gotten the basics of BATTLE, you'll be on your own from here on out!\n"
-							  "Good luck!\n\n");
+							  "The numbers on the left correspond to your SKILLS. SKILLS may cost MP, and are recorded in the SKILL BOOK.\n\n"
+							  "Just enter the number of the skill you wish to cast to end your turn!\n\n");
 
 			Common::any_key_press("Press any key to continue");
 
 			start_battle("ambush");
+
 			trigger_counter++;
 
 			teleport_ply(65, 41);
@@ -1090,6 +1083,10 @@ void Game::start()
 
 			board.set_board(64, 41, 0);
 
+			swordsman.set_active(2, true);
+			elf.set_active(2, true);
+			mage.set_active(2, true);
+
 			elf.set_recruited(true);
 
 			prev_is_map = false;
@@ -1115,10 +1112,24 @@ void Game::start()
 			for (int i = 20; i < 30; ++i)
 				board.set_board(15, i, 6);
 
+			swordsman.set_active(3, true);
+			mage.set_active(3, true);
+			elf.set_active(3, true);
+			assassin.set_active(3, true);
+
 			if (swordsman.get_stats("cur_health") <= 0)
 				break;
 
 			bandit_camp_t = true;
+			prev_is_map = false;
+			system("cls");
+			Common::cursor_vis(false);
+		}
+		else if (!dun_f1 && swordsman.get_pos(0) == 23 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
+			// dungeon floor 1
+			story.excalibur_floor1Start();
+
+			dun_f1 = true;
 			prev_is_map = false;
 			system("cls");
 			Common::cursor_vis(false);
@@ -1240,6 +1251,9 @@ void Game::start()
 			Common::cursor_vis(false);
 			story.magicSchool_start();
 			Common::input("Do you want to accept this quest ? (Y/N) : ");
+
+
+
 			prev_is_map = false;
 			system("cls");
 		}
@@ -1259,10 +1273,14 @@ void Game::start()
 
 			if (!bandit_trea_r && board.get_board(3, 79) == 0) {
 				if (elf.get_stats("cur_health") > 0 && mage.get_stats("cur_health") > 0) {
-					story.meetBlaise_main();
+					if (story.meetBlaise_main()) {
+						assassin.set_stats("cur_health", 0);
+					}
 				}
 				else if (elf.get_stats("cur_health") <= 0 && mage.get_stats("cur_health") > 0) {
-					story.meetBlaise_eloraDead();
+					if (story.meetBlaise_eloraDead()) {
+						assassin.set_stats("cur_health", 0);
+					}
 				}
 				else if (elf.get_stats("cur_health") > 0 && mage.get_stats("cur_health") <= 0) {
 					story.meetBlaise_orionDead();
@@ -1271,11 +1289,25 @@ void Game::start()
 					story.meetBlaise_partyDead();
 				}
 
-				bandit_trea_r = true;
-			}
+				assassin.set_recruited(true);
+				assassin.set_active(2, true);
 
-			prev_is_map = false;
-			system("cls");
+				bandit_trea_r = true;
+
+				board.set_board(6, 81, 0);
+
+				for (int i = 20; i < 30; ++i)
+					board.set_board(15, i, 0);
+
+				for (int i = 0; i < 7; i++)
+					board.set_board(23, (88 + i), 0);
+
+				prev_is_map = false;
+				system("cls");
+			}
+			else {
+				prev_is_map = true;
+			}
 		}
 		else if (tmp_target_cell_val == 20) {
 			// Switch blue
@@ -1293,10 +1325,14 @@ void Game::start()
 
 			if (!bandit_trea_r && board.get_board(3, 79) == 0) {
 				if (elf.get_stats("cur_health") > 0 && mage.get_stats("cur_health") > 0) {
-					story.meetBlaise_main();
+					if (story.meetBlaise_main()) {
+						assassin.set_stats("cur_health", 0);
+					}
 				}
 				else if (elf.get_stats("cur_health") <= 0 && mage.get_stats("cur_health") > 0) {
-					story.meetBlaise_eloraDead();
+					if (story.meetBlaise_eloraDead()) {
+						assassin.set_stats("cur_health", 0);
+					}
 				}
 				else if (elf.get_stats("cur_health") > 0 && mage.get_stats("cur_health") <= 0) {
 					story.meetBlaise_orionDead();
@@ -1305,11 +1341,25 @@ void Game::start()
 					story.meetBlaise_partyDead();
 				}
 
-				bandit_trea_r = true;
-			}
+				assassin.set_recruited(true);
+				assassin.set_active(2, true);
 
-			prev_is_map = false;
-			system("cls");
+				bandit_trea_r = true;
+
+				board.set_board(6, 81, 0);
+
+				for (int i = 20; i < 30; ++i)
+					board.set_board(15, i, 0);
+
+				for (int i = 0; i < 7; i++)
+					board.set_board(23, (88 + i), 0);
+
+				prev_is_map = false;
+				system("cls");
+			}
+			else {
+				prev_is_map = true;
+			}
 		}
 		else if (tmp_target_cell_val == 31)
 		{
@@ -1372,6 +1422,24 @@ void Game::start()
 				board.set_board(19, i, 0);
 
 			board.set_board(46, 59, 0);
+
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 40) {
+
+			Common::cursor_vis(false);
+			story.excalibur_floor1InteractWBones();
+
+			start_battle("dun_f1");
+
+			for (int i = 0; i < 3; i++)
+				board.set_board(34, (82 + i), 0);
+			for (int i = 0; i < 7; i++)
+				board.set_board(42, (88 + i), 0);
+
+			if (swordsman.get_stats("cur_health") <= 0)
+				break;
 
 			prev_is_map = false;
 			system("cls");

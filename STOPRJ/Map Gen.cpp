@@ -210,7 +210,7 @@ void Game::board_gen()
 	for (int i = 0; i < 3; i++)
 		board.set_board(67, (129 + i), 40); // room 1
 
-	//Bandit camp
+	// Bandit camp
 	for (int i = 0; i < 50; ++i) // Row walls
 		board.set_board(0, i, 2);
 
@@ -775,9 +775,10 @@ void Game::board_gen()
 		board.set_board((31 + i), 73, -35);
 
 	}
-	//Bandits
+
+	// SKeletons
 	for (int i = 0; i < 3; i++)
-		board.set_board(34, (82 + i), 26);
+		board.set_board(34, (82 + i), 40);
 
 	// Excalibur stone
 	for (int i = 0; i < 5; i++)
@@ -1009,9 +1010,10 @@ void Game::board_gen()
 	}
 	for (int i = 0; i < 7; i++) // Door/Gates in Dungeon
 	{
-		//board.set_board(42, (88 + i), 6);
-		//board.set_board(63, (88 + i), 6);
-		//board.set_board(82, (88 + i), 6);
+		board.set_board(23, (88 + i), 6);
+		board.set_board(42, (88 + i), 6);
+		board.set_board(63, (88 + i), 6);
+		board.set_board(82, (88 + i), 6);
 	}
 	//Path to demon king castle
 	for (int i = 0; i < 6; i++)// inner path

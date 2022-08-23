@@ -1,4 +1,4 @@
-#include "Game.h"
+﻿#include "Game.h"
 #include "Common.h"
 #include <iostream>
 #define WIN32_LEAN_AND_MEAN
@@ -50,6 +50,17 @@ bool Game::start_battle(std::string id)
 		enemy[2].init_skill("danger_poke", "strength_dart", "bomb", "backstab");
 		enemy[2].set_active(2, true);
 	}
+	else if (id == "dun_f1") {
+		for (int i = 0; i < 4; ++i) {
+			enemy[i].set_name("Skeleton");
+			enemy[i].set_stats("cur_health", 20);
+			enemy[i].set_stats("max_health", 20);
+			enemy[i].set_stats("cur_mp", 35);
+			enemy[i].set_stats("max_mp", 35);
+			enemy[i].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
+			enemy[i].set_active(2, true);
+		}
+	}
 
 	bool slot_active[8]{};
 
@@ -81,7 +92,9 @@ bool Game::start_battle(std::string id)
 				}
 
 				Common::set_cursor(i * 25, 0);
-				std::cout << "|======================| ";
+				//std::cout << "|======================| ";
+				DWORD n;
+				WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
 				Common::set_cursor(i * 25, 1);
 				std::cout << "| " << enemy[i].get_name() << Common::mul_txt(" ", 21 - enemy[i].get_name().length()) << "| ";
 				Common::set_cursor(i * 25, 2);
@@ -108,7 +121,11 @@ bool Game::start_battle(std::string id)
 				}
 
 				Common::set_cursor(i * 25, 10);
-				Common::color_print(tmp_color, "|======================| ");
+				//Common::color_print(tmp_color, "|======================| ");
+				SetConsoleTextAttribute(h, tmp_color);
+				DWORD n2;
+				WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n2, nullptr);
+				SetConsoleTextAttribute(h, 0x07);
 
 				if (current_turn == i)
 					SetConsoleTextAttribute(h, 0x07);
@@ -123,7 +140,9 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(0, 15);
-			std::cout << "|======================| ";
+			//std::cout << "|======================| ";
+			DWORD n;
+			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
 			Common::set_cursor(0, 16);
 			std::cout << "| " << swordsman.get_name() << Common::mul_txt(" ", 21 - swordsman.get_name().length()) << "| ";
 			Common::set_cursor(0, 17);
@@ -150,7 +169,11 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(0, 25);
-			Common::color_print(tmp_color, "|======================| ");
+			//Common::color_print(tmp_color, "|======================| ");
+			SetConsoleTextAttribute(h, tmp_color);
+			DWORD n2;
+			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n2, nullptr);
+			SetConsoleTextAttribute(h, 0x07);
 
 			if (current_turn == 4)
 				SetConsoleTextAttribute(h, 0x07);
@@ -164,7 +187,9 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(25, 15);
-			std::cout << "|======================| ";
+			//std::cout << "|======================| ";
+			DWORD n;
+			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
 			Common::set_cursor(25, 16);
 			std::cout << "| " << mage.get_name() << Common::mul_txt(" ", 21 - mage.get_name().length()) << "| ";
 			Common::set_cursor(25, 17);
@@ -191,7 +216,11 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(25, 25);
-			Common::color_print(tmp_color, "|======================| ");
+			//Common::color_print(tmp_color, "|======================| ");
+			SetConsoleTextAttribute(h, tmp_color);
+			DWORD n2;
+			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n2, nullptr);
+			SetConsoleTextAttribute(h, 0x07);
 
 			if (current_turn == 5)
 				SetConsoleTextAttribute(h, 0x07);
@@ -205,7 +234,9 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(50, 15);
-			std::cout << "|======================| ";
+			//std::cout << "|======================| ";
+			DWORD n;
+			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
 			Common::set_cursor(50, 16);
 			std::cout << "| " << elf.get_name() << Common::mul_txt(" ", 21 - elf.get_name().length()) << "| ";
 			Common::set_cursor(50, 17);
@@ -232,7 +263,11 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(50, 25);
-			Common::color_print(tmp_color, "|======================| ");
+			//Common::color_print(tmp_color, "|======================| ");
+			SetConsoleTextAttribute(h, tmp_color);
+			DWORD n2;
+			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n2, nullptr);
+			SetConsoleTextAttribute(h, 0x07);
 
 			if (current_turn == 6)
 				SetConsoleTextAttribute(h, 0x07);
@@ -246,7 +281,9 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(75, 15);
-			std::cout << "|======================| ";
+			//std::cout << "|======================| ";
+			DWORD n;
+			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
 			Common::set_cursor(75, 16);
 			std::cout << "| " << assassin.get_name() << Common::mul_txt(" ", 21 - assassin.get_name().length()) << "| ";
 			Common::set_cursor(75, 17);
@@ -273,7 +310,11 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(75, 25);
-			Common::color_print(tmp_color, "|======================| ");
+			//Common::color_print(tmp_color, "|======================| ");
+			SetConsoleTextAttribute(h, tmp_color);
+			DWORD n2;
+			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n2, nullptr);
+			SetConsoleTextAttribute(h, 0x07);
 
 			if (current_turn == 7)
 				SetConsoleTextAttribute(h, 0x07);
@@ -408,6 +449,16 @@ bool Game::start_battle(std::string id)
 						// Enemy all dead
 
 						if (id == "ambush") {
+
+							system("cls");
+
+							Common::write_ani("You've gotten through your first battle! Just be careful, though. If your HP reaches ZERO, you die.\n\n"
+								"However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
+								"win or lose. Afterwards, it's an instant GAME OVER.\n\n"
+								"Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
+
+							Common::any_key_press("Press any key to continue");
+
 							story.winElora();
 							swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
 						}
@@ -428,6 +479,9 @@ bool Game::start_battle(std::string id)
 								story.recruitOrion_main();
 							}
 						}
+						else if (id == "dun_f1") {
+							story.excalibur_defeatedSkels();
+						}
 						ret = true;
 
 						break;
@@ -439,7 +493,7 @@ bool Game::start_battle(std::string id)
 							story.recruitElora_loseBandits();
 
 						}
-						else if (id == "bandit_2") {
+						else if (id == "bandit_2" || id == "dun_f1") {
 
 							if (slot_active[5] || slot_active[6] || slot_active[7])
 								story.gameOver_playerDead();
@@ -558,6 +612,16 @@ bool Game::start_battle(std::string id)
 				// Enemy all dead
 
 				if (id == "ambush") {
+
+					system("cls");
+
+					Common::write_ani("You've gotten through your first battle! Just be careful, though. If your HP reaches ZERO, you die.\n\n"
+						"However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
+						"win or lose. Afterwards, it's an instant GAME OVER.\n\n"
+						"Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
+
+					Common::any_key_press("Press any key to continue");
+
 					story.winElora();
 					swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
 				}
@@ -578,6 +642,9 @@ bool Game::start_battle(std::string id)
 						story.recruitOrion_main();
 					}
 				}
+				else if (id == "dun_f1") {
+					story.excalibur_defeatedSkels();
+				}
 				ret = true;
 
 				break;
@@ -589,7 +656,7 @@ bool Game::start_battle(std::string id)
 					story.recruitElora_loseBandits();
 
 				}
-				else if (id == "bandit_2") {
+				else if (id == "bandit_2" || id == "dun_f1") {
 
 					if (slot_active[5] || slot_active[6] || slot_active[7])
 						story.gameOver_playerDead();

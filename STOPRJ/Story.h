@@ -23,11 +23,11 @@ public:
 	void defeatBandits_orionDead(); // bandits defeated but orion dies
 	void defeatBandits_oriAndElrDead(); // bandits defeated but orion AND elora die
 
-	void meetBlaise_main(); // entering treasure room if all party members are alive
+	bool meetBlaise_main(); // entering treasure room if all party members are alive
 	void killBlaise();
 	void recruitBlaise();
 
-	void meetBlaise_eloraDead(); // entering treasure room if elora is dead
+	bool meetBlaise_eloraDead(); // entering treasure room if elora is dead
 	void meetBlaise_orionDead(); // entering treasure room if orion is dead: forced to recruit blaise
 	void meetBlaise_partyDead(); // entering treasure room if orion AND elora are dead: forced to recruit blaise
 
@@ -79,7 +79,8 @@ public:
 
 	// excalibur dungeon quest
 	// reward: excalibur (+20 attack) (maybe "auto-equip"? like just add 20 attack points or something)
-	void excalibur_floor1(); // player interacts with the bandits
+	void excalibur_floor1Start(); // player enters the first floor
+	void excalibur_floor1InteractWBones(); // player interacts with pile of bones
 	void excalibur_defeatedSkels();
 	void excalibur_floor2(); // player tries to go through door without the key
 	void excalibur_doorUnlocked(); // player has the key to the door

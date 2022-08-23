@@ -196,8 +196,8 @@ void Story::recruitElora()
 	Common::write_ani("Very well, I shall accompany you on your journey. I do hope I can be of assistance.\n\n");
 
 	Common::color_print(0x0a, "ELORA ");
-	Common::write_ani("has been recruited to your party!\n\n"
-					  "You have unlocked a new skill!\n\n");
+	Common::write_ani("has been recruited to your party!\n\n");
+	Common::write_ani(0x0b, "All allies have gained an additional skill!\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Alright! Well, our next stop is Caershire, so we should probably make our way there.\n\n");
@@ -257,8 +257,8 @@ void Story::recruitElora_loseBandits()
 	Common::write_ani("Very well, I shall accompany you on your journey. I do hope I can be of assistance.\n\n");
 
 	Common::color_print(0x0a, "ELORA ");
-	Common::write_ani("has been recruited to your party!\n\n"
-					  "You have unlocked a new skill!\n\n");
+	Common::write_ani("has been recruited to your party!\n\n");
+	Common::write_ani(0x0b, "All allies have gained an additional skill!\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Alright! Well, our next stop is Caershire, so we should probably make our way there.\n\n");
@@ -376,9 +376,9 @@ void Story::recruitOrion_main()
 					  "Even though I'd rather not join you guys, I'm a man of my word.\n\n");
 
 	Common::color_print(0x0d, "ORION ");
-	Common::write_ani("has been recruited to your party!\n\n"
-					  "You have unlocked a new skill!\n\n"
-					  "Suddenly, you hear the gate to the bandit camp close behind you!\n\n");
+	Common::write_ani("has been recruited to your party!\n\n");
+	Common::write_ani(0x0b, "All allies have gained an additional skill!\n\n");
+	Common::write_ani("Suddenly, you hear the gate to the bandit camp close behind you!\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Drat! How are we gonna get out of here?\n\n");
@@ -412,9 +412,9 @@ void Story::recruitOrion_eloraDead()
 					  "Even though I'd rather not join you, I'm a man of my word.\n\n");
 
 	Common::color_print(0x0d, "ORION ");
-	Common::write_ani("has been recruited to your party!\n\n"
-					  "You have unlocked a new skill!\n\n"
-					  "Suddenly, you hear the gate to the bandit camp close behind you!\n\n");
+	Common::write_ani("has been recruited to your party!\n\n");
+	Common::write_ani(0x0b, "All allies have gained an additional skill!\n\n");
+	Common::write_ani("Suddenly, you hear the gate to the bandit camp close behind you!\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Drat! How are we gonna get out of here?\n\n");
@@ -445,6 +445,7 @@ void Story::defeatBandits_orionDead()
 
 	Common::color_print(0x0a, "ELORA:\n");
 	Common::write_ani("We should look around the camp and see if there is a way for us to leave this place.\n\n");
+	Common::write_ani(0x0b, "All allies have gained an additional skill!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -462,12 +463,13 @@ void Story::defeatBandits_oriAndElrDead()
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("Drat! How am I gonna get out of here?\n"
-					  "Guess I'll look around the camp and see if there's a way to leave this place.\n\n");
+					  "Guess I'll look around the camp and see if there's a way to leave this place.\n\n"
+					  "All allies have gained an additional skill!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::meetBlaise_main()
+bool Story::meetBlaise_main()
 {
 	system("cls");
 
@@ -513,12 +515,12 @@ void Story::meetBlaise_main()
 		if (blaise_inp == "1") {
 			Common::cursor_vis(false);
 			killBlaise();
-			break;
+			return true;
 		}
 		else if (blaise_inp == "2") {
 			Common::cursor_vis(false);
 			recruitBlaise();
-			break;
+			return false;
 		}
 		else {
 			Common::cursor_vis(false);
@@ -578,7 +580,7 @@ void Story::recruitBlaise()
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::meetBlaise_eloraDead()
+bool Story::meetBlaise_eloraDead()
 {
 	system("cls");
 
@@ -624,12 +626,12 @@ void Story::meetBlaise_eloraDead()
 		if (blaise_inp == "1") {
 			Common::cursor_vis(false);
 			killBlaise();
-			break;
+			return true;
 		}
 		else if (blaise_inp == "2") {
 			Common::cursor_vis(false);
 			recruitBlaise();
-			break;
+			return false;
 		}
 		else {
 			Common::cursor_vis(false);
@@ -1435,14 +1437,24 @@ void Story::KoE_complete()
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::excalibur_floor1()
+void Story::excalibur_floor1Start()
 {
 	system("cls");
 
 	Common::write_ani("As soon as you enter the dungeon, you hear a rattling sound coming from the pile of bones\n"
 					  "in front of you.\n\n"
 					  ". . .\n\n"
-					  "The bones have become SKELETONS, and are challenging you to a BATTLE!\n\n");
+					  "The bones have become SKELETONS!\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::excalibur_floor1InteractWBones()
+{
+	system("cls");
+
+	Common::write_ani("You cautiously go closer to check out the skeletons, but they begin to rattle aggressively!\n\n"
+					  "The skeletons... seem to be challenging you to a BATTLE!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1452,6 +1464,7 @@ void Story::excalibur_defeatedSkels()
 	system("cls");
 
 	Common::write_ani("The skeletons crumble into the pile of bones they once were.\n\n"
+					  ". . .\n\n"
 					  "You can now advance to the next floor!\n\n");
 
 	Common::any_key_press("Press any key to continue");

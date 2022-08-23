@@ -48,6 +48,16 @@ std::string Common::write_ani(std::string txt, const unsigned short delay_ms)
 	return txt;
 }
 
+std::string Common::write_ani(unsigned short color_code, std::string txt, const unsigned short delay_ms)
+{
+	for (const auto i : txt) {
+		color_print(color_code, std::string() + i);
+		Sleep(delay_ms);
+	}
+
+	return txt;
+}
+
 int Common::rand_int(int min, int max) {
 	static std::random_device rd;
 	static std::mt19937 gen(rd());
