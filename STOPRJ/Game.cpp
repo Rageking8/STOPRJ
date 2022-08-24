@@ -81,7 +81,7 @@ void Game::start()
 	bandit_puz_a[tmp_idx] = !bandit_puz_i[tmp_idx];
 	for (int i = 0; i < 4; ++i) {
 		if (i == tmp_idx) continue;
-		bandit_puz_a[i] = (Common::rand_int(1, 2) == 1);
+		bandit_puz_a[i] = (Common::rand_int(1, 20) <= 10);
 	}
 
 	bool npc4_r = false;
@@ -966,8 +966,8 @@ void Game::start()
 						else if (item_inp == "3") {
 							if (swordsman.get_item_qty("armour") > 0) {
 								swordsman.set_item_qty("armour", swordsman.get_item_qty("armour") - 1);
-								swordsman.set_stats("cur_health", swordsman.get_stats("cur_health") + 10);
-								swordsman.set_stats("max_health", swordsman.get_stats("max_health") + 10);
+								swordsman.set_stats("cur_health", swordsman.get_stats("cur_health") + 20);
+								swordsman.set_stats("max_health", swordsman.get_stats("max_health") + 20);
 
 								Common::color_print(37, 26, 0x0A, "You have equipped ARMOUR! Your max health is now ");
 								Common::color_print(0x0A, swordsman.get_stats("max_health"));
@@ -1068,6 +1068,8 @@ void Game::start()
 			Common::any_key_press("Press any key to continue");
 
 			start_battle("ambush");
+
+			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 30);
 
 			trigger_counter++;
 
@@ -1366,13 +1368,16 @@ void Game::start()
 
 			if (swordsman.get_stats("cur_health") <= 0)
 				break;
+
+			prev_is_map = false;
+			system("cls");
 		}
 		else if (tmp_target_cell_val == 19) {
 			// Switch red
 
 			board.set_board(tmp_target_cell[0], tmp_target_cell[1], 20);
 
-			if (board.get_board(3, 59) == swi_id[bandit_puz_a[0]] && board.get_board(9, 59) == swi_id[bandit_puz_a[1]] && board.get_board(3, 73) == swi_id[bandit_puz_a[2]] && board.get_board(9, 73) == swi_id[bandit_puz_a[3]]) {
+			if (board.get_board(3, 59) == (bandit_puz_a[0] ? 20 : 19) && board.get_board(9, 59) == (bandit_puz_a[1] ? 20 : 19) && board.get_board(3, 73) == (bandit_puz_a[2] ? 20 : 19) && board.get_board(9, 73) == (bandit_puz_a[3] ? 20 : 19)) {
 				for (int i = 0; i < 7; i++)
 					board.set_board((3 + i), 79, 0);
 			}
@@ -1424,7 +1429,7 @@ void Game::start()
 
 			board.set_board(tmp_target_cell[0], tmp_target_cell[1], 19);
 
-			if (board.get_board(3, 59) == swi_id[bandit_puz_a[0]] && board.get_board(9, 59) == swi_id[bandit_puz_a[1]] && board.get_board(3, 73) == swi_id[bandit_puz_a[2]] && board.get_board(9, 73) == swi_id[bandit_puz_a[3]]) {
+			if (board.get_board(3, 59) == (bandit_puz_a[0] ? 20 : 19) && board.get_board(9, 59) == (bandit_puz_a[1] ? 20 : 19) && board.get_board(3, 73) == (bandit_puz_a[2] ? 20 : 19) && board.get_board(9, 73) == (bandit_puz_a[3] ? 20 : 19)) {
 				for (int i = 0; i < 7; i++)
 					board.set_board((3 + i), 79, 0);
 			}
@@ -1665,6 +1670,11 @@ void Game::start()
 		else if (tmp_target_cell_val == 88) {
 			// TODO : fairy
 
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 89) {
+			story.npc21();
 			prev_is_map = false;
 			system("cls");
 		}

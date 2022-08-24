@@ -6,10 +6,10 @@
 
 Shop::Shop()
 {
-	stock[0] = 2;
-	stock[1] = 2;
-	stock[2] = 15;
-	stock[3] = 15;
+	stock[0] = 5;
+	stock[1] = 5;
+	stock[2] = 20;
+	stock[3] = 20;
 }
 
 Shop::~Shop()

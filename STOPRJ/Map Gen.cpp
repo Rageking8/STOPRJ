@@ -1631,6 +1631,10 @@ void Game::board_gen()
 	board.set_board(98, 1, -54);
 	board.set_board(97, 4, -55);
 	board.set_board(95, 3, -53);
+
+	// Boat NPC below kingdom of elves
+	board.set_board(99, 10, 89);
+
 	// Ship at Second Spawnpoint
 	for (int i = 0; i < 3; i++)
 	{

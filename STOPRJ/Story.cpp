@@ -29,7 +29,7 @@ void Story::prologue()
 {
 	system("cls");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("Knight " + name + ", I have a job for you.\n\n");
 
 	const char* story_arr[]{
@@ -54,11 +54,11 @@ void Story::prologue()
 	};
 
 	for (const auto i : story_arr) {
-		Common::color_print(0x0e, "EMPEROR:\n");
+		Common::color_print(0x06, "EMPEROR:\n");
 		Common::write_ani(i);
 	}
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("Good luck, " + name + ". I leave this paramount task in your capable hands.\n\n");
 
 	Common::any_key_press("Press any key to continue");
@@ -119,7 +119,7 @@ void Story::winElora()
 	Common::write_ani("You aren't one of them? Well, that's... rather embarrassing.\n"
 					  "As an apology, let us accompany you to our Kingdom so that you may recover after our fight.\n\n");
 	Common::write_ani(0x0b, "The Elves bring you back to the Kingdom of Elves and provide you with medical assistance,\n"
-							"bringing you back to full health.\n\n");
+							"bringing you back to full health. As an apology, they also give you 30 coins.\n\n");
 
 	Common::color_print(0x0a, "STRONG ELF:\n");
 	Common::write_ani("I believe I should formally introduce myself.\n\n");
@@ -1056,6 +1056,10 @@ void Story::defeatBlaise_main()
 {
 	system("cls");
 
+	Common::write_ani("You and your party used all your strength to fight BLAISE...\n\n"
+					  ". . .\n\n"
+					  "Eventually, you succeed in defeating BLAISE, who seems to have pushed himself too hard.\n\n");
+
 	Common::color_print(0x0c, "BLAISE:\n");
 	Common::write_ani("Hah... I should've expected this. You're way stronger than you look.\n\n");
 
@@ -1088,6 +1092,10 @@ void Story::defeatBlaise_orionDead()
 {
 	system("cls");
 
+	Common::write_ani("You and your party used all your strength to fight BLAISE...\n\n"
+					  ". . .\n\n"
+					  "Eventually, you succeed in defeating BLAISE, who seems to have pushed himself too hard.\n\n");
+
 	Common::color_print(0x0c, "BLAISE:\n");
 	Common::write_ani("Hah... I should've expected this. You're way stronger than you look.\n\n");
 
@@ -1116,6 +1124,10 @@ void Story::defeatBlaise_eloraDead()
 {
 	system("cls");
 
+	Common::write_ani("You and your party used all your strength to fight BLAISE...\n\n"
+					  ". . .\n\n"
+					  "Eventually, you succeed in defeating BLAISE, who seems to have pushed himself too hard.\n\n");
+
 	Common::color_print(0x0c, "BLAISE:\n");
 	Common::write_ani("Hah... I should've expected this. You're way stronger than you look.\n\n");
 
@@ -1131,8 +1143,8 @@ void Story::defeatBlaise_eloraDead()
 
 	Common::write_ani(0x0d, "ORION ");
 	Common::write_ani("used a FIREBALL on BLAISE.\n\n"
-		"You can hear BLAISE screaming in agony.\n\n"
-		". . .\n\n");
+					  "You can hear BLAISE screaming in agony.\n\n"
+					  ". . .\n\n");
 
 	Common::write_ani(0x0c, "BLAISE ");
 	Common::write_ani(0x0b, "has been killed.\n\n");
@@ -1155,11 +1167,11 @@ void Story::ending_main()
 					  "Your party collects all the stolen treasure, then makes their way back to Moris Empire.\n\n"
 					  "When you set foot into the empire, the EMPEROR is already standing at the entrance, waiting for you.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("A warm welcome home, Knight " + name + ".\n"
 					  "I knew this responsibility was in good hands. I would like to offer my sincerest gratitude to you.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("And to the two of you as well, ELORA and ORION. Thank you for providing the\n"
 					  "help you could to " + name + ". I would like to ask, what of BLAISE... ? \n\n");
 
@@ -1169,10 +1181,10 @@ void Story::ending_main()
 	Common::color_print(0x0d, "ORION:\n");
 	Common::write_ani("It's a long story, your highness.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("...I understand. I would be lying if I said this was unexpected.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("Regardless, as thanks for retrieving our treasures, I would like to\n"
 					  "hold a ceremony in your honour.\n\n"
 					  "The ceremony was attended by the whole empire.\n"
@@ -1193,15 +1205,15 @@ void Story::ending_partyMemDead()
 					  "Your party collects all the stolen treasure, then makes their way back to Moris Empire.\n\n"
 					  "When you set foot into the empire, the EMPEROR is already standing at the entrance, waiting for you.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("A warm welcome home, Knight " + name + ".\n"
 					  "I knew this responsibility was in good hands. I would like to offer my sincerest gratitude to you.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("...It seems that you have lost some of your party members.\n"
 					  "I would be lying if I said that I wasn't expecting this.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("Regardless, as thanks for retrieving our treasures, I would like to\n"
 					  "hold a ceremony in your honour.\n\n"
 					  "The ceremony was attended by the whole empire.\n"
@@ -1222,20 +1234,20 @@ void Story::ending_playerOnly()
 					  "You collect all the stolen treasure, then make your way back to Moris Empire.\n\n"
 					  "When you set foot into the empire, the EMPEROR is already standing at the entrance, waiting for you.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("A warm welcome home, Knight " + name + ".\n"
 					  "I knew this responsibility was in good hands. I would like to offer my sincerest gratitude to you.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("...I am rather curious, though. Did you not manage to find any of the three heroes?\n\n");
 
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("I did, but they...\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("...I understand. I would be lying if I said this was unexpected.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("Regardless, as thanks for retrieving our treasures, I would like to\n"
 					  "hold a ceremony in your honour.\n\n"
 					  "The ceremony was attended by the whole empire.\n"
@@ -1256,18 +1268,18 @@ void Story::ending_blaiseAlive()
 					  "Your party collects all the stolen treasure, then makes their way back to Moris Empire.\n\n"
 					  "When you set foot into the empire, the EMPEROR is already standing at the entrance, waiting for you.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("A warm welcome home, Knight " + name + ".\n"
 					  "I knew this responsibility was in good hands. I would like to offer my sincerest gratitude to you.\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("...It seems that you have lost some of your party members.\n"
 					  "I would be lying if I said that I wasn't expecting this.\n\n");
 
 	Common::color_print(0x0c, "BLAISE:\n");
 	Common::write_ani("Well, both of us made it out alive! We got your treasure back, so now what?\n\n");
 
-	Common::color_print(0x0e, "EMPEROR:\n");
+	Common::color_print(0x06, "EMPEROR:\n");
 	Common::write_ani("Well, as thanks for retrieving our treasures, I would like to hold a ceremony\n"
 					  "in your honour.\n\n");
 
@@ -1442,7 +1454,7 @@ void Story::KoE_start()
 	Common::color_print(0x0b, name + ":\n");
 	Common::write_ani("You look a little lost. Do you perhaps need help with something?\n\n");
 
-	Common::color_print(0x0a, "SHOPKEEPER:\n");
+	Common::color_print(0x0a, "AERITH:\n");
 	Common::write_ani("Yeah, actually. I do need some help. I want to make a weapon inspired by Miss ELORA,\n"
 					  "but I don't know where I can find one of the materials.\n\n");
 }
@@ -1451,8 +1463,8 @@ void Story::KoE_accept()
 {
 	system("cls");
 
-	Common::color_print(0x0a, "SHOPKEEPER:\n");
-	Common::write_ani("Thanks for offering to help, pal! I need you to help me find three chunks\n"
+	Common::color_print(0x0a, "AERITH:\n");
+	Common::write_ani("Thanks for offering to help! I need you to help me find three chunks\n"
 					  "of jade. They're pretty hard to find, from what I hear, so good luck with\n"
 					  "that!\n\n");
 
@@ -1463,8 +1475,8 @@ void Story::KoE_decline()
 {
 	system("cls");
 
-	Common::color_print(0x0a, "SHOPKEEPER:\n");
-	Common::write_ani("Thanks, pal. I'll keep asking around until I get something.\n\n");
+	Common::color_print(0x0a, "AERITH:\n");
+	Common::write_ani("Thanks. I'll keep asking around until I get something.\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1473,8 +1485,8 @@ void Story::KoE_inProgress()
 {
 	system("cls");
 
-	Common::color_print(0x0a, "SHOPKEEPER:\n");
-	Common::write_ani("I need you to help me find three chunks of jade, pal!\n\n");
+	Common::color_print(0x0a, "AERITH:\n");
+	Common::write_ani("I need you to help me find three chunks of jade, thanks again!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1489,7 +1501,7 @@ void Story::KoE_jadeFound(int count)
 	// if player finds their third chunk of jade
 	if (count == 2) {
 		Common::write_ani(0x0b, "You have found all the required materials!\n"
-						  "Head back to the SHOPKEEPER in the Kingdom of Elves to complete the quest.\n\n");
+						  "Head back to AERITH in the Kingdom of Elves to complete the quest.\n\n");
 	}
 
 	Common::any_key_press("Press any key to continue");
@@ -1499,14 +1511,14 @@ void Story::KoE_complete()
 {
 	system("cls");
 
-	Common::color_print(0x0a, "SHOPKEEPER:\n");
+	Common::color_print(0x0a, "AERITH:\n");
 	Common::write_ani("Hey, you actually found the jade! Hand them over, I'll start work immediately.\n\n"
-					  "The SHOPKEEPER starts forging the weapon.\n\n"
+					  "AERITH starts forging the weapon.\n\n"
 					  ". . .\n\n");
 
-	Common::color_print(0x0a, "SHOPKEEPER:\n");
+	Common::color_print(0x0a, "AERITH:\n");
 	Common::write_ani("Alright, it's done! There was a lot more excess than I expected, so I made another one\n"
-					  "for you as a token of my appreciation. Here you go, pal!\n\n");
+					  "for you as a token of my appreciation. Here you go!\n\n");
 	Common::write_ani(0x0b, "You obtained a SWORD!\n\n");
 
 	Common::any_key_press("Press any key to continue");
@@ -1551,7 +1563,7 @@ void Story::excalibur_lockedInFloor2()
 
 	Common::write_ani("As soon as you walk into the room, the door to the previous floor shuts right behind you,\n"
 					  "locking you and your party inside!\n\n"
-					  "The door ahead appears to be locked too..."
+					  "The door ahead appears to be locked too...\n"
 					  "It looks like you'll need to look around this room and find a way out of here.\n\n", 15);
 
 	Common::any_key_press("Press any key to continue");

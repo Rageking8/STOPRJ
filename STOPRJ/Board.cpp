@@ -444,22 +444,22 @@ void Board::print_map()
 				case 71: // Dungeon maze Walls
 					Common::color_print(0X08, "#");
 					break;
-				case 72: // NPCs in Swordsman town
+				case 72: // NPCs in Moris Empire
 					Common::color_print(0X70, "?"); // Guards
 					break;
 				case 73: // Emperor
 					Common::color_print(0X70, "?");
 					break;
-				case 74: // NPCs in Swordsman town
+				case 74: // NPCs in Moris Empire
 					Common::color_print(0X70, "?"); // Messenger
 					break;
-				case 75: // NPCs in Swordsman town
+				case 75: // NPCs in Moris Empire
 					Common::color_print(0X70, "?"); // Docks
 					break;
-				case 76: // NPCs in Swordsman town
+				case 76: // NPCs in Moris Empire
 					Common::color_print(0X70, "?"); // Fountain
 					break;
-				case 77: // NPCs in Swordsman town
+				case 77: // NPCs in Moris Empire
 					Common::color_print(0X70, "?"); // Garden
 					break;
 				case 78: // Orions Heros
@@ -493,6 +493,9 @@ void Board::print_map()
 					Common::color_print(0X70, "?");
 					break;
 				case 88: // Fairy
+					Common::color_print(0X70, "?");
+					break;
+				case 89: // Boat NPC below kingdom of elves
 					Common::color_print(0X70, "?");
 					break;
 				default:
@@ -829,23 +832,23 @@ void Board::print_with_id(short id)
 			Common::color_print(0X70, "#");
 			Common::color_print(0X80, "#");
 			break;
-		case 72: // NPCs in Swordsman town
+		case 72: // NPCs in Moris Empire
 			Common::color_print(0X0E, "GuR"); // Guards
 			break;
 		case 73: // Emperor
 			Common::color_print(0X06, "EMP");
 			break;
-		case 74: // NPCs in Swordsman town
-			Common::color_print(0X05, "SwD"); // Messenger
+		case 74: // NPCs in Moris Empire
+			Common::color_print(0X09, "MoR"); // Messenger
 			break;
-		case 75: // NPCs in Swordsman town
-			Common::color_print(0X05, "SwD"); // Docks
+		case 75: // NPCs in Moris Empire
+			Common::color_print(0X09, "PaU"); // Docks
 			break;
-		case 76: // NPCs in Swordsman town
-			Common::color_print(0X05, "SwD"); // Fountain
+		case 76: // NPCs in Moris Empire
+			Common::color_print(0X09, "MoR"); // Fountain
 			break;
-		case 77: // NPCs in Swordsman town
-			Common::color_print(0X05, "SwD"); // Garden
+		case 77: // NPCs in Moris Empire
+			Common::color_print(0X09, "MoR"); // Garden
 			break;
 		case 78: // Orions Hero
 			Common::color_print(0X0D, "Ori");
@@ -883,6 +886,9 @@ void Board::print_with_id(short id)
 			break;
 		case 88: // Fairy
 			Common::color_print(0X0D, "<F>");
+			break;
+		case 89: // Boat NPC below kingdom of elves
+			Common::color_print(0X09, "PaU");
 			break;
 		default:
 			std::cout << "   ";

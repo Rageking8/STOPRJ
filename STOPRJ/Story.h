@@ -63,7 +63,7 @@ public:
 
 	// kingdom of elves side quest: find jade
 	// reward: sword
-	void KoE_start();
+	void KoE_start(); // talk to aerith (npc12) in their house
 	void KoE_accept(); // "i could help you find them."
 	void KoE_decline(); // "good luck!"
 	void KoE_inProgress();
@@ -96,7 +96,7 @@ public:
 
 	// kingdom of elves npc interactions
 	void npc11(); // fountain
-	void npc12(); // house
+	void npc12(); // house, after completing side quest
 	void npc13(bool bandits); // near the path to caershire (mage town)
 
 	// moris empire npc interactions
