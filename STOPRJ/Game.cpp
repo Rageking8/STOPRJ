@@ -46,8 +46,6 @@ Game::Game() : trigger_counter{}
 	for (int i = 95; i < 100; ++i) {
 		board.set_board(i, 47, 6);
 	}
-
-	board.set_board(3, 50, 82);
 }
 
 Game::~Game()
@@ -66,6 +64,8 @@ void Game::start()
 	story.set_player_name(tmp_player_name);
 
 	Common::cursor_vis(false);
+
+	story.beforeTalkingToMessenger();
 
 	bool prev_is_map = false;
 
@@ -90,9 +90,11 @@ void Game::start()
 	bool bandit_camp_t = false;
 	bool bandit_trea_r = false;
 	bool dun_f1 = false;
+	bool dun_f2_d = false;
 	bool dun_f2_k = false;
 	bool dun_f2_b = false;
 	bool dun_f3_b = false;
+	bool dkc_3_d = false;
 
 	while (true) {
 
@@ -668,33 +670,6 @@ void Game::start()
 						}
 					}
 
-					if (mage.get_recruited() && mage.get_stats("cur_health") > 0) {
-						Common::color_print(66, 13, 0x0D, "ORION [Mage]: ");
-						Common::set_cursor(68, 14);
-						std::cout << "ATTACK : " << mage.get_stats("attack");
-						Common::set_cursor(68, 15);
-						std::cout << "HEALTH : " << mage.get_stats("cur_health") << " / " << mage.get_stats("max_health");
-						Common::set_cursor(68, 16);
-						std::cout << "MP : " << mage.get_stats("cur_mp") << " / " << mage.get_stats("max_mp");
-
-						Common::set_cursor(68, 18);
-						std::cout << "SKILLS : ";
-						for (int i = 0; i < 4; ++i) {
-							if (mage.get_skill_list(i).active) {
-								Common::set_cursor(68, 19 + i);
-								std::cout << " - ";
-								mage.print_color_name(i);
-							}
-						}
-					}
-					else if (mage.get_recruited()) {
-						Common::color_print(66, 13, 0x0D, "ORION [Mage]: ");
-						Common::color_print(0x0F, "DEAD");
-					}
-					else {
-						Common::color_print(77, 18, 0x07, "---");
-					}
-
 					if (elf.get_recruited() && elf.get_stats("cur_health") > 0) {
 						Common::color_print(35, 13, 0x0A, "ELORA [Elf]: ");
 						Common::set_cursor(37, 14);
@@ -721,6 +696,33 @@ void Game::start()
 					}
 					else {
 						Common::color_print(46, 18, 0x07, "---");
+					}
+
+					if (mage.get_recruited() && mage.get_stats("cur_health") > 0) {
+						Common::color_print(66, 13, 0x0D, "ORION [Mage]: ");
+						Common::set_cursor(68, 14);
+						std::cout << "ATTACK : " << mage.get_stats("attack");
+						Common::set_cursor(68, 15);
+						std::cout << "HEALTH : " << mage.get_stats("cur_health") << " / " << mage.get_stats("max_health");
+						Common::set_cursor(68, 16);
+						std::cout << "MP : " << mage.get_stats("cur_mp") << " / " << mage.get_stats("max_mp");
+
+						Common::set_cursor(68, 18);
+						std::cout << "SKILLS : ";
+						for (int i = 0; i < 4; ++i) {
+							if (mage.get_skill_list(i).active) {
+								Common::set_cursor(68, 19 + i);
+								std::cout << " - ";
+								mage.print_color_name(i);
+							}
+						}
+					}
+					else if (mage.get_recruited()) {
+						Common::color_print(66, 13, 0x0D, "ORION [Mage]: ");
+						Common::color_print(0x0F, "DEAD");
+					}
+					else {
+						Common::color_print(77, 18, 0x07, "---");
 					}
 
 					if (assassin.get_recruited() && assassin.get_stats("cur_health") > 0) {
@@ -1036,6 +1038,7 @@ void Game::start()
 				else if (menu_option == "3") {
 					system("cls");
 					board.print_map();
+					Common::color_print(0x0B, "\n** Use scroll wheel to see whole map\n");
 					std::cout << "\n# -> Colored blocks\nP -> Player\nS -> Shop\n? -> Special landmarks\n~ -> Water / Lava\n= -> Non-solid block (allow player to walk through)\n. -> All other landmarks (including empty space)\n\nPress any key to return ";
 					Common::any_key_press();
 					system("cls");
@@ -1075,10 +1078,18 @@ void Game::start()
 			Common::cursor_vis(false);
 		}
 		else if (swordsman.get_pos(0) == 131 && swordsman.get_pos(1) >= 27 && swordsman.get_pos(1) <= 29) {
+			story.boardBoat();
 			teleport_ply(97, 8);
+
+			prev_is_map = false;
+			system("cls");
 		}
-		else if (swordsman.get_pos(1) == 5 && swordsman.get_pos(0) >= 95 && swordsman.get_pos(0) <= 99) {
+		else if (swordsman.get_pos(0) == 100 && swordsman.get_pos(1) >= 7 && swordsman.get_pos(1) <= 9) {
+			story.boardBoat();
 			teleport_ply(133, 28);
+
+			prev_is_map = false;
+			system("cls");
 		}
 		else if (trigger_counter == 2 && swordsman.get_pos(0) == 65 && swordsman.get_pos(1) >= 1 && swordsman.get_pos(1) <= 5) {
 
@@ -1111,32 +1122,12 @@ void Game::start()
 			system("cls");
 		}
 		else if (!bandit_camp_t && swordsman.get_pos(0) == 15 && swordsman.get_pos(1) >= 20 && swordsman.get_pos(1) <= 29) {
-			mage.set_recruited(true);
 			if (!bandit1_b) {
-				story.meetOrion_loseBandits();
-				mage.set_stats("cur_health", 20);
-				mage.set_stats("cur_mp", 50);
+				story.enterCamp_loseBandits();
 			}
-
-			start_battle("bandit_2");
-
-			board.set_board(9, 31, 0);
-			board.set_board(8, 30, 0);
-			board.set_board(8, 32, 0);
-			board.set_board(7, 31, 0);
-
-			teleport_ply(8, 31);
-
-			for (int i = 20; i < 30; ++i)
-				board.set_board(15, i, 6);
-
-			swordsman.set_active(3, true);
-			mage.set_active(3, true);
-			elf.set_active(3, true);
-			assassin.set_active(3, true);
-
-			if (swordsman.get_stats("cur_health") <= 0)
-				break;
+			else {
+				story.enterCamp_winBandits();
+			}
 
 			bandit_camp_t = true;
 			prev_is_map = false;
@@ -1144,10 +1135,21 @@ void Game::start()
 			Common::cursor_vis(false);
 		}
 		else if (!dun_f1 && swordsman.get_pos(0) == 23 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
-			// dungeon floor 1
+			// Dungeon floor 1
 			story.excalibur_floor1Start();
 
 			dun_f1 = true;
+			prev_is_map = false;
+			system("cls");
+			Common::cursor_vis(false);
+		}
+		else if (!dun_f2_d && swordsman.get_pos(0) == 43 && swordsman.get_pos(1) >= 88 && swordsman.get_pos(1) <= 94) {
+			story.excalibur_lockedInFloor2();
+
+			for (int i = 0; i < 7; i++)
+				board.set_board(42, (88 + i), 6);
+
+			dun_f2_d = true;
 			prev_is_map = false;
 			system("cls");
 			Common::cursor_vis(false);
@@ -1166,6 +1168,9 @@ void Game::start()
 			for (int i = 0; i < 7; i++)
 				board.set_board(63, (88 + i), 0);
 
+			for (int i = 0; i < 7; i++)
+				board.set_board(42, (88 + i), 0);
+
 			dun_f2_b = true;
 
 			prev_is_map = false;
@@ -1178,6 +1183,25 @@ void Game::start()
 				board.set_board(63, (88 + i), 6);
 
 			dun_f3_b = true;
+			prev_is_map = false;
+			system("cls");
+			
+		}
+		else if (!dkc_3_d && swordsman.get_pos(0) == 41 && swordsman.get_pos(1) >= 126 && swordsman.get_pos(1) <= 135) {
+			story.beforeFightDK_main();
+
+			start_battle("dkc_3");
+
+			board.set_board(17, 131, 0);
+			board.set_board(17, 129, 0);
+			board.set_board(16, 130, 0);
+
+			teleport_ply(139, 121);
+
+			if (swordsman.get_stats("cur_health") <= 0)
+				break;
+
+			dkc_3_d = true;
 			prev_is_map = false;
 			system("cls");
 			Common::cursor_vis(false);
@@ -1201,11 +1225,11 @@ void Game::start()
 					swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 20);
 					break;
 				case '3':
-					swordsman.set_item_qty("mp_potion", swordsman.get_item_qty("mp_potion") + 1);
+					swordsman.set_item_qty("hp_potion", swordsman.get_item_qty("hp_potion") + 1);
 					swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 5);
 					break;
 				case '4':
-					swordsman.set_item_qty("hp_potion", swordsman.get_item_qty("hp_potion") + 1);
+					swordsman.set_item_qty("mp_potion", swordsman.get_item_qty("mp_potion") + 1);
 					swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 5);
 					break;
 				}
@@ -1307,6 +1331,41 @@ void Game::start()
 
 			prev_is_map = false;
 			system("cls");
+		}
+		else if (tmp_target_cell_val == 26 || tmp_target_cell_val == 27) {
+			mage.set_recruited(true);
+
+			if (!bandit1_b) {
+				story.meetOrion_loseBandits();
+				mage.set_stats("cur_health", 20);
+				mage.set_stats("cur_mp", 50);
+			}
+			else {
+				story.interactWCampBandits_winBandits();
+			}
+
+			start_battle("bandit_2");
+
+			board.set_board(9, 31, 0);
+			board.set_board(8, 30, 0);
+			board.set_board(8, 32, 0);
+			board.set_board(7, 31, 0);
+
+			teleport_ply(8, 31);
+
+			for (int i = 20; i < 30; ++i)
+				board.set_board(15, i, 6);
+
+			for (int i = 5; i < 8; ++i)
+				board.set_board(i, 49, 0);
+
+			swordsman.set_active(3, true);
+			mage.set_active(3, true);
+			elf.set_active(3, true);
+			assassin.set_active(3, true);
+
+			if (swordsman.get_stats("cur_health") <= 0)
+				break;
 		}
 		else if (tmp_target_cell_val == 19) {
 			// Switch red
@@ -1412,50 +1471,46 @@ void Game::start()
 				prev_is_map = true;
 			}
 		}
-		else if (tmp_target_cell_val == 31)
-		{
-			// FIXME: add dialogue
+		else if (tmp_target_cell_val == 31) {
+			story.collectTreasure();
 			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 50);
 			board.set_board(6, 91, 0);
+
+			prev_is_map = false;
+			system("cls");
 		}
-		else if (tmp_target_cell_val == 74)
-		{
+		else if (tmp_target_cell_val == 74) {
 			Common::cursor_vis(false);
 			story.after_start_menu();
 			board.set_board(135, 7, 0);
 			prev_is_map = false;
 			system("cls");
 		}
-		else if (tmp_target_cell_val == 72)
-		{
+		else if (tmp_target_cell_val == 72) {
 			Common::cursor_vis(false);
 			story.npc19_20();
 			prev_is_map = false;
 			system("cls");
 		}
-		else if (tmp_target_cell_val == 75)
-		{
+		else if (tmp_target_cell_val == 75) {
 			Common::cursor_vis(false);
 			story.npc14(board.get_board(131, 27) == 0);
 			prev_is_map = false;
 			system("cls");
 		}
-		else if (tmp_target_cell_val == 76)
-		{
+		else if (tmp_target_cell_val == 76) {
 			Common::cursor_vis(false);
 			story.npc15_16();
 			prev_is_map = false;
 			system("cls");
 		}
-		else if (tmp_target_cell_val == 77)
-		{
+		else if (tmp_target_cell_val == 77) {
 			Common::cursor_vis(false);
 			story.npc17_18();
 			prev_is_map = false;
 			system("cls");
 		}
-		else if (tmp_target_cell_val == 73)
-		{
+		else if (tmp_target_cell_val == 73) {
 			Common::cursor_vis(false);
 			story.prologue();
 
@@ -1465,8 +1520,7 @@ void Game::start()
 			prev_is_map = false;
 			system("cls");
 		}
-		else if (tmp_target_cell_val == 78)
-		{
+		else if (tmp_target_cell_val == 78) {
 			Common::cursor_vis(false);
 			story.meetOrion_winBandits();
 
@@ -1532,6 +1586,13 @@ void Game::start()
 			board.set_board(73, 79, 0);
 
 			for (int i = 0; i < 7; i++)
+				board.set_board(63, (88 + i), 6);
+
+			mage.set_recruited(true);
+			elf.set_recruited(true);
+			assassin.set_recruited(true);
+
+			for (int i = 0; i < 7; i++)
 				board.set_board(82, (88 + i), 0);
 
 			prev_is_map = false;
@@ -1555,6 +1616,54 @@ void Game::start()
 			}
 
 			board.set_board(3, 50, 0);
+
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 87) {
+			story.excalibur_warning();
+			board.set_board(61, 103, 0);
+
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (tmp_target_cell_val == 83) {
+			story.DKC_floor1();
+
+			start_battle("dkc_1");
+
+			for (int i = 0; i < 10; i++)
+				board.set_board(64, (126 + i), 0);
+
+			for (int i = 0; i < 3; i++)
+				board.set_board(67, (129 + i), 0);
+
+			prev_is_map = false;
+			system("cls");
+
+			if (swordsman.get_stats("cur_health") <= 0)
+				break;
+		}
+		else if (tmp_target_cell_val == 84 || tmp_target_cell_val == 86) {
+			story.DKC_floor2();
+
+			start_battle("dkc_2");
+
+			for (int i = 0; i < 10; i++)
+				board.set_board(41, (126 + i), 0);
+
+			board.set_board(44, 130, 0);
+			board.set_board(45, 129, 0);
+			board.set_board(45, 131, 0);
+
+			prev_is_map = false;
+			system("cls");
+
+			if (swordsman.get_stats("cur_health") <= 0)
+				break;
+		}
+		else if (tmp_target_cell_val == 88) {
+			// TODO : fairy
 
 			prev_is_map = false;
 			system("cls");

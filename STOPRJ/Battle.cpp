@@ -43,6 +43,7 @@ bool Game::start_battle(std::string id)
 			enemy[i].init_skill("dagger_poke", "strength_dart", "bomb", "backstab");
 		}
 		enemy[2].set_name("Bandit Leader");
+		enemy[2].set_stats("attack", 5);
 		enemy[2].set_stats("cur_health", 25);
 		enemy[2].set_stats("max_health", 25);
 		enemy[2].set_stats("cur_mp", 50);
@@ -53,24 +54,92 @@ bool Game::start_battle(std::string id)
 	else if (id == "dun_f1") {
 		for (int i = 0; i < 4; ++i) {
 			enemy[i].set_name("Skeleton");
+			enemy[i].set_stats("attack", 3);
 			enemy[i].set_stats("cur_health", 20);
 			enemy[i].set_stats("max_health", 20);
-			enemy[i].set_stats("cur_mp", 35);
-			enemy[i].set_stats("max_mp", 35);
+			enemy[i].set_stats("cur_mp", 50);
+			enemy[i].set_stats("max_mp", 50);
 			enemy[i].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
 			enemy[i].set_active(2, true);
 		}
 	}
 	else if (id == "dun_f3") {
 		enemy[0].set_name("Olaf");
-		enemy[0].set_stats("attack", 15);
-		enemy[0].set_stats("cur_health", 60);
-		enemy[0].set_stats("max_health", 60);
-		enemy[0].set_stats("cur_mp", 60);
-		enemy[0].set_stats("max_mp", 60);
+		enemy[0].set_stats("attack", 25);
+		enemy[0].set_stats("cur_health", 160);
+		enemy[0].set_stats("max_health", 160);
+		enemy[0].set_stats("cur_mp", 100);
+		enemy[0].set_stats("max_mp", 100);
 		enemy[0].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
 		enemy[0].set_active(2, true);
 		enemy[0].set_active(3, true);
+	}
+	else if (id == "dkc_1") {
+		for (int i = 0; i < 4; ++i) {
+			enemy[i].set_name("Lava Skeleton");
+			enemy[i].set_stats("attack", 12);
+			enemy[i].set_stats("cur_health", 50);
+			enemy[i].set_stats("max_health", 50);
+			enemy[i].set_stats("cur_mp", 60);
+			enemy[i].set_stats("max_mp", 60);
+			enemy[i].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
+			enemy[i].set_active(2, true);
+			enemy[i].set_active(3, true);
+		}
+	}
+	else if (id == "dkc_2") {
+		for (int i = 0; i < 3; ++i) {
+			enemy[i].set_name("Skeleton");
+			enemy[i].set_stats("attack", 15);
+			enemy[i].set_stats("cur_health", 60);
+			enemy[i].set_stats("max_health", 60);
+			enemy[i].set_stats("cur_mp", 60);
+			enemy[i].set_stats("max_mp", 60);
+			enemy[i].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
+			enemy[i].set_active(2, true);
+			enemy[i].set_active(3, true);
+		}
+		enemy[3].set_name("Demon");
+		enemy[3].set_stats("attack", 35);
+		enemy[3].set_stats("cur_health", 200);
+		enemy[3].set_stats("max_health", 200);
+		enemy[3].set_stats("cur_mp", 160);
+		enemy[3].set_stats("max_mp", 160);
+		enemy[3].init_skill("demon_slash", "demon_eye_beam", "demon_strength", "fire_breath");
+		enemy[3].set_active(2, true);
+		enemy[3].set_active(3, true);
+	}
+	else if (id == "dkc_3") {
+		for (int i = 0; i < 2; ++i) {
+			enemy[i].set_name("Skeleton");
+			enemy[i].set_stats("attack", 15);
+			enemy[i].set_stats("cur_health", 60);
+			enemy[i].set_stats("max_health", 60);
+			enemy[i].set_stats("cur_mp", 60);
+			enemy[i].set_stats("max_mp", 60);
+			enemy[i].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
+			enemy[i].set_active(2, true);
+			enemy[i].set_active(3, true);
+		}
+		enemy[2].set_name("Demon");
+		enemy[2].set_stats("attack", 35);
+		enemy[2].set_stats("cur_health", 200);
+		enemy[2].set_stats("max_health", 200);
+		enemy[2].set_stats("cur_mp", 160);
+		enemy[2].set_stats("max_mp", 160);
+		enemy[2].init_skill("demon_slash", "demon_eye_beam", "demon_strength", "fire_breath");
+		enemy[2].set_active(2, true);
+		enemy[2].set_active(3, true);
+
+		enemy[3].set_name("Demon King");
+		enemy[3].set_stats("attack", 50);
+		enemy[3].set_stats("cur_health", 250);
+		enemy[3].set_stats("max_health", 250);
+		enemy[3].set_stats("cur_mp", 200);
+		enemy[3].set_stats("max_mp", 200);
+		enemy[3].init_skill("demon_punch", "long_live_the_king", "demon_summon", "hellfire");
+		enemy[3].set_active(2, true);
+		enemy[3].set_active(3, true);
 	}
 
 	bool slot_active[8]{};
@@ -81,8 +150,8 @@ bool Game::start_battle(std::string id)
 		}
 	}
 	slot_active[4] = (swordsman.get_stats("cur_health") > 0);
-	slot_active[5] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
-	slot_active[6] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
+	slot_active[5] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
+	slot_active[6] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
 	slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
 	int current_turn = -1;
@@ -202,22 +271,22 @@ bool Game::start_battle(std::string id)
 			DWORD n;
 			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
 			Common::set_cursor(25, 16);
-			std::cout << "| " << mage.get_name() << Common::mul_txt(" ", 21 - mage.get_name().length()) << "| ";
+			std::cout << "| " << elf.get_name() << Common::mul_txt(" ", 21 - elf.get_name().length()) << "| ";
 			Common::set_cursor(25, 17);
-			std::cout << "| Attack : " << mage.get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(mage.get_stats("attack"))) << "| ";
+			std::cout << "| Attack : " << elf.get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(elf.get_stats("attack"))) << "| ";
 			Common::set_cursor(25, 18);
-			std::cout << "| Health : " << mage.get_stats("cur_health") << " / " << mage.get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(mage.get_stats("cur_health")) + 3 + Common::int_len(mage.get_stats("max_health")))) << "| ";
+			std::cout << "| Health : " << elf.get_stats("cur_health") << " / " << elf.get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(elf.get_stats("cur_health")) + 3 + Common::int_len(elf.get_stats("max_health")))) << "| ";
 			Common::set_cursor(25, 19);
-			std::cout << "| MP : " << mage.get_stats("cur_mp") << " / " << mage.get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(mage.get_stats("cur_mp")) + 3 + Common::int_len(mage.get_stats("max_mp")))) << "| ";
+			std::cout << "| MP : " << elf.get_stats("cur_mp") << " / " << elf.get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(elf.get_stats("cur_mp")) + 3 + Common::int_len(elf.get_stats("max_mp")))) << "| ";
 			Common::set_cursor(25, 20);
 			std::cout << "|                      | ";
 
 			for (int i = 0; i < 4; ++i) {
 				Common::set_cursor(25, 21 + i);
-				if (mage.get_skill_list(i).active) {
-					std::string tmp_skill_name = mage.get_skill_list(i).name;
+				if (elf.get_skill_list(i).active) {
+					std::string tmp_skill_name = elf.get_skill_list(i).name;
 					Common::color_print(tmp_color, "| " + std::to_string(i + 1) + " ");
-					mage.print_color_name(i);
+					elf.print_color_name(i);
 					std::cout << Common::mul_txt(" ", 19 - tmp_skill_name.length());
 					Common::color_print(tmp_color, "| ");
 				}
@@ -249,22 +318,22 @@ bool Game::start_battle(std::string id)
 			DWORD n;
 			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
 			Common::set_cursor(50, 16);
-			std::cout << "| " << elf.get_name() << Common::mul_txt(" ", 21 - elf.get_name().length()) << "| ";
+			std::cout << "| " << mage.get_name() << Common::mul_txt(" ", 21 - mage.get_name().length()) << "| ";
 			Common::set_cursor(50, 17);
-			std::cout << "| Attack : " << elf.get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(elf.get_stats("attack"))) << "| ";
+			std::cout << "| Attack : " << mage.get_stats("attack") << Common::mul_txt(" ", 12 - Common::int_len(mage.get_stats("attack"))) << "| ";
 			Common::set_cursor(50, 18);
-			std::cout << "| Health : " << elf.get_stats("cur_health") << " / " << elf.get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(elf.get_stats("cur_health")) + 3 + Common::int_len(elf.get_stats("max_health")))) << "| ";
+			std::cout << "| Health : " << mage.get_stats("cur_health") << " / " << mage.get_stats("max_health") << Common::mul_txt(" ", 12 - (Common::int_len(mage.get_stats("cur_health")) + 3 + Common::int_len(mage.get_stats("max_health")))) << "| ";
 			Common::set_cursor(50, 19);
-			std::cout << "| MP : " << elf.get_stats("cur_mp") << " / " << elf.get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(elf.get_stats("cur_mp")) + 3 + Common::int_len(elf.get_stats("max_mp")))) << "| ";
+			std::cout << "| MP : " << mage.get_stats("cur_mp") << " / " << mage.get_stats("max_mp") << Common::mul_txt(" ", 16 - (Common::int_len(mage.get_stats("cur_mp")) + 3 + Common::int_len(mage.get_stats("max_mp")))) << "| ";
 			Common::set_cursor(50, 20);
 			std::cout << "|                      | ";
 
 			for (int i = 0; i < 4; ++i) {
 				Common::set_cursor(50, 21 + i);
-				if (elf.get_skill_list(i).active) {
-					std::string tmp_skill_name = elf.get_skill_list(i).name;
+				if (mage.get_skill_list(i).active) {
+					std::string tmp_skill_name = mage.get_skill_list(i).name;
 					Common::color_print(tmp_color, "| " + std::to_string(i + 1) + " ");
-					elf.print_color_name(i);
+					mage.print_color_name(i);
 					std::cout << Common::mul_txt(" ", 19 - tmp_skill_name.length());
 					Common::color_print(tmp_color, "| ");
 				}
@@ -343,9 +412,10 @@ bool Game::start_battle(std::string id)
 
 					((current_turn == 4 && (!swordsman.get_skill_list(std::stoi(skill_input) - 1).active || swordsman.get_stats("cur_mp") < swordsman.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
 
-						(current_turn == 5 && (!mage.get_skill_list(std::stoi(skill_input) - 1).active || mage.get_stats("cur_mp") < mage.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
+						(current_turn == 5 && (!elf.get_skill_list(std::stoi(skill_input) - 1).active || elf.get_stats("cur_mp") < elf.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
 
-						(current_turn == 6 && (!elf.get_skill_list(std::stoi(skill_input) - 1).active || elf.get_stats("cur_mp") < elf.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
+						(current_turn == 6 && (!mage.get_skill_list(std::stoi(skill_input) - 1).active || mage.get_stats("cur_mp") < mage.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
+
 
 						(current_turn == 7 && (!assassin.get_skill_list(std::stoi(skill_input) - 1).active || assassin.get_stats("cur_mp") < assassin.get_skill_list(std::stoi(skill_input) - 1).cost))))) {
 
@@ -382,6 +452,21 @@ bool Game::start_battle(std::string id)
 					swordsman.set_stats("cur_mp", swordsman.get_stats("cur_mp") - swordsman.get_skill_list(std::stoi(skill_input) - 1).cost);
 				}
 				else if (current_turn == 5) {
+					if (elf.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
+						tmp_pow = elf.get_stats("attack") + elf.get_skill_list(std::stoi(skill_input) - 1).power;
+						tmp_skill_type = 'D';
+					}
+					else if (elf.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'A') {
+						elf.set_stats("attack", elf.get_stats("attack") + elf.get_skill_list(std::stoi(skill_input) - 1).power);
+					}
+					else {
+						elf.set_stats("cur_health", elf.get_stats("cur_health") + elf.get_skill_list(std::stoi(skill_input) - 1).power);
+						if (elf.get_stats("cur_health") > elf.get_stats("max_health"))
+							elf.set_stats("cur_health", elf.get_stats("max_health"));
+					}
+					elf.set_stats("cur_mp", elf.get_stats("cur_mp") - elf.get_skill_list(std::stoi(skill_input) - 1).cost);
+				}
+				else if (current_turn == 6) {
 					if (mage.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
 						tmp_pow = mage.get_stats("attack") + mage.get_skill_list(std::stoi(skill_input) - 1).power;
 						tmp_skill_type = 'D';
@@ -396,21 +481,6 @@ bool Game::start_battle(std::string id)
 					}
 
 					mage.set_stats("cur_mp", mage.get_stats("cur_mp") - mage.get_skill_list(std::stoi(skill_input) - 1).cost);
-				}
-				else if (current_turn == 6) {
-					if (elf.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
-						tmp_pow = elf.get_stats("attack") + elf.get_skill_list(std::stoi(skill_input) - 1).power;
-						tmp_skill_type = 'D';
-					}
-					else if (elf.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'A') {
-						elf.set_stats("attack", elf.get_stats("attack") + elf.get_skill_list(std::stoi(skill_input) - 1).power);
-					}
-					else {
-						elf.set_stats("cur_health", elf.get_stats("cur_health") + elf.get_skill_list(std::stoi(skill_input) - 1).power);
-						if (elf.get_stats("cur_health") > elf.get_stats("max_health"))
-							elf.set_stats("cur_health", elf.get_stats("max_health"));
-					}
-					elf.set_stats("cur_mp", elf.get_stats("cur_mp") - elf.get_skill_list(std::stoi(skill_input) - 1).cost);
 				}
 				else if (current_turn == 7) {
 					if (assassin.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
@@ -451,8 +521,8 @@ bool Game::start_battle(std::string id)
 					for (int i = 0; i < 4; ++i)
 						slot_active[i] = (enemy[i].get_name() != "" && enemy[i].get_stats("cur_health") > 0);
 					slot_active[4] = (swordsman.get_stats("cur_health") > 0);
-					slot_active[5] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
-					slot_active[6] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
+					slot_active[5] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
+					slot_active[6] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
 					slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
 					Common::cursor_vis(false);
@@ -465,11 +535,11 @@ bool Game::start_battle(std::string id)
 
 
 							Common::write_ani("You've gotten through your first battle! Just be careful, though. If your HP reaches ZERO, you die.\n\n"
-											  "However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
-											  "win or lose. Afterwards, it's an instant GAME OVER.\n\n"
-											  "Also, since your allies' MP cannot be recovered, any buffs received during BATTLEs will be retained even\n"
-											  "after a BATTLE ends.\n\n"
-											  "Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
+								"However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
+								"win or lose. Afterwards, it's an instant GAME OVER.\n\n"
+								"Also, since your allies' MP cannot be recovered, any buffs received during BATTLEs will be retained even\n"
+								"after a BATTLE ends.\n\n"
+								"Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
 
 							Common::any_key_press("Press any key to continue");
 
@@ -499,6 +569,51 @@ bool Game::start_battle(std::string id)
 						else if (id == "dun_f3") {
 							story.excalibur_giantDefeated();
 						}
+						else if (id == "dkc_1") {
+							story.DKC_floor1Complete();
+						}
+						else if (id == "dkc_2") {
+							story.DKC_floor2Complete();
+						}
+						else if (id == "dkc_3") {
+							if ((slot_active[5] && slot_active[6]) || (slot_active[5] && slot_active[6] && slot_active[7])) {
+								// player, orion and elora are alive / player, orion, elora, blaise are alive
+								story.defeatDK_main();
+								if (slot_active[7]) {
+									story.blaiseBetrayal_orionAlive();
+									story.defeatBlaise_main();
+								}
+								story.ending_main();
+							}
+							else if (slot_active[7]) {
+								// only player and blaise are alive (choice input after this)
+								story.defeatDK_blaiseOnly();
+							}
+							else if (slot_active[6] || (slot_active[6] && slot_active[7])) {
+								// player and orion / player, orion and blaise alive
+								story.defeatDK_eloraDead();
+								if (slot_active[7]) {
+									story.blaiseBetrayal_orionAlive();
+									story.defeatBlaise_eloraDead();
+								}
+								story.ending_partyMemDead();
+							}
+							else if (slot_active[5] || (slot_active[5] && slot_active[7])) {
+								// player and elora / player, elora and blaise alive
+								story.defeatDK_orionDead();
+								if (slot_active[7]) {
+									story.blaiseBetrayal_orionDead();
+									story.defeatBlaise_orionDead();
+								}
+
+								story.ending_partyMemDead();
+							}
+							else {
+								// only player is alive
+								story.defeatDK_playerOnly();
+								story.ending_playerOnly();
+							}
+						}
 						ret = true;
 
 						break;
@@ -510,7 +625,7 @@ bool Game::start_battle(std::string id)
 							story.recruitElora_loseBandits();
 
 						}
-						else if (id == "bandit_2" || id == "dun_f1" || id == "dun_f3") {
+						else if (id == "bandit_2" || id == "dun_f1" || id == "dun_f3" || id == "dkc_1" || id == "dkc_2" || id == "dkc_3") {
 
 							if (slot_active[5] || slot_active[6] || slot_active[7])
 								story.gameOver_playerDead();
@@ -584,8 +699,8 @@ bool Game::start_battle(std::string id)
 								}
 								break;
 							case 5:
-								mage.set_stats("cur_health", mage.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
-								if (mage.get_stats("cur_health") <= 0) {
+								elf.set_stats("cur_health", elf.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+								if (elf.get_stats("cur_health") <= 0) {
 									for (int i2 = 15; i2 < 26; ++i2) {
 										Common::set_cursor(25, i2);
 										std::cout << "                         ";
@@ -593,8 +708,8 @@ bool Game::start_battle(std::string id)
 								}
 								break;
 							case 6:
-								elf.set_stats("cur_health", elf.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
-								if (elf.get_stats("cur_health") <= 0) {
+								mage.set_stats("cur_health", mage.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
+								if (mage.get_stats("cur_health") <= 0) {
 									for (int i2 = 15; i2 < 26; ++i2) {
 										Common::set_cursor(50, i2);
 										std::cout << "                         ";
@@ -620,8 +735,8 @@ bool Game::start_battle(std::string id)
 			for (int i = 0; i < 4; ++i)
 				slot_active[i] = (enemy[i].get_name() != "" && enemy[i].get_stats("cur_health") > 0);
 			slot_active[4] = (swordsman.get_stats("cur_health") > 0);
-			slot_active[5] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
-			slot_active[6] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
+			slot_active[5] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
+			slot_active[6] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
 			slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
 			Common::cursor_vis(false);
@@ -667,6 +782,51 @@ bool Game::start_battle(std::string id)
 				else if (id == "dun_f3") {
 					story.excalibur_giantDefeated();
 				}
+				else if (id == "dkc_1") {
+					story.DKC_floor1Complete();
+				}
+				else if (id == "dkc_2") {
+					story.DKC_floor2Complete();
+				}
+				else if (id == "dkc_3") {
+					if ((slot_active[5] && slot_active[6]) || (slot_active[5] && slot_active[6] && slot_active[7])) {
+						// player, orion and elora are alive / player, orion, elora, blaise are alive
+						story.defeatDK_main();
+						if (slot_active[7]) {
+							story.blaiseBetrayal_orionAlive();
+							story.defeatBlaise_main();
+						}
+						story.ending_main();
+					}
+					else if (slot_active[7]) {
+						// only player and blaise are alive (choice input after this)
+						story.defeatDK_blaiseOnly();
+					}
+					else if (slot_active[6] || (slot_active[6] && slot_active[7])) {
+						// player and orion / player, orion and blaise alive
+						story.defeatDK_eloraDead();
+						if (slot_active[7]) {
+							story.blaiseBetrayal_orionAlive();
+							story.defeatBlaise_eloraDead();
+						}
+						story.ending_partyMemDead();
+					}
+					else if (slot_active[5] || (slot_active[5] && slot_active[7])) {
+						// player and elora / player, elora and blaise alive
+						story.defeatDK_orionDead();
+						if (slot_active[7]) {
+							story.blaiseBetrayal_orionDead();
+							story.defeatBlaise_orionDead();
+						}
+
+						story.ending_partyMemDead();
+					}
+					else {
+						// only player is alive
+						story.defeatDK_playerOnly();
+						story.ending_playerOnly();
+					}
+				}
 				ret = true;
 
 				break;
@@ -678,7 +838,7 @@ bool Game::start_battle(std::string id)
 					story.recruitElora_loseBandits();
 
 				}
-				else if (id == "bandit_2" || id == "dun_f1" || id == "dun_f3") {
+				else if (id == "bandit_2" || id == "dun_f1" || id == "dun_f3" || id == "dkc_1" || id == "dkc_2" || id == "dkc_3") {
 
 					if (slot_active[5] || slot_active[6] || slot_active[7])
 						story.gameOver_playerDead();

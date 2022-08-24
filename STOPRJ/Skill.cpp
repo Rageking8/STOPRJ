@@ -101,7 +101,7 @@ Skill::skill_data Skill::get_skill(std::string skill_name)
 	else if (skill_name == "demon_summon")
 		return skill_data{ "Demon Summon", 20, 40, false, 'A' };
 	else if (skill_name == "hellfire")
-		return skill_data{ "Hellfire", 100, 100, false, 'D' };
+		return skill_data{ "Hellfire", 120, 100, false, 'D' };
 	else
 		return skill_data{};
 }

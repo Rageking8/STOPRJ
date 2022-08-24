@@ -240,6 +240,9 @@ void Board::print_map()
 				case -66: // Gren Carpet vert
 					Common::color_print(0X02, "=");
 					break;
+				case -65: // Dungeon Walls
+					Common::color_print(0X08, "#");
+					break;
 				case -64: // Red Carpet hori
 					Common::color_print(0X04, "=");
 					break;
@@ -435,6 +438,12 @@ void Board::print_map()
 				case 69: // Guardian
 					Common::color_print(0X70, "?");
 					break;
+				case 70: // Key
+					Common::color_print(0X70, "?");
+					break;
+				case 71: // Dungeon maze Walls
+					Common::color_print(0X08, "#");
+					break;
 				case 72: // NPCs in Swordsman town
 					Common::color_print(0X70, "?"); // Guards
 					break;
@@ -466,6 +475,24 @@ void Board::print_map()
 					Common::color_print(0X0C, "#");
 					break;
 				case 82: // Bandit camp treasure room note
+					Common::color_print(0X70, "?");
+					break;
+				case 83: // Lava Skeleton boss room 1
+					Common::color_print(0X70, "?");
+					break;
+				case 84: // Lava Skeleton boss room 2
+					Common::color_print(0X70, "?");
+					break;
+				case 85: // Lava Skeleton boss room 3
+					Common::color_print(0X70, "?");
+					break;
+				case 86: // Demon boss room 2
+					Common::color_print(0X70, "?");
+					break;
+				case 87: // Dungeon romm 2 note
+					Common::color_print(0X70, "?");
+					break;
+				case 88: // Fairy
 					Common::color_print(0X70, "?");
 					break;
 				default:
@@ -718,10 +745,10 @@ void Board::print_with_id(short id)
 		case 37: // Fire wood 2
 			Common::color_print(0X04, " = ");
 			break;
-		case 40: // Skeleton
+		case 40: // Skeleton in dungeon
 			Common::color_print(0X04, " S ");
 			break;
-		case 41: // Demon
+		case 41: // Demon boss room 3
 			Common::color_print(0X05, " D ");
 			break;
 		case 43: // Redwood tree trunk
@@ -785,9 +812,9 @@ void Board::print_with_id(short id)
 			Common::color_print(0X80, "#");
 			break;
 		case 68: // Excalibur Sword
-			Common::color_print(0X80, "_");
+			Common::color_print(0XB0, "_");
 			Common::color_print(0X0F, "|");
-			Common::color_print(0X80, "_");
+			Common::color_print(0XB0, "_");
 			break;
 		case 69: // Olaf the stone giant
 			Common::color_print(0X03, "Olf");
@@ -838,6 +865,24 @@ void Board::print_with_id(short id)
 			break;
 		case 82: // Bandit camp treasure room note
 			Common::color_print(0XE0, "|N|");
+			break;
+		case 83: // Lava Skeleton boss room 1
+			Common::color_print(0X04, " S ");
+			break;
+		case 84: // Lava Skeleton boss room 2
+			Common::color_print(0X04, " S ");
+			break;
+		case 85: // Lava Skeleton boss room 3
+			Common::color_print(0X04, " S ");
+			break;
+		case 86: // Demon boss room 2
+			Common::color_print(0X05, " D ");
+			break;
+		case 87: // Dungeon romm 2 note
+			Common::color_print(0XE0, "|N|");
+			break;
+		case 88: // Fairy
+			Common::color_print(0X0D, "<F>");
 			break;
 		default:
 			std::cout << "   ";

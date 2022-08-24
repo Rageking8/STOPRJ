@@ -19,8 +19,8 @@ Shop::~Shop()
 char Shop::open_shop(int player_coins)
 {
 	Common::set_cursor(0, 0);
-	const char* items[]{ "SWORD", "ARMOUR", "MP POTION", "HP POTION" };
-	const char* description[]{ "Increases base attack by 5.      ", "Increases max HP by 10.      ", "Restores 50 MP.      ", "Restores 50 HP.      " };
+	const char* items[]{ "SWORD", "ARMOUR", "HP POTION", "MP POTION"};
+	const char* description[]{ "Increases base attack by 5.      ", "Increases max HP by 10.      ", "Restores 50 HP.      ", "Restores 50 MP.      " };
 	int price[]{ 10, 20, 5, 5 };
 
 	for (int i = 0; i < 5; ++i) {
@@ -121,7 +121,7 @@ char Shop::open_shop(int player_coins)
 
 	std::string shop_inp = "";
 	Common::color_print(30, 26, 0x07, "What would you like to buy? Enter item number to buy (B for back)");
-	Common::color_print(31, 28, 0x07, "Please remember to consume/equip your items from your backpack!");
+	Common::color_print(31, 28, 0x0b, "Please remember to consume/equip your items from your backpack!");
 
 	bool tmp_flag = true;
 	while (tmp_flag) {

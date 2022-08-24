@@ -6,7 +6,7 @@ class Story
 public:
 	void set_player_name(std::string inp);
 
-	void after_start_menu(); // after player inputs their name
+	void after_start_menu(); // after player talks to messenger
 	void prologue(); // after interacting with the emperor
 	void foundCart(bool coin); // interact with the cart
 
@@ -17,6 +17,9 @@ public:
 	void recruitElora_loseBandits(); // losing to the bandits on the path
 
 	void meetOrion_winBandits(); // interacting with orion's house (defeated bandits)
+	void enterCamp_winBandits(); // entering bandit camp after winning 1st bandit fight
+	void interactWCampBandits_winBandits(); // interacting with bandits at camp after winning 1st bandit fight
+	void enterCamp_loseBandits(); // entering bandit camp after losing 1st bandit fight
 	void meetOrion_loseBandits(); // encountering orion on the path from caershire to the bandit camp (lose to bandits)
 	void recruitOrion_main(); // bandits defeated
 	void recruitOrion_eloraDead(); // bandits defeated but elora dies
@@ -31,6 +34,10 @@ public:
 	void meetBlaise_orionDead(); // entering treasure room if orion is dead: forced to recruit blaise
 	void meetBlaise_partyDead(); // entering treasure room if orion AND elora are dead: forced to recruit blaise
 
+	void DKC_floor1(); // encountering armoured skeletons
+	void DKC_floor1Complete(); // defeat armoured skeletons
+	void DKC_floor2(); // encountering demon + 2 armoured skeles
+	void DKC_floor2Complete(); // defeat demon + armoured skeles
 	void beforeFightDK_main(); // before entering demon king's throne room
 	void defeatDK_main(); // player, orion and elora are alive
 
@@ -41,21 +48,6 @@ public:
 	void defeatDK_eloraDead(); // player and orion are alive
 	void defeatDK_orionDead(); // player and elora are alive
 	void defeatDK_playerOnly(); // only player is alive
-
-	void blaiseBetrayal_orionAlive(); // check if player, orion and blaise are alive
-	void blaiseBetrayal_orionDead(); // check if player, elora AND blaise are alive
-	void defeatBlaise_main(); // player, orion and elora are alive after blaise is defeated
-	void defeatBlaise_orionDead(); // player and elora are alive after blaise is defeated
-	void defeatBlaise_eloraDead(); // player and orion are alive after blaise is defeated
-	void defeatBlaise_othersDead(); // occurs if orion and/or elora (depending on whether they're alive after DK is defeated) die during the fight with blaise
-
-	void ending_main(); // player, orion and elora are alive
-	void ending_partyMemDead(); // player and orion or elora are alive
-	void ending_playerOnly(); // only player is alive
-	void ending_blaiseAlive(); // player and blaise are alive, but orion and elora are dead
-
-	void gameOver_playerDead(); // if player dies AND there are remaining party members alive
-	void gameOver_everyoneDead(); // if everyone in the party dies INCLUDING the player
 
 	// caershire magic school side quest: find the missing students
 	// reward: armour + 2 MP potions + 20 gold
@@ -83,6 +75,7 @@ public:
 	void excalibur_floor1Start(); // player enters the first floor
 	void excalibur_floor1InteractWBones(); // player interacts with pile of bones
 	void excalibur_defeatedSkels();
+	void excalibur_lockedInFloor2(); // immediately after player enters floor 2
 	void excalibur_floor2(); // player tries to go through door without the key
 	void excalibur_foundKey();
 	void excalibur_doorUnlocked(); // player has the key to the door
@@ -107,12 +100,31 @@ public:
 	void npc13(bool bandits); // near the path to caershire (mage town)
 
 	// moris empire npc interactions
-	void npc14(bool state); // boat
+	void npc14(bool state); // boat FROM moris empire
 	void npc15_16(); // 2 npcs at the fountain (same dialogue)
 	void npc17_18(); // 2 npcs gardening (same dialogue)
 	void npc19_20(); // 2 npc guards (same dialogue)
+	void npc21(); // boat TO moris empire
 
-	void banditTreasureRoomHint(int state);
+	void beforeTalkingToMessenger(); // right after name input
+	void boardBoat(); // player steps on the dock
+	void banditTreasureRoomHint(int state); // hint to unlock bandits' treasure room
+	void collectTreasure(); // player interacts with chests in the bandits' treasure room
+	void excalibur_warning(); // warning note in floor 2
+
+	void ending_main(); // player, orion and elora are alive
+	void ending_partyMemDead(); // player and orion or elora are alive
+	void ending_playerOnly(); // only player is alive
+	void ending_blaiseAlive(); // player and blaise are alive, but orion and elora are dead
+
+	void blaiseBetrayal_orionAlive(); // check if player, orion and blaise are alive
+	void blaiseBetrayal_orionDead(); // check if player, elora AND blaise are alive
+	void defeatBlaise_main(); // player, orion and elora are alive after blaise is defeated
+	void defeatBlaise_orionDead(); // player and elora are alive after blaise is defeated
+	void defeatBlaise_eloraDead(); // player and orion are alive after blaise is defeated
+
+	void gameOver_playerDead(); // if player dies AND there are remaining party members alive
+	void gameOver_everyoneDead(); // if everyone in the party dies INCLUDING the player
 
 private:
 	std::string name;
