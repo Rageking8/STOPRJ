@@ -1739,6 +1739,7 @@ void Game::start()
 		}
 		else if (tmp_target_cell_val == 90) {
 			story.collectTreasure();
+			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 50);
 			board.set_board(60, 65, 0);
 			prev_is_map = false;
 			system("cls");
