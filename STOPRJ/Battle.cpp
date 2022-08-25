@@ -6,13 +6,19 @@
 
 bool Game::start_battle(std::string id)
 {
+	system("cls");
 	bool ret = false;
-	Common::cursor_vis(true);
 	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
-	system("cls");
+	// Lambda for drawing a line (bottom and top) of each player/enemy card
+	auto draw_line = [] {
+		DWORD n;
+		WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
+	};
+
 	Character enemy[4];
 
+	// Depending on the battle id, initialize the enemies stats for battle
 	if (id == "ambush") {
 		for (int i = 0; i < 4; ++i) {
 			enemy[i].set_name("Elf Troop");
@@ -141,16 +147,19 @@ bool Game::start_battle(std::string id)
 
 	bool slot_active[8]{};
 
+	// Setup which of the 4 enemies are active for current battle
 	for (int i = 0; i < 4; ++i) {
-		if (enemy[i].get_name() != "") {
+		if (enemy[i].get_name() != "")
 			slot_active[i] = true;
-		}
 	}
+
+	// Setup which of the 4 allies are active for current battle
 	slot_active[4] = (swordsman.get_stats("cur_health") > 0);
 	slot_active[5] = (elf.get_recruited() && (elf.get_stats("cur_health") > 0));
 	slot_active[6] = (mage.get_recruited() && (mage.get_stats("cur_health") > 0));
 	slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
+	// Initialize starting turn for allies
 	int current_turn = -1;
 	for (int i = 4; i < 8; ++i) {
 		if (slot_active[i]) {
@@ -159,19 +168,22 @@ bool Game::start_battle(std::string id)
 		}
 	}
 
+	// Loop till the battle has an outcome (win/lose)
 	while (true) {
+
+		// Render the 4 enemies on to the battle screen if they are active (init earlier)
 		for (int i = 0; i < 4; ++i) {
 			if (slot_active[i]) {
 				int tmp_color = 0x07;
+
+				// If its the current enemies turn highlight it light yellow
 				if (current_turn == i) {
 					SetConsoleTextAttribute(h, 0x0E);
 					tmp_color = 0x0E;
 				}
 
 				Common::set_cursor(i * 25, 0);
-				//std::cout << "|======================| ";
-				DWORD n;
-				WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
+				draw_line();
 				Common::set_cursor(i * 25, 1);
 				std::cout << "| " << enemy[i].get_name() << Common::mul_txt(" ", 21 - enemy[i].get_name().length()) << "| ";
 				Common::set_cursor(i * 25, 2);
@@ -198,10 +210,8 @@ bool Game::start_battle(std::string id)
 				}
 
 				Common::set_cursor(i * 25, 10);
-				//Common::color_print(tmp_color, "|======================| ");
 				SetConsoleTextAttribute(h, tmp_color);
-				DWORD n2;
-				WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n2, nullptr);
+				draw_line();
 				SetConsoleTextAttribute(h, 0x07);
 
 				if (current_turn == i)
@@ -209,6 +219,7 @@ bool Game::start_battle(std::string id)
 			}
 		}
 
+		// Swordsman rendering
 		if (slot_active[4]) {
 			int tmp_color = 0x07;
 			if (current_turn == 4) {
@@ -217,9 +228,7 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(0, 15);
-			//std::cout << "|======================| ";
-			DWORD n;
-			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
+			draw_line();
 			Common::set_cursor(0, 16);
 			std::cout << "| " << swordsman.get_name() << Common::mul_txt(" ", 21 - swordsman.get_name().length()) << "| ";
 			Common::set_cursor(0, 17);
@@ -246,16 +255,15 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(0, 25);
-			//Common::color_print(tmp_color, "|======================| ");
 			SetConsoleTextAttribute(h, tmp_color);
-			DWORD n2;
-			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n2, nullptr);
+			draw_line();
 			SetConsoleTextAttribute(h, 0x07);
 
 			if (current_turn == 4)
 				SetConsoleTextAttribute(h, 0x07);
 		}
 
+		// Elf rendering
 		if (slot_active[5]) {
 			int tmp_color = 0x07;
 			if (current_turn == 5) {
@@ -264,9 +272,7 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(25, 15);
-			//std::cout << "|======================| ";
-			DWORD n;
-			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
+			draw_line();
 			Common::set_cursor(25, 16);
 			std::cout << "| " << elf.get_name() << Common::mul_txt(" ", 21 - elf.get_name().length()) << "| ";
 			Common::set_cursor(25, 17);
@@ -293,16 +299,15 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(25, 25);
-			//Common::color_print(tmp_color, "|======================| ");
 			SetConsoleTextAttribute(h, tmp_color);
-			DWORD n2;
-			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n2, nullptr);
+			draw_line();
 			SetConsoleTextAttribute(h, 0x07);
 
 			if (current_turn == 5)
 				SetConsoleTextAttribute(h, 0x07);
 		}
 
+		// Mage rendering
 		if (slot_active[6]) {
 			int tmp_color = 0x07;
 			if (current_turn == 6) {
@@ -311,9 +316,7 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(50, 15);
-			//std::cout << "|======================| ";
-			DWORD n;
-			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
+			draw_line();
 			Common::set_cursor(50, 16);
 			std::cout << "| " << mage.get_name() << Common::mul_txt(" ", 21 - mage.get_name().length()) << "| ";
 			Common::set_cursor(50, 17);
@@ -340,16 +343,15 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(50, 25);
-			//Common::color_print(tmp_color, "|======================| ");
 			SetConsoleTextAttribute(h, tmp_color);
-			DWORD n2;
-			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n2, nullptr);
+			draw_line();
 			SetConsoleTextAttribute(h, 0x07);
 
 			if (current_turn == 6)
 				SetConsoleTextAttribute(h, 0x07);
 		}
 
+		// Assassin rendering
 		if (slot_active[7]) {
 			int tmp_color = 0x07;
 			if (current_turn == 7) {
@@ -358,9 +360,7 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(75, 15);
-			//std::cout << "|======================| ";
-			DWORD n;
-			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n, nullptr);
+			draw_line();
 			Common::set_cursor(75, 16);
 			std::cout << "| " << assassin.get_name() << Common::mul_txt(" ", 21 - assassin.get_name().length()) << "| ";
 			Common::set_cursor(75, 17);
@@ -387,10 +387,8 @@ bool Game::start_battle(std::string id)
 			}
 
 			Common::set_cursor(75, 25);
-			//Common::color_print(tmp_color, "|======================| ");
 			SetConsoleTextAttribute(h, tmp_color);
-			DWORD n2;
-			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+――――――――――――――――――――――+ ", 26, &n2, nullptr);
+			draw_line();
 			SetConsoleTextAttribute(h, 0x07);
 
 			if (current_turn == 7)
@@ -404,6 +402,8 @@ bool Game::start_battle(std::string id)
 			bool cast_skill = true;
 
 			std::string skill_input = Common::input("                             \nEnter which skill to cast (S for skill book) : ");
+
+			// Checks that input is valid then if its not for opening skill book also check whether said skill is active and the respective character can afford it
 			while ((skill_input != "1" && skill_input != "2" && skill_input != "3" && skill_input != "4" && skill_input != "S" && skill_input != "s") ||
 				((skill_input != "S" && skill_input != "s") &&
 
@@ -413,8 +413,8 @@ bool Game::start_battle(std::string id)
 
 						(current_turn == 6 && (!mage.get_skill_list(std::stoi(skill_input) - 1).active || mage.get_stats("cur_mp") < mage.get_skill_list(std::stoi(skill_input) - 1).cost)) ||
 
-
 						(current_turn == 7 && (!assassin.get_skill_list(std::stoi(skill_input) - 1).active || assassin.get_stats("cur_mp") < assassin.get_skill_list(std::stoi(skill_input) - 1).cost))))) {
+
 
 				Common::set_cursor(47, 28);
 				for (unsigned i = 0; i < skill_input.length(); ++i)
@@ -424,6 +424,7 @@ bool Game::start_battle(std::string id)
 			}
 
 			if (skill_input == "S" || skill_input == "s") {
+				// Open skill book
 				print_all_skill();
 				system("cls");
 				cast_skill = false;
@@ -432,6 +433,7 @@ bool Game::start_battle(std::string id)
 				int tmp_pow = 0;
 				char tmp_skill_type = ' ';
 
+				// Init the respective variables and deduct the MP cost
 				if (current_turn == 4) {
 					if (swordsman.get_skill_list(std::stoi(skill_input) - 1).skill_type == 'D') {
 						tmp_pow = swordsman.get_stats("attack") + swordsman.get_skill_list(std::stoi(skill_input) - 1).power;
@@ -495,6 +497,7 @@ bool Game::start_battle(std::string id)
 					assassin.set_stats("cur_mp", assassin.get_stats("cur_mp") - assassin.get_skill_list(std::stoi(skill_input) - 1).cost);
 				}
 
+				// Deal the damage to a random enemy
 				if (tmp_skill_type == 'D') {
 					int tmp_active_enemy[4]{};
 					int current_idx = 0;
@@ -508,6 +511,7 @@ bool Game::start_battle(std::string id)
 
 					enemy[tmp_rand_enemy].set_stats("cur_health", enemy[tmp_rand_enemy].get_stats("cur_health") - tmp_pow);
 
+					// Remove enemy from screen if they are killed
 					if (enemy[tmp_rand_enemy].get_stats("cur_health") <= 0) {
 						for (int i = 0; i < 11; ++i) {
 							Common::set_cursor(tmp_rand_enemy * 25, i);
@@ -515,6 +519,7 @@ bool Game::start_battle(std::string id)
 						}
 					}
 
+					// Update slot active status
 					for (int i = 0; i < 4; ++i)
 						slot_active[i] = (enemy[i].get_name() != "" && enemy[i].get_stats("cur_health") > 0);
 					slot_active[4] = (swordsman.get_stats("cur_health") > 0);
@@ -523,6 +528,7 @@ bool Game::start_battle(std::string id)
 					slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
 					Common::cursor_vis(false);
+					// Handle lose or win condition
 					if (!slot_active[0] && !slot_active[1] && !slot_active[2] && !slot_active[3]) {
 						// Enemy all dead
 
@@ -532,11 +538,12 @@ bool Game::start_battle(std::string id)
 
 
 							Common::write_ani("You've gotten through your first battle! Just be careful, though. If your HP reaches ZERO, you die.\n\n"
-								"However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
-								"win or lose. Afterwards, it's an instant GAME OVER.\n\n"
-								"Also, since your allies' MP cannot be recovered, any buffs received during BATTLEs will be retained even\n"
-								"after a BATTLE ends.\n\n"
-								"Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
+											  "However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
+											  "win or lose. Afterwards, it's an instant GAME OVER.\n\n"
+											  "Also, since your allies' MP cannot be recovered using potions, any buffs received during BATTLEs will be retained even\n"
+											  "after a BATTLE ends.\n\n"
+											  "Only the fairy will be able to restore your allies' MP or HP.\n\n"
+											  "Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
 
 							Common::any_key_press("Press any key to continue");
 
@@ -639,6 +646,7 @@ bool Game::start_battle(std::string id)
 					}
 				}
 
+				// Choose which character should go next
 				int tmp_active_ally[4]{};
 				int current_idx = 0;
 				for (int i = 4; i < 8; ++i) {
@@ -667,6 +675,7 @@ bool Game::start_battle(std::string id)
 		else if (current_turn >= 0) {
 			// Enemy turn
 
+			// Choose which ally to attack
 			int tmp_active_ally[4]{};
 			int current_idx = 0;
 			for (int i = 4; i < 8; ++i) {
@@ -677,6 +686,7 @@ bool Game::start_battle(std::string id)
 			}
 			int tmp_rand_ally = tmp_active_ally[Common::rand_int(0, current_idx - 1)];
 
+			// Pick the most costly skill the current enemy can cast and init required vars
 			for (int i = 3; i >= 0; --i) {
 				if (enemy[current_turn].get_skill_list(i).cost <= enemy[current_turn].get_stats("cur_mp") && enemy[current_turn].get_skill_list(i).active) {
 					if (enemy[current_turn].get_skill_list(i).skill_type == 'A') {
@@ -688,6 +698,8 @@ bool Game::start_battle(std::string id)
 							enemy[current_turn].set_stats("cur_health", enemy[current_turn].get_stats("max_health"));
 					}
 					else {
+						// Handle damage dealt to allies
+
 						switch (tmp_rand_ally) {
 							case 4:
 								swordsman.set_stats("cur_health", swordsman.get_stats("cur_health") - enemy[current_turn].get_stats("attack") - enemy[current_turn].get_skill_list(i).power);
@@ -727,11 +739,14 @@ bool Game::start_battle(std::string id)
 								break;
 						}
 					}
+
+					// Deduct MP usage
 					enemy[current_turn].set_stats("cur_mp", enemy[current_turn].get_stats("cur_mp") - enemy[current_turn].get_skill_list(i).cost);
 					break;
 				}
 			}
 
+			// Update slot active status
 			for (int i = 0; i < 4; ++i)
 				slot_active[i] = (enemy[i].get_name() != "" && enemy[i].get_stats("cur_health") > 0);
 			slot_active[4] = (swordsman.get_stats("cur_health") > 0);
@@ -740,6 +755,7 @@ bool Game::start_battle(std::string id)
 			slot_active[7] = (assassin.get_recruited() && (assassin.get_stats("cur_health") > 0));
 
 			Common::cursor_vis(false);
+			// Handle lose or win condition
 			if (!slot_active[0] && !slot_active[1] && !slot_active[2] && !slot_active[3]) {
 				// Enemy all dead
 
@@ -750,8 +766,9 @@ bool Game::start_battle(std::string id)
 					Common::write_ani("You've gotten through your first battle! Just be careful, though. If your HP reaches ZERO, you die.\n\n"
 									  "However, for this BATTLE, and the next one, you can still progress with the story, regardless of whether you\n"
 									  "win or lose. Afterwards, it's an instant GAME OVER.\n\n"
-									  "Also, since your allies' MP cannot be recovered, any buffs received during BATTLEs will be retained even\n"
+									  "Also, since your allies' MP cannot be recovered using potions, any buffs received during BATTLEs will be retained even\n"
 									  "after a BATTLE ends.\n\n"
+									  "Only the fairy will be able to restore your allies' MP or HP.\n\n"
 									  "Now that you've gotten the basics of BATTLE, you'll be on your own from here on out! Good luck!\n\n");
 
 					Common::any_key_press("Press any key to continue");
@@ -854,6 +871,7 @@ bool Game::start_battle(std::string id)
 				break;
 			}
 
+			// Choose which character should go next
 			int tmp_active_enemy[4]{};
 			current_idx = 0;
 			for (int i = 0; i < 4; ++i) {

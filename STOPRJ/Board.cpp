@@ -6,10 +6,7 @@
 
 Board::Board() : cam_pos{}
 {
-	board_data = new short[151 * 151];
-	for (int i = 0; i < (151 * 151); ++i) {
-		board_data[i] = 0;
-	}
+	board_data = new short[151 * 151]{};
 }
 
 Board::~Board()
@@ -22,16 +19,18 @@ void Board::print_board(bool state)
 	// Use double buffering to reduce all flicker
 	const static HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
 
+	auto draw_hr = [] {
+		DWORD n;
+		WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+\n", 127, &n, nullptr);
+	};
+
 	static bool fir = false;
 	static short last_state[31 * 15]{};
 
 	int counter = 0;
 
 	if (!fir || !state) {
-		//std::cout << "+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+\n";
-		DWORD n;
-		WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"+―――|―――|―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+\n", 127, &n, nullptr);
-
+		draw_hr();
 		for (int i = cam_pos[0]; i < (cam_pos[0] + 15); ++i) {
 			std::cout << "|";
 			for (int i2 = cam_pos[1]; i2 < (cam_pos[1] + 31); ++i2) {
@@ -44,9 +43,8 @@ void Board::print_board(bool state)
 				print_with_id(id);
 				std::cout << "|";
 			}
-			/*std::cout << "\n+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+\n";*/
-			DWORD n;
-			WriteConsoleW(GetStdHandle(STD_OUTPUT_HANDLE), L"\n+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+―――+\n", 128, &n, nullptr);
+			std::cout << "\n";
+			draw_hr();
 		}
 
 		fir = true;
@@ -84,6 +82,7 @@ void Board::print_map()
 
 	system("cls");
 
+	// Detect if there is space there for town.kingdom label, else init it to be rendered down
 	bool kingdom_of_elves = false;
 	const char* kingdom_of_elves_txt = "Kingdom of Elves";
 	for (int i = 28; i < 44; ++i) {
@@ -147,9 +146,7 @@ void Board::print_map()
 				}
 
 				std::string tmp_str = Common::mul_txt("~", cluster);
-				SetConsoleTextAttribute(h, 0x09);
-				std::cout << tmp_str;
-				SetConsoleTextAttribute(h, 0x07);
+				Common::color_print(0x09, tmp_str);
 				cluster = 0;
 				continue;
 			}
@@ -165,9 +162,7 @@ void Board::print_map()
 				}
 
 				std::string tmp_str = Common::mul_txt("~", cluster);
-				SetConsoleTextAttribute(h, 0x01);
-				std::cout << tmp_str;
-				SetConsoleTextAttribute(h, 0x07);
+				Common::color_print(0x01, tmp_str);
 				cluster = 0;
 				continue;
 			}
@@ -199,9 +194,7 @@ void Board::print_map()
 				}
 
 				std::string tmp_str = Common::mul_txt("#", cluster);
-				SetConsoleTextAttribute(h, 0x0A);
-				std::cout << tmp_str;
-				SetConsoleTextAttribute(h, 0x07);
+				Common::color_print(0x0A, tmp_str);
 				cluster = 0;
 				continue;
 			}
@@ -217,9 +210,7 @@ void Board::print_map()
 				}
 
 				std::string tmp_str = Common::mul_txt("~", cluster);
-				SetConsoleTextAttribute(h, 0x04);
-				std::cout << tmp_str;
-				SetConsoleTextAttribute(h, 0x07);
+				Common::color_print(0x04, tmp_str);
 				cluster = 0;
 				continue;
 			}

@@ -14,6 +14,9 @@ namespace Common
 	// Move cursor then color print
 	void color_print(short x, short y, unsigned short color_code, std::string txt);
 
+	// Prints the game UI frame to the console
+	void print_frame();
+
 	// Prints given text with writing animation
 	// Returns std::string to be able to use in Common::input
 	std::string write_ani(std::string txt, const unsigned short delay_ms = 12);

@@ -34,6 +34,7 @@ void Game::board_gen()
 		board.set_board((15 + i), 111, 62);
 		board.set_board((15 + i), 150, 62);
 	}
+
 	// Boss room 2 (Mini-boss)
 	for (int i = 0; i < 36; ++i) { // Row walls
 		if (i >= 12 && i <= 23) continue;
@@ -46,11 +47,13 @@ void Game::board_gen()
 		board.set_board((44 + i), 113, 62);
 		board.set_board((44 + i), 148, 62);
 	}
+
 	// Boss room 1 (Skeleton Army)
 	for (int i = 0; i < 15; ++i) { // Column walls
 		board.set_board((67 + i), 113, 62);
 		board.set_board((67 + i), 148, 62);
 	}
+
 	// Demon king Castle Landmarks/Decorations
 	// Gates/Door
 	for (int i = 0; i < 10; i++) 
@@ -59,6 +62,7 @@ void Game::board_gen()
 		board.set_board(41, (126 + i), 6); // Gate 3 (After 2nd battle)
 		board.set_board(13, (126 + i), 6); // Gate 4 (After boss battle)
 	}
+
 	// Rooms "Carpet"
 	for (int i = 0; i < 11; i++) // Room 1 (Skeleton Infantry Room) 
 	{
@@ -685,16 +689,16 @@ void Game::board_gen()
 	for (int i = 21; i < 27; ++i) // Row carpet
 		board.set_board(35, i, -64);
 
-	for (int i = 0; i < 7; i++) // Column  carpet
+	for (int i = 0; i < 7; i++) // Column carpet
 	{
 		board.set_board((36 + i), 17, -63);
 		board.set_board((36 + i), 21, -63);
 	}
 
-	for (int i = 0; i < 16; i++) // Column  walls
+	for (int i = 0; i < 16; i++) // Column walls
 		board.set_board((35 + i), 27, 6);
 
-	for (int i = 0; i < 3; i++) // Column  walls
+	for (int i = 0; i < 3; i++) // Column walls
 		board.set_board((27 + i), 27, 6);
 
 	// Houses in Mage Town
@@ -720,7 +724,7 @@ void Game::board_gen()
 		board.set_board(44, i, 9);
 		board.set_board(48, i, 9);
 	}
-	for (int i = 0; i < 3; i++) // Column  walls
+	for (int i = 0; i < 3; i++) // Column walls
 		board.set_board((45 + i), 60, 9);
 
 	// House 4
@@ -780,7 +784,7 @@ void Game::board_gen()
 	board.set_board(52, 24, 50); // First Mage NPC to greet at the start #4
 	board.set_board(43, 42, 51); // Second Mage NPC Saying random stuff #5
 	board.set_board(34, 39, 52); // Third Mage NPC Saying a wish at the fountain #6
-	// Grand Master Mage(GMM)
+	// Grand Master Mage(GmM)
 	board.set_board(32, 12, 24); // Grand Master Mage Named "Pendolf" #7
 	// Training Area
 	board.set_board(45, 23, 22); // #8

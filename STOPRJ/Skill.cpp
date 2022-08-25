@@ -93,9 +93,9 @@ Skill::skill_data Skill::get_skill(std::string skill_name)
 	else if (skill_name == "demon_strength")
 		return skill_data{ "Demon Strength", 10, 40, false, 'A' };
 	else if (skill_name == "fire_breath")
-		return skill_data{ "Fire Breath", 100, 100, false, 'D' };
+		return skill_data{ "Fire Breath", 70, 100, false, 'D' };
 	else if (skill_name == "demon_punch")
-		return skill_data{ "Demon Punch", 40, 0, true, 'D' };
+		return skill_data{ "Demon Punch", 30, 0, true, 'D' };
 	else if (skill_name == "long_live_the_king")
 		return skill_data{ "Long live The King", 50, 20, true, 'H' };
 	else if (skill_name == "demon_summon")

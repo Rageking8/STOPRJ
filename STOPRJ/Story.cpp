@@ -746,7 +746,7 @@ void Story::DKC_floor1()
 {
 	system("cls");
 
-	Common::write_ani("These LAVA SKELETONs look stronger than the ones you encountered earlier...\n\n"
+	Common::write_ani("These SKELETONs look stronger than the ones you encountered earlier...\n\n"
 					  ". . .\n\n"
 					  "The LAVA SKELETONs turn to you, and begin rattling aggressively towards you!\n");
 	Common::write_ani(0x0b, "They seem to be challenging you to a BATTLE!\n\n");
@@ -1898,15 +1898,12 @@ void Story::banditTreasureRoomHint(int state)
 
 	Common::write_ani("You pick up the note on the floor and begin to read it:\n");
 
-	if (state == 1) {
+	if (state == 1)
 		Common::write_ani(0x0b, "Red wins.\n\n");
-	}
-	else if (state == 2) {
+	else if (state == 2)
 		Common::write_ani(0x0b, "Equality.\n\n");
-	}
-	else {
+	else
 		Common::write_ani(0x0b, "Blue wins.\n\n");
-	}
 
 	Common::any_key_press("Press any key to continue");
 }

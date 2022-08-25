@@ -8,45 +8,7 @@
 std::string Game::start_menu()
 {
 
-	for (int i = 0; i < 5; ++i)
-		Common::color_print(0xE0, "                         ");
-	for (int i = 1; i < 30; ++i) {
-		Common::set_cursor(0, i);
-		Common::color_print(0xE0, "  ");
-		Common::color_print(0x80, " ");
-
-		if (i == 1 || i == 29) {
-			Common::move_cursor('A');
-			Common::color_print(0xC0, "  ");
-			Common::set_cursor(121, i);
-			Common::color_print(0xC0, "  ");
-		}
-		else {
-			Common::set_cursor(122, i);
-			Common::color_print(0x80, " ");
-			Common::color_print(0xE0, "  ");
-			continue;
-		}
-		Common::set_cursor(123, i);
-		Common::color_print(0xE0, "  ");
-	}
-
-	Common::color_print(2, 2, 0xE0, "  ");
-	Common::color_print(4, 1, 0xE0, "  ");
-
-	Common::color_print(2, 28, 0xE0, "  ");
-	Common::color_print(4, 29, 0xE0, "  ");
-
-	Common::color_print(119, 1, 0xE0, "  ");
-	Common::color_print(121, 2, 0xE0, "  ");
-
-	Common::color_print(119, 29, 0xE0, "  ");
-	Common::color_print(121, 28, 0xE0, "  ");
-
-	Common::set_cursor(0, 30);
-	for (int i = 0; i < 5; ++i) {
-		Common::color_print(0xE0, "                         ");
-	}
+	Common::print_frame();
 
 	// first word
 	for (int i = 0; i < 3; ++i) {

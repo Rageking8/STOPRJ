@@ -18,55 +18,17 @@ Shop::~Shop()
 
 char Shop::open_shop(int player_coins)
 {
-	Common::set_cursor(0, 0);
 	const char* items[]{ "ATTACK POTION", "VITALITY POTION", "HP POTION", "MP POTION"};
 	const char* description[]{ "Increases base attack by 5.      ", "Increases max HP by 20.      ", "Restores 50 HP.      ", "Restores 50 MP.      " };
 	int price[]{ 10, 20, 5, 5 };
 
-	for (int i = 0; i < 5; ++i) {
-		Common::color_print(0xE0, "                         ");
-	}
-	for (int i = 1; i < 30; ++i) {
-		Common::color_print(0, i, 0xE0, "  ");
-		Common::color_print(0x80, " ");
-
-		if (i == 1 || i == 29) {
-			Common::move_cursor('A');
-			Common::color_print(0xC0, "  ");
-			Common::color_print(121, i, 0xC0, "  ");
-		}
-		else {
-			Common::color_print(122, i, 0x80, " ");
-			Common::color_print(0xE0, "  ");
-			continue;
-		}
-		Common::color_print(123, i, 0xE0, "  ");
-	}
-
-	Common::color_print(2, 2, 0xE0, "  ");
-	Common::color_print(4, 1, 0xE0, "  ");
-
-	Common::color_print(2, 28, 0xE0, "  ");
-	Common::color_print(4, 29, 0xE0, "  ");
-
-	Common::color_print(119, 1, 0xE0, "  ");
-	Common::color_print(121, 2, 0xE0, "  ");
-
-	Common::color_print(119, 29, 0xE0, "  ");
-	Common::color_print(121, 28, 0xE0, "  ");
+	Common::print_frame();
 
 	Common::set_cursor(0, 11);
-
 	for (int i = 0; i < 5; ++i)
 		Common::color_print(0xE0, "                         ");
 
 	Common::set_cursor(0, 15);
-
-	for (int i = 0; i < 5; ++i)
-		Common::color_print(0xE0, "                         ");
-
-	Common::set_cursor(0, 30);
-
 	for (int i = 0; i < 5; ++i)
 		Common::color_print(0xE0, "                         ");
 
@@ -167,7 +129,7 @@ char Shop::open_shop(int player_coins)
 		char ret = ' ';
 
 		if (stock[temp_idx] <= 0) {
-			Common::color_print(42, 27, 0x00, "                                         ");
+			Common::color_print(41, 27, 0x00, "                                          ");
 			Common::color_print(43, 27, 0x0c, "Sorry, we are out of that item's stock!");
 		}
 		else if (player_coins >= price[temp_idx]) {
