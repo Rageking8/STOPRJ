@@ -1200,37 +1200,6 @@ void Game::start()
 			prev_is_map = false;
 			system("cls");
 		}
-		else if (magesq_s == 1 && !magesq_m1 && swordsman.get_pos(0) == 21 && swordsman.get_pos(1) == 51) {
-			magesq_c++;
-			if (magesq_c == 3)
-				magesq_s = 2;
-			magesq_m1 = true;
-			board.set_board(21, 51, 0);
-			story.magicSchool_student1Found();
-			prev_is_map = false;
-			system("cls");
-		}
-		else if (magesq_s == 1 && !magesq_m2 && swordsman.get_pos(0) == 16 && swordsman.get_pos(1) == 1) {
-			magesq_c++;
-			if (magesq_c == 3)
-				magesq_s = 2;
-			magesq_m2 = true;
-			board.set_board(16, 1, 0);
-			story.magicSchool_student2Found();
-			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 30);
-			prev_is_map = false;
-			system("cls");
-		}
-		else if (magesq_s == 1 && !magesq_m3 && swordsman.get_pos(0) == 49 && swordsman.get_pos(1) == 2) {
-			magesq_c++;
-			if (magesq_c == 3)
-				magesq_s = 2;
-			magesq_m3 = true;
-			board.set_board(49, 2, 0);
-			story.magicSchool_student3Found();
-			prev_is_map = false;
-			system("cls");
-		}
 
 		if (tmp_target_cell_val == 3) {
 			system("cls");
@@ -1397,6 +1366,8 @@ void Game::start()
 
 				if (tmp_inp == "Y" || tmp_inp == "y") {
 					story.magicSchool_accept();
+					for (int i = 22; i < 24; ++i)
+						board.set_board(i, 53, 0);
 					magesq_s = 1;
 				}
 				else {
@@ -1813,6 +1784,37 @@ void Game::start()
 			story.collectTreasure();
 			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 50);
 			board.set_board(60, 65, 0);
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (magesq_s == 1 && !magesq_m1 && tmp_target_cell_val == 57) {
+			magesq_c++;
+			if (magesq_c == 3)
+				magesq_s = 2;
+			magesq_m1 = true;
+			board.set_board(21, 51, 0);
+			story.magicSchool_student1Found();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (magesq_s == 1 && !magesq_m2 && tmp_target_cell_val == 58) {
+			magesq_c++;
+			if (magesq_c == 3)
+				magesq_s = 2;
+			magesq_m2 = true;
+			board.set_board(16, 1, 0);
+			story.magicSchool_student2Found();
+			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 30);
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (magesq_s == 1 && !magesq_m3 && tmp_target_cell_val == 59) {
+			magesq_c++;
+			if (magesq_c == 3)
+				magesq_s = 2;
+			magesq_m3 = true;
+			board.set_board(49, 2, 0);
+			story.magicSchool_student3Found();
 			prev_is_map = false;
 			system("cls");
 		}

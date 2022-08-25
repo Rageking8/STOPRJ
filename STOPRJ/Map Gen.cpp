@@ -1056,6 +1056,10 @@ void Game::board_gen()
 	board.set_board(21, 51, 57); // Missing Mage in forest-Entrance #1 
 	board.set_board(16, 1, 58); // Missing Mage in forest-Cage #2
 	board.set_board(49, 2, 59); // Missing Mage in forest-Garden #3
+
+	for (int i = 22; i < 24; ++i)
+		board.set_board(i, 53, 6);
+
 	// Dungeon Level 
 	for (int i = 0; i < 49; i++) // Rows wall
 	{
