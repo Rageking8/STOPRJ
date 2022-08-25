@@ -63,7 +63,7 @@ Skill::skill_data Skill::get_skill(std::string skill_name)
 	else if (skill_name == "enchant")
 		return skill_data{ "Enchant", 10, 30, false, 'A' };
 	else if (skill_name == "fireball")
-		return skill_data{ "Fireball", 100, 100, false, 'D' };
+		return skill_data{ "Fireball", 100, 70, false, 'D' };
 	else if (skill_name == "shoot_arrow")
 		return skill_data{ "Shoot Arrow", 5, 0, true, 'D' };
 	else if (skill_name == "raining_arrow")

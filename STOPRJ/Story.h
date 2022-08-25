@@ -50,23 +50,22 @@ public:
 	void defeatDK_playerOnly(); // only player is alive
 
 	// caershire magic school side quest: find the missing students
-	// reward: 2 vitality potions + 2 MP potions + 20 gold
+	// reward: 2 vitality potions + 2 MP potions + 20 coins
 	void magicSchool_start(); // interact with grand master mage pendolf
 	void magicSchool_accept(); 
 	void magicSchool_decline(); 
 	void magicSchool_student1Found(); //student 1 is lost
-	void magicSchool_student2Trapped(); // student 2 is trapped in a cage
-	void magicSchool_student2Found(); // after defeating the bandit
+	void magicSchool_student2Found(); // student 2 is in a cage; before obtaining the 60 coins in the bushes
 	void magicSchool_student3Found(); //student 3 got distracted by their garden
 	void magicSchool_inProgress(); // interacting with pendolf before all 3 students are found
 	void magicSchool_complete(); // interacting with pendolf once all 3 students are found
 
-	// kingdom of elves side quest: find jade
+	// Kingdom of elves side quest: find jade
 	// reward: 2 attack potions
 	void KoE_start(); // talk to aerith (npc12) in their house
 	void KoE_accept(); 
 	void KoE_decline(); 
-	void KoE_inProgress();
+	void KoE_inProgress(int count);
 	void KoE_jadeFound(int count); // when player steps on specific blocks
 	void KoE_complete();
 

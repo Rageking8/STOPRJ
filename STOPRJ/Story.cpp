@@ -1374,42 +1374,41 @@ void Story::magicSchool_student1Found()
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::magicSchool_student2Trapped()
-{
-	system("cls");
-
-	Common::color_print(0x0d, "WESLEY:\n");
-	Common::write_ani("Look, I don't know how many times I have to say this, I don't care for\n"
-					  "your threats, I won't tell you... Oh, you're not a bandit?\n\n");
-
-	Common::color_print(0x0d, "WESLEY:\n");
-	Common::write_ani("You were sent by the GRAND MASTER to find me? Well, as you can see, I am\n"
-					  "currently *trapped* in a cage, so I need to get out of here to go back!\n\n"
-					  "You try to use brute force to break the cage door...\n\n");
-
-	Common::color_print(0x04, "BANDIT:\n");
-	Common::write_ani("Hey! What're you trying to do?\n\n");
-	Common::write_ani(0x0b, "The BANDIT guarding the cage has you at knife point, and is challenging you to a BATTLE!\n\n");
-
-	Common::any_key_press("Press any key to continue");
-}
-
 void Story::magicSchool_student2Found()
 {
 	system("cls");
 
-	Common::write_ani("You take the key from the unconscious BANDIT.\n\n");
+	Common::color_print(0x0d, "WESLEY:\n");
+	Common::write_ani("You were sent by the GRAND MASTER to find me? Hmm... Tell you what, maybe if you head into\n"
+					  "the bushes on the other side of that river over there and find something for me, I'll go back!\n\n");
+
+	Common::any_key_press("Press any key to continue");
+
+	system("cls");
+
+	Common::write_ani("You make your way to the bushes on the other side of the river.\n"
+					  ". . .\n"
+					  "It feels like you've stepped on something unusual...\n\n");
+
+	Common::write_ani(0x0b, "You found 60 COINS in the bushes!\n");
+	Common::write_ani("You take the coins, and make your way back to the cage WESLEY is in.\n\n");
+
+	Common::any_key_press("Press any key to continue");
+
+	system("cls");
 
 	Common::color_print(0x0d, "WESLEY:\n");
-	Common::write_ani("Quickly, let me out of here!\n\n");
+	Common::write_ani("So, did you find anything over there?\n"
+					  "Oho, you found some COINS? Well, hand them over!\n\n");
 
-	Common::write_ani("You unlock the cage door.\n\n");
+	Common::write_ani(0x0b, "WESLEY takes half of the COINS you found in the bushes... You end up losing 30 COINS.\n\n");
 
 	Common::color_print(0x0d, "WESLEY:\n");
-	Common::write_ani("Ah, finally! It was terribly cramped in there. Thanks for helping me out!\n\n");
+	Common::write_ani("Heh, thanks for the COINS! I'll be heading back now, it was pleasure doing business with you!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
+
 
 void Story::magicSchool_student3Found()
 {
@@ -1481,12 +1480,14 @@ void Story::KoE_decline()
 	Common::any_key_press("Press any key to continue");
 }
 
-void Story::KoE_inProgress()
+void Story::KoE_inProgress(int count)
 {
 	system("cls");
 
 	Common::color_print(0x0a, "AERITH:\n");
-	Common::write_ani("I need you to help me find three chunks of jade, thanks again!\n\n");
+	Common::write_ani("I need you to help me find three chunks of jade\n"
+					  "You currently have " + std::to_string(count) + " Jade(s)\n"
+					  "thanks again!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }

@@ -28,7 +28,6 @@ Game::~Game()
 
 void Game::start()
 {
-	Common::Timer speedrun;
 	system("cls");
 
 	Common::cursor_vis(false);
@@ -37,6 +36,8 @@ void Game::start()
 	std::string tmp_player_name = start_menu();
 	swordsman.set_name(tmp_player_name);
 	story.set_player_name(tmp_player_name);
+
+	Common::Timer speedrun;
 
 	// Initial quick guide on how to start
 	story.beforeTalkingToMessenger();
@@ -66,6 +67,12 @@ void Game::start()
 	bool jadesq_j2 = false;
 	bool jadesq_j3 = false;
 	int jadesq_c = 0;
+
+	int magesq_s = 0;
+	bool magesq_m1 = false;
+	bool magesq_m2 = false;
+	bool magesq_m3 = false;
+	int magesq_c = 0;
 
 	bool bandit1_b = false;
 	bool bandit_camp_t = false;
@@ -1193,6 +1200,37 @@ void Game::start()
 			prev_is_map = false;
 			system("cls");
 		}
+		else if (magesq_s == 1 && !magesq_m1 && swordsman.get_pos(0) == 21 && swordsman.get_pos(1) == 51) {
+			magesq_c++;
+			if (magesq_c == 3)
+				magesq_s = 2;
+			magesq_m1 = true;
+			board.set_board(21, 51, 0);
+			story.magicSchool_student1Found();
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (magesq_s == 1 && !magesq_m2 && swordsman.get_pos(0) == 16 && swordsman.get_pos(1) == 1) {
+			magesq_c++;
+			if (magesq_c == 3)
+				magesq_s = 2;
+			magesq_m2 = true;
+			board.set_board(16, 1, 0);
+			story.magicSchool_student2Found();
+			swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 30);
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (magesq_s == 1 && !magesq_m3 && swordsman.get_pos(0) == 49 && swordsman.get_pos(1) == 2) {
+			magesq_c++;
+			if (magesq_c == 3)
+				magesq_s = 2;
+			magesq_m3 = true;
+			board.set_board(49, 2, 0);
+			story.magicSchool_student3Found();
+			prev_is_map = false;
+			system("cls");
+		}
 
 		if (tmp_target_cell_val == 3) {
 			system("cls");
@@ -1276,7 +1314,7 @@ void Game::start()
 				}
 			}
 			else if (jadesq_s == 1) {
-				story.KoE_inProgress();
+				story.KoE_inProgress(jadesq_c);
 			}
 			else if (jadesq_s == 2) {
 				story.KoE_complete();
@@ -1343,11 +1381,42 @@ void Game::start()
 			system("cls");
 		}
 		else if (tmp_target_cell_val == 24) {
-			Common::cursor_vis(false);
-			story.magicSchool_start();
-			Common::input("Do you want to accept this quest ? (Y/N) : ");
+			if (magesq_s == 0) {
+				story.magicSchool_start();
 
+				Common::cursor_vis(true);
+				std::string tmp_inp = Common::input("Do you want to accept this quest ? (Y/N) : ");
+				while (tmp_inp != "Y" && tmp_inp != "y" && tmp_inp != "N" && tmp_inp != "n") {
+					Common::color_print(43, 11, 0x07, Common::mul_txt(" ", tmp_inp.length()));
+					Common::color_print(0, 12, 0x0C, "Invalid Input");
+					Common::set_cursor(0, 11);
+					tmp_inp = Common::input("Do you want to accept this quest ? (Y/N) : ");
+				}
 
+				Common::cursor_vis(false);
+
+				if (tmp_inp == "Y" || tmp_inp == "y") {
+					story.magicSchool_accept();
+					magesq_s = 1;
+				}
+				else {
+					story.magicSchool_decline();
+				}
+			}
+			else if (magesq_s == 1) {
+				story.magicSchool_inProgress();
+			}
+			else if (magesq_s == 2) {
+				swordsman.set_item_qty("vit_potion", swordsman.get_item_qty("vit_potion") + 2);
+				swordsman.set_item_qty("mp_potion", swordsman.get_item_qty("mp_potion") + 2);
+				swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") + 20);
+
+				story.magicSchool_complete();
+				magesq_s = 3;
+			}
+			else {
+				story.npc7();
+			}
 
 			prev_is_map = false;
 			system("cls");
@@ -1608,15 +1677,14 @@ void Game::start()
 
 			board.set_board(73, 79, 0);
 
-			for (int i = 0; i < 7; i++)
-				board.set_board(63, (88 + i), 6);
+			for (int i = 0; i < 7; i++) {
+				board.set_board(63, (88 + i), 0);
+				board.set_board(82, (88 + i), 0);
+			}
 
 			mage.set_recruited(true);
 			elf.set_recruited(true);
 			assassin.set_recruited(true);
-
-			for (int i = 0; i < 7; i++)
-				board.set_board(82, (88 + i), 0);
 
 			prev_is_map = false;
 			system("cls");
@@ -1705,10 +1773,14 @@ void Game::start()
 				if (swordsman.get_item_qty("coin") >= 100) {
 					if (fairy_inp == "1") {
 						story.fairy_recoverHP();
-						swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
-						elf.set_stats("cur_health", elf.get_stats("max_health"));
-						mage.set_stats("cur_health", mage.get_stats("max_health"));
-						assassin.set_stats("cur_health", assassin.get_stats("max_health"));
+						if (swordsman.get_stats("cur_health") > 0)
+							swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
+						if (elf.get_stats("cur_health") > 0)
+							elf.set_stats("cur_health", elf.get_stats("max_health"));
+						if (mage.get_stats("cur_health") > 0)
+							mage.set_stats("cur_health", mage.get_stats("max_health"));
+						if (assassin.get_stats("cur_health") > 0)
+							assassin.set_stats("cur_health", assassin.get_stats("max_health"));
 					}
 					else {
 						story.fairy_recoverMP();
@@ -1796,7 +1868,7 @@ void Game::print_all_skill()
 
 	const char* skill_name[]{ "Slash", "Fire Slash", "Taunt", "Spiral Spin", "Arcane Bullet", "Healing", "Enchant", "Fireball", "Shoot Arrow", "Raining Arrow", "Piercing Arrow", "Bullet Arrow", "Dagger Poke", "Strength Dart", "Bomb", "Backstab", "Headbutt", "Shield Bash", "Arm Slap", "Demon Slash", "Demon Eye Beam", "Demon Strength", "Fire Breath", "Demon Punch", "Long Live the King", "Demon Summon", "Hellfire" };
 	const int power[]{ 5, 10, 5, 60, 3, 50, 10, 100, 5, 10, 30, 60, 5, 10, 45, 125, 10, 15, 30, 30, 90, 10, 100, 40, 50, 20, 100 };
-	const int cost[]{ 0, 5, 10, 15, 0, 20, 30, 100, 0, 5, 10, 45, 0, 20, 15, 35, 10, 15, 15, 0, 20, 40, 100, 0, 20, 40, 100 };
+	const int cost[]{ 0, 5, 10, 15, 0, 20, 30, 70, 0, 5, 10, 45, 0, 20, 15, 35, 10, 15, 15, 0, 20, 40, 100, 0, 20, 40, 100 };
 	const char* types = "DDADDHADDDDDDADDDDDDDADDHAD";
 
 	int page_num = 0;

@@ -75,6 +75,7 @@ void Game::board_gen()
 		board.set_board((18 + i), 120, -63);
 		board.set_board((18 + i), 141, -63);
 	}
+
 	// Gold Pile in Treasure room
 	for (int i = 0; i < 17; i++)
 		board.set_board(1, (122 + i), 61);
@@ -106,18 +107,25 @@ void Game::board_gen()
 	for (int i = 0; i < 5; i++)
 	{
 		// #1
-		board.set_board((16 + i), 114, 34); board.set_board((16 + i), 115, 34);
+		board.set_board((16 + i), 114, 34);
+		board.set_board((16 + i), 115, 34);
 		// #2
-		board.set_board((25 + i), 114, 34); board.set_board((25 + i), 115, 34);
+		board.set_board((25 + i), 114, 34);
+		board.set_board((25 + i), 115, 34);
 		// #3
-		board.set_board((34 + i), 114, 34); board.set_board((34 + i), 115, 34);
+		board.set_board((34 + i), 114, 34);
+		board.set_board((34 + i), 115, 34);
 		// #4
-		board.set_board((16 + i), 146, 34); board.set_board((16 + i), 147, 34);
+		board.set_board((16 + i), 146, 34);
+		board.set_board((16 + i), 147, 34);
 		// #5
-		board.set_board((25 + i), 146, 34); board.set_board((25 + i), 147, 34);
+		board.set_board((25 + i), 146, 34);
+		board.set_board((25 + i), 147, 34);
 		// #6
-		board.set_board((34 + i), 146, 34); board.set_board((34 + i), 147, 34);
+		board.set_board((34 + i), 146, 34);
+		board.set_board((34 + i), 147, 34);
 	}
+
 	// Fire
 	for (int i = 0; i < 2; i++)
 	{	
@@ -134,7 +142,8 @@ void Game::board_gen()
 	}
 	// Chairs
 	for (int i = 0; i < 5; i += 2)
-	{// Left side
+	{
+		// Left side
 		// Facing Right
 		board.set_board((16 + i), 113, -35);
 		board.set_board((25 + i), 113, -35);
@@ -153,6 +162,7 @@ void Game::board_gen()
 		board.set_board((25 + i), 148, -36);
 		board.set_board((34 + i), 148, -36);
 	}
+
 	// Fountain border (Boss Room 3)
 	for (int i = 0; i < 4; ++i) {
 		board.set_board(24, (129 + i), 62);
@@ -183,8 +193,8 @@ void Game::board_gen()
 	{
 		for (int j = 0; j < 3; j++)
 		{
-			board.set_board((44 + i), (114 + j), 4); //Left side
-			board.set_board((44 + i), (145 + j), 4); //Right side
+			board.set_board((44 + i), (114 + j), 4); // Left side
+			board.set_board((44 + i), (145 + j), 4); // Right side
 		}
 		board.set_board((44 + i), 117, 6); // Wall
 		board.set_board((44 + i), 144, 6); // Wall
@@ -195,9 +205,9 @@ void Game::board_gen()
 		for (int j = 0; j < 2; j++)
 		{
 			board.set_board((47 + j), (118 + i), -38); // Left side
-			board.set_board((47 + j), (142 + i), -39); // right side
+			board.set_board((47 + j), (142 + i), -39); // Right side
 			board.set_board((57 + j), (118 + i), -38); // Left side
-			board.set_board((57 + j), (142 + i), -39); // right side
+			board.set_board((57 + j), (142 + i), -39); // Right side
 		}
 	}
 	// Fountain border (Boss Room 2)
@@ -223,8 +233,9 @@ void Game::board_gen()
 	board.set_board(52, 128, 60);
 	board.set_board(51, 133, 60);
 	board.set_board(52, 133, 60);
+
 	// Skeleton Infantry/ Sleeping Quarters Room 2
-	//Beds
+	// Beds
 	for (int i = 0; i < 15; i += 4)
 	{
 		board.set_board((67 + i), 114, 18); board.set_board((68 + i), 114, 18); // Left side
@@ -237,7 +248,8 @@ void Game::board_gen()
 			board.set_board((67 + j), (145 + i), 10); board.set_board((68 + j), (145 + i), 10); // Right side
 		}
 	}
-	//Bedside table
+
+	// Bedside table
 	for (int i = 0; i < 13; i += 4)
 	{
 		board.set_board((69 + i), 114, 34);
@@ -263,18 +275,18 @@ void Game::board_gen()
 	board.set_board(72, 128, 60);
 	board.set_board(72, 133, 60);
 
-	//Enemies 
-	//Demon king
-	board.set_board(16, 130, 23); // room 3
-	//Demon enemy
-	board.set_board(44, 130, 86); // room 2
-	board.set_board(17, 129, 41); // room 3
-	//Skeleton
-	board.set_board(17, 131, 85); // room 3
-	board.set_board(45, 129, 84); // room 2
-	board.set_board(45, 131, 84); // room 2
+	// Enemies 
+	// Demon king
+	board.set_board(16, 130, 23); // Room 3
+	// Demon enemy
+	board.set_board(44, 130, 86); // Room 2
+	board.set_board(17, 129, 41); // Room 3
+	// Skeleton
+	board.set_board(17, 131, 85); // Room 3
+	board.set_board(45, 129, 84); // Room 2
+	board.set_board(45, 131, 84); // Room 2
 	for (int i = 0; i < 3; i++)
-		board.set_board(67, (129 + i), 83); // room 1
+		board.set_board(67, (129 + i), 83); // Room 1
 
 	// Bandit camp
 	for (int i = 0; i < 50; ++i) // Row walls
@@ -311,7 +323,7 @@ void Game::board_gen()
 	for (int i = 10; i < 15; i++)
 		board.set_board(10, i, 6);
 
-	//Campfire
+	// Campfire
 	board.set_board(9, 36, 33);
 	board.set_board(8, 36, 37);
 	board.set_board(10, 36, 37);
@@ -321,7 +333,7 @@ void Game::board_gen()
 	board.set_board(10, 37, 32);
 	board.set_board(8, 37, 32);
 	board.set_board(10, 35, 32);
-	//Pond
+	// Pond
 	for (int i = 20; i < 30; i++)
 		board.set_board(1, i, 4);
 
@@ -337,28 +349,28 @@ void Game::board_gen()
 		board.set_board(4, (1 + i), 34);
 		board.set_board(5, (1 + i), 34);
 	}
-	//Beds in the dormitory
-	//Bed 1
+	// Beds in the dormitory
+	// Bed 1
 	board.set_board(2, 1, 18);
 	board.set_board(2, 2, 10);
 	board.set_board(2, 3, 10);
-	//Bed 2
+	// Bed 2
 	board.set_board(7, 1, 18);
 	board.set_board(7, 2, 10);
 	board.set_board(7, 3, 10);
-	//Bed 3
+	// Bed 3
 	board.set_board(9, 1, 18);
 	board.set_board(9, 2, 10);
 	board.set_board(9, 3, 10);
-	//Bed 4
+	// Bed 4
 	board.set_board(2, 14, 18);
 	board.set_board(2, 13, 10);
 	board.set_board(2, 12, 10);
-	//Bed 5
+	// Bed 5
 	board.set_board(7, 14, 18);
 	board.set_board(7, 13, 10);
 	board.set_board(7, 12, 10);
-	//Bed 6
+	// Bed 6
 	board.set_board(9, 14, 18);
 	board.set_board(9, 13, 10);
 	board.set_board(9, 12, 10);
@@ -372,7 +384,8 @@ void Game::board_gen()
 	board.set_board(8, 32, 26);
 	// 2nd encounter
 	board.set_board(7, 31, 27);
-	//Bandit camp Leader room/ Treasure room
+
+	// Bandit camp Leader room/Treasure room
 	for (int i = 0; i < 9; i++) // Column
 		board.set_board((2 + i), 95, 2);
 
@@ -389,10 +402,6 @@ void Game::board_gen()
 	// Bandit camp treasure room note
 	board.set_board(3, 50, 82);
 
-	//for (int i = 0; i < 3; i++) // Door(unlocks after player defeats the boss)
-	//{ 
-	//	board.set_board((5 + i), 49, 6);
-	//}
 	for (int i = 0; i < 2; i++) //  Door wall
 		board.set_board((3 + i), 49, 2);
 
@@ -414,13 +423,13 @@ void Game::board_gen()
 	board.set_board(6, 92, 61);
 	// Switches
 	// Up-Left
-	board.set_board(3, 59, 19);// Red
+	board.set_board(3, 59, 19); // Red
 	// Up-Right
-	board.set_board(3, 73, 20);// Blue
+	board.set_board(3, 73, 20); // Blue
 	// Down-Left
-	board.set_board(9, 59, 20);// Blue
+	board.set_board(9, 59, 20); // Blue
 	//Down-Right
-	board.set_board(9, 73, 19);// Red
+	board.set_board(9, 73, 19); // Red
 	// Starting path to Kingdom of Elves
 	for (int i = 0; i < 59; ++i) { // Row walls
 		if (i >= 5 && i <= 11) continue;
@@ -465,7 +474,7 @@ void Game::board_gen()
 		board.set_board((64 + i), 34, 28); // Column House wall
 		board.set_board((67 + i), 50, 17); // Bedroom wall
 		board.set_board((64 + i), 39, -66); // Green Carpet 
-		board.set_board((67 + i), 43, -66); // "
+		board.set_board((67 + i), 43, -66);
 		board.set_board((64 + i), 31, 6); // Fence
 	}
 	for (int i = 35; i < 39; i++) // Green Carpet
@@ -473,6 +482,7 @@ void Game::board_gen()
 
 	board.set_board(71, 33, 6); // Fence
 	board.set_board(71, 32, 6); // Fence
+
 	// Flower Beds
 	for (int i = 0; i < 7; i++)
 	{
@@ -532,7 +542,7 @@ void Game::board_gen()
 		board.set_board(65, i, 4);
 		board.set_board(66, i, 6);
 	}
-	//Houses
+	// Houses
 	for (int i = 0; i < 5; i++)
 	{
 		board.set_board((82 + i), 12, 15); // house 1
@@ -569,9 +579,9 @@ void Game::board_gen()
 	board.set_board(82, 33, 4);
 	board.set_board(82, 37, 4);
 	// NPCs in Kingdom of Elves
-	board.set_board(84, 38, 21);//fountain
-	board.set_board(77, 56, 45);//house
-	board.set_board(70, 11, 46);//exit/path to mage
+	board.set_board(84, 38, 21); // fountain
+	board.set_board(77, 56, 45); // house
+	board.set_board(70, 11, 46); // exit/path to mage
 
 	board.set_board(94, 24, 5); // Cart Landmark
 
@@ -600,9 +610,7 @@ void Game::board_gen()
 
 	// Bandits between Kingdom of Elves and Mage
 	for (int i = 0; i < 5; i++)
-	{
 		board.set_board(64, (1 + i), 26);
-	}
 
 	// Mage Town
 	for (int i = 0; i < 43; i++) // Column Right walls + Path to Dungeon
@@ -657,6 +665,7 @@ void Game::board_gen()
 	}
 	board.set_board(32, 39, 4);
 	board.set_board(32, 43, 4);
+
 	// Mage Academy/School Walls
 	for (int i = 12; i < 28; ++i) // Row 
 		board.set_board(51, i, 6);
@@ -723,7 +732,7 @@ void Game::board_gen()
 		board.set_board(51, i, 9);
 		board.set_board(55, i, 9);
 	}
-	for (int i = 0; i < 3; i++) // Column  walls
+	for (int i = 0; i < 3; i++) // Column walls
 		board.set_board((52 + i), 60, 9);
 
 	// House 5
@@ -733,7 +742,7 @@ void Game::board_gen()
 	for (int i = 46; i < 51; ++i) // Row 
 		board.set_board(56, i, 9);
 
-	for (int i = 0; i < 4; i++) // Column  walls
+	for (int i = 0; i < 4; i++) // Column walls
 	{
 		board.set_board((52 + i), 46, 9);
 		board.set_board((52 + i), 50, 9);
@@ -745,7 +754,7 @@ void Game::board_gen()
 	for (int i = 39; i < 44; ++i) // Row 
 		board.set_board(56, i, 9);
 
-	for (int i = 0; i < 4; i++) // Column  walls
+	for (int i = 0; i < 4; i++) // Column walls
 	{
 		board.set_board((52 + i), 39, 9);
 		board.set_board((52 + i), 43, 9);
@@ -757,7 +766,7 @@ void Game::board_gen()
 	for (int i = 32; i < 37; ++i) // Row 
 		board.set_board(56, i, 9);
 
-	for (int i = 0; i < 4; i++) // Column  walls
+	for (int i = 0; i < 4; i++) // Column walls
 	{
 		board.set_board((52 + i), 32, 9);
 		board.set_board((52 + i), 36, 9);
@@ -835,6 +844,7 @@ void Game::board_gen()
 		board.set_board((20 + i), 87, 2);
 	for (int i = 0; i < 7; i++) // right path to dungeon
 		board.set_board((16 + i), 95, 2);
+
 	// Dungeon rooms
 	for (int i = 0; i < 2; i++)
 	{
@@ -851,7 +861,6 @@ void Game::board_gen()
 	{
 		board.set_board((31 + i), 78, -36);
 		board.set_board((31 + i), 73, -35);
-
 	}
 
 	// SKeletons
@@ -973,13 +982,11 @@ void Game::board_gen()
 
 	board.set_board(25, 14, 43);
 
-	//Bridge in Forest
+	// Bridge in Forest
 	for (int i = 0; i < 4; i++)
-	{
 		board.set_board((33 + i), 3, -86);
-	}
 	
-	//Grass block as garden in forest
+	// Grass block as garden in forest
 	for (int i = 0; i < 14; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -988,31 +995,22 @@ void Game::board_gen()
 			board.set_board((37 + i), (1 + j), -42);
 		}
 	}
-	//Grass as garden in forest
-	for (int i = 0; i < 12; i+=4)
-	{
-		for (int j = 0; j < 5; j+=3)
-		{
-			//if (i == 0 && j == 4) continue;
-			//board.set_board((37 + i), (1 + j), -2);
-			//board.set_board((39 + i), (2 + j), -2);
-		}
-	}
 
-	//Flowers in Mage Forest Garden
-	//Sunflower
+	// Flowers in Mage Forest Garden
+	// Sunflower
 	board.set_board(38, 4, -53);
 	board.set_board(46, 3, -53);
 	board.set_board(50, 2, -53);
-	//Rose
+	// Rose
 	board.set_board(42, 2, -54);
 	board.set_board(49, 5, -54);
 	board.set_board(50, 1, -54);
-	//Lavenders
+	// Lavenders
 	board.set_board(37, 1, -55);
 	board.set_board(44, 5, -55);
 	board.set_board(50, 3, -55);
-	//Between Elf and mage
+
+	// Between Elf and mage
 	for (int i = 0; i < 45; i += 3)
 	{
 		for (int j = 0; j < 3; j++)
@@ -1024,24 +1022,25 @@ void Game::board_gen()
 		}
 	}
 	board.set_board(60, 58, 33);
+
 	// Inside dungeon
 	for (int i = 0; i < 14; i+=4) 
 	{
-		board.set_board((24 + i), 96, -53); // room 1
-		board.set_board((27 + i), 99, -54); // room 1
-		board.set_board((25 + i), 102, -55); // room 1
-		board.set_board((24 + i), 64, -53); // room 1
-		board.set_board((27 + i), 67, -54); // room 1
-		board.set_board((25 + i), 70, -55); // room 1
-		board.set_board((45 + i), 96, -54); // room 2
-		board.set_board((48 + i), 99, -53); // room 2
-		board.set_board((46 + i), 102, -55); // room 2
-		board.set_board((66 + i), 96, -55); // room 3
-		board.set_board((69 + i), 99, -54); // room 3
-		board.set_board((67 + i), 102, -53); // room 3
-		board.set_board((66 + i), 64, -55); // room 3
-		board.set_board((69 + i), 67, -54); // room 3
-		board.set_board((67 + i), 70, -53); // room 3
+		board.set_board((24 + i), 96, -53); // Room 1
+		board.set_board((27 + i), 99, -54); // Room 1
+		board.set_board((25 + i), 102, -55); // Room 1
+		board.set_board((24 + i), 64, -53); // Room 1
+		board.set_board((27 + i), 67, -54); // Room 1
+		board.set_board((25 + i), 70, -55); // Room 1
+		board.set_board((45 + i), 96, -54); // Room 2
+		board.set_board((48 + i), 99, -53); // Room 2
+		board.set_board((46 + i), 102, -55); // Room 2
+		board.set_board((66 + i), 96, -55); // Room 3
+		board.set_board((69 + i), 99, -54); // Room 3
+		board.set_board((67 + i), 102, -53); // Room 3
+		board.set_board((66 + i), 64, -55); // Room 3
+		board.set_board((69 + i), 67, -54); // Room 3
+		board.set_board((67 + i), 70, -53); // Room 3
 	}
 
 	// Dungeon 2 room note

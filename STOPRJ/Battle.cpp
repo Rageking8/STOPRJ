@@ -77,20 +77,39 @@ bool Game::start_battle(std::string id)
 	else if (id == "dkc_1") {
 		for (int i = 0; i < 4; ++i) {
 			enemy[i].set_name("Lava Skeleton");
-			enemy[i].set_stats("attack", 10);
-			enemy[i].set_stats("cur_health", 40);
-			enemy[i].set_stats("max_health", 40);
-			enemy[i].set_stats("cur_mp", 55);
-			enemy[i].set_stats("max_mp", 55);
+			enemy[i].set_stats("attack", 5);
+			enemy[i].set_stats("cur_health", 30);
+			enemy[i].set_stats("max_health", 30);
+			enemy[i].set_stats("cur_mp", 50);
+			enemy[i].set_stats("max_mp", 50);
 			enemy[i].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
 			enemy[i].set_active(2, true);
-			enemy[i].set_active(3, true);
 		}
 	}
 	else if (id == "dkc_2") {
 		for (int i = 0; i < 3; ++i) {
 			enemy[i].set_name("Skeleton");
-			enemy[i].set_stats("attack", 13);
+			enemy[i].set_stats("attack", 8);
+			enemy[i].set_stats("cur_health", 50);
+			enemy[i].set_stats("max_health", 50);
+			enemy[i].set_stats("cur_mp", 50);
+			enemy[i].set_stats("max_mp", 50);
+			enemy[i].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
+			enemy[i].set_active(2, true);
+		}
+		enemy[3].set_name("Demon");
+		enemy[3].set_stats("attack", 20);
+		enemy[3].set_stats("cur_health", 130);
+		enemy[3].set_stats("max_health", 130);
+		enemy[3].set_stats("cur_mp", 140);
+		enemy[3].set_stats("max_mp", 140);
+		enemy[3].init_skill("demon_slash", "demon_eye_beam", "demon_strength", "fire_breath");
+		enemy[3].set_active(2, true);
+	}
+	else if (id == "dkc_3") {
+		for (int i = 0; i < 2; ++i) {
+			enemy[i].set_name("Skeleton");
+			enemy[i].set_stats("attack", 10);
 			enemy[i].set_stats("cur_health", 60);
 			enemy[i].set_stats("max_health", 60);
 			enemy[i].set_stats("cur_mp", 60);
@@ -99,32 +118,10 @@ bool Game::start_battle(std::string id)
 			enemy[i].set_active(2, true);
 			enemy[i].set_active(3, true);
 		}
-		enemy[3].set_name("Demon");
-		enemy[3].set_stats("attack", 30);
-		enemy[3].set_stats("cur_health", 180);
-		enemy[3].set_stats("max_health", 180);
-		enemy[3].set_stats("cur_mp", 155);
-		enemy[3].set_stats("max_mp", 155);
-		enemy[3].init_skill("demon_slash", "demon_eye_beam", "demon_strength", "fire_breath");
-		enemy[3].set_active(2, true);
-		enemy[3].set_active(3, true);
-	}
-	else if (id == "dkc_3") {
-		for (int i = 0; i < 2; ++i) {
-			enemy[i].set_name("Skeleton");
-			enemy[i].set_stats("attack", 15);
-			enemy[i].set_stats("cur_health", 70);
-			enemy[i].set_stats("max_health", 70);
-			enemy[i].set_stats("cur_mp", 60);
-			enemy[i].set_stats("max_mp", 60);
-			enemy[i].init_skill("slash", "headbutt", "shield_bash", "arm_slap");
-			enemy[i].set_active(2, true);
-			enemy[i].set_active(3, true);
-		}
 		enemy[2].set_name("Demon");
-		enemy[2].set_stats("attack", 32);
-		enemy[2].set_stats("cur_health", 190);
-		enemy[2].set_stats("max_health", 190);
+		enemy[2].set_stats("attack", 25);
+		enemy[2].set_stats("cur_health", 150);
+		enemy[2].set_stats("max_health", 150);
 		enemy[2].set_stats("cur_mp", 160);
 		enemy[2].set_stats("max_mp", 160);
 		enemy[2].init_skill("demon_slash", "demon_eye_beam", "demon_strength", "fire_breath");
@@ -132,9 +129,9 @@ bool Game::start_battle(std::string id)
 		enemy[2].set_active(3, true);
 
 		enemy[3].set_name("Demon King");
-		enemy[3].set_stats("attack", 40);
-		enemy[3].set_stats("cur_health", 200);
-		enemy[3].set_stats("max_health", 200);
+		enemy[3].set_stats("attack", 28);
+		enemy[3].set_stats("cur_health", 160);
+		enemy[3].set_stats("max_health", 160);
 		enemy[3].set_stats("cur_mp", 200);
 		enemy[3].set_stats("max_mp", 200);
 		enemy[3].init_skill("demon_punch", "long_live_the_king", "demon_summon", "hellfire");
