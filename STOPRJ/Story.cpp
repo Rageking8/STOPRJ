@@ -1442,7 +1442,7 @@ void Story::magicSchool_complete()
 	Common::color_print(0x0d, "GRAND MASTER MAGE PENDOLF:\n");
 	Common::write_ani("Oh, thank you, thank you! I knew I could count on you to find them!\n"
 					  "Please, take these as a token of my appreciation!\n\n");
-	Common::write_ani(0x0b, "You obtained some ARMOUR, 2 MP POTIONS, and 20 COINS!\n\n");
+	Common::write_ani(0x0b, "You obtained 2 VITALITY POTIONS, 2 MP POTIONS, and 20 COINS!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1499,7 +1499,7 @@ void Story::KoE_jadeFound(int count)
 					  "You look down to see what it is you stepped on, and find a chunk of JADE!\n\n");
 
 	// if player finds their third chunk of jade
-	if (count == 2) {
+	if (count == 3) {
 		Common::write_ani(0x0b, "You have found all the required materials!\n"
 						  "Head back to AERITH in the Kingdom of Elves to complete the quest.\n\n");
 	}
@@ -1517,9 +1517,9 @@ void Story::KoE_complete()
 					  ". . .\n\n");
 
 	Common::color_print(0x0a, "AERITH:\n");
-	Common::write_ani("Alright, it's done! There was a lot more excess than I expected, so I made another one\n"
-					  "for you as a token of my appreciation. Here you go!\n\n");
-	Common::write_ani(0x0b, "You obtained a SWORD!\n\n");
+	Common::write_ani("Alright, it's done! You can have these ATTACK POTIONS as a token of my appreciation.\n"
+					  "Here you go!\n\n");
+	Common::write_ani(0x0b, "You obtained 2 ATTACK POTIONS!\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }
@@ -1927,6 +1927,84 @@ void Story::excalibur_warning()
 	Common::write_ani("You read the notice taped to the wall:\n");
 	Common::write_ani(0x0b, "WARNING! Proceed with caution. Once you go through here, there is no going back.\n"
 					  "Make adequate preparations if you wish to continue on.\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::fairy_start(int coins)
+{
+	system("cls");
+
+	Common::color_print(0x0d, "FAIRY:\n");
+	Common::write_ani("Greetings, hero! If you'd like, I can bring your party back to full health,\n"
+					  "or restore your party's MP for 100 coins!\n\n");
+
+	Common::color_print(0x0d, "FAIRY:\n");
+	Common::write_ani("I do not have much time left, though. At most, I can only offer my services ONCE,\n"
+					  "so think about this, and choose wisely.\n\n");
+
+	Common::write_ani(0x0b, "WARNING! You can only pick ONE option. After choosing, the FAIRY will disappear.\n\n"
+					  "You currently have " + std::to_string(coins) + " coins.\n"
+					  "What would you like to do?\n1) Recover HP\n2) Recover MP\n3) Refuse offer\n\n");
+}
+
+void Story::fairy_recoverHP()
+{
+	system("cls");
+
+	Common::color_print(0x0d, "FAIRY:\n");
+	Common::write_ani("Okay! That will be 100 coins, please!\n\n");
+
+	Common::write_ani(0x0b, "You hand the FAIRY your coins, and she begins to work her magic...\n"
+					  "Your party has been brought back to full health!\n\n");
+
+	Common::color_print(0x0d, "FAIRY:\n");
+	Common::write_ani("Thank you for using my services, hero, and I bid you farewell!\n\n"
+					  "The FAIRY has disappeared, and all that is left is fairy dust...\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::fairy_recoverMP()
+{
+	system("cls");
+
+	Common::color_print(0x0d, "FAIRY:\n");
+	Common::write_ani("Okay! That will be 100 coins, please!\n\n");
+
+	Common::write_ani(0x0b, "You hand the FAIRY your coins, and she begins to work her magic...\n"
+					  "Your party has recovered all their MP!\n\n");
+
+	Common::color_print(0x0d, "FAIRY:\n");
+	Common::write_ani("Thank you for using my services, hero, and I bid you farewell!\n\n"
+					  "The FAIRY has disappeared, and all that is left is fairy dust...\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::fairy_notEnoughCoins()
+{
+	system("cls");
+
+	Common::color_print(0x0d, "FAIRY:\n");
+	Common::write_ani("Okay! That will be 100 coins, please!\n"
+					  "Oh, it looks like you don't have enough coins...\n\n");
+
+	Common::color_print(0x0d, "FAIRY:\n");
+	Common::write_ani("My apologies, hero, but my time is running out. I bid you farewell!\n\n"
+					  "The FAIRY has disappeared, and all that is left is fairy dust...\n\n");
+
+	Common::any_key_press("Press any key to continue");
+}
+
+void Story::fairy_refuse()
+{
+	system("cls");
+
+	Common::color_print(0x0d, "FAIRY:\n");
+	Common::write_ani("You don't want to use my services? That's okay!\n"
+					  "My apologies, hero, but my time is running out. I bid you farewell!\n\n"
+					  "The FAIRY has disappeared, and all that is left is fairy dust...\n\n");
 
 	Common::any_key_press("Press any key to continue");
 }

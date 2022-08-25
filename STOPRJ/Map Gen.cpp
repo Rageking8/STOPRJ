@@ -575,6 +575,10 @@ void Game::board_gen()
 
 	board.set_board(94, 24, 5); // Cart Landmark
 
+	// Wall after the first cart
+	for (int i = 95; i < 100; ++i)
+		board.set_board(i, 47, 6);
+
 	// Path to Mage Town
 	for (int i = 6; i < 12; ++i) // Row walls
 		board.set_board(69, i, 2);
@@ -908,7 +912,8 @@ void Game::board_gen()
 	board.set_board(58, 87, -65);
 	board.set_board(60, 87, -65);
 
-	board.set_board(56, 66, 70); //Key
+	board.set_board(56, 66, 70); // Key
+	board.set_board(60, 65, 90); // Maze Chest
 
 	// Forest
 	// Redwood Tree
@@ -1621,7 +1626,7 @@ void Game::board_gen()
 	{
 		board.set_board(131, (25 + i), 17);
 	}
-	//Second Spawnpoint (Grass and flowers)
+	// Second Spawnpoint (Grass and flowers)
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)

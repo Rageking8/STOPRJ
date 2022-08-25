@@ -13,8 +13,8 @@ public:
 private:
 	int coin;
 
-	int sword;
-	int armour;
+	int atk_potion;
+	int vit_potion;
 	int hp_potion;
 	int mp_potion;
 };

@@ -498,6 +498,9 @@ void Board::print_map()
 				case 89: // Boat NPC below kingdom of elves
 					Common::color_print(0X70, "?");
 					break;
+				case 90: // Chest in maze
+					Common::color_print(0X70, "?");
+					break;
 				default:
 					std::cout << ".";
 			}
@@ -889,6 +892,9 @@ void Board::print_with_id(short id)
 			break;
 		case 89: // Boat NPC below kingdom of elves
 			Common::color_print(0X09, "PaU");
+			break;
+		case 90: // Chest in Maze
+			Common::color_print(0XE0, " $ ");
 			break;
 		default:
 			std::cout << "   ";

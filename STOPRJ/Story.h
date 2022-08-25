@@ -50,10 +50,10 @@ public:
 	void defeatDK_playerOnly(); // only player is alive
 
 	// caershire magic school side quest: find the missing students
-	// reward: armour + 2 MP potions + 20 gold
+	// reward: 2 vitality potions + 2 MP potions + 20 gold
 	void magicSchool_start(); // interact with grand master mage pendolf
-	void magicSchool_accept(); // "i can help you look for them."
-	void magicSchool_decline(); // "that's concerning."
+	void magicSchool_accept(); 
+	void magicSchool_decline(); 
 	void magicSchool_student1Found(); //student 1 is lost
 	void magicSchool_student2Trapped(); // student 2 is trapped in a cage
 	void magicSchool_student2Found(); // after defeating the bandit
@@ -62,10 +62,10 @@ public:
 	void magicSchool_complete(); // interacting with pendolf once all 3 students are found
 
 	// kingdom of elves side quest: find jade
-	// reward: sword
+	// reward: 2 attack potions
 	void KoE_start(); // talk to aerith (npc12) in their house
-	void KoE_accept(); // "i could help you find them."
-	void KoE_decline(); // "good luck!"
+	void KoE_accept(); 
+	void KoE_decline(); 
 	void KoE_inProgress();
 	void KoE_jadeFound(int count); // when player steps on specific blocks
 	void KoE_complete();
@@ -111,6 +111,11 @@ public:
 	void banditTreasureRoomHint(int state); // hint to unlock bandits' treasure room
 	void collectTreasure(); // player interacts with chests in the bandits' treasure room
 	void excalibur_warning(); // warning note in floor 2
+	void fairy_start(int coins); // interact with the fairy after the excalibur dungeon
+	void fairy_recoverHP(); 
+	void fairy_recoverMP();
+	void fairy_notEnoughCoins(); // user inputs 1 or 2 but coins < 100
+	void fairy_refuse(); 
 
 	void ending_main(); // player, orion and elora are alive
 	void ending_partyMemDead(); // player and orion or elora are alive

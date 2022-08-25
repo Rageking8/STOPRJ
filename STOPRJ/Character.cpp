@@ -1,6 +1,6 @@
 #include "Character.h"
 
-Character::Character() : attack{3}, cur_health{}, max_health{}, cur_mp{}, max_mp{}, pos{}
+Character::Character() : attack{2}, cur_health{}, max_health{}, cur_mp{}, max_mp{}, pos{}
 {
 	name = "";
 	set_item_qty("coin", 40);

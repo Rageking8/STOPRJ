@@ -9,43 +9,17 @@
 
 Game::Game() : trigger_counter{}
 {
+	// Make the console window size be the screen size
 	ShowWindow(GetConsoleWindow(), SW_MAXIMIZE);
+	
+	// Disable sync with stdio to improve performance
 	std::ios_base::sync_with_stdio(false);
 
-	board.set_board(135, 2, 1);
-	swordsman.set_pos(135, 2);
+	// Default spawn location of player (swordsman)
+	teleport_ply(135, 2, false);
 
-	int tmp_cam_pos_i1 = 0;
-	int tmp_cam_pos_i2 = 0;
-
-	if (swordsman.get_pos(0) < 7) {
-		tmp_cam_pos_i1 = 0;
-	}
-	else if (swordsman.get_pos(0) > 143) {
-		tmp_cam_pos_i1 = 136;
-	}
-	else {
-		tmp_cam_pos_i1 = swordsman.get_pos(0) - 7;
-	}
-
-	if (swordsman.get_pos(1) < 15) {
-		tmp_cam_pos_i2 = 0;
-	}
-	else if (swordsman.get_pos(1) > 135) {
-		tmp_cam_pos_i2 = 136;
-	}
-	else {
-		tmp_cam_pos_i2 = swordsman.get_pos(1) - 15;
-	}
-
-	board.set_cam(tmp_cam_pos_i1, tmp_cam_pos_i2);
-
+	// Generate all the landmarks of the entire world
 	board_gen();
-
-	// Note: do not overide
-	for (int i = 95; i < 100; ++i) {
-		board.set_board(i, 47, 6);
-	}
 }
 
 Game::~Game()
@@ -54,17 +28,17 @@ Game::~Game()
 
 void Game::start()
 {
+	Common::Timer speedrun;
 	system("cls");
 
 	Common::cursor_vis(false);
 
+	// Get player's name and initialize player's name across the whole game
 	std::string tmp_player_name = start_menu();
-
 	swordsman.set_name(tmp_player_name);
 	story.set_player_name(tmp_player_name);
 
-	Common::cursor_vis(false);
-
+	// Initial quick guide on how to start
 	story.beforeTalkingToMessenger();
 
 	bool prev_is_map = false;
@@ -84,7 +58,14 @@ void Game::start()
 		bandit_puz_a[i] = (Common::rand_int(1, 20) <= 10);
 	}
 
+	// Keeps track of the state of certain parts in the game to prevent replaying parts that should only happen once
 	bool npc4_r = false;
+
+	int jadesq_s = 0;
+	bool jadesq_j1 = false;
+	bool jadesq_j2 = false;
+	bool jadesq_j3 = false;
+	int jadesq_c = 0;
 
 	bool bandit1_b = false;
 	bool bandit_camp_t = false;
@@ -398,15 +379,13 @@ void Game::start()
 				}
 
 				for (int i = 1; i < 30; ++i) {
-					Common::set_cursor(0, i);
-					Common::color_print(0xE0, "  ");
+					Common::color_print(0, i, 0xE0, "  ");
 					Common::color_print(0x80, " ");
 
 					if (i == 1 || i == 29) {
 						Common::move_cursor('A');
 						Common::color_print(0xC0, "  ");
-						Common::set_cursor(121, i);
-						Common::color_print(0xC0, "  ");
+						Common::color_print(121, i, 0xC0, "  ");
 					}
 					else {
 						Common::set_cursor(122, i);
@@ -414,8 +393,7 @@ void Game::start()
 						Common::color_print(0xE0, "  ");
 						continue;
 					}
-					Common::set_cursor(123, i);
-					Common::color_print(0xE0, "  ");
+					Common::color_print(123, i, 0xE0, "  ");
 				}
 
 				Common::color_print(2, 2, 0xE0, "  ");
@@ -431,8 +409,7 @@ void Game::start()
 				Common::color_print(121, 28, 0xE0, "  ");
 
 				for (int i = 11; i < 25; ++i) {
-					Common::set_cursor(62, i);
-					Common::color_print(0xE0, "  ");
+					Common::color_print(62, i, 0xE0, "  ");
 				}
 
 				Common::set_cursor(0, 11);
@@ -469,47 +446,36 @@ void Game::start()
 						Common::color_print(0x60, "  ");
 					}
 
-					Common::set_cursor(67, 4 + i);
-					Common::color_print(0x60, " ");
+					Common::color_print(67, 4 + i, 0x60, " ");
 
-					Common::set_cursor(68, 5 + i);
-					Common::color_print(0x60, " ");
+					Common::color_print(68, 5 + i, 0x60, " ");
 
-					Common::set_cursor(49 + (3 * i), 4);
-					Common::color_print(0x60, " ");
+					Common::color_print(49 + (3 * i), 4, 0x60, " ");
 
-					Common::set_cursor(59, 3 + (2 * i));
-					Common::color_print(0x60, "    ");
+					Common::color_print(59, 3 + (2 * i), 0x60, "    ");
 
-					Common::set_cursor(59 + (15 * i), 8);
-					Common::color_print(0x60, "    ");
+					Common::color_print(59 + (15 * i), 8, 0x60, "    ");
 				}
 
 				for (int i = 0; i < 6; ++i) {
-					Common::set_cursor(57, 3 + i);
-					Common::color_print(0x60, "  ");
+					Common::color_print(57, 3 + i, 0x60, "  ");
 				}
 
-				Common::set_cursor(50, 5);
-				Common::color_print(0x60, "  ");
+				Common::color_print(50, 5, 0x60, "  ");
 
-				Common::set_cursor(28, 14);
-				Common::color_print(0x06, "[1] PARTY");
+				Common::color_print(28, 14, 0x06, "[1] PARTY");
 				Common::set_cursor(11, 15);
 				std::cout << "Check your party's current stats and skills.";
 
-				Common::set_cursor(87, 14);
-				Common::color_print(0x06, "[2] BACKPACK");
+				Common::color_print(87, 14, 0x06, "[2] BACKPACK");
 				Common::set_cursor(75, 15);
 				std::cout << "All of your items are stored in here.";
 
-				Common::set_cursor(26, 21);
-				Common::color_print(0x06, "[3] WORLD MAP");
+				Common::color_print(26, 21, 0x06, "[3] WORLD MAP");
 				Common::set_cursor(8, 22);
 				std::cout << "Have a look at the world you're about to explore.";
 
-				Common::set_cursor(86, 21);
-				Common::color_print(0x06, "[4] SKILL BOOK");
+				Common::color_print(86, 21, 0x06, "[4] SKILL BOOK");
 				Common::set_cursor(73, 22);
 				std::cout << "An index of every skill you can encounter.";
 
@@ -570,24 +536,20 @@ void Game::start()
 					}
 
 					for (int i = 1; i < 30; ++i) {
-						Common::set_cursor(0, i);
-						Common::color_print(0xE0, "  ");
+						Common::color_print(0, i, 0xE0, "  ");
 						Common::color_print(0x80, " ");
 
 						if (i == 1 || i == 29) {
 							Common::move_cursor('A');
 							Common::color_print(0xC0, "  ");
-							Common::set_cursor(121, i);
-							Common::color_print(0xC0, "  ");
+							Common::color_print(121, i, 0xC0, "  ");
 						}
 						else {
-							Common::set_cursor(122, i);
-							Common::color_print(0x80, " ");
+							Common::color_print(122, i, 0x80, " ");
 							Common::color_print(0xE0, "  ");
 							continue;
 						}
-						Common::set_cursor(123, i);
-						Common::color_print(0xE0, "  ");
+						Common::color_print(123, i, 0xE0, "  ");
 					}
 
 					Common::color_print(2, 2, 0xE0, "  ");
@@ -604,8 +566,7 @@ void Game::start()
 
 					for (int i = 11; i < 25; ++i) {
 						for (int i2 = 0; i2 < 3; ++i2) {
-							Common::set_cursor(31 * (i2 + 1), i);
-							Common::color_print(0xE0, "  ");
+							Common::color_print(31 * (i2 + 1), i, 0xE0, "  ");
 						}
 					}
 					Common::set_cursor(0, 11);
@@ -645,8 +606,7 @@ void Game::start()
 						Common::color_print(0x60, "  ");
 					}
 					for (int i = 0; i < 6; ++i) {
-						Common::set_cursor(70, 3 + i);
-						Common::color_print(0x60, "  ");
+						Common::color_print(70, 3 + i, 0x60, "  ");
 					}
 					Common::color_print(68, 3, 0x60, "      ");
 
@@ -877,10 +837,10 @@ void Game::start()
 						std::cout << "[1]   COINS : " << swordsman.get_item_qty("coin");
 
 						Common::set_cursor(53, 19);
-						std::cout << "[2]   SWORD : " << swordsman.get_item_qty("sword");
+						std::cout << "[2]   ATTACK POTION : " << swordsman.get_item_qty("atk_potion");
 
 						Common::set_cursor(53, 20);
-						std::cout << "[3]   ARMOUR : " << swordsman.get_item_qty("armour");
+						std::cout << "[3]   VITALITY POTION : " << swordsman.get_item_qty("vit_potion");
 
 						Common::set_cursor(53, 21);
 						std::cout << "[4]   HP POTION : " << swordsman.get_item_qty("hp_potion");
@@ -945,41 +905,40 @@ void Game::start()
 							is_red = true;
 						}
 						else if (item_inp == "2") {
-							if (swordsman.get_item_qty("sword") > 0) {
-								swordsman.set_item_qty("sword", swordsman.get_item_qty("sword") - 1);
+							if (swordsman.get_item_qty("atk_potion") > 0) {
+								swordsman.set_item_qty("atk_potion", swordsman.get_item_qty("atk_potion") - 1);
 								swordsman.set_stats("attack", swordsman.get_stats("attack") + 5);
 
-								Common::color_print(40, 26, 0x0A, "You have equipped a SWORD! Your attack is now ");
+								Common::color_print(37, 26, 0x0A, "You have consumed ATTACK POTION! Your attack is now ");
 								Common::color_print(0x0A, swordsman.get_stats("attack"));
 								Common::color_print(0x0A, "!");
-								msg = "You have equipped a SWORD! Your attack is now " + std::to_string(swordsman.get_stats("attack")) + "!";
-								tmp_x = 40;
-								is_red = false;
-							}
-							else {
-								Common::color_print(49, 26, 0x0C, "You have no SWORDS to equip!");
-								msg = "You have no SWORDS to equip!";
-								tmp_x = 49;
-								is_red = true;
-							}
-						}
-						else if (item_inp == "3") {
-							if (swordsman.get_item_qty("armour") > 0) {
-								swordsman.set_item_qty("armour", swordsman.get_item_qty("armour") - 1);
-								swordsman.set_stats("cur_health", swordsman.get_stats("cur_health") + 20);
-								swordsman.set_stats("max_health", swordsman.get_stats("max_health") + 20);
-
-								Common::color_print(37, 26, 0x0A, "You have equipped ARMOUR! Your max health is now ");
-								Common::color_print(0x0A, swordsman.get_stats("max_health"));
-								Common::color_print(0x0A, "!");
-								msg = "You have equipped ARMOUR! Your max health is now " + std::to_string(swordsman.get_stats("max_health")) + "!";
+								msg = "You have consumed ATTACK POTION! Your attack is now " + std::to_string(swordsman.get_stats("attack")) + "!";
 								tmp_x = 37;
 								is_red = false;
 							}
 							else {
-								Common::color_print(49, 26, 0x0C, "You have no ARMOUR to equip!");
-								msg = "You have no ARMOUR to equip!";
-								tmp_x = 49;
+								Common::color_print(44, 26, 0x0C, "You have no ATTACK POTIONS to consume!");
+								msg = "You have no ATTACK POTIONS to consume!";
+								tmp_x = 44;
+								is_red = true;
+							}
+						}
+						else if (item_inp == "3") {
+							if (swordsman.get_item_qty("vit_potion") > 0) {
+								swordsman.set_item_qty("vit_potion", swordsman.get_item_qty("vit_potion") - 1);
+								swordsman.set_stats("max_health", swordsman.get_stats("max_health") + 20);
+
+								Common::color_print(33, 26, 0x0A, "You have consumed VITALITY POTION! Your max health is now ");
+								Common::color_print(0x0A, swordsman.get_stats("max_health"));
+								Common::color_print(0x0A, "!");
+								msg = "You have consumed VITALITY POTION! Your max health is now " + std::to_string(swordsman.get_stats("max_health")) + "!";
+								tmp_x = 33;
+								is_red = false;
+							}
+							else {
+								Common::color_print(43, 26, 0x0C, "You have no VITALITY POTIONS to consume!");
+								msg = "You have no VITALITY POTIONS to consume!";
+								tmp_x = 43;
 								is_red = true;
 							}
 						}
@@ -1200,13 +1159,39 @@ void Game::start()
 
 			teleport_ply(139, 121);
 
-			if (swordsman.get_stats("cur_health") <= 0)
-				break;
+			break;
 
 			dkc_3_d = true;
 			prev_is_map = false;
 			system("cls");
 			Common::cursor_vis(false);
+		}
+		else if (jadesq_s == 1 && !jadesq_j1 && swordsman.get_pos(0) == 93 && swordsman.get_pos(1) == 22) {
+			jadesq_c++;
+			if (jadesq_c == 3)
+				jadesq_s = 2;
+			jadesq_j1 = true;
+			story.KoE_jadeFound(jadesq_c);
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (jadesq_s == 1 && !jadesq_j2 && swordsman.get_pos(0) == 93 && swordsman.get_pos(1) == 1) {
+			jadesq_c++;
+			if (jadesq_c == 3)
+				jadesq_s = 2;
+			jadesq_j2 = true;
+			story.KoE_jadeFound(jadesq_c);
+			prev_is_map = false;
+			system("cls");
+		}
+		else if (jadesq_s == 1 && !jadesq_j3 && swordsman.get_pos(0) == 67 && swordsman.get_pos(1) == 8) {
+			jadesq_c++;
+			if (jadesq_c == 3)
+				jadesq_s = 2;
+			jadesq_j3 = true;
+			story.KoE_jadeFound(jadesq_c);
+			prev_is_map = false;
+			system("cls");
 		}
 
 		if (tmp_target_cell_val == 3) {
@@ -1219,11 +1204,11 @@ void Game::start()
 					break_s = true;
 					break;
 				case '1':
-					swordsman.set_item_qty("sword", swordsman.get_item_qty("sword") + 1);
+					swordsman.set_item_qty("atk_potion", swordsman.get_item_qty("atk_potion") + 1);
 					swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 10);
 					break;
 				case '2':
-					swordsman.set_item_qty("armour", swordsman.get_item_qty("armour") + 1);
+					swordsman.set_item_qty("vit_potion", swordsman.get_item_qty("vit_potion") + 1);
 					swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 20);
 					break;
 				case '3':
@@ -1268,10 +1253,43 @@ void Game::start()
 			system("cls");
 		}
 		else if (tmp_target_cell_val == 45) {
-			Common::cursor_vis(false);
-			story.npc12();
+			if (jadesq_s == 0) {
+				story.KoE_start();
+
+				Common::cursor_vis(true);
+				std::string tmp_inp = Common::input("Do you want to accept this quest ? (Y/N) : ");
+				while (tmp_inp != "Y" && tmp_inp != "y" && tmp_inp != "N" && tmp_inp != "n") {
+					Common::color_print(43, 7, 0x07, Common::mul_txt(" ", tmp_inp.length()));
+					Common::color_print(0, 8, 0x0C, "Invalid Input");
+					Common::set_cursor(0, 7);
+					tmp_inp = Common::input("Do you want to accept this quest ? (Y/N) : ");
+				}
+
+				Common::cursor_vis(false);
+
+				if (tmp_inp == "Y" || tmp_inp == "y") {
+					story.KoE_accept();
+					jadesq_s = 1;
+				}
+				else {
+					story.KoE_decline();
+				}
+			}
+			else if (jadesq_s == 1) {
+				story.KoE_inProgress();
+			}
+			else if (jadesq_s == 2) {
+				story.KoE_complete();
+				jadesq_s = 3;
+				swordsman.set_item_qty("atk_potion", swordsman.get_item_qty("atk_potion") + 2);
+			}
+			else {
+				story.npc12();
+			}
+
 			prev_is_map = false;
 			system("cls");
+			Common::cursor_vis(false);
 		}
 		else if (tmp_target_cell_val == 46) {
 			Common::cursor_vis(false);
@@ -1668,7 +1686,48 @@ void Game::start()
 				break;
 		}
 		else if (tmp_target_cell_val == 88) {
-			// TODO : fairy
+
+			story.fairy_start(swordsman.get_item_qty("coin"));
+			Common::cursor_vis(true);
+
+			std::string fairy_inp = Common::input("Enter your choice : ");
+			while (fairy_inp != "1" && fairy_inp != "2" && fairy_inp != "3") {
+				Common::color_print(0x0C, "Invalid input! Please try again.");
+				Common::set_cursor(20, 16);
+				Common::mul_txt(" ", fairy_inp.length(), true);
+				Common::set_cursor(0, 16);
+				fairy_inp = Common::input("Enter your choice : ");
+			}
+
+			Common::cursor_vis(false);
+
+			if (fairy_inp == "1" || fairy_inp == "2") {
+				if (swordsman.get_item_qty("coin") >= 100) {
+					if (fairy_inp == "1") {
+						story.fairy_recoverHP();
+						swordsman.set_stats("cur_health", swordsman.get_stats("max_health"));
+						elf.set_stats("cur_health", elf.get_stats("max_health"));
+						mage.set_stats("cur_health", mage.get_stats("max_health"));
+						assassin.set_stats("cur_health", assassin.get_stats("max_health"));
+					}
+					else {
+						story.fairy_recoverMP();
+						swordsman.set_stats("cur_mp", swordsman.get_stats("max_mp"));
+						elf.set_stats("cur_mp", elf.get_stats("max_mp"));
+						mage.set_stats("cur_mp", mage.get_stats("max_mp"));
+						assassin.set_stats("cur_mp", assassin.get_stats("max_mp"));
+					}
+					swordsman.set_item_qty("coin", swordsman.get_item_qty("coin") - 100);
+				}
+				else {
+					story.fairy_notEnoughCoins();
+				}
+			}
+			else {
+				story.fairy_refuse();
+			}
+
+			board.set_board(99, 110, 0);
 
 			prev_is_map = false;
 			system("cls");
@@ -1678,15 +1737,27 @@ void Game::start()
 			prev_is_map = false;
 			system("cls");
 		}
+		else if (tmp_target_cell_val == 90) {
+			story.collectTreasure();
+			board.set_board(60, 65, 0);
+			prev_is_map = false;
+			system("cls");
+		}
 	}
+
+	system("cls");
+	std::cout << "Time taken : " << double(speedrun.end()) / 1000000000 << " seconds\n\nPress any key to continue";
+	Common::any_key_press();
 }
 
-void Game::teleport_ply(int idx1, int idx2)
+void Game::teleport_ply(int idx1, int idx2, bool clear)
 {
-	board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 0);
+	if (clear)
+		board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 0);
 	swordsman.set_pos(idx1, idx2);
 	board.set_board(swordsman.get_pos(0), swordsman.get_pos(1), 1);
 
+	// Calculates where to place the top down camera based on the player's (swordsman) position 
 	int tmp_cam_pos_i1 = 0;
 	int tmp_cam_pos_i2 = 0;
 
@@ -1790,11 +1861,9 @@ void Game::print_all_skill()
 			Common::color_print(0xE0, "                         ");
 		}
 
-		Common::set_cursor(69, 5);
-		Common::color_print(0x60, "   ");
+		Common::color_print(69, 5, 0x60, "   ");
 
-		Common::set_cursor(71, 4);
-		Common::color_print(0x60, "  ");
+		Common::color_print(71, 4, 0x60, "  ");
 
 		for (int i = 0; i < 2; ++i) {
 			Common::set_cursor(28, 3 + (5 * i));
